@@ -1,0 +1,846 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option selected="selected" value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option value="67108864">东莞市桥头镇</option>
+	<option value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6181&vc=db42a567' target='_blank'>大步海滨花园(三期)1号楼</a></td><td><a href='BeianDetail.aspx?id=6181&vc=db42a567' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6181&vc=db42a567' target='_blank'>39</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6188&vc=f170e5fa' target='_blank'>大步海滨花园(三期)2号楼</a></td><td><a href='BeianDetail.aspx?id=6188&vc=f170e5fa' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6188&vc=f170e5fa' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6182&vc=d119e33f' target='_blank'>大步海滨花园(三期)3号楼</a></td><td><a href='BeianDetail.aspx?id=6182&vc=d119e33f' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6182&vc=d119e33f' target='_blank'>25</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=225&vc=9c35d112' target='_blank'>大步花园(二期)1号楼</a></td><td><a href='BeianDetail.aspx?id=225&vc=9c35d112' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=225&vc=9c35d112' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=227&vc=bfc940a8' target='_blank'>大步花园(二期)2号楼</a></td><td><a href='BeianDetail.aspx?id=227&vc=bfc940a8' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=227&vc=bfc940a8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=228&vc=82e24ae8' target='_blank'>大步花园(二期)3号楼</a></td><td><a href='BeianDetail.aspx?id=228&vc=82e24ae8' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=228&vc=82e24ae8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6619&vc=36cd1a21' target='_blank'>大步花园（三期）13、14、15、18、19、20、24、27、28、29幢</a></td><td><a href='BeianDetail.aspx?id=6619&vc=36cd1a21' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6619&vc=36cd1a21' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6620&vc=5e794bb8' target='_blank'>大步花园（三期）16、17、21、22、23、25、31幢</a></td><td><a href='BeianDetail.aspx?id=6620&vc=5e794bb8' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6620&vc=5e794bb8' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6621&vc=813d79ab' target='_blank'>大步花园（三期）26、30幢</a></td><td><a href='BeianDetail.aspx?id=6621&vc=813d79ab' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6621&vc=813d79ab' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6618&vc=12bcf17a' target='_blank'>大步花园（三期）4、5、6、7、8、9、10、11、12幢 </a></td><td><a href='BeianDetail.aspx?id=6618&vc=12bcf17a' target='_blank'>麻涌镇 大步村</a></td><td><a href='BeianDetail.aspx?id=6618&vc=12bcf17a' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9979&vc=ecb4d6f3' target='_blank'>富盈商业广场2号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=9979&vc=ecb4d6f3' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9979&vc=ecb4d6f3' target='_blank'>251</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9980&vc=ef99cc3a' target='_blank'>富盈商业广场5号商业楼</a></td><td><a href='BeianDetail.aspx?id=9980&vc=ef99cc3a' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9980&vc=ef99cc3a' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9628&vc=72c6271b' target='_blank'>信鸿熙岸花园10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9628&vc=72c6271b' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9628&vc=72c6271b' target='_blank'>17</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9397&vc=d9251fbf' target='_blank'>信鸿熙岸花园11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9397&vc=d9251fbf' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9397&vc=d9251fbf' target='_blank'>17</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8634&vc=8a046f8a' target='_blank'>信鸿熙岸花园12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8634&vc=8a046f8a' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8634&vc=8a046f8a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8635&vc=6c282037' target='_blank'>信鸿熙岸花园13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8635&vc=6c282037' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8635&vc=6c282037' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7338&vc=74210e10' target='_blank'>信鸿熙岸花园14幢</a></td><td><a href='BeianDetail.aspx?id=7338&vc=74210e10' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=7338&vc=74210e10' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6920&vc=7fa126d1' target='_blank'>信鸿熙岸花园15幢</a></td><td><a href='BeianDetail.aspx?id=6920&vc=7fa126d1' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=6920&vc=7fa126d1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6640&vc=7c222901' target='_blank'>信鸿熙岸花园16幢</a></td><td><a href='BeianDetail.aspx?id=6640&vc=7c222901' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=6640&vc=7c222901' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6641&vc=373c782c' target='_blank'>信鸿熙岸花园17幢</a></td><td><a href='BeianDetail.aspx?id=6641&vc=373c782c' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=6641&vc=373c782c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8122&vc=c7a708fc' target='_blank'>信鸿熙岸花园18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8122&vc=c7a708fc' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8122&vc=c7a708fc' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8263&vc=284f95cd' target='_blank'>信鸿熙岸花园19号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8263&vc=284f95cd' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8263&vc=284f95cd' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6639&vc=d90c3afa' target='_blank'>信鸿熙岸花园1幢</a></td><td><a href='BeianDetail.aspx?id=6639&vc=d90c3afa' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=6639&vc=d90c3afa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8270&vc=78944d1c' target='_blank'>信鸿熙岸花园20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8270&vc=78944d1c' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8270&vc=78944d1c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8459&vc=672e9e3e' target='_blank'>信鸿熙岸花园21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8459&vc=672e9e3e' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8459&vc=672e9e3e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7804&vc=f1e6e75a' target='_blank'>信鸿熙岸花园27幢</a></td><td><a href='BeianDetail.aspx?id=7804&vc=f1e6e75a' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=7804&vc=f1e6e75a' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7806&vc=488f12bc' target='_blank'>信鸿熙岸花园28幢</a></td><td><a href='BeianDetail.aspx?id=7806&vc=488f12bc' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=7806&vc=488f12bc' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6918&vc=f3e4674b' target='_blank'>信鸿熙岸花园2幢</a></td><td><a href='BeianDetail.aspx?id=6918&vc=f3e4674b' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=6918&vc=f3e4674b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6919&vc=d8fa674a' target='_blank'>信鸿熙岸花园3幢</a></td><td><a href='BeianDetail.aspx?id=6919&vc=d8fa674a' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=6919&vc=d8fa674a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7337&vc=76aa3043' target='_blank'>信鸿熙岸花园4幢</a></td><td><a href='BeianDetail.aspx?id=7337&vc=76aa3043' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=7337&vc=76aa3043' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7494&vc=76b68968' target='_blank'>信鸿熙岸花园5幢</a></td><td><a href='BeianDetail.aspx?id=7494&vc=76b68968' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=7494&vc=76b68968' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9626&vc=11aba492' target='_blank'>信鸿熙岸花园6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9626&vc=11aba492' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9626&vc=11aba492' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9627&vc=f165e4b0' target='_blank'>信鸿熙岸花园7号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9627&vc=f165e4b0' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9627&vc=f165e4b0' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9395&vc=31dba9e9' target='_blank'>信鸿熙岸花园8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9395&vc=31dba9e9' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9395&vc=31dba9e9' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9396&vc=34dbf3b8' target='_blank'>信鸿熙岸花园9号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9396&vc=34dbf3b8' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=9396&vc=34dbf3b8' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8123&vc=2c69da84' target='_blank'>信鸿熙岸花园配套服务楼</a></td><td><a href='BeianDetail.aspx?id=8123&vc=2c69da84' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=8123&vc=2c69da84' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10283&vc=474c70e2' target='_blank'>信鸿熙岸花园一期地下室</a></td><td><a href='BeianDetail.aspx?id=10283&vc=474c70e2' target='_blank'>麻涌镇 东太村</a></td><td><a href='BeianDetail.aspx?id=10283&vc=474c70e2' target='_blank'>608</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7575&vc=4884eb3f' target='_blank'>碧水湾花园(北区)第10栋</a></td><td><a href='BeianDetail.aspx?id=7575&vc=4884eb3f' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7575&vc=4884eb3f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7576&vc=14c9bd32' target='_blank'>碧水湾花园(北区)第11栋</a></td><td><a href='BeianDetail.aspx?id=7576&vc=14c9bd32' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7576&vc=14c9bd32' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7577&vc=4bc4b8c6' target='_blank'>碧水湾花园(北区)第12栋</a></td><td><a href='BeianDetail.aspx?id=7577&vc=4bc4b8c6' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7577&vc=4bc4b8c6' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7578&vc=f9126075' target='_blank'>碧水湾花园(北区)第14栋</a></td><td><a href='BeianDetail.aspx?id=7578&vc=f9126075' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7578&vc=f9126075' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7738&vc=f46ed901' target='_blank'>碧水湾花园(北区)第2栋</a></td><td><a href='BeianDetail.aspx?id=7738&vc=f46ed901' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7738&vc=f46ed901' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7739&vc=4390fae1' target='_blank'>碧水湾花园(北区)第3栋</a></td><td><a href='BeianDetail.aspx?id=7739&vc=4390fae1' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7739&vc=4390fae1' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10237&vc=61335c7b' target='_blank'>碧水湾花园(南区)第11栋</a></td><td><a href='BeianDetail.aspx?id=10237&vc=61335c7b' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10237&vc=61335c7b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10238&vc=9bf89182' target='_blank'>碧水湾花园(南区)第12栋</a></td><td><a href='BeianDetail.aspx?id=10238&vc=9bf89182' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10238&vc=9bf89182' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10239&vc=5b8c08f8' target='_blank'>碧水湾花园(南区)第13栋</a></td><td><a href='BeianDetail.aspx?id=10239&vc=5b8c08f8' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10239&vc=5b8c08f8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10240&vc=b6475bf9' target='_blank'>碧水湾花园(南区)第14栋</a></td><td><a href='BeianDetail.aspx?id=10240&vc=b6475bf9' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10240&vc=b6475bf9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10235&vc=314bdc32' target='_blank'>碧水湾花园(南区)第15栋</a></td><td><a href='BeianDetail.aspx?id=10235&vc=314bdc32' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10235&vc=314bdc32' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10236&vc=c3a4af2f' target='_blank'>碧水湾花园(南区)第16栋</a></td><td><a href='BeianDetail.aspx?id=10236&vc=c3a4af2f' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10236&vc=c3a4af2f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10606&vc=cb7c90d6' target='_blank'>碧水湾花园(南区)第17栋</a></td><td><a href='BeianDetail.aspx?id=10606&vc=cb7c90d6' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10606&vc=cb7c90d6' target='_blank'>199</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10605&vc=fdc29db0' target='_blank'>碧水湾花园(南区)第1栋</a></td><td><a href='BeianDetail.aspx?id=10605&vc=fdc29db0' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10605&vc=fdc29db0' target='_blank'>46</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10232&vc=b8ea4960' target='_blank'>碧水湾花园(南区)第2栋</a></td><td><a href='BeianDetail.aspx?id=10232&vc=b8ea4960' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10232&vc=b8ea4960' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10233&vc=a12953b9' target='_blank'>碧水湾花园(南区)第3栋</a></td><td><a href='BeianDetail.aspx?id=10233&vc=a12953b9' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10233&vc=a12953b9' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10234&vc=102fe52f' target='_blank'>碧水湾花园(南区)第4栋</a></td><td><a href='BeianDetail.aspx?id=10234&vc=102fe52f' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10234&vc=102fe52f' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10016&vc=dfaae6b5' target='_blank'>碧水湾花园(南区)第5栋</a></td><td><a href='BeianDetail.aspx?id=10016&vc=dfaae6b5' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=10016&vc=dfaae6b5' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9578&vc=4007bcde' target='_blank'>碧水湾花园(南区)第6栋、第7栋</a></td><td><a href='BeianDetail.aspx?id=9578&vc=4007bcde' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=9578&vc=4007bcde' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9579&vc=b5da6cf0' target='_blank'>碧水湾花园(南区)第8栋、第9栋</a></td><td><a href='BeianDetail.aspx?id=9579&vc=b5da6cf0' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=9579&vc=b5da6cf0' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8100&vc=eafe3343' target='_blank'>碧水湾花园（北区）第13栋</a></td><td><a href='BeianDetail.aspx?id=8100&vc=eafe3343' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8100&vc=eafe3343' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8101&vc=74e9709a' target='_blank'>碧水湾花园（北区）第15栋</a></td><td><a href='BeianDetail.aspx?id=8101&vc=74e9709a' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8101&vc=74e9709a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8102&vc=6ace6afd' target='_blank'>碧水湾花园（北区）第16栋</a></td><td><a href='BeianDetail.aspx?id=8102&vc=6ace6afd' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8102&vc=6ace6afd' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8786&vc=dfcd0d41' target='_blank'>碧水湾花园（北区）第17栋</a></td><td><a href='BeianDetail.aspx?id=8786&vc=dfcd0d41' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8786&vc=dfcd0d41' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7672&vc=84605ab2' target='_blank'>碧水湾花园（北区）第1栋</a></td><td><a href='BeianDetail.aspx?id=7672&vc=84605ab2' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7672&vc=84605ab2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8020&vc=6d268955' target='_blank'>碧水湾花园（北区）第4栋</a></td><td><a href='BeianDetail.aspx?id=8020&vc=6d268955' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8020&vc=6d268955' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8186&vc=507ec4be' target='_blank'>碧水湾花园（北区）第5栋</a></td><td><a href='BeianDetail.aspx?id=8186&vc=507ec4be' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8186&vc=507ec4be' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8545&vc=f3f4f1a8' target='_blank'>碧水湾花园（北区）第6栋</a></td><td><a href='BeianDetail.aspx?id=8545&vc=f3f4f1a8' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8545&vc=f3f4f1a8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8546&vc=e7c2adbf' target='_blank'>碧水湾花园（北区）第7栋</a></td><td><a href='BeianDetail.aspx?id=8546&vc=e7c2adbf' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8546&vc=e7c2adbf' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8099&vc=98f2943b' target='_blank'>碧水湾花园（北区）第8栋</a></td><td><a href='BeianDetail.aspx?id=8099&vc=98f2943b' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=8099&vc=98f2943b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7803&vc=6583c90c' target='_blank'>碧水湾花园（北区）第9栋</a></td><td><a href='BeianDetail.aspx?id=7803&vc=6583c90c' target='_blank'>麻涌镇 麻涌大道大步路段70号</a></td><td><a href='BeianDetail.aspx?id=7803&vc=6583c90c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11416&vc=3a878bee' target='_blank'>碧桂园凤凰湾畔花园10幢</a></td><td><a href='BeianDetail.aspx?id=11416&vc=3a878bee' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11416&vc=3a878bee' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11417&vc=f6dfdba3' target='_blank'>碧桂园凤凰湾畔花园11幢</a></td><td><a href='BeianDetail.aspx?id=11417&vc=f6dfdba3' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11417&vc=f6dfdba3' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11418&vc=0785caa8' target='_blank'>碧桂园凤凰湾畔花园12幢</a></td><td><a href='BeianDetail.aspx?id=11418&vc=0785caa8' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11418&vc=0785caa8' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11419&vc=c88416f2' target='_blank'>碧桂园凤凰湾畔花园13幢</a></td><td><a href='BeianDetail.aspx?id=11419&vc=c88416f2' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11419&vc=c88416f2' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11420&vc=8078272b' target='_blank'>碧桂园凤凰湾畔花园25幢</a></td><td><a href='BeianDetail.aspx?id=11420&vc=8078272b' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11420&vc=8078272b' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11421&vc=7cff7e4c' target='_blank'>碧桂园凤凰湾畔花园26幢</a></td><td><a href='BeianDetail.aspx?id=11421&vc=7cff7e4c' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11421&vc=7cff7e4c' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11422&vc=74637898' target='_blank'>碧桂园凤凰湾畔花园27幢</a></td><td><a href='BeianDetail.aspx?id=11422&vc=74637898' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11422&vc=74637898' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11423&vc=41169b9f' target='_blank'>碧桂园凤凰湾畔花园28幢</a></td><td><a href='BeianDetail.aspx?id=11423&vc=41169b9f' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11423&vc=41169b9f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11424&vc=cc1f726d' target='_blank'>碧桂园凤凰湾畔花园29幢</a></td><td><a href='BeianDetail.aspx?id=11424&vc=cc1f726d' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11424&vc=cc1f726d' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11425&vc=19a89634' target='_blank'>碧桂园凤凰湾畔花园30幢</a></td><td><a href='BeianDetail.aspx?id=11425&vc=19a89634' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11425&vc=19a89634' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11426&vc=c8a664d0' target='_blank'>碧桂园凤凰湾畔花园31幢</a></td><td><a href='BeianDetail.aspx?id=11426&vc=c8a664d0' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11426&vc=c8a664d0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11427&vc=ee2beb53' target='_blank'>碧桂园凤凰湾畔花园32幢</a></td><td><a href='BeianDetail.aspx?id=11427&vc=ee2beb53' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11427&vc=ee2beb53' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11428&vc=2556726f' target='_blank'>碧桂园凤凰湾畔花园33幢</a></td><td><a href='BeianDetail.aspx?id=11428&vc=2556726f' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11428&vc=2556726f' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11429&vc=6209276d' target='_blank'>碧桂园凤凰湾畔花园34幢</a></td><td><a href='BeianDetail.aspx?id=11429&vc=6209276d' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11429&vc=6209276d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11430&vc=53269788' target='_blank'>碧桂园凤凰湾畔花园35幢</a></td><td><a href='BeianDetail.aspx?id=11430&vc=53269788' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11430&vc=53269788' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11431&vc=b1fc54c9' target='_blank'>碧桂园凤凰湾畔花园36幢</a></td><td><a href='BeianDetail.aspx?id=11431&vc=b1fc54c9' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11431&vc=b1fc54c9' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11432&vc=9723c26c' target='_blank'>碧桂园凤凰湾畔花园37幢</a></td><td><a href='BeianDetail.aspx?id=11432&vc=9723c26c' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11432&vc=9723c26c' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11433&vc=244172ba' target='_blank'>碧桂园凤凰湾畔花园38幢</a></td><td><a href='BeianDetail.aspx?id=11433&vc=244172ba' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11433&vc=244172ba' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11434&vc=f279d89c' target='_blank'>碧桂园凤凰湾畔花园39幢</a></td><td><a href='BeianDetail.aspx?id=11434&vc=f279d89c' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11434&vc=f279d89c' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11435&vc=1e2205e8' target='_blank'>碧桂园凤凰湾畔花园40幢</a></td><td><a href='BeianDetail.aspx?id=11435&vc=1e2205e8' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11435&vc=1e2205e8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11436&vc=34a3e9a8' target='_blank'>碧桂园凤凰湾畔花园41幢</a></td><td><a href='BeianDetail.aspx?id=11436&vc=34a3e9a8' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11436&vc=34a3e9a8' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11437&vc=28038bcf' target='_blank'>碧桂园凤凰湾畔花园42幢</a></td><td><a href='BeianDetail.aspx?id=11437&vc=28038bcf' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11437&vc=28038bcf' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11470&vc=2b2a8603' target='_blank'>碧桂园凤凰湾畔花园43幢</a></td><td><a href='BeianDetail.aspx?id=11470&vc=2b2a8603' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11470&vc=2b2a8603' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11472&vc=1ec1855b' target='_blank'>碧桂园凤凰湾畔花园44幢</a></td><td><a href='BeianDetail.aspx?id=11472&vc=1ec1855b' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11472&vc=1ec1855b' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11473&vc=da8e175a' target='_blank'>碧桂园凤凰湾畔花园45幢</a></td><td><a href='BeianDetail.aspx?id=11473&vc=da8e175a' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11473&vc=da8e175a' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11474&vc=a388e435' target='_blank'>碧桂园凤凰湾畔花园46幢</a></td><td><a href='BeianDetail.aspx?id=11474&vc=a388e435' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11474&vc=a388e435' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11475&vc=ec2a68a7' target='_blank'>碧桂园凤凰湾畔花园47幢</a></td><td><a href='BeianDetail.aspx?id=11475&vc=ec2a68a7' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11475&vc=ec2a68a7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11476&vc=7df902d2' target='_blank'>碧桂园凤凰湾畔花园48幢</a></td><td><a href='BeianDetail.aspx?id=11476&vc=7df902d2' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11476&vc=7df902d2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11477&vc=48624dc2' target='_blank'>碧桂园凤凰湾畔花园49幢</a></td><td><a href='BeianDetail.aspx?id=11477&vc=48624dc2' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11477&vc=48624dc2' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11478&vc=99b3de65' target='_blank'>碧桂园凤凰湾畔花园50幢</a></td><td><a href='BeianDetail.aspx?id=11478&vc=99b3de65' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11478&vc=99b3de65' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11479&vc=3aed45dc' target='_blank'>碧桂园凤凰湾畔花园51幢</a></td><td><a href='BeianDetail.aspx?id=11479&vc=3aed45dc' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11479&vc=3aed45dc' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11480&vc=9483081e' target='_blank'>碧桂园凤凰湾畔花园52幢</a></td><td><a href='BeianDetail.aspx?id=11480&vc=9483081e' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11480&vc=9483081e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11481&vc=5566d88d' target='_blank'>碧桂园凤凰湾畔花园53幢</a></td><td><a href='BeianDetail.aspx?id=11481&vc=5566d88d' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11481&vc=5566d88d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11483&vc=5485c73e' target='_blank'>碧桂园凤凰湾畔花园54幢</a></td><td><a href='BeianDetail.aspx?id=11483&vc=5485c73e' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11483&vc=5485c73e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11484&vc=9bd70564' target='_blank'>碧桂园凤凰湾畔花园55幢</a></td><td><a href='BeianDetail.aspx?id=11484&vc=9bd70564' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11484&vc=9bd70564' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11486&vc=79d34778' target='_blank'>碧桂园凤凰湾畔花园56幢</a></td><td><a href='BeianDetail.aspx?id=11486&vc=79d34778' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11486&vc=79d34778' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11487&vc=f502155e' target='_blank'>碧桂园凤凰湾畔花园57幢</a></td><td><a href='BeianDetail.aspx?id=11487&vc=f502155e' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11487&vc=f502155e' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11488&vc=a4b4be40' target='_blank'>碧桂园凤凰湾畔花园58幢</a></td><td><a href='BeianDetail.aspx?id=11488&vc=a4b4be40' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11488&vc=a4b4be40' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11489&vc=6534e113' target='_blank'>碧桂园凤凰湾畔花园59幢</a></td><td><a href='BeianDetail.aspx?id=11489&vc=6534e113' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11489&vc=6534e113' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11491&vc=e71163c9' target='_blank'>碧桂园凤凰湾畔花园60幢</a></td><td><a href='BeianDetail.aspx?id=11491&vc=e71163c9' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11491&vc=e71163c9' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11413&vc=e510a8a2' target='_blank'>碧桂园凤凰湾畔花园7幢</a></td><td><a href='BeianDetail.aspx?id=11413&vc=e510a8a2' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11413&vc=e510a8a2' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11414&vc=3e45115b' target='_blank'>碧桂园凤凰湾畔花园8幢</a></td><td><a href='BeianDetail.aspx?id=11414&vc=3e45115b' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11414&vc=3e45115b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11415&vc=4d08d15d' target='_blank'>碧桂园凤凰湾畔花园9幢</a></td><td><a href='BeianDetail.aspx?id=11415&vc=4d08d15d' target='_blank'>麻涌镇 望海路1号</a></td><td><a href='BeianDetail.aspx?id=11415&vc=4d08d15d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11106&vc=d875dc9e' target='_blank'>碧海蓝湾花园(四期)10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11106&vc=d875dc9e' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11106&vc=d875dc9e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11107&vc=67b79ef2' target='_blank'>碧海蓝湾花园(四期)11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11107&vc=67b79ef2' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11107&vc=67b79ef2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11108&vc=68838d49' target='_blank'>碧海蓝湾花园(四期)12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11108&vc=68838d49' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11108&vc=68838d49' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11109&vc=377c3a76' target='_blank'>碧海蓝湾花园(四期)13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11109&vc=377c3a76' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11109&vc=377c3a76' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11110&vc=e827e3aa' target='_blank'>碧海蓝湾花园(四期)14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11110&vc=e827e3aa' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11110&vc=e827e3aa' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11111&vc=7324202d' target='_blank'>碧海蓝湾花园(四期)15号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11111&vc=7324202d' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11111&vc=7324202d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11112&vc=7f86ac3e' target='_blank'>碧海蓝湾花园(四期)16号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11112&vc=7f86ac3e' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11112&vc=7f86ac3e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11113&vc=d8aa959b' target='_blank'>碧海蓝湾花园(四期)17号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11113&vc=d8aa959b' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11113&vc=d8aa959b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11114&vc=92403053' target='_blank'>碧海蓝湾花园(四期)18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11114&vc=92403053' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11114&vc=92403053' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11115&vc=e58499c2' target='_blank'>碧海蓝湾花园(四期)19号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11115&vc=e58499c2' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11115&vc=e58499c2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11116&vc=16064263' target='_blank'>碧海蓝湾花园(四期)20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11116&vc=16064263' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11116&vc=16064263' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11117&vc=075ae864' target='_blank'>碧海蓝湾花园(四期)21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11117&vc=075ae864' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11117&vc=075ae864' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11118&vc=b5542118' target='_blank'>碧海蓝湾花园(四期)22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11118&vc=b5542118' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11118&vc=b5542118' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11119&vc=9fd8ce59' target='_blank'>碧海蓝湾花园(四期)23号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11119&vc=9fd8ce59' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11119&vc=9fd8ce59' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11120&vc=5063aa94' target='_blank'>碧海蓝湾花园(四期)24号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11120&vc=5063aa94' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11120&vc=5063aa94' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11122&vc=41d25832' target='_blank'>碧海蓝湾花园(四期)25号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11122&vc=41d25832' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11122&vc=41d25832' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11123&vc=f7310c59' target='_blank'>碧海蓝湾花园(四期)26号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11123&vc=f7310c59' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11123&vc=f7310c59' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11124&vc=48f71073' target='_blank'>碧海蓝湾花园(四期)27号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11124&vc=48f71073' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11124&vc=48f71073' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11126&vc=920630cb' target='_blank'>碧海蓝湾花园(四期)28号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11126&vc=920630cb' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11126&vc=920630cb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11127&vc=883447de' target='_blank'>碧海蓝湾花园(四期)29号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11127&vc=883447de' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11127&vc=883447de' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11128&vc=a61320e6' target='_blank'>碧海蓝湾花园(四期)30号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11128&vc=a61320e6' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11128&vc=a61320e6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11129&vc=4119c62e' target='_blank'>碧海蓝湾花园(四期)31号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11129&vc=4119c62e' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11129&vc=4119c62e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11131&vc=43bd3e3c' target='_blank'>碧海蓝湾花园(四期)32号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11131&vc=43bd3e3c' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11131&vc=43bd3e3c' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11134&vc=d804f058' target='_blank'>碧海蓝湾花园(四期)33号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11134&vc=d804f058' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11134&vc=d804f058' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11135&vc=dea15c51' target='_blank'>碧海蓝湾花园(四期)34号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11135&vc=dea15c51' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11135&vc=dea15c51' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11137&vc=a29efeec' target='_blank'>碧海蓝湾花园(四期)35号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11137&vc=a29efeec' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11137&vc=a29efeec' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11080&vc=309d1131' target='_blank'>碧海蓝湾花园(一期)10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11080&vc=309d1131' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11080&vc=309d1131' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11081&vc=e54b4e1e' target='_blank'>碧海蓝湾花园(一期)11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11081&vc=e54b4e1e' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11081&vc=e54b4e1e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11082&vc=ce5296ff' target='_blank'>碧海蓝湾花园(一期)12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11082&vc=ce5296ff' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11082&vc=ce5296ff' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11083&vc=8322214c' target='_blank'>碧海蓝湾花园(一期)13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11083&vc=8322214c' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11083&vc=8322214c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11084&vc=ee51edcf' target='_blank'>碧海蓝湾花园(一期)14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11084&vc=ee51edcf' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11084&vc=ee51edcf' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11085&vc=f7a76aab' target='_blank'>碧海蓝湾花园(一期)15号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11085&vc=f7a76aab' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11085&vc=f7a76aab' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11086&vc=4427ef98' target='_blank'>碧海蓝湾花园(一期)16号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11086&vc=4427ef98' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11086&vc=4427ef98' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11087&vc=55510ab8' target='_blank'>碧海蓝湾花园(一期)17号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11087&vc=55510ab8' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11087&vc=55510ab8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11088&vc=fd060986' target='_blank'>碧海蓝湾花园(一期)18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11088&vc=fd060986' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11088&vc=fd060986' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11089&vc=301a3c1a' target='_blank'>碧海蓝湾花园(一期)19号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11089&vc=301a3c1a' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11089&vc=301a3c1a' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11138&vc=ab7aa20f' target='_blank'>碧海蓝湾花园(一期)20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11138&vc=ab7aa20f' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11138&vc=ab7aa20f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11139&vc=73cf969a' target='_blank'>碧海蓝湾花园(一期)21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11139&vc=73cf969a' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11139&vc=73cf969a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11140&vc=ee8c3066' target='_blank'>碧海蓝湾花园(一期)22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11140&vc=ee8c3066' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11140&vc=ee8c3066' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11141&vc=a468bf90' target='_blank'>碧海蓝湾花园(一期)23号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11141&vc=a468bf90' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11141&vc=a468bf90' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11142&vc=1aaf16b1' target='_blank'>碧海蓝湾花园(一期)24号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11142&vc=1aaf16b1' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11142&vc=1aaf16b1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11144&vc=a44f22e0' target='_blank'>碧海蓝湾花园(一期)25号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11144&vc=a44f22e0' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11144&vc=a44f22e0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11145&vc=572fb3b6' target='_blank'>碧海蓝湾花园(一期)26号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11145&vc=572fb3b6' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11145&vc=572fb3b6' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11146&vc=7654f90b' target='_blank'>碧海蓝湾花园(一期)27号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11146&vc=7654f90b' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11146&vc=7654f90b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11147&vc=36799a95' target='_blank'>碧海蓝湾花园(一期)28号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11147&vc=36799a95' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11147&vc=36799a95' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11148&vc=11649e94' target='_blank'>碧海蓝湾花园(一期)29号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11148&vc=11649e94' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11148&vc=11649e94' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11149&vc=42f2b8ad' target='_blank'>碧海蓝湾花园(一期)30号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11149&vc=42f2b8ad' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11149&vc=42f2b8ad' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11150&vc=546eef22' target='_blank'>碧海蓝湾花园(一期)31号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11150&vc=546eef22' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11150&vc=546eef22' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11151&vc=12fe88be' target='_blank'>碧海蓝湾花园(一期)32号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11151&vc=12fe88be' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11151&vc=12fe88be' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11090&vc=3d8fb7e0' target='_blank'>碧海蓝湾花园(一期)33号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11090&vc=3d8fb7e0' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11090&vc=3d8fb7e0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11091&vc=e5afcae2' target='_blank'>碧海蓝湾花园(一期)34号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11091&vc=e5afcae2' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11091&vc=e5afcae2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11093&vc=501aa0ee' target='_blank'>碧海蓝湾花园(一期)35号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11093&vc=501aa0ee' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11093&vc=501aa0ee' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11092&vc=7be4fb29' target='_blank'>碧海蓝湾花园(一期)36号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11092&vc=7be4fb29' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11092&vc=7be4fb29' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11094&vc=63947eff' target='_blank'>碧海蓝湾花园(一期)37号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11094&vc=63947eff' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11094&vc=63947eff' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11095&vc=2e64e63d' target='_blank'>碧海蓝湾花园(一期)38号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11095&vc=2e64e63d' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11095&vc=2e64e63d' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11096&vc=fc9d7e40' target='_blank'>碧海蓝湾花园(一期)39号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11096&vc=fc9d7e40' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11096&vc=fc9d7e40' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11097&vc=faf3064d' target='_blank'>碧海蓝湾花园(一期)40号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11097&vc=faf3064d' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11097&vc=faf3064d' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11098&vc=84557a94' target='_blank'>碧海蓝湾花园(一期)41号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11098&vc=84557a94' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11098&vc=84557a94' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11099&vc=5aa465ea' target='_blank'>碧海蓝湾花园(一期)42号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11099&vc=5aa465ea' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11099&vc=5aa465ea' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11524&vc=1631f5ca' target='_blank'>碧海蓝湾花园（四期）1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11524&vc=1631f5ca' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11524&vc=1631f5ca' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11306&vc=c584a0a3' target='_blank'>碧海蓝湾花园（四期）8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11306&vc=c584a0a3' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11306&vc=c584a0a3' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11307&vc=85aa0d2c' target='_blank'>碧海蓝湾花园（四期）9号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11307&vc=85aa0d2c' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11307&vc=85aa0d2c' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11575&vc=1c898dbd' target='_blank'>碧海蓝湾花园（一期）4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11575&vc=1c898dbd' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11575&vc=1c898dbd' target='_blank'>86</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11438&vc=62d01a7d' target='_blank'>碧海蓝湾花园（一期）5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11438&vc=62d01a7d' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11438&vc=62d01a7d' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11439&vc=f6a9a161' target='_blank'>碧海蓝湾花园（一期）6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11439&vc=f6a9a161' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11439&vc=f6a9a161' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11576&vc=e3c2c0e7' target='_blank'>碧海蓝湾花园（一期）7号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11576&vc=e3c2c0e7' target='_blank'>麻涌镇 望海路3号</a></td><td><a href='BeianDetail.aspx?id=11576&vc=e3c2c0e7' target='_blank'>198</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10369&vc=a96a544a' target='_blank'>香溪水岸花园10幢</a></td><td><a href='BeianDetail.aspx?id=10369&vc=a96a544a' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10369&vc=a96a544a' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10370&vc=85515a16' target='_blank'>香溪水岸花园11幢</a></td><td><a href='BeianDetail.aspx?id=10370&vc=85515a16' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10370&vc=85515a16' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10371&vc=30072262' target='_blank'>香溪水岸花园12幢</a></td><td><a href='BeianDetail.aspx?id=10371&vc=30072262' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10371&vc=30072262' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9533&vc=6061482a' target='_blank'>香溪水岸花园13幢</a></td><td><a href='BeianDetail.aspx?id=9533&vc=6061482a' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=9533&vc=6061482a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9534&vc=47737d44' target='_blank'>香溪水岸花园14幢</a></td><td><a href='BeianDetail.aspx?id=9534&vc=47737d44' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=9534&vc=47737d44' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10372&vc=7e78e9ff' target='_blank'>香溪水岸花园15幢</a></td><td><a href='BeianDetail.aspx?id=10372&vc=7e78e9ff' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10372&vc=7e78e9ff' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10373&vc=41fb686c' target='_blank'>香溪水岸花园16幢</a></td><td><a href='BeianDetail.aspx?id=10373&vc=41fb686c' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10373&vc=41fb686c' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9535&vc=2d4fb420' target='_blank'>香溪水岸花园17幢</a></td><td><a href='BeianDetail.aspx?id=9535&vc=2d4fb420' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=9535&vc=2d4fb420' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10374&vc=41b4e0bc' target='_blank'>香溪水岸花园18幢</a></td><td><a href='BeianDetail.aspx?id=10374&vc=41b4e0bc' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10374&vc=41b4e0bc' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10375&vc=7019c3c5' target='_blank'>香溪水岸花园19幢</a></td><td><a href='BeianDetail.aspx?id=10375&vc=7019c3c5' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10375&vc=7019c3c5' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10343&vc=533bc440' target='_blank'>香溪水岸花园1幢</a></td><td><a href='BeianDetail.aspx?id=10343&vc=533bc440' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10343&vc=533bc440' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10376&vc=3432c0f5' target='_blank'>香溪水岸花园20幢</a></td><td><a href='BeianDetail.aspx?id=10376&vc=3432c0f5' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10376&vc=3432c0f5' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10344&vc=bac9b1fe' target='_blank'>香溪水岸花园2幢</a></td><td><a href='BeianDetail.aspx?id=10344&vc=bac9b1fe' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10344&vc=bac9b1fe' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10345&vc=6faa221f' target='_blank'>香溪水岸花园3幢</a></td><td><a href='BeianDetail.aspx?id=10345&vc=6faa221f' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10345&vc=6faa221f' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10346&vc=1ea7b336' target='_blank'>香溪水岸花园4幢</a></td><td><a href='BeianDetail.aspx?id=10346&vc=1ea7b336' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10346&vc=1ea7b336' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10347&vc=e138532e' target='_blank'>香溪水岸花园5幢</a></td><td><a href='BeianDetail.aspx?id=10347&vc=e138532e' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10347&vc=e138532e' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10365&vc=b8a0080f' target='_blank'>香溪水岸花园6幢</a></td><td><a href='BeianDetail.aspx?id=10365&vc=b8a0080f' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10365&vc=b8a0080f' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10366&vc=4f44f046' target='_blank'>香溪水岸花园7幢</a></td><td><a href='BeianDetail.aspx?id=10366&vc=4f44f046' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10366&vc=4f44f046' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10367&vc=11cfd617' target='_blank'>香溪水岸花园8幢</a></td><td><a href='BeianDetail.aspx?id=10367&vc=11cfd617' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10367&vc=11cfd617' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10368&vc=3cb892c1' target='_blank'>香溪水岸花园9幢</a></td><td><a href='BeianDetail.aspx?id=10368&vc=3cb892c1' target='_blank'>麻涌镇 新基村</a></td><td><a href='BeianDetail.aspx?id=10368&vc=3cb892c1' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2955&vc=d7ae843b' target='_blank'>新世纪江畔湾花园10号楼</a></td><td><a href='BeianDetail.aspx?id=2955&vc=d7ae843b' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=2955&vc=d7ae843b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3151&vc=b852d6a8' target='_blank'>新世纪江畔湾花园11# </a></td><td><a href='BeianDetail.aspx?id=3151&vc=b852d6a8' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3151&vc=b852d6a8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3152&vc=c8e25c7c' target='_blank'>新世纪江畔湾花园12# </a></td><td><a href='BeianDetail.aspx?id=3152&vc=c8e25c7c' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3152&vc=c8e25c7c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3153&vc=d25ae34a' target='_blank'>新世纪江畔湾花园13# </a></td><td><a href='BeianDetail.aspx?id=3153&vc=d25ae34a' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3153&vc=d25ae34a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3154&vc=15b0ddc1' target='_blank'>新世纪江畔湾花园14# </a></td><td><a href='BeianDetail.aspx?id=3154&vc=15b0ddc1' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3154&vc=15b0ddc1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4008&vc=b557988d' target='_blank'>新世纪江畔湾花园15#</a></td><td><a href='BeianDetail.aspx?id=4008&vc=b557988d' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4008&vc=b557988d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4009&vc=aea7d28d' target='_blank'>新世纪江畔湾花园16#</a></td><td><a href='BeianDetail.aspx?id=4009&vc=aea7d28d' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4009&vc=aea7d28d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4010&vc=a39d4130' target='_blank'>新世纪江畔湾花园17#</a></td><td><a href='BeianDetail.aspx?id=4010&vc=a39d4130' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4010&vc=a39d4130' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4011&vc=f822be17' target='_blank'>新世纪江畔湾花园18#</a></td><td><a href='BeianDetail.aspx?id=4011&vc=f822be17' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4011&vc=f822be17' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3155&vc=b6b63100' target='_blank'>新世纪江畔湾花园19号商铺 </a></td><td><a href='BeianDetail.aspx?id=3155&vc=b6b63100' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3155&vc=b6b63100' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3121&vc=06556850' target='_blank'>新世纪江畔湾花园1号楼 </a></td><td><a href='BeianDetail.aspx?id=3121&vc=06556850' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3121&vc=06556850' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5062&vc=f1a51af8' target='_blank'>新世纪江畔湾花园20号半地下车库</a></td><td><a href='BeianDetail.aspx?id=5062&vc=f1a51af8' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=5062&vc=f1a51af8' target='_blank'>96</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5061&vc=b7374a91' target='_blank'>新世纪江畔湾花园21号半地下车库</a></td><td><a href='BeianDetail.aspx?id=5061&vc=b7374a91' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=5061&vc=b7374a91' target='_blank'>66</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3156&vc=aae812c7' target='_blank'>新世纪江畔湾花园22号商铺 </a></td><td><a href='BeianDetail.aspx?id=3156&vc=aae812c7' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3156&vc=aae812c7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3122&vc=51c83b74' target='_blank'>新世纪江畔湾花园2号楼 </a></td><td><a href='BeianDetail.aspx?id=3122&vc=51c83b74' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3122&vc=51c83b74' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3123&vc=4c8732e4' target='_blank'>新世纪江畔湾花园3号楼 </a></td><td><a href='BeianDetail.aspx?id=3123&vc=4c8732e4' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=3123&vc=4c8732e4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4005&vc=ab144df8' target='_blank'>新世纪江畔湾花园4号楼</a></td><td><a href='BeianDetail.aspx?id=4005&vc=ab144df8' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4005&vc=ab144df8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4006&vc=a63d7349' target='_blank'>新世纪江畔湾花园5号楼</a></td><td><a href='BeianDetail.aspx?id=4006&vc=a63d7349' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4006&vc=a63d7349' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4007&vc=024e9ae6' target='_blank'>新世纪江畔湾花园6号楼</a></td><td><a href='BeianDetail.aspx?id=4007&vc=024e9ae6' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=4007&vc=024e9ae6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2952&vc=da5419b3' target='_blank'>新世纪江畔湾花园7号楼 </a></td><td><a href='BeianDetail.aspx?id=2952&vc=da5419b3' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=2952&vc=da5419b3' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2953&vc=526e3260' target='_blank'>新世纪江畔湾花园8号楼 </a></td><td><a href='BeianDetail.aspx?id=2953&vc=526e3260' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=2953&vc=526e3260' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2954&vc=009f7ed7' target='_blank'>新世纪江畔湾花园9号楼</a></td><td><a href='BeianDetail.aspx?id=2954&vc=009f7ed7' target='_blank'>麻涌镇 沿江西一路</a></td><td><a href='BeianDetail.aspx?id=2954&vc=009f7ed7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1877&vc=90bf0a66' target='_blank'>南峰时代广场商场及商铺</a></td><td><a href='BeianDetail.aspx?id=1877&vc=90bf0a66' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1877&vc=90bf0a66' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2166&vc=56a0fded' target='_blank'>南峰时代广场住宅楼10号楼</a></td><td><a href='BeianDetail.aspx?id=2166&vc=56a0fded' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2166&vc=56a0fded' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2167&vc=35fc9a29' target='_blank'>南峰时代广场住宅楼11号楼</a></td><td><a href='BeianDetail.aspx?id=2167&vc=35fc9a29' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2167&vc=35fc9a29' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2168&vc=83d21e5a' target='_blank'>南峰时代广场住宅楼12号楼</a></td><td><a href='BeianDetail.aspx?id=2168&vc=83d21e5a' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2168&vc=83d21e5a' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1811&vc=2cb93930' target='_blank'>南峰时代广场住宅楼1号楼 </a></td><td><a href='BeianDetail.aspx?id=1811&vc=2cb93930' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1811&vc=2cb93930' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1812&vc=ccc257f0' target='_blank'>南峰时代广场住宅楼2号楼</a></td><td><a href='BeianDetail.aspx?id=1812&vc=ccc257f0' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1812&vc=ccc257f0' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2163&vc=aa79b02a' target='_blank'>南峰时代广场住宅楼3号楼</a></td><td><a href='BeianDetail.aspx?id=2163&vc=aa79b02a' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2163&vc=aa79b02a' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2164&vc=5ecc434f' target='_blank'>南峰时代广场住宅楼4号楼 </a></td><td><a href='BeianDetail.aspx?id=2164&vc=5ecc434f' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2164&vc=5ecc434f' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1563&vc=f5355c5d' target='_blank'>南峰时代广场住宅楼5号楼</a></td><td><a href='BeianDetail.aspx?id=1563&vc=f5355c5d' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1563&vc=f5355c5d' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1564&vc=d17fe88a' target='_blank'>南峰时代广场住宅楼6号楼</a></td><td><a href='BeianDetail.aspx?id=1564&vc=d17fe88a' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1564&vc=d17fe88a' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2165&vc=1471c815' target='_blank'>南峰时代广场住宅楼7号楼</a></td><td><a href='BeianDetail.aspx?id=2165&vc=1471c815' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2165&vc=1471c815' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1565&vc=3b6adc3a' target='_blank'>南峰时代广场住宅楼8号楼 </a></td><td><a href='BeianDetail.aspx?id=1565&vc=3b6adc3a' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1565&vc=3b6adc3a' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1813&vc=9db79a2e' target='_blank'>南峰时代广场住宅楼9号楼</a></td><td><a href='BeianDetail.aspx?id=1813&vc=9db79a2e' target='_blank'>麻涌镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1813&vc=9db79a2e' target='_blank'>4</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="232" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

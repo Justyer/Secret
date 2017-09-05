@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=4287&amp;vc=22c6a4d6" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>东莞市盈丰房地产开发有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>盈丰·田源居
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>现售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=22421&vc=5137a1fb' target='_blank'>201290064</a></td><td><a href='roomTable.aspx?id=22421&vc=5137a1fb' target='_blank'>东莞市沙田镇横流居民委员会沙太一路盈丰·田源居</a></td><td><a href='roomTable.aspx?id=22421&vc=5137a1fb' target='_blank'>16</a><td><a href='roomTable.aspx?id=22421&vc=5137a1fb' target='_blank'>207</a><td><a href='roomTable.aspx?id=22421&vc=5137a1fb' target='_blank'>住宅、商铺</a><td><a href='roomTable.aspx?id=22421&vc=5137a1fb' target='_blank'>17716.27</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：盈丰·田源居
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市沙田镇横流居民委员会沙太一路
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            2928.19
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2010-9-30
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            现售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            201290064
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=4287&vc=22c6a4d6' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            东莞市盈丰房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市盈丰房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            四级
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市厚街镇河田路口
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523000
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            2000万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            王沛柱
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            0769-85873168
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            王沛柱
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            85873168
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            gddgyfdc@163.com
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=4287&vc=22c6a4d6' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>盈丰·田源居</a></td><td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>东莞市沙田镇 横流居民委员会沙太一路</a></td><td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>207</a></td><td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>40</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10248&vc=0bbbdf62' target='_blank'>湖景壹号庄园105号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10248&vc=0bbbdf62' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10248&vc=0bbbdf62' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10248&vc=0bbbdf62' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10241&vc=75f290b0' target='_blank'>湖景壹号庄园106号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10241&vc=75f290b0' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10241&vc=75f290b0' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10241&vc=75f290b0' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10242&vc=d3005b0a' target='_blank'>湖景壹号庄园107号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10242&vc=d3005b0a' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10242&vc=d3005b0a' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10242&vc=d3005b0a' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9913&vc=10759f80' target='_blank'>湖景壹号庄园108号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9913&vc=10759f80' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=9913&vc=10759f80' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=9913&vc=10759f80' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10243&vc=1b36d643' target='_blank'>湖景壹号庄园109号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10243&vc=1b36d643' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10243&vc=1b36d643' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10243&vc=1b36d643' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10244&vc=923ee8d6' target='_blank'>湖景壹号庄园110号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10244&vc=923ee8d6' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10244&vc=923ee8d6' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10244&vc=923ee8d6' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10245&vc=7a1f8f5d' target='_blank'>湖景壹号庄园111号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10245&vc=7a1f8f5d' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10245&vc=7a1f8f5d' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10245&vc=7a1f8f5d' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10246&vc=e192ee3d' target='_blank'>湖景壹号庄园112号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10246&vc=e192ee3d' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10246&vc=e192ee3d' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10246&vc=e192ee3d' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10247&vc=6f025ce8' target='_blank'>湖景壹号庄园113号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10247&vc=6f025ce8' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10247&vc=6f025ce8' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10247&vc=6f025ce8' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10249&vc=5617ec3f' target='_blank'>湖景壹号庄园114号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10249&vc=5617ec3f' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10249&vc=5617ec3f' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10249&vc=5617ec3f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10250&vc=ab0d2e25' target='_blank'>湖景壹号庄园115号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10250&vc=ab0d2e25' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10250&vc=ab0d2e25' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10250&vc=ab0d2e25' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10294&vc=e441df45' target='_blank'>湖景壹号庄园117号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10294&vc=e441df45' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10294&vc=e441df45' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10294&vc=e441df45' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10299&vc=a3023c6e' target='_blank'>湖景壹号庄园118号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10299&vc=a3023c6e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10299&vc=a3023c6e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10299&vc=a3023c6e' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10251&vc=5e2bf122' target='_blank'>湖景壹号庄园119号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10251&vc=5e2bf122' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10251&vc=5e2bf122' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10251&vc=5e2bf122' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10252&vc=2161d842' target='_blank'>湖景壹号庄园120号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10252&vc=2161d842' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10252&vc=2161d842' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10252&vc=2161d842' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10253&vc=8a4202f3' target='_blank'>湖景壹号庄园121号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10253&vc=8a4202f3' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10253&vc=8a4202f3' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10253&vc=8a4202f3' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10254&vc=c670e9fb' target='_blank'>湖景壹号庄园122号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10254&vc=c670e9fb' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10254&vc=c670e9fb' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10254&vc=c670e9fb' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10255&vc=2a85800d' target='_blank'>湖景壹号庄园123号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10255&vc=2a85800d' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10255&vc=2a85800d' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10255&vc=2a85800d' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10256&vc=4727ca17' target='_blank'>湖景壹号庄园124号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10256&vc=4727ca17' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10256&vc=4727ca17' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10256&vc=4727ca17' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10257&vc=a9fc6385' target='_blank'>湖景壹号庄园125号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10257&vc=a9fc6385' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10257&vc=a9fc6385' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10257&vc=a9fc6385' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10300&vc=b2b435db' target='_blank'>湖景壹号庄园126号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10300&vc=b2b435db' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10300&vc=b2b435db' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10300&vc=b2b435db' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10301&vc=a80c080d' target='_blank'>湖景壹号庄园127号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10301&vc=a80c080d' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10301&vc=a80c080d' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10301&vc=a80c080d' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10302&vc=bd547059' target='_blank'>湖景壹号庄园128号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10302&vc=bd547059' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10302&vc=bd547059' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10302&vc=bd547059' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10284&vc=63ce6cd8' target='_blank'>湖景壹号庄园129号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10284&vc=63ce6cd8' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10284&vc=63ce6cd8' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10284&vc=63ce6cd8' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10285&vc=e209fed6' target='_blank'>湖景壹号庄园130号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10285&vc=e209fed6' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10285&vc=e209fed6' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10285&vc=e209fed6' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10313&vc=02cd9c18' target='_blank'>湖景壹号庄园131号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10313&vc=02cd9c18' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10313&vc=02cd9c18' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10313&vc=02cd9c18' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10286&vc=0c80997e' target='_blank'>湖景壹号庄园132号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10286&vc=0c80997e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10286&vc=0c80997e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10286&vc=0c80997e' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10258&vc=c57a58d4' target='_blank'>湖景壹号庄园133号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10258&vc=c57a58d4' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10258&vc=c57a58d4' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10258&vc=c57a58d4' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10314&vc=62d0501e' target='_blank'>湖景壹号庄园140号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10314&vc=62d0501e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10314&vc=62d0501e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10314&vc=62d0501e' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10259&vc=d6cd653e' target='_blank'>湖景壹号庄园141号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10259&vc=d6cd653e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10259&vc=d6cd653e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10259&vc=d6cd653e' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10306&vc=63f5470b' target='_blank'>湖景壹号庄园142号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10306&vc=63f5470b' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10306&vc=63f5470b' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10306&vc=63f5470b' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10260&vc=628f6873' target='_blank'>湖景壹号庄园143号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10260&vc=628f6873' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10260&vc=628f6873' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10260&vc=628f6873' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10287&vc=801ce045' target='_blank'>湖景壹号庄园144号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10287&vc=801ce045' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10287&vc=801ce045' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10287&vc=801ce045' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10288&vc=b6458f57' target='_blank'>湖景壹号庄园145号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10288&vc=b6458f57' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10288&vc=b6458f57' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10288&vc=b6458f57' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10305&vc=dbe082f6' target='_blank'>湖景壹号庄园146号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10305&vc=dbe082f6' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10305&vc=dbe082f6' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10305&vc=dbe082f6' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10303&vc=05298b09' target='_blank'>湖景壹号庄园147号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10303&vc=05298b09' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10303&vc=05298b09' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10303&vc=05298b09' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10289&vc=82c3d683' target='_blank'>湖景壹号庄园148号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10289&vc=82c3d683' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10289&vc=82c3d683' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10289&vc=82c3d683' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10315&vc=1276ffe7' target='_blank'>湖景壹号庄园149号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10315&vc=1276ffe7' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10315&vc=1276ffe7' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10315&vc=1276ffe7' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10290&vc=b3da977f' target='_blank'>湖景壹号庄园150号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10290&vc=b3da977f' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10290&vc=b3da977f' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10290&vc=b3da977f' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10304&vc=45fbbb87' target='_blank'>湖景壹号庄园151号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10304&vc=45fbbb87' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10304&vc=45fbbb87' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10304&vc=45fbbb87' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10261&vc=2c6e74fb' target='_blank'>湖景壹号庄园152号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10261&vc=2c6e74fb' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10261&vc=2c6e74fb' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10261&vc=2c6e74fb' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10262&vc=a9391ca9' target='_blank'>湖景壹号庄园153号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10262&vc=a9391ca9' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10262&vc=a9391ca9' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10262&vc=a9391ca9' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10263&vc=4ad70c43' target='_blank'>湖景壹号庄园154号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10263&vc=4ad70c43' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10263&vc=4ad70c43' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10263&vc=4ad70c43' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10264&vc=6ba5664e' target='_blank'>湖景壹号庄园155号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10264&vc=6ba5664e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10264&vc=6ba5664e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10264&vc=6ba5664e' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10265&vc=e6d9f73f' target='_blank'>湖景壹号庄园156号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10265&vc=e6d9f73f' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10265&vc=e6d9f73f' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10265&vc=e6d9f73f' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10266&vc=ea0a3ea2' target='_blank'>湖景壹号庄园157号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10266&vc=ea0a3ea2' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10266&vc=ea0a3ea2' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10266&vc=ea0a3ea2' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10271&vc=c0498d42' target='_blank'>湖景壹号庄园158号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10271&vc=c0498d42' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10271&vc=c0498d42' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10271&vc=c0498d42' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10307&vc=f0878499' target='_blank'>湖景壹号庄园159号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10307&vc=f0878499' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10307&vc=f0878499' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10307&vc=f0878499' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10317&vc=4b1833e9' target='_blank'>湖景壹号庄园160号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10317&vc=4b1833e9' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10317&vc=4b1833e9' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10317&vc=4b1833e9' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10308&vc=44bcefd1' target='_blank'>湖景壹号庄园161号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10308&vc=44bcefd1' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10308&vc=44bcefd1' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10308&vc=44bcefd1' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10319&vc=22a93f63' target='_blank'>湖景壹号庄园162号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10319&vc=22a93f63' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10319&vc=22a93f63' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10319&vc=22a93f63' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10272&vc=d2d6b06e' target='_blank'>湖景壹号庄园163号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10272&vc=d2d6b06e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10272&vc=d2d6b06e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10272&vc=d2d6b06e' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10273&vc=56d60b8f' target='_blank'>湖景壹号庄园164号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10273&vc=56d60b8f' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10273&vc=56d60b8f' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10273&vc=56d60b8f' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10316&vc=7695d66b' target='_blank'>湖景壹号庄园165号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10316&vc=7695d66b' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10316&vc=7695d66b' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10316&vc=7695d66b' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10320&vc=c8b1d179' target='_blank'>湖景壹号庄园166号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10320&vc=c8b1d179' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10320&vc=c8b1d179' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10320&vc=c8b1d179' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10318&vc=9cc566c7' target='_blank'>湖景壹号庄园167号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10318&vc=9cc566c7' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10318&vc=9cc566c7' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10318&vc=9cc566c7' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10321&vc=a3d67a84' target='_blank'>湖景壹号庄园168号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10321&vc=a3d67a84' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10321&vc=a3d67a84' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10321&vc=a3d67a84' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10291&vc=53b962d4' target='_blank'>湖景壹号庄园169号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10291&vc=53b962d4' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10291&vc=53b962d4' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10291&vc=53b962d4' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10309&vc=bef3ca1e' target='_blank'>湖景壹号庄园170号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10309&vc=bef3ca1e' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10309&vc=bef3ca1e' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10309&vc=bef3ca1e' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10310&vc=fc4ddf60' target='_blank'>湖景壹号庄园171号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10310&vc=fc4ddf60' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10310&vc=fc4ddf60' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10310&vc=fc4ddf60' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10311&vc=6932c3b0' target='_blank'>湖景壹号庄园172号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10311&vc=6932c3b0' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10311&vc=6932c3b0' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10311&vc=6932c3b0' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10274&vc=56f670b5' target='_blank'>湖景壹号庄园173号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10274&vc=56f670b5' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10274&vc=56f670b5' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10274&vc=56f670b5' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10275&vc=58ca04de' target='_blank'>湖景壹号庄园174号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10275&vc=58ca04de' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10275&vc=58ca04de' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10275&vc=58ca04de' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10292&vc=d195228f' target='_blank'>湖景壹号庄园175号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10292&vc=d195228f' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10292&vc=d195228f' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10292&vc=d195228f' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10293&vc=0b701bf2' target='_blank'>湖景壹号庄园176号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10293&vc=0b701bf2' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10293&vc=0b701bf2' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10293&vc=0b701bf2' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10312&vc=187a4dcc' target='_blank'>湖景壹号庄园177号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10312&vc=187a4dcc' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=10312&vc=187a4dcc' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=10312&vc=187a4dcc' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7766&vc=ccc136d0' target='_blank'>湖景壹号庄园20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7766&vc=ccc136d0' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=7766&vc=ccc136d0' target='_blank'>43</a></td><td><a href='BeianDetail.aspx?id=7766&vc=ccc136d0' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7767&vc=468143be' target='_blank'>湖景壹号庄园21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7767&vc=468143be' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=7767&vc=468143be' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=7767&vc=468143be' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7768&vc=c9df9475' target='_blank'>湖景壹号庄园22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7768&vc=c9df9475' target='_blank'>东莞市厚街镇 环冈村湖景大道100号</a></td><td><a href='BeianDetail.aspx?id=7768&vc=c9df9475' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=7768&vc=c9df9475' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1807&vc=9fe0b745' target='_blank'>湖景壹号庄园香溪湾10#</a></td><td><a href='BeianDetail.aspx?id=1807&vc=9fe0b745' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1807&vc=9fe0b745' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=1807&vc=9fe0b745' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1706&vc=86b2fda4' target='_blank'>湖景壹号庄园香溪湾11#、17#</a></td><td><a href='BeianDetail.aspx?id=1706&vc=86b2fda4' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1706&vc=86b2fda4' target='_blank'>94</a></td><td><a href='BeianDetail.aspx?id=1706&vc=86b2fda4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1707&vc=1322cafb' target='_blank'>湖景壹号庄园香溪湾12# 、16#</a></td><td><a href='BeianDetail.aspx?id=1707&vc=1322cafb' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1707&vc=1322cafb' target='_blank'>67</a></td><td><a href='BeianDetail.aspx?id=1707&vc=1322cafb' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1808&vc=3d74fc3e' target='_blank'>湖景壹号庄园香溪湾13# </a></td><td><a href='BeianDetail.aspx?id=1808&vc=3d74fc3e' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1808&vc=3d74fc3e' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=1808&vc=3d74fc3e' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1809&vc=cd1c02b5' target='_blank'>湖景壹号庄园香溪湾14# </a></td><td><a href='BeianDetail.aspx?id=1809&vc=cd1c02b5' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1809&vc=cd1c02b5' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1809&vc=cd1c02b5' target='_blank'>6</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1810&vc=a7029225' target='_blank'>湖景壹号庄园香溪湾15#</a></td><td><a href='BeianDetail.aspx?id=1810&vc=a7029225' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1810&vc=a7029225' target='_blank'>23</a></td><td><a href='BeianDetail.aspx?id=1810&vc=a7029225' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1708&vc=a94ecdca' target='_blank'>湖景壹号庄园香溪湾18#、19# </a></td><td><a href='BeianDetail.aspx?id=1708&vc=a94ecdca' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1708&vc=a94ecdca' target='_blank'>43</a></td><td><a href='BeianDetail.aspx?id=1708&vc=a94ecdca' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1806&vc=8c78bfc6' target='_blank'>湖景壹号庄园香溪湾9#</a></td><td><a href='BeianDetail.aspx?id=1806&vc=8c78bfc6' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1806&vc=8c78bfc6' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=1806&vc=8c78bfc6' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2466&vc=942c92b0' target='_blank'>湖景壹号庄园香溪湾A1(01号)别墅</a></td><td><a href='BeianDetail.aspx?id=2466&vc=942c92b0' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=2466&vc=942c92b0' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=2466&vc=942c92b0' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2462&vc=bc3c8ce3' target='_blank'>湖景壹号庄园香溪湾A2(11号)别墅 </a></td><td><a href='BeianDetail.aspx?id=2462&vc=bc3c8ce3' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=2462&vc=bc3c8ce3' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=2462&vc=bc3c8ce3' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2467&vc=b555bc17' target='_blank'>湖景壹号庄园香溪湾B1(02、06、08、09、10号)别墅</a></td><td><a href='BeianDetail.aspx?id=2467&vc=b555bc17' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=2467&vc=b555bc17' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=2467&vc=b555bc17' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1595&vc=2e109dfa' target='_blank'>湖景壹号庄园香溪湾C1(46、48、49号)别墅</a></td><td><a href='BeianDetail.aspx?id=1595&vc=2e109dfa' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1595&vc=2e109dfa' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=1595&vc=2e109dfa' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1596&vc=68f8bc10' target='_blank'>湖景壹号庄园香溪湾C2(03、25、23、45、71号)别墅</a></td><td><a href='BeianDetail.aspx?id=1596&vc=68f8bc10' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1596&vc=68f8bc10' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=1596&vc=68f8bc10' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1726&vc=70a5b023' target='_blank'>湖景壹号庄园香溪湾D1型(66号)别墅</a></td><td><a href='BeianDetail.aspx?id=1726&vc=70a5b023' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1726&vc=70a5b023' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1726&vc=70a5b023' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1725&vc=e165721f' target='_blank'>湖景壹号庄园香溪湾D2型(05、38、60、61、68-70、85、91、99号)别墅 </a></td><td><a href='BeianDetail.aspx?id=1725&vc=e165721f' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1725&vc=e165721f' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=1725&vc=e165721f' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1735&vc=9f4478fc' target='_blank'>湖景壹号庄园香溪湾E1型(26、28、35、36、43、90、95号)别墅 </a></td><td><a href='BeianDetail.aspx?id=1735&vc=9f4478fc' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1735&vc=9f4478fc' target='_blank'>7</a></td><td><a href='BeianDetail.aspx?id=1735&vc=9f4478fc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1724&vc=8c527f23' target='_blank'>湖景壹号庄园香溪湾E2型(40-42、56、58、59、62、63、65、72、75、76、86号)别墅 </a></td><td><a href='BeianDetail.aspx?id=1724&vc=8c527f23' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1724&vc=8c527f23' target='_blank'>13</a></td><td><a href='BeianDetail.aspx?id=1724&vc=8c527f23' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1728&vc=bcb2f024' target='_blank'>湖景壹号庄园香溪湾F1型(39、50-53、55、73、78、79、81-83、88、89、92、93、96、98、100号)别墅</a></td><td><a href='BeianDetail.aspx?id=1728&vc=bcb2f024' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1728&vc=bcb2f024' target='_blank'>19</a></td><td><a href='BeianDetail.aspx?id=1728&vc=bcb2f024' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1727&vc=5abe21e7' target='_blank'>湖景壹号庄园香溪湾F2型(80号)别墅 </a></td><td><a href='BeianDetail.aspx?id=1727&vc=5abe21e7' target='_blank'>东莞市厚街镇 环冈村</a></td><td><a href='BeianDetail.aspx?id=1727&vc=5abe21e7' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1727&vc=5abe21e7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=288&vc=95f49754' target='_blank'>汇景楼-盈丰商住中心</a></td><td><a href='BeianDetail.aspx?id=288&vc=95f49754' target='_blank'>东莞市厚街镇 东风路</a></td><td><a href='BeianDetail.aspx?id=288&vc=95f49754' target='_blank'>641</a></td><td><a href='BeianDetail.aspx?id=288&vc=95f49754' target='_blank'>239</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

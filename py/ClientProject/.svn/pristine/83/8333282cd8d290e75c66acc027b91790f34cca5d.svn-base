@@ -1,0 +1,71 @@
+#import sys
+#print(sys.path)
+#import os
+#parent_path = os.path.dirname(os.getcwd())
+#sys.path.append(parent_path)
+#print(sys.path)
+#print(sys.path)
+#print(sys.modules.keys())
+#print(sys.modules.values())
+#print(sys.modules['__main__'])
+import os, time
+import sys
+from dispatch.urldispatch import UrlDispatch
+from webparser.www_58_com import www58com
+from bean.urlbean import *
+import re#win32com.server.util, win32com.client
+
+if __name__ == '__main__':
+    #UrlDispatch()
+    #w = www58com()
+    #print(w.__class__.__name__)
+    #print('www_58_comwm_city'.split('#'))
+    #print(w.__class__.)
+    #print (''.join(['%s:%s' % item for item in w.__dict__.items()]))
+    #obj = globals()['UrlBean']
+    #print( obj)
+    #print(obj(**{'url':1, 'message':2}))
+    #print(isinstance(UrlBean(1, 2), UrlBean))
+    #print('classname' in {'param': None, 'url': 'http://www.58.com/ershoufang/changecity/', 'cookies': None, 'classname': 'UrlBean', 'headers': None, 'message': 'www58com'})
+    #i = {'cookies': None, 'classname': 'UrlBean', 'url': 'http://www.58.com/ershoufang/changecity/', 'message': 'www58com', 'headers': None, 'param': None}
+    #urlbean = globals()[i['classname']](**i)
+    #print(sys.modules.__module__)
+    'http://bj.58.com/ershoufang/'.split('/')
+    print('/'.join('http://bj.58.com/ershoufang/'.split('/')[:3]))
+    metadatas = ('题名','来源链接','小区名称','所属区域','小区链接','楼栋名称','地址','建成年份',
+            '总楼层','当前层','朝向','建筑面积','使用面积','产权性质','装修情况','户型','卧室数量',
+            '客厅数量','卫生间数量','厨房数量','阳台数量','单价','总价','挂牌时间','房屋图片','信息来源',
+            '联系人','经纪公司','电话号码','纬度','经度','发布时间','住宅类别','建筑类别','配套设施','交通状况',
+            '楼盘物业类型','楼盘绿化率','楼盘物业费','数据来源','城市','行政区')
+
+    str = '\
+位置：\
+朝阳\
+					            							            		 - 					            		亚运村小营\
+					            							            		 -\
+					            		\
+					            		亚运花园\
+（租\
+					            		 506\
+					            		套\
+| 售\
+					            		953\
+					            		套\
+'
+    print(re.sub(r'[\W|\r|\n]+', '-', str).split('-'))
+    print(time.strftime('%Y-%m-%d', time.localtime()))
+    """
+    class win32Doc:
+        _public_methods_ = ['write']
+        def write(self, s):
+            return s
+
+    doc = win32Doc()
+    js = win32com.client.Dispatch('MSScriptControl.ScriptControl')
+    js.language = 'JavaScript'
+    js.allowUI=False
+    js.addObject('document', win32com.server.util.wrap(doc))
+    print(js.eval('<script>var date=new Date();var now="";now=date.getFullYear()+"-";\
+	                        		now=now+(date.getMonth()+1)+"-";now=now+date.getDate()+"";document.write(now)\
+	                        	</script>'))"""
+

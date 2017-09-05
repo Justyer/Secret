@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=3765&amp;vc=9e2c4285" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>东莞市光大房地产开发有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>景湖春晓花园一区地下车库
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>预售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=20168&vc=4830fd22' target='_blank'>(09)00126</a></td><td><a href='roomTable.aspx?id=20168&vc=4830fd22' target='_blank'>东莞市东城区长泰路景湖春晓花园一区地下车库</a></td><td><a href='roomTable.aspx?id=20168&vc=4830fd22' target='_blank'>2</a><td><a href='roomTable.aspx?id=20168&vc=4830fd22' target='_blank'>270</a><td><a href='roomTable.aspx?id=20168&vc=4830fd22' target='_blank'>车库</a><td><a href='roomTable.aspx?id=20168&vc=4830fd22' target='_blank'>3220.65</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：景湖春晓花园一区地下车库
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市东城区长泰路
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            0
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2010-1-14
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            预售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            (09)00126
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=3765&vc=9e2c4285' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            东莞市光大房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市光大房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            三级
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市东城区立新四环路景湖花园
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            5230129
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            1300万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            陈润光
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            22987268
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            张葵弟
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            0769-22986263
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=3765&vc=9e2c4285' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3530&vc=ba564bdd' target='_blank'>春天印象公寓1幢</a></td><td><a href='BeianDetail.aspx?id=3530&vc=ba564bdd' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=3530&vc=ba564bdd' target='_blank'>161</a></td><td><a href='BeianDetail.aspx?id=3530&vc=ba564bdd' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3531&vc=61835548' target='_blank'>春天印象公寓2幢</a></td><td><a href='BeianDetail.aspx?id=3531&vc=61835548' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=3531&vc=61835548' target='_blank'>132</a></td><td><a href='BeianDetail.aspx?id=3531&vc=61835548' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3486&vc=e5f6fd53' target='_blank'>春天印象公寓3幢</a></td><td><a href='BeianDetail.aspx?id=3486&vc=e5f6fd53' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=3486&vc=e5f6fd53' target='_blank'>144</a></td><td><a href='BeianDetail.aspx?id=3486&vc=e5f6fd53' target='_blank'>4</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3532&vc=e3437319' target='_blank'>春天印象公寓4幢</a></td><td><a href='BeianDetail.aspx?id=3532&vc=e3437319' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=3532&vc=e3437319' target='_blank'>172</a></td><td><a href='BeianDetail.aspx?id=3532&vc=e3437319' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3533&vc=1a8cf31d' target='_blank'>春天印象公寓5幢</a></td><td><a href='BeianDetail.aspx?id=3533&vc=1a8cf31d' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=3533&vc=1a8cf31d' target='_blank'>251</a></td><td><a href='BeianDetail.aspx?id=3533&vc=1a8cf31d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3862&vc=d7018e2c' target='_blank'>春天印象公寓6幢</a></td><td><a href='BeianDetail.aspx?id=3862&vc=d7018e2c' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=3862&vc=d7018e2c' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=3862&vc=d7018e2c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5660&vc=1e45d299' target='_blank'>春天印象公寓7#地下室</a></td><td><a href='BeianDetail.aspx?id=5660&vc=1e45d299' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=5660&vc=1e45d299' target='_blank'>33</a></td><td><a href='BeianDetail.aspx?id=5660&vc=1e45d299' target='_blank'>31</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5661&vc=6e41ed5e' target='_blank'>春天印象公寓8#地下室</a></td><td><a href='BeianDetail.aspx?id=5661&vc=6e41ed5e' target='_blank'>东莞市东城区 鸿福东路560号</a></td><td><a href='BeianDetail.aspx?id=5661&vc=6e41ed5e' target='_blank'>84</a></td><td><a href='BeianDetail.aspx?id=5661&vc=6e41ed5e' target='_blank'>83</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3765&vc=9e2c4285' target='_blank'>景湖春晓花园一区地下车库</a></td><td><a href='BeianDetail.aspx?id=3765&vc=9e2c4285' target='_blank'>东莞市东城区 长泰路</a></td><td><a href='BeianDetail.aspx?id=3765&vc=9e2c4285' target='_blank'>270</a></td><td><a href='BeianDetail.aspx?id=3765&vc=9e2c4285' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=972&vc=04d274d0' target='_blank'>康乐花园(景湖春晓) 52#公寓</a></td><td><a href='BeianDetail.aspx?id=972&vc=04d274d0' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=972&vc=04d274d0' target='_blank'>250</a></td><td><a href='BeianDetail.aspx?id=972&vc=04d274d0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=973&vc=b459da54' target='_blank'>康乐花园(景湖春晓) 53#公寓</a></td><td><a href='BeianDetail.aspx?id=973&vc=b459da54' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=973&vc=b459da54' target='_blank'>24</a></td><td><a href='BeianDetail.aspx?id=973&vc=b459da54' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=974&vc=3730a228' target='_blank'>康乐花园(景湖春晓) 54#公寓 </a></td><td><a href='BeianDetail.aspx?id=974&vc=3730a228' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=974&vc=3730a228' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=974&vc=3730a228' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=273&vc=d3916080' target='_blank'>康乐花园(景湖春晓)11#楼</a></td><td><a href='BeianDetail.aspx?id=273&vc=d3916080' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=273&vc=d3916080' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=273&vc=d3916080' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=266&vc=c6ea881c' target='_blank'>康乐花园(景湖春晓)12#楼</a></td><td><a href='BeianDetail.aspx?id=266&vc=c6ea881c' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=266&vc=c6ea881c' target='_blank'>88</a></td><td><a href='BeianDetail.aspx?id=266&vc=c6ea881c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=268&vc=c3fefd25' target='_blank'>康乐花园(景湖春晓)13#楼</a></td><td><a href='BeianDetail.aspx?id=268&vc=c3fefd25' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=268&vc=c3fefd25' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=268&vc=c3fefd25' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1335&vc=3b578387' target='_blank'>康乐花园(景湖春晓)15#公寓</a></td><td><a href='BeianDetail.aspx?id=1335&vc=3b578387' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1335&vc=3b578387' target='_blank'>155</a></td><td><a href='BeianDetail.aspx?id=1335&vc=3b578387' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1225&vc=6c463354' target='_blank'>康乐花园(景湖春晓)17#公寓</a></td><td><a href='BeianDetail.aspx?id=1225&vc=6c463354' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1225&vc=6c463354' target='_blank'>216</a></td><td><a href='BeianDetail.aspx?id=1225&vc=6c463354' target='_blank'>3</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1348&vc=6d1a191e' target='_blank'>康乐花园(景湖春晓)18#公寓</a></td><td><a href='BeianDetail.aspx?id=1348&vc=6d1a191e' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1348&vc=6d1a191e' target='_blank'>76</a></td><td><a href='BeianDetail.aspx?id=1348&vc=6d1a191e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=645&vc=b1368967' target='_blank'>康乐花园(景湖春晓)2区地下室车库</a></td><td><a href='BeianDetail.aspx?id=645&vc=b1368967' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=645&vc=b1368967' target='_blank'>506</a></td><td><a href='BeianDetail.aspx?id=645&vc=b1368967' target='_blank'>139</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1173&vc=8a19d50a' target='_blank'>康乐花园(景湖春晓)37#公寓</a></td><td><a href='BeianDetail.aspx?id=1173&vc=8a19d50a' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1173&vc=8a19d50a' target='_blank'>216</a></td><td><a href='BeianDetail.aspx?id=1173&vc=8a19d50a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=970&vc=d6662157' target='_blank'>康乐花园(景湖春晓)38#公寓</a></td><td><a href='BeianDetail.aspx?id=970&vc=d6662157' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=970&vc=d6662157' target='_blank'>144</a></td><td><a href='BeianDetail.aspx?id=970&vc=d6662157' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=971&vc=8fc99c34' target='_blank'>康乐花园(景湖春晓)41#公寓</a></td><td><a href='BeianDetail.aspx?id=971&vc=8fc99c34' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=971&vc=8fc99c34' target='_blank'>144</a></td><td><a href='BeianDetail.aspx?id=971&vc=8fc99c34' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1174&vc=6f5c9a5c' target='_blank'>康乐花园(景湖春晓)42#公寓</a></td><td><a href='BeianDetail.aspx?id=1174&vc=6f5c9a5c' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1174&vc=6f5c9a5c' target='_blank'>143</a></td><td><a href='BeianDetail.aspx?id=1174&vc=6f5c9a5c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1471&vc=319bdcd2' target='_blank'>康乐花园(景湖春晓)45#公寓</a></td><td><a href='BeianDetail.aspx?id=1471&vc=319bdcd2' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1471&vc=319bdcd2' target='_blank'>34</a></td><td><a href='BeianDetail.aspx?id=1471&vc=319bdcd2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1347&vc=6dc8d049' target='_blank'>康乐花园(景湖春晓)46#公寓</a></td><td><a href='BeianDetail.aspx?id=1347&vc=6dc8d049' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1347&vc=6dc8d049' target='_blank'>32</a></td><td><a href='BeianDetail.aspx?id=1347&vc=6dc8d049' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1786&vc=98d3b0c9' target='_blank'>康乐花园(景湖春晓)47#公寓</a></td><td><a href='BeianDetail.aspx?id=1786&vc=98d3b0c9' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1786&vc=98d3b0c9' target='_blank'>284</a></td><td><a href='BeianDetail.aspx?id=1786&vc=98d3b0c9' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1787&vc=e5a024ec' target='_blank'>康乐花园(景湖春晓)48#公寓</a></td><td><a href='BeianDetail.aspx?id=1787&vc=e5a024ec' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1787&vc=e5a024ec' target='_blank'>286</a></td><td><a href='BeianDetail.aspx?id=1787&vc=e5a024ec' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1226&vc=4f125783' target='_blank'>康乐花园(景湖春晓)49#公寓</a></td><td><a href='BeianDetail.aspx?id=1226&vc=4f125783' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1226&vc=4f125783' target='_blank'>32</a></td><td><a href='BeianDetail.aspx?id=1226&vc=4f125783' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=267&vc=760b196f' target='_blank'>康乐花园(景湖春晓)5#楼</a></td><td><a href='BeianDetail.aspx?id=267&vc=760b196f' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=267&vc=760b196f' target='_blank'>52</a></td><td><a href='BeianDetail.aspx?id=267&vc=760b196f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1227&vc=1baf1359' target='_blank'>康乐花园(景湖春晓)50#公寓</a></td><td><a href='BeianDetail.aspx?id=1227&vc=1baf1359' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=1227&vc=1baf1359' target='_blank'>33</a></td><td><a href='BeianDetail.aspx?id=1227&vc=1baf1359' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2323&vc=bb329dcf' target='_blank'>康乐花园(景湖春晓)53#、54#公寓</a></td><td><a href='BeianDetail.aspx?id=2323&vc=bb329dcf' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=2323&vc=bb329dcf' target='_blank'>13</a></td><td><a href='BeianDetail.aspx?id=2323&vc=bb329dcf' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=643&vc=547e06ac' target='_blank'>康乐花园(景湖春晓)55#楼</a></td><td><a href='BeianDetail.aspx?id=643&vc=547e06ac' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=643&vc=547e06ac' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=643&vc=547e06ac' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=644&vc=86669e13' target='_blank'>康乐花园(景湖春晓)56#楼</a></td><td><a href='BeianDetail.aspx?id=644&vc=86669e13' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=644&vc=86669e13' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=644&vc=86669e13' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=264&vc=58f1743b' target='_blank'>康乐花园(景湖春晓)6#楼</a></td><td><a href='BeianDetail.aspx?id=264&vc=58f1743b' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=264&vc=58f1743b' target='_blank'>52</a></td><td><a href='BeianDetail.aspx?id=264&vc=58f1743b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=265&vc=1e2f6f93' target='_blank'>康乐花园(景湖春晓)7#楼</a></td><td><a href='BeianDetail.aspx?id=265&vc=1e2f6f93' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=265&vc=1e2f6f93' target='_blank'>52</a></td><td><a href='BeianDetail.aspx?id=265&vc=1e2f6f93' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=617&vc=ab822f07' target='_blank'>康乐花园(景湖春晓)三区地下车库</a></td><td><a href='BeianDetail.aspx?id=617&vc=ab822f07' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=617&vc=ab822f07' target='_blank'>258</a></td><td><a href='BeianDetail.aspx?id=617&vc=ab822f07' target='_blank'>79</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2934&vc=1599c44a' target='_blank'>康乐花园(景湖春晓)四区地下室 </a></td><td><a href='BeianDetail.aspx?id=2934&vc=1599c44a' target='_blank'>东莞市东城区 四环路旁</a></td><td><a href='BeianDetail.aspx?id=2934&vc=1599c44a' target='_blank'>586</a></td><td><a href='BeianDetail.aspx?id=2934&vc=1599c44a' target='_blank'>212</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3897&vc=ed417460' target='_blank'>景湖时代花园10幢</a></td><td><a href='BeianDetail.aspx?id=3897&vc=ed417460' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3897&vc=ed417460' target='_blank'>42</a></td><td><a href='BeianDetail.aspx?id=3897&vc=ed417460' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3500&vc=aeb1adba' target='_blank'>景湖时代花园11幢</a></td><td><a href='BeianDetail.aspx?id=3500&vc=aeb1adba' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3500&vc=aeb1adba' target='_blank'>51</a></td><td><a href='BeianDetail.aspx?id=3500&vc=aeb1adba' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3501&vc=630d76e8' target='_blank'>景湖时代花园12幢</a></td><td><a href='BeianDetail.aspx?id=3501&vc=630d76e8' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3501&vc=630d76e8' target='_blank'>28</a></td><td><a href='BeianDetail.aspx?id=3501&vc=630d76e8' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3502&vc=8c4bbb9e' target='_blank'>景湖时代花园13幢</a></td><td><a href='BeianDetail.aspx?id=3502&vc=8c4bbb9e' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3502&vc=8c4bbb9e' target='_blank'>201</a></td><td><a href='BeianDetail.aspx?id=3502&vc=8c4bbb9e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4314&vc=7db63557' target='_blank'>景湖时代花园14幢</a></td><td><a href='BeianDetail.aspx?id=4314&vc=7db63557' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=4314&vc=7db63557' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4314&vc=7db63557' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3503&vc=d9e829de' target='_blank'>景湖时代花园15幢</a></td><td><a href='BeianDetail.aspx?id=3503&vc=d9e829de' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3503&vc=d9e829de' target='_blank'>373</a></td><td><a href='BeianDetail.aspx?id=3503&vc=d9e829de' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3504&vc=cbe7f705' target='_blank'>景湖时代花园16幢</a></td><td><a href='BeianDetail.aspx?id=3504&vc=cbe7f705' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3504&vc=cbe7f705' target='_blank'>249</a></td><td><a href='BeianDetail.aspx?id=3504&vc=cbe7f705' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3898&vc=e825ae7e' target='_blank'>景湖时代花园17幢</a></td><td><a href='BeianDetail.aspx?id=3898&vc=e825ae7e' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3898&vc=e825ae7e' target='_blank'>250</a></td><td><a href='BeianDetail.aspx?id=3898&vc=e825ae7e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3505&vc=bb148c06' target='_blank'>景湖时代花园18幢</a></td><td><a href='BeianDetail.aspx?id=3505&vc=bb148c06' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3505&vc=bb148c06' target='_blank'>19</a></td><td><a href='BeianDetail.aspx?id=3505&vc=bb148c06' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4128&vc=6c0c8371' target='_blank'>景湖时代花园19幢</a></td><td><a href='BeianDetail.aspx?id=4128&vc=6c0c8371' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=4128&vc=6c0c8371' target='_blank'>39</a></td><td><a href='BeianDetail.aspx?id=4128&vc=6c0c8371' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3818&vc=4b08396d' target='_blank'>景湖时代花园1幢</a></td><td><a href='BeianDetail.aspx?id=3818&vc=4b08396d' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3818&vc=4b08396d' target='_blank'>98</a></td><td><a href='BeianDetail.aspx?id=3818&vc=4b08396d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6375&vc=a89a5ebf' target='_blank'>景湖时代花园1号地下车库</a></td><td><a href='BeianDetail.aspx?id=6375&vc=a89a5ebf' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=6375&vc=a89a5ebf' target='_blank'>386</a></td><td><a href='BeianDetail.aspx?id=6375&vc=a89a5ebf' target='_blank'>176</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4129&vc=eeff53b9' target='_blank'>景湖时代花园20幢</a></td><td><a href='BeianDetail.aspx?id=4129&vc=eeff53b9' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=4129&vc=eeff53b9' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=4129&vc=eeff53b9' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4130&vc=f78229eb' target='_blank'>景湖时代花园21幢</a></td><td><a href='BeianDetail.aspx?id=4130&vc=f78229eb' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=4130&vc=f78229eb' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4130&vc=f78229eb' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3819&vc=818a4ead' target='_blank'>景湖时代花园2幢</a></td><td><a href='BeianDetail.aspx?id=3819&vc=818a4ead' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3819&vc=818a4ead' target='_blank'>93</a></td><td><a href='BeianDetail.aspx?id=3819&vc=818a4ead' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6374&vc=4690eb5f' target='_blank'>景湖时代花园2号地下车库</a></td><td><a href='BeianDetail.aspx?id=6374&vc=4690eb5f' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=6374&vc=4690eb5f' target='_blank'>875</a></td><td><a href='BeianDetail.aspx?id=6374&vc=4690eb5f' target='_blank'>555</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3495&vc=e6c9d457' target='_blank'>景湖时代花园3幢</a></td><td><a href='BeianDetail.aspx?id=3495&vc=e6c9d457' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3495&vc=e6c9d457' target='_blank'>133</a></td><td><a href='BeianDetail.aspx?id=3495&vc=e6c9d457' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5866&vc=e04df7af' target='_blank'>景湖时代花园3号地下车库</a></td><td><a href='BeianDetail.aspx?id=5866&vc=e04df7af' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=5866&vc=e04df7af' target='_blank'>761</a></td><td><a href='BeianDetail.aspx?id=5866&vc=e04df7af' target='_blank'>488</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3496&vc=4380fd95' target='_blank'>景湖时代花园4幢</a></td><td><a href='BeianDetail.aspx?id=3496&vc=4380fd95' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3496&vc=4380fd95' target='_blank'>137</a></td><td><a href='BeianDetail.aspx?id=3496&vc=4380fd95' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5867&vc=411f4688' target='_blank'>景湖时代花园4号地下车库</a></td><td><a href='BeianDetail.aspx?id=5867&vc=411f4688' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=5867&vc=411f4688' target='_blank'>696</a></td><td><a href='BeianDetail.aspx?id=5867&vc=411f4688' target='_blank'>526</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3499&vc=aedff48a' target='_blank'>景湖时代花园5、6幢裙楼</a></td><td><a href='BeianDetail.aspx?id=3499&vc=aedff48a' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3499&vc=aedff48a' target='_blank'>254</a></td><td><a href='BeianDetail.aspx?id=3499&vc=aedff48a' target='_blank'>203</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3497&vc=ce33fe01' target='_blank'>景湖时代花园5幢</a></td><td><a href='BeianDetail.aspx?id=3497&vc=ce33fe01' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3497&vc=ce33fe01' target='_blank'>52</a></td><td><a href='BeianDetail.aspx?id=3497&vc=ce33fe01' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3498&vc=56ba92d4' target='_blank'>景湖时代花园6幢</a></td><td><a href='BeianDetail.aspx?id=3498&vc=56ba92d4' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3498&vc=56ba92d4' target='_blank'>52</a></td><td><a href='BeianDetail.aspx?id=3498&vc=56ba92d4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4127&vc=33284fc9' target='_blank'>景湖时代花园7幢</a></td><td><a href='BeianDetail.aspx?id=4127&vc=33284fc9' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=4127&vc=33284fc9' target='_blank'>377</a></td><td><a href='BeianDetail.aspx?id=4127&vc=33284fc9' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3895&vc=2c076a03' target='_blank'>景湖时代花园8幢</a></td><td><a href='BeianDetail.aspx?id=3895&vc=2c076a03' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3895&vc=2c076a03' target='_blank'>28</a></td><td><a href='BeianDetail.aspx?id=3895&vc=2c076a03' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3896&vc=12625fa3' target='_blank'>景湖时代花园9幢</a></td><td><a href='BeianDetail.aspx?id=3896&vc=12625fa3' target='_blank'>东莞市南城区 宏伟路1号</a></td><td><a href='BeianDetail.aspx?id=3896&vc=12625fa3' target='_blank'>42</a></td><td><a href='BeianDetail.aspx?id=3896&vc=12625fa3' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=222&vc=fd4d88a5' target='_blank'>景湖湾畔10号楼</a></td><td><a href='BeianDetail.aspx?id=222&vc=fd4d88a5' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=222&vc=fd4d88a5' target='_blank'>57</a></td><td><a href='BeianDetail.aspx?id=222&vc=fd4d88a5' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2624&vc=341cddd3' target='_blank'>景湖湾畔11#公寓</a></td><td><a href='BeianDetail.aspx?id=2624&vc=341cddd3' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=2624&vc=341cddd3' target='_blank'>30</a></td><td><a href='BeianDetail.aspx?id=2624&vc=341cddd3' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2625&vc=50967004' target='_blank'>景湖湾畔12#公寓</a></td><td><a href='BeianDetail.aspx?id=2625&vc=50967004' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=2625&vc=50967004' target='_blank'>16</a></td><td><a href='BeianDetail.aspx?id=2625&vc=50967004' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2626&vc=ed86a6b0' target='_blank'>景湖湾畔13#公寓  </a></td><td><a href='BeianDetail.aspx?id=2626&vc=ed86a6b0' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=2626&vc=ed86a6b0' target='_blank'>14</a></td><td><a href='BeianDetail.aspx?id=2626&vc=ed86a6b0' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1450&vc=d4564aa0' target='_blank'>景湖湾畔14#公寓 </a></td><td><a href='BeianDetail.aspx?id=1450&vc=d4564aa0' target='_blank'>东莞市南城区 滨河路28号</a></td><td><a href='BeianDetail.aspx?id=1450&vc=d4564aa0' target='_blank'>101</a></td><td><a href='BeianDetail.aspx?id=1450&vc=d4564aa0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1446&vc=6bd368c4' target='_blank'>景湖湾畔15#公寓 </a></td><td><a href='BeianDetail.aspx?id=1446&vc=6bd368c4' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=1446&vc=6bd368c4' target='_blank'>70</a></td><td><a href='BeianDetail.aspx?id=1446&vc=6bd368c4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1195&vc=268dd5be' target='_blank'>景湖湾畔16#公寓</a></td><td><a href='BeianDetail.aspx?id=1195&vc=268dd5be' target='_blank'>东莞市南城区 新基管理区</a></td><td><a href='BeianDetail.aspx?id=1195&vc=268dd5be' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=1195&vc=268dd5be' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1196&vc=3d24db9a' target='_blank'>景湖湾畔17#公寓</a></td><td><a href='BeianDetail.aspx?id=1196&vc=3d24db9a' target='_blank'>东莞市南城区 新基管理区</a></td><td><a href='BeianDetail.aspx?id=1196&vc=3d24db9a' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1196&vc=3d24db9a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1197&vc=d496a021' target='_blank'>景湖湾畔18#公寓</a></td><td><a href='BeianDetail.aspx?id=1197&vc=d496a021' target='_blank'>东莞市南城区 新基管理区</a></td><td><a href='BeianDetail.aspx?id=1197&vc=d496a021' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=1197&vc=d496a021' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1198&vc=d4c03cc1' target='_blank'>景湖湾畔19#公寓</a></td><td><a href='BeianDetail.aspx?id=1198&vc=d4c03cc1' target='_blank'>东莞市南城区 新基管理区</a></td><td><a href='BeianDetail.aspx?id=1198&vc=d4c03cc1' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=1198&vc=d4c03cc1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=170&vc=ef031724' target='_blank'>景湖湾畔1号楼</a></td><td><a href='BeianDetail.aspx?id=170&vc=ef031724' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=170&vc=ef031724' target='_blank'>219</a></td><td><a href='BeianDetail.aspx?id=170&vc=ef031724' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=223&vc=fc6a280e' target='_blank'>景湖湾畔1区商铺</a></td><td><a href='BeianDetail.aspx?id=223&vc=fc6a280e' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=223&vc=fc6a280e' target='_blank'>29</a></td><td><a href='BeianDetail.aspx?id=223&vc=fc6a280e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1447&vc=ada37a41' target='_blank'>景湖湾畔20#公寓</a></td><td><a href='BeianDetail.aspx?id=1447&vc=ada37a41' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=1447&vc=ada37a41' target='_blank'>140</a></td><td><a href='BeianDetail.aspx?id=1447&vc=ada37a41' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1448&vc=a5eebc09' target='_blank'>景湖湾畔21#公寓 </a></td><td><a href='BeianDetail.aspx?id=1448&vc=a5eebc09' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=1448&vc=a5eebc09' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=1448&vc=a5eebc09' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2049&vc=d9243313' target='_blank'>景湖湾畔22#公寓</a></td><td><a href='BeianDetail.aspx?id=2049&vc=d9243313' target='_blank'>东莞市南城区 滨河路28号</a></td><td><a href='BeianDetail.aspx?id=2049&vc=d9243313' target='_blank'>48</a></td><td><a href='BeianDetail.aspx?id=2049&vc=d9243313' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2050&vc=a2c75623' target='_blank'>景湖湾畔23#公寓 </a></td><td><a href='BeianDetail.aspx?id=2050&vc=a2c75623' target='_blank'>东莞市南城区 滨河路28号</a></td><td><a href='BeianDetail.aspx?id=2050&vc=a2c75623' target='_blank'>35</a></td><td><a href='BeianDetail.aspx?id=2050&vc=a2c75623' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1449&vc=477a25f0' target='_blank'>景湖湾畔24#公寓</a></td><td><a href='BeianDetail.aspx?id=1449&vc=477a25f0' target='_blank'>东莞市南城区 滨河路28号</a></td><td><a href='BeianDetail.aspx?id=1449&vc=477a25f0' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=1449&vc=477a25f0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1199&vc=3d6ddb86' target='_blank'>景湖湾畔25#公寓</a></td><td><a href='BeianDetail.aspx?id=1199&vc=3d6ddb86' target='_blank'>东莞市南城区 新基管理区</a></td><td><a href='BeianDetail.aspx?id=1199&vc=3d6ddb86' target='_blank'>141</a></td><td><a href='BeianDetail.aspx?id=1199&vc=3d6ddb86' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2627&vc=ca4467f3' target='_blank'>景湖湾畔27#公寓</a></td><td><a href='BeianDetail.aspx?id=2627&vc=ca4467f3' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=2627&vc=ca4467f3' target='_blank'>16</a></td><td><a href='BeianDetail.aspx?id=2627&vc=ca4467f3' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=171&vc=12dc6dac' target='_blank'>景湖湾畔2号楼</a></td><td><a href='BeianDetail.aspx?id=171&vc=12dc6dac' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=171&vc=12dc6dac' target='_blank'>87</a></td><td><a href='BeianDetail.aspx?id=171&vc=12dc6dac' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=172&vc=c783dea2' target='_blank'>景湖湾畔3号楼</a></td><td><a href='BeianDetail.aspx?id=172&vc=c783dea2' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=172&vc=c783dea2' target='_blank'>87</a></td><td><a href='BeianDetail.aspx?id=172&vc=c783dea2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=173&vc=403c97af' target='_blank'>景湖湾畔4号楼</a></td><td><a href='BeianDetail.aspx?id=173&vc=403c97af' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=173&vc=403c97af' target='_blank'>43</a></td><td><a href='BeianDetail.aspx?id=173&vc=403c97af' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=174&vc=3be39e95' target='_blank'>景湖湾畔5号楼</a></td><td><a href='BeianDetail.aspx?id=174&vc=3be39e95' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=174&vc=3be39e95' target='_blank'>87</a></td><td><a href='BeianDetail.aspx?id=174&vc=3be39e95' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=175&vc=2978b59d' target='_blank'>景湖湾畔6号楼</a></td><td><a href='BeianDetail.aspx?id=175&vc=2978b59d' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=175&vc=2978b59d' target='_blank'>87</a></td><td><a href='BeianDetail.aspx?id=175&vc=2978b59d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=219&vc=bbb5b8d8' target='_blank'>景湖湾畔7号楼</a></td><td><a href='BeianDetail.aspx?id=219&vc=bbb5b8d8' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=219&vc=bbb5b8d8' target='_blank'>142</a></td><td><a href='BeianDetail.aspx?id=219&vc=bbb5b8d8' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=220&vc=0ab1b5d9' target='_blank'>景湖湾畔8号楼</a></td><td><a href='BeianDetail.aspx?id=220&vc=0ab1b5d9' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=220&vc=0ab1b5d9' target='_blank'>57</a></td><td><a href='BeianDetail.aspx?id=220&vc=0ab1b5d9' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=221&vc=52834aed' target='_blank'>景湖湾畔9号楼</a></td><td><a href='BeianDetail.aspx?id=221&vc=52834aed' target='_blank'>东莞市南城区 新基管理区沿河路</a></td><td><a href='BeianDetail.aspx?id=221&vc=52834aed' target='_blank'>57</a></td><td><a href='BeianDetail.aspx?id=221&vc=52834aed' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2935&vc=37989ea4' target='_blank'>景湖湾畔二区2#地下车库 </a></td><td><a href='BeianDetail.aspx?id=2935&vc=37989ea4' target='_blank'>东莞市南城区 滨河路28号</a></td><td><a href='BeianDetail.aspx?id=2935&vc=37989ea4' target='_blank'>339</a></td><td><a href='BeianDetail.aspx?id=2935&vc=37989ea4' target='_blank'>151</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2628&vc=6ad314f9' target='_blank'>景湖湾畔商铺2#、3#</a></td><td><a href='BeianDetail.aspx?id=2628&vc=6ad314f9' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=2628&vc=6ad314f9' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=2628&vc=6ad314f9' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1451&vc=6bd73b1d' target='_blank'>景湖湾畔一期1#地下车库</a></td><td><a href='BeianDetail.aspx?id=1451&vc=6bd73b1d' target='_blank'>东莞市南城区 新基社区</a></td><td><a href='BeianDetail.aspx?id=1451&vc=6bd73b1d' target='_blank'>441</a></td><td><a href='BeianDetail.aspx?id=1451&vc=6bd73b1d' target='_blank'>206</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

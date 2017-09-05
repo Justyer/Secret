@@ -1,0 +1,568 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option selected="selected" value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option value="67108864">东莞市桥头镇</option>
+	<option value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9862&vc=a465236f' target='_blank'>江与城花园10幢</a></td><td><a href='BeianDetail.aspx?id=9862&vc=a465236f' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9862&vc=a465236f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9848&vc=79ca008e' target='_blank'>江与城花园11幢</a></td><td><a href='BeianDetail.aspx?id=9848&vc=79ca008e' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9848&vc=79ca008e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9861&vc=d1f835ec' target='_blank'>江与城花园12幢</a></td><td><a href='BeianDetail.aspx?id=9861&vc=d1f835ec' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9861&vc=d1f835ec' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9860&vc=649eea14' target='_blank'>江与城花园13幢</a></td><td><a href='BeianDetail.aspx?id=9860&vc=649eea14' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9860&vc=649eea14' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9859&vc=a6e3836f' target='_blank'>江与城花园14幢</a></td><td><a href='BeianDetail.aspx?id=9859&vc=a6e3836f' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9859&vc=a6e3836f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9858&vc=2510fe6c' target='_blank'>江与城花园15幢</a></td><td><a href='BeianDetail.aspx?id=9858&vc=2510fe6c' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9858&vc=2510fe6c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9857&vc=57e6a96e' target='_blank'>江与城花园16幢</a></td><td><a href='BeianDetail.aspx?id=9857&vc=57e6a96e' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9857&vc=57e6a96e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9856&vc=b12f2fc8' target='_blank'>江与城花园17幢</a></td><td><a href='BeianDetail.aspx?id=9856&vc=b12f2fc8' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9856&vc=b12f2fc8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9847&vc=62a81922' target='_blank'>江与城花园18幢</a></td><td><a href='BeianDetail.aspx?id=9847&vc=62a81922' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9847&vc=62a81922' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9846&vc=e8429312' target='_blank'>江与城花园19幢</a></td><td><a href='BeianDetail.aspx?id=9846&vc=e8429312' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9846&vc=e8429312' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9869&vc=3837c9f3' target='_blank'>江与城花园1幢</a></td><td><a href='BeianDetail.aspx?id=9869&vc=3837c9f3' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9869&vc=3837c9f3' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9855&vc=b78680b0' target='_blank'>江与城花园20幢</a></td><td><a href='BeianDetail.aspx?id=9855&vc=b78680b0' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9855&vc=b78680b0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9850&vc=a6b6a02d' target='_blank'>江与城花园21幢</a></td><td><a href='BeianDetail.aspx?id=9850&vc=a6b6a02d' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9850&vc=a6b6a02d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9854&vc=0d9c8bc3' target='_blank'>江与城花园22幢</a></td><td><a href='BeianDetail.aspx?id=9854&vc=0d9c8bc3' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9854&vc=0d9c8bc3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9853&vc=e2e585f0' target='_blank'>江与城花园23幢</a></td><td><a href='BeianDetail.aspx?id=9853&vc=e2e585f0' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9853&vc=e2e585f0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9852&vc=9408667c' target='_blank'>江与城花园24幢</a></td><td><a href='BeianDetail.aspx?id=9852&vc=9408667c' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9852&vc=9408667c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9851&vc=38f73319' target='_blank'>江与城花园25幢</a></td><td><a href='BeianDetail.aspx?id=9851&vc=38f73319' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9851&vc=38f73319' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10550&vc=c4bef242' target='_blank'>江与城花园26幢</a></td><td><a href='BeianDetail.aspx?id=10550&vc=c4bef242' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=10550&vc=c4bef242' target='_blank'>27</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10551&vc=980bb8a0' target='_blank'>江与城花园27幢</a></td><td><a href='BeianDetail.aspx?id=10551&vc=980bb8a0' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=10551&vc=980bb8a0' target='_blank'>52</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9812&vc=55c02c11' target='_blank'>江与城花园28幢</a></td><td><a href='BeianDetail.aspx?id=9812&vc=55c02c11' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9812&vc=55c02c11' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9813&vc=f8000758' target='_blank'>江与城花园29幢</a></td><td><a href='BeianDetail.aspx?id=9813&vc=f8000758' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9813&vc=f8000758' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9868&vc=301e536c' target='_blank'>江与城花园2幢</a></td><td><a href='BeianDetail.aspx?id=9868&vc=301e536c' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9868&vc=301e536c' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9814&vc=f139088a' target='_blank'>江与城花园30幢</a></td><td><a href='BeianDetail.aspx?id=9814&vc=f139088a' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9814&vc=f139088a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9867&vc=542d641e' target='_blank'>江与城花园3幢</a></td><td><a href='BeianDetail.aspx?id=9867&vc=542d641e' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9867&vc=542d641e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9866&vc=914e33e1' target='_blank'>江与城花园4幢</a></td><td><a href='BeianDetail.aspx?id=9866&vc=914e33e1' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9866&vc=914e33e1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9865&vc=dd227bf6' target='_blank'>江与城花园5幢</a></td><td><a href='BeianDetail.aspx?id=9865&vc=dd227bf6' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9865&vc=dd227bf6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9864&vc=78a532cd' target='_blank'>江与城花园6幢</a></td><td><a href='BeianDetail.aspx?id=9864&vc=78a532cd' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9864&vc=78a532cd' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9863&vc=a27c0902' target='_blank'>江与城花园8幢</a></td><td><a href='BeianDetail.aspx?id=9863&vc=a27c0902' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9863&vc=a27c0902' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9849&vc=420f8473' target='_blank'>江与城花园9幢</a></td><td><a href='BeianDetail.aspx?id=9849&vc=420f8473' target='_blank'>高埗镇 高埗大道南2号</a></td><td><a href='BeianDetail.aspx?id=9849&vc=420f8473' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8220&vc=8b5118a9' target='_blank'>新世纪颐龙湾8号独立商铺</a></td><td><a href='BeianDetail.aspx?id=8220&vc=8b5118a9' target='_blank'>高埗镇 高埗镇颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=8220&vc=8b5118a9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9795&vc=66972e1c' target='_blank'>新世纪颐龙湾10号楼</a></td><td><a href='BeianDetail.aspx?id=9795&vc=66972e1c' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9795&vc=66972e1c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9796&vc=4be60a30' target='_blank'>新世纪颐龙湾12号商业楼</a></td><td><a href='BeianDetail.aspx?id=9796&vc=4be60a30' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9796&vc=4be60a30' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7445&vc=d2710063' target='_blank'>新世纪颐龙湾201号楼</a></td><td><a href='BeianDetail.aspx?id=7445&vc=d2710063' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7445&vc=d2710063' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7446&vc=ad6a01b8' target='_blank'>新世纪颐龙湾202号楼</a></td><td><a href='BeianDetail.aspx?id=7446&vc=ad6a01b8' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7446&vc=ad6a01b8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8437&vc=dd669141' target='_blank'>新世纪颐龙湾203号楼</a></td><td><a href='BeianDetail.aspx?id=8437&vc=dd669141' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=8437&vc=dd669141' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7617&vc=cec42d76' target='_blank'>新世纪颐龙湾204号楼</a></td><td><a href='BeianDetail.aspx?id=7617&vc=cec42d76' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7617&vc=cec42d76' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7447&vc=8f23e17c' target='_blank'>新世纪颐龙湾205号楼</a></td><td><a href='BeianDetail.aspx?id=7447&vc=8f23e17c' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7447&vc=8f23e17c' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7448&vc=7a826bac' target='_blank'>新世纪颐龙湾206号楼</a></td><td><a href='BeianDetail.aspx?id=7448&vc=7a826bac' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7448&vc=7a826bac' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9807&vc=7a386b67' target='_blank'>新世纪颐龙湾207号楼</a></td><td><a href='BeianDetail.aspx?id=9807&vc=7a386b67' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9807&vc=7a386b67' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7619&vc=5ada062c' target='_blank'>新世纪颐龙湾208号楼</a></td><td><a href='BeianDetail.aspx?id=7619&vc=5ada062c' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7619&vc=5ada062c' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7618&vc=580dabaf' target='_blank'>新世纪颐龙湾209号楼</a></td><td><a href='BeianDetail.aspx?id=7618&vc=580dabaf' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7618&vc=580dabaf' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11377&vc=f9d58abd' target='_blank'>新世纪颐龙湾309幢</a></td><td><a href='BeianDetail.aspx?id=11377&vc=f9d58abd' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=11377&vc=f9d58abd' target='_blank'>59</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7449&vc=12bd80de' target='_blank'>新世纪颐龙湾701、702幢</a></td><td><a href='BeianDetail.aspx?id=7449&vc=12bd80de' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7449&vc=12bd80de' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7450&vc=835ca0fc' target='_blank'>新世纪颐龙湾703、719幢</a></td><td><a href='BeianDetail.aspx?id=7450&vc=835ca0fc' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7450&vc=835ca0fc' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7451&vc=8eb11402' target='_blank'>新世纪颐龙湾704、706、708、711、715、723、725幢</a></td><td><a href='BeianDetail.aspx?id=7451&vc=8eb11402' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7451&vc=8eb11402' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7452&vc=2164d082' target='_blank'>新世纪颐龙湾705、707、709、710、713、714、716、717、722、724幢</a></td><td><a href='BeianDetail.aspx?id=7452&vc=2164d082' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7452&vc=2164d082' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9797&vc=47694320' target='_blank'>新世纪颐龙湾712幢</a></td><td><a href='BeianDetail.aspx?id=9797&vc=47694320' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9797&vc=47694320' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7453&vc=515c492d' target='_blank'>新世纪颐龙湾718幢</a></td><td><a href='BeianDetail.aspx?id=7453&vc=515c492d' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7453&vc=515c492d' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7454&vc=721f1dfc' target='_blank'>新世纪颐龙湾720、728幢</a></td><td><a href='BeianDetail.aspx?id=7454&vc=721f1dfc' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7454&vc=721f1dfc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7455&vc=1b0ce4cd' target='_blank'>新世纪颐龙湾721、726幢</a></td><td><a href='BeianDetail.aspx?id=7455&vc=1b0ce4cd' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7455&vc=1b0ce4cd' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9798&vc=0443d0d5' target='_blank'>新世纪颐龙湾729幢</a></td><td><a href='BeianDetail.aspx?id=9798&vc=0443d0d5' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9798&vc=0443d0d5' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7456&vc=e6aa1155' target='_blank'>新世纪颐龙湾730幢</a></td><td><a href='BeianDetail.aspx?id=7456&vc=e6aa1155' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7456&vc=e6aa1155' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7460&vc=1bc1d44e' target='_blank'>新世纪颐龙湾731、732幢</a></td><td><a href='BeianDetail.aspx?id=7460&vc=1bc1d44e' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7460&vc=1bc1d44e' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7461&vc=21edf9c8' target='_blank'>新世纪颐龙湾733、735幢</a></td><td><a href='BeianDetail.aspx?id=7461&vc=21edf9c8' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7461&vc=21edf9c8' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7462&vc=dd0df83d' target='_blank'>新世纪颐龙湾734、736、737幢</a></td><td><a href='BeianDetail.aspx?id=7462&vc=dd0df83d' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7462&vc=dd0df83d' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7463&vc=536065c5' target='_blank'>新世纪颐龙湾738幢</a></td><td><a href='BeianDetail.aspx?id=7463&vc=536065c5' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7463&vc=536065c5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9799&vc=df590560' target='_blank'>新世纪颐龙湾739幢</a></td><td><a href='BeianDetail.aspx?id=9799&vc=df590560' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9799&vc=df590560' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9800&vc=9552baf9' target='_blank'>新世纪颐龙湾740幢</a></td><td><a href='BeianDetail.aspx?id=9800&vc=9552baf9' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9800&vc=9552baf9' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7464&vc=389c9c98' target='_blank'>新世纪颐龙湾741、743、748幢</a></td><td><a href='BeianDetail.aspx?id=7464&vc=389c9c98' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7464&vc=389c9c98' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7465&vc=bdfefc7b' target='_blank'>新世纪颐龙湾742幢</a></td><td><a href='BeianDetail.aspx?id=7465&vc=bdfefc7b' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=7465&vc=bdfefc7b' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9801&vc=8a003fe9' target='_blank'>新世纪颐龙湾744幢</a></td><td><a href='BeianDetail.aspx?id=9801&vc=8a003fe9' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9801&vc=8a003fe9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9802&vc=31d2ac7e' target='_blank'>新世纪颐龙湾746幢</a></td><td><a href='BeianDetail.aspx?id=9802&vc=31d2ac7e' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9802&vc=31d2ac7e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9803&vc=af2d4649' target='_blank'>新世纪颐龙湾747幢</a></td><td><a href='BeianDetail.aspx?id=9803&vc=af2d4649' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9803&vc=af2d4649' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9804&vc=99362df5' target='_blank'>新世纪颐龙湾749幢</a></td><td><a href='BeianDetail.aspx?id=9804&vc=99362df5' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9804&vc=99362df5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9805&vc=506b5951' target='_blank'>新世纪颐龙湾750幢</a></td><td><a href='BeianDetail.aspx?id=9805&vc=506b5951' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9805&vc=506b5951' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9806&vc=4d13ae66' target='_blank'>新世纪颐龙湾751幢</a></td><td><a href='BeianDetail.aspx?id=9806&vc=4d13ae66' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9806&vc=4d13ae66' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9794&vc=27e3a0d5' target='_blank'>新世纪颐龙湾9号楼</a></td><td><a href='BeianDetail.aspx?id=9794&vc=27e3a0d5' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=9794&vc=27e3a0d5' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10979&vc=34ecfb5e' target='_blank'>新世纪颐龙湾二期3号地下车库</a></td><td><a href='BeianDetail.aspx?id=10979&vc=34ecfb5e' target='_blank'>高埗镇 颐龙东路2号</a></td><td><a href='BeianDetail.aspx?id=10979&vc=34ecfb5e' target='_blank'>697</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6464&vc=5c4fdaed' target='_blank'>新世纪颐龙湾2号地下车库</a></td><td><a href='BeianDetail.aspx?id=6464&vc=5c4fdaed' target='_blank'>高埗镇 颐龙路</a></td><td><a href='BeianDetail.aspx?id=6464&vc=5c4fdaed' target='_blank'>158</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5164&vc=16d5152c' target='_blank'>新世纪颐龙湾101幢</a></td><td><a href='BeianDetail.aspx?id=5164&vc=16d5152c' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5164&vc=16d5152c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5165&vc=0a7d7db4' target='_blank'>新世纪颐龙湾102幢</a></td><td><a href='BeianDetail.aspx?id=5165&vc=0a7d7db4' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5165&vc=0a7d7db4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5166&vc=584159b3' target='_blank'>新世纪颐龙湾103幢</a></td><td><a href='BeianDetail.aspx?id=5166&vc=584159b3' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5166&vc=584159b3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5167&vc=dbebaa7a' target='_blank'>新世纪颐龙湾104幢</a></td><td><a href='BeianDetail.aspx?id=5167&vc=dbebaa7a' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5167&vc=dbebaa7a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5168&vc=d35e3088' target='_blank'>新世纪颐龙湾105幢</a></td><td><a href='BeianDetail.aspx?id=5168&vc=d35e3088' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5168&vc=d35e3088' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5169&vc=bcff2288' target='_blank'>新世纪颐龙湾106幢</a></td><td><a href='BeianDetail.aspx?id=5169&vc=bcff2288' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5169&vc=bcff2288' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5170&vc=ba7ea1f6' target='_blank'>新世纪颐龙湾107幢</a></td><td><a href='BeianDetail.aspx?id=5170&vc=ba7ea1f6' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5170&vc=ba7ea1f6' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5171&vc=d66e0a09' target='_blank'>新世纪颐龙湾108幢</a></td><td><a href='BeianDetail.aspx?id=5171&vc=d66e0a09' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=5171&vc=d66e0a09' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6398&vc=77782d8c' target='_blank'>新世纪颐龙湾109幢</a></td><td><a href='BeianDetail.aspx?id=6398&vc=77782d8c' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=6398&vc=77782d8c' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4812&vc=a9a0a885' target='_blank'>新世纪颐龙湾601、602、603、635、636、638幢</a></td><td><a href='BeianDetail.aspx?id=4812&vc=a9a0a885' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4812&vc=a9a0a885' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4816&vc=22703791' target='_blank'>新世纪颐龙湾604幢</a></td><td><a href='BeianDetail.aspx?id=4816&vc=22703791' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4816&vc=22703791' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4815&vc=ec9be65d' target='_blank'>新世纪颐龙湾605、610、618、642、647、662幢</a></td><td><a href='BeianDetail.aspx?id=4815&vc=ec9be65d' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4815&vc=ec9be65d' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4819&vc=877a2c66' target='_blank'>新世纪颐龙湾606、640、644幢</a></td><td><a href='BeianDetail.aspx?id=4819&vc=877a2c66' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4819&vc=877a2c66' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4639&vc=742156c4' target='_blank'>新世纪颐龙湾607、611、612、620、627、656、669幢</a></td><td><a href='BeianDetail.aspx?id=4639&vc=742156c4' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4639&vc=742156c4' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4635&vc=5fe02c28' target='_blank'>新世纪颐龙湾608、613、615、621、624、639、653、655、657、659、661、663、665、668、幢</a></td><td><a href='BeianDetail.aspx?id=4635&vc=5fe02c28' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4635&vc=5fe02c28' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4814&vc=55f7e64f' target='_blank'>新世纪颐龙湾609幢</a></td><td><a href='BeianDetail.aspx?id=4814&vc=55f7e64f' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4814&vc=55f7e64f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4638&vc=2d163f90' target='_blank'>新世纪颐龙湾614、633、634、674、675幢</a></td><td><a href='BeianDetail.aspx?id=4638&vc=2d163f90' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4638&vc=2d163f90' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4636&vc=9671f66b' target='_blank'>新世纪颐龙湾616、619、622、625、651、658、664、667幢</a></td><td><a href='BeianDetail.aspx?id=4636&vc=9671f66b' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4636&vc=9671f66b' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4637&vc=ea6b8c6f' target='_blank'>新世纪颐龙湾617、623、626、650、652、654、660、666幢</a></td><td><a href='BeianDetail.aspx?id=4637&vc=ea6b8c6f' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4637&vc=ea6b8c6f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4753&vc=bb95580b' target='_blank'>新世纪颐龙湾628、629、630、631、670、673幢</a></td><td><a href='BeianDetail.aspx?id=4753&vc=bb95580b' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4753&vc=bb95580b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4640&vc=4b139c8e' target='_blank'>新世纪颐龙湾632、671、672、676幢</a></td><td><a href='BeianDetail.aspx?id=4640&vc=4b139c8e' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4640&vc=4b139c8e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4817&vc=c00aef20' target='_blank'>新世纪颐龙湾637、649幢</a></td><td><a href='BeianDetail.aspx?id=4817&vc=c00aef20' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4817&vc=c00aef20' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4813&vc=4337b60f' target='_blank'>新世纪颐龙湾641、645、646、648幢</a></td><td><a href='BeianDetail.aspx?id=4813&vc=4337b60f' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4813&vc=4337b60f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4818&vc=388818e3' target='_blank'>新世纪颐龙湾643幢</a></td><td><a href='BeianDetail.aspx?id=4818&vc=388818e3' target='_blank'>高埗镇 冼沙村北王路旁</a></td><td><a href='BeianDetail.aspx?id=4818&vc=388818e3' target='_blank'>0</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="93" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=5801&amp;vc=2d3253f8" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>广东黄河实业集团有限公司、东莞市黄河集团房地产开发有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>虎门国际公馆银湖别墅区27号
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>预售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=25249&vc=f058c1d3' target='_blank'>201200118</a></td><td><a href='roomTable.aspx?id=25249&vc=f058c1d3' target='_blank'>东莞市虎门镇白沙社区虎门国际公馆银湖别墅区27号</a></td><td><a href='roomTable.aspx?id=25249&vc=f058c1d3' target='_blank'>4</a><td><a href='roomTable.aspx?id=25249&vc=f058c1d3' target='_blank'>2</a><td><a href='roomTable.aspx?id=25249&vc=f058c1d3' target='_blank'>住宅</a><td><a href='roomTable.aspx?id=25249&vc=f058c1d3' target='_blank'>886.04</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：虎门国际公馆银湖别墅区27号
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市虎门镇白沙社区
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            0
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2012-6-7
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            预售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            201200118
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=5801&vc=2d3253f8' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            广东黄河实业集团有限公司、东莞市黄河集团房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            广东黄河实业集团有限公司、东莞市黄河集团房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            三级
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市虎门镇港口路黄河商业城七楼8号
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523000
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            3800万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            郑强辉、郑任辉
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            82188888
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            郑强辉、郑任辉
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=5801&vc=2d3253f8' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4262&vc=673d8547' target='_blank'>虎门国际公馆10号</a></td><td><a href='BeianDetail.aspx?id=4262&vc=673d8547' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4262&vc=673d8547' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4262&vc=673d8547' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4263&vc=178f1d3c' target='_blank'>虎门国际公馆11号</a></td><td><a href='BeianDetail.aspx?id=4263&vc=178f1d3c' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4263&vc=178f1d3c' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4263&vc=178f1d3c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4264&vc=a77b243c' target='_blank'>虎门国际公馆12号</a></td><td><a href='BeianDetail.aspx?id=4264&vc=a77b243c' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4264&vc=a77b243c' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4264&vc=a77b243c' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4265&vc=96e72a23' target='_blank'>虎门国际公馆13号</a></td><td><a href='BeianDetail.aspx?id=4265&vc=96e72a23' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4265&vc=96e72a23' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4265&vc=96e72a23' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4266&vc=225901c9' target='_blank'>虎门国际公馆14号</a></td><td><a href='BeianDetail.aspx?id=4266&vc=225901c9' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4266&vc=225901c9' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4266&vc=225901c9' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4267&vc=03f48112' target='_blank'>虎门国际公馆15号</a></td><td><a href='BeianDetail.aspx?id=4267&vc=03f48112' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4267&vc=03f48112' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4267&vc=03f48112' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4609&vc=3f3ef574' target='_blank'>虎门国际公馆16号</a></td><td><a href='BeianDetail.aspx?id=4609&vc=3f3ef574' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4609&vc=3f3ef574' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4609&vc=3f3ef574' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4611&vc=593120a5' target='_blank'>虎门国际公馆17号</a></td><td><a href='BeianDetail.aspx?id=4611&vc=593120a5' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4611&vc=593120a5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4611&vc=593120a5' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4337&vc=434917f9' target='_blank'>虎门国际公馆18号</a></td><td><a href='BeianDetail.aspx?id=4337&vc=434917f9' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4337&vc=434917f9' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4337&vc=434917f9' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4338&vc=f73d2e36' target='_blank'>虎门国际公馆19号</a></td><td><a href='BeianDetail.aspx?id=4338&vc=f73d2e36' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4338&vc=f73d2e36' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4338&vc=f73d2e36' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5196&vc=a91307bf' target='_blank'>虎门国际公馆1栋</a></td><td><a href='BeianDetail.aspx?id=5196&vc=a91307bf' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=5196&vc=a91307bf' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=5196&vc=a91307bf' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4253&vc=bdcf899c' target='_blank'>虎门国际公馆1号</a></td><td><a href='BeianDetail.aspx?id=4253&vc=bdcf899c' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4253&vc=bdcf899c' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4253&vc=bdcf899c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4339&vc=d89b99a4' target='_blank'>虎门国际公馆20号</a></td><td><a href='BeianDetail.aspx?id=4339&vc=d89b99a4' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4339&vc=d89b99a4' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4339&vc=d89b99a4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4610&vc=e47cf3ca' target='_blank'>虎门国际公馆21号</a></td><td><a href='BeianDetail.aspx?id=4610&vc=e47cf3ca' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4610&vc=e47cf3ca' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4610&vc=e47cf3ca' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5197&vc=d3bad299' target='_blank'>虎门国际公馆2栋</a></td><td><a href='BeianDetail.aspx?id=5197&vc=d3bad299' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=5197&vc=d3bad299' target='_blank'>163</a></td><td><a href='BeianDetail.aspx?id=5197&vc=d3bad299' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4254&vc=5bd599d5' target='_blank'>虎门国际公馆2号</a></td><td><a href='BeianDetail.aspx?id=4254&vc=5bd599d5' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4254&vc=5bd599d5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4254&vc=5bd599d5' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5198&vc=c31f2407' target='_blank'>虎门国际公馆3栋</a></td><td><a href='BeianDetail.aspx?id=5198&vc=c31f2407' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=5198&vc=c31f2407' target='_blank'>212</a></td><td><a href='BeianDetail.aspx?id=5198&vc=c31f2407' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4255&vc=17df4ef0' target='_blank'>虎门国际公馆3号</a></td><td><a href='BeianDetail.aspx?id=4255&vc=17df4ef0' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4255&vc=17df4ef0' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4255&vc=17df4ef0' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5199&vc=0931c42a' target='_blank'>虎门国际公馆4栋</a></td><td><a href='BeianDetail.aspx?id=5199&vc=0931c42a' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=5199&vc=0931c42a' target='_blank'>278</a></td><td><a href='BeianDetail.aspx?id=5199&vc=0931c42a' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4256&vc=86bfcd49' target='_blank'>虎门国际公馆4号</a></td><td><a href='BeianDetail.aspx?id=4256&vc=86bfcd49' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4256&vc=86bfcd49' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4256&vc=86bfcd49' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4252&vc=b59ba66e' target='_blank'>虎门国际公馆5栋</a></td><td><a href='BeianDetail.aspx?id=4252&vc=b59ba66e' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4252&vc=b59ba66e' target='_blank'>210</a></td><td><a href='BeianDetail.aspx?id=4252&vc=b59ba66e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4257&vc=c82ba4a1' target='_blank'>虎门国际公馆5号</a></td><td><a href='BeianDetail.aspx?id=4257&vc=c82ba4a1' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4257&vc=c82ba4a1' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4257&vc=c82ba4a1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4154&vc=22d0f3c0' target='_blank'>虎门国际公馆6栋</a></td><td><a href='BeianDetail.aspx?id=4154&vc=22d0f3c0' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4154&vc=22d0f3c0' target='_blank'>201</a></td><td><a href='BeianDetail.aspx?id=4154&vc=22d0f3c0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4258&vc=57dad36f' target='_blank'>虎门国际公馆6号</a></td><td><a href='BeianDetail.aspx?id=4258&vc=57dad36f' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4258&vc=57dad36f' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4258&vc=57dad36f' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4155&vc=169d2f6d' target='_blank'>虎门国际公馆7栋</a></td><td><a href='BeianDetail.aspx?id=4155&vc=169d2f6d' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4155&vc=169d2f6d' target='_blank'>191</a></td><td><a href='BeianDetail.aspx?id=4155&vc=169d2f6d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4259&vc=8b5a3b35' target='_blank'>虎门国际公馆7号</a></td><td><a href='BeianDetail.aspx?id=4259&vc=8b5a3b35' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4259&vc=8b5a3b35' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4259&vc=8b5a3b35' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4121&vc=e4106b50' target='_blank'>虎门国际公馆8栋</a></td><td><a href='BeianDetail.aspx?id=4121&vc=e4106b50' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4121&vc=e4106b50' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=4121&vc=e4106b50' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4260&vc=9eec743b' target='_blank'>虎门国际公馆8号</a></td><td><a href='BeianDetail.aspx?id=4260&vc=9eec743b' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4260&vc=9eec743b' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4260&vc=9eec743b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4261&vc=26a29de4' target='_blank'>虎门国际公馆9号</a></td><td><a href='BeianDetail.aspx?id=4261&vc=26a29de4' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=4261&vc=26a29de4' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4261&vc=26a29de4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3490&vc=d2d58fc3' target='_blank'>虎门国际公馆一期10栋</a></td><td><a href='BeianDetail.aspx?id=3490&vc=d2d58fc3' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3490&vc=d2d58fc3' target='_blank'>73</a></td><td><a href='BeianDetail.aspx?id=3490&vc=d2d58fc3' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3491&vc=16e6af86' target='_blank'>虎门国际公馆一期11栋</a></td><td><a href='BeianDetail.aspx?id=3491&vc=16e6af86' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3491&vc=16e6af86' target='_blank'>102</a></td><td><a href='BeianDetail.aspx?id=3491&vc=16e6af86' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3492&vc=3b9d281f' target='_blank'>虎门国际公馆一期12栋</a></td><td><a href='BeianDetail.aspx?id=3492&vc=3b9d281f' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3492&vc=3b9d281f' target='_blank'>180</a></td><td><a href='BeianDetail.aspx?id=3492&vc=3b9d281f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3493&vc=0b8cfea9' target='_blank'>虎门国际公馆一期13栋</a></td><td><a href='BeianDetail.aspx?id=3493&vc=0b8cfea9' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3493&vc=0b8cfea9' target='_blank'>72</a></td><td><a href='BeianDetail.aspx?id=3493&vc=0b8cfea9' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3494&vc=1219d12c' target='_blank'>虎门国际公馆一期14栋</a></td><td><a href='BeianDetail.aspx?id=3494&vc=1219d12c' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3494&vc=1219d12c' target='_blank'>33</a></td><td><a href='BeianDetail.aspx?id=3494&vc=1219d12c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3810&vc=0d23f21a' target='_blank'>虎门国际公馆一期15栋</a></td><td><a href='BeianDetail.aspx?id=3810&vc=0d23f21a' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3810&vc=0d23f21a' target='_blank'>210</a></td><td><a href='BeianDetail.aspx?id=3810&vc=0d23f21a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3824&vc=a2b2456e' target='_blank'>虎门国际公馆一期16栋</a></td><td><a href='BeianDetail.aspx?id=3824&vc=a2b2456e' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3824&vc=a2b2456e' target='_blank'>125</a></td><td><a href='BeianDetail.aspx?id=3824&vc=a2b2456e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3811&vc=a732800b' target='_blank'>虎门国际公馆一期17栋</a></td><td><a href='BeianDetail.aspx?id=3811&vc=a732800b' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3811&vc=a732800b' target='_blank'>73</a></td><td><a href='BeianDetail.aspx?id=3811&vc=a732800b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3489&vc=8adde3f7' target='_blank'>虎门国际公馆一期9栋</a></td><td><a href='BeianDetail.aspx?id=3489&vc=8adde3f7' target='_blank'>东莞市虎门镇 白沙村</a></td><td><a href='BeianDetail.aspx?id=3489&vc=8adde3f7' target='_blank'>73</a></td><td><a href='BeianDetail.aspx?id=3489&vc=8adde3f7' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5741&vc=5ca5d7d5' target='_blank'>虎门国际公馆银湖别墅区10号</a></td><td><a href='BeianDetail.aspx?id=5741&vc=5ca5d7d5' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5741&vc=5ca5d7d5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5741&vc=5ca5d7d5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5743&vc=7390b60b' target='_blank'>虎门国际公馆银湖别墅区11号</a></td><td><a href='BeianDetail.aspx?id=5743&vc=7390b60b' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5743&vc=7390b60b' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5743&vc=7390b60b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5744&vc=1ff60456' target='_blank'>虎门国际公馆银湖别墅区12号</a></td><td><a href='BeianDetail.aspx?id=5744&vc=1ff60456' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5744&vc=1ff60456' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5744&vc=1ff60456' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5787&vc=aa15d624' target='_blank'>虎门国际公馆银湖别墅区13号</a></td><td><a href='BeianDetail.aspx?id=5787&vc=aa15d624' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5787&vc=aa15d624' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5787&vc=aa15d624' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5788&vc=71d60a37' target='_blank'>虎门国际公馆银湖别墅区14号</a></td><td><a href='BeianDetail.aspx?id=5788&vc=71d60a37' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5788&vc=71d60a37' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5788&vc=71d60a37' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5790&vc=c5444b60' target='_blank'>虎门国际公馆银湖别墅区15号</a></td><td><a href='BeianDetail.aspx?id=5790&vc=c5444b60' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5790&vc=c5444b60' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5790&vc=c5444b60' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5791&vc=b8394a0f' target='_blank'>虎门国际公馆银湖别墅区16号</a></td><td><a href='BeianDetail.aspx?id=5791&vc=b8394a0f' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5791&vc=b8394a0f' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5791&vc=b8394a0f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5792&vc=82585d2c' target='_blank'>虎门国际公馆银湖别墅区17号</a></td><td><a href='BeianDetail.aspx?id=5792&vc=82585d2c' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5792&vc=82585d2c' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5792&vc=82585d2c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5745&vc=25927bf0' target='_blank'>虎门国际公馆银湖别墅区18号</a></td><td><a href='BeianDetail.aspx?id=5745&vc=25927bf0' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5745&vc=25927bf0' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5745&vc=25927bf0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5746&vc=a495920e' target='_blank'>虎门国际公馆银湖别墅区19号</a></td><td><a href='BeianDetail.aspx?id=5746&vc=a495920e' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5746&vc=a495920e' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5746&vc=a495920e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5733&vc=43ee4472' target='_blank'>虎门国际公馆银湖别墅区1号</a></td><td><a href='BeianDetail.aspx?id=5733&vc=43ee4472' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5733&vc=43ee4472' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5733&vc=43ee4472' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5747&vc=69768e70' target='_blank'>虎门国际公馆银湖别墅区20号</a></td><td><a href='BeianDetail.aspx?id=5747&vc=69768e70' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5747&vc=69768e70' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5747&vc=69768e70' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5794&vc=02cc41bd' target='_blank'>虎门国际公馆银湖别墅区21号</a></td><td><a href='BeianDetail.aspx?id=5794&vc=02cc41bd' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5794&vc=02cc41bd' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5794&vc=02cc41bd' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5795&vc=ab8ba35a' target='_blank'>虎门国际公馆银湖别墅区22号</a></td><td><a href='BeianDetail.aspx?id=5795&vc=ab8ba35a' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5795&vc=ab8ba35a' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5795&vc=ab8ba35a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5796&vc=b209a519' target='_blank'>虎门国际公馆银湖别墅区23号</a></td><td><a href='BeianDetail.aspx?id=5796&vc=b209a519' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5796&vc=b209a519' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5796&vc=b209a519' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5797&vc=08746841' target='_blank'>虎门国际公馆银湖别墅区24号</a></td><td><a href='BeianDetail.aspx?id=5797&vc=08746841' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5797&vc=08746841' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5797&vc=08746841' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5798&vc=e4a487f5' target='_blank'>虎门国际公馆银湖别墅区25号</a></td><td><a href='BeianDetail.aspx?id=5798&vc=e4a487f5' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5798&vc=e4a487f5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5798&vc=e4a487f5' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5799&vc=b69b6c5a' target='_blank'>虎门国际公馆银湖别墅区26号</a></td><td><a href='BeianDetail.aspx?id=5799&vc=b69b6c5a' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5799&vc=b69b6c5a' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5799&vc=b69b6c5a' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5801&vc=2d3253f8' target='_blank'>虎门国际公馆银湖别墅区27号</a></td><td><a href='BeianDetail.aspx?id=5801&vc=2d3253f8' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5801&vc=2d3253f8' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5801&vc=2d3253f8' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5882&vc=8a5f55fe' target='_blank'>虎门国际公馆银湖别墅区28号</a></td><td><a href='BeianDetail.aspx?id=5882&vc=8a5f55fe' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5882&vc=8a5f55fe' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=5882&vc=8a5f55fe' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5883&vc=8112402a' target='_blank'>虎门国际公馆银湖别墅区29号</a></td><td><a href='BeianDetail.aspx?id=5883&vc=8112402a' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5883&vc=8112402a' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=5883&vc=8112402a' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5734&vc=e9dc1a9e' target='_blank'>虎门国际公馆银湖别墅区2号</a></td><td><a href='BeianDetail.aspx?id=5734&vc=e9dc1a9e' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5734&vc=e9dc1a9e' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5734&vc=e9dc1a9e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5884&vc=ab31c8e6' target='_blank'>虎门国际公馆银湖别墅区30号</a></td><td><a href='BeianDetail.aspx?id=5884&vc=ab31c8e6' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5884&vc=ab31c8e6' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=5884&vc=ab31c8e6' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5885&vc=bf940b47' target='_blank'>虎门国际公馆银湖别墅区31号</a></td><td><a href='BeianDetail.aspx?id=5885&vc=bf940b47' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5885&vc=bf940b47' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=5885&vc=bf940b47' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5886&vc=039c8a01' target='_blank'>虎门国际公馆银湖别墅区32号</a></td><td><a href='BeianDetail.aspx?id=5886&vc=039c8a01' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5886&vc=039c8a01' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=5886&vc=039c8a01' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5887&vc=783bbd7d' target='_blank'>虎门国际公馆银湖别墅区33号</a></td><td><a href='BeianDetail.aspx?id=5887&vc=783bbd7d' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5887&vc=783bbd7d' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5887&vc=783bbd7d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5888&vc=946b67f5' target='_blank'>虎门国际公馆银湖别墅区34号</a></td><td><a href='BeianDetail.aspx?id=5888&vc=946b67f5' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5888&vc=946b67f5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5888&vc=946b67f5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5889&vc=966ba489' target='_blank'>虎门国际公馆银湖别墅区35号</a></td><td><a href='BeianDetail.aspx?id=5889&vc=966ba489' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5889&vc=966ba489' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5889&vc=966ba489' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5890&vc=5e40c060' target='_blank'>虎门国际公馆银湖别墅区36号</a></td><td><a href='BeianDetail.aspx?id=5890&vc=5e40c060' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5890&vc=5e40c060' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5890&vc=5e40c060' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5891&vc=eb0e92b6' target='_blank'>虎门国际公馆银湖别墅区37号</a></td><td><a href='BeianDetail.aspx?id=5891&vc=eb0e92b6' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5891&vc=eb0e92b6' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5891&vc=eb0e92b6' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5892&vc=00931257' target='_blank'>虎门国际公馆银湖别墅区38号</a></td><td><a href='BeianDetail.aspx?id=5892&vc=00931257' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5892&vc=00931257' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5892&vc=00931257' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5893&vc=23d49571' target='_blank'>虎门国际公馆银湖别墅区39号</a></td><td><a href='BeianDetail.aspx?id=5893&vc=23d49571' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5893&vc=23d49571' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5893&vc=23d49571' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5735&vc=6bd18112' target='_blank'>虎门国际公馆银湖别墅区3号</a></td><td><a href='BeianDetail.aspx?id=5735&vc=6bd18112' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5735&vc=6bd18112' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5735&vc=6bd18112' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5894&vc=cd0c034f' target='_blank'>虎门国际公馆银湖别墅区40号</a></td><td><a href='BeianDetail.aspx?id=5894&vc=cd0c034f' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5894&vc=cd0c034f' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5894&vc=cd0c034f' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5895&vc=d0e7fb08' target='_blank'>虎门国际公馆银湖别墅区41号</a></td><td><a href='BeianDetail.aspx?id=5895&vc=d0e7fb08' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5895&vc=d0e7fb08' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5895&vc=d0e7fb08' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5896&vc=e309f8f9' target='_blank'>虎门国际公馆银湖别墅区42号</a></td><td><a href='BeianDetail.aspx?id=5896&vc=e309f8f9' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5896&vc=e309f8f9' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5896&vc=e309f8f9' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6151&vc=25f961ff' target='_blank'>虎门国际公馆银湖别墅区43号</a></td><td><a href='BeianDetail.aspx?id=6151&vc=25f961ff' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6151&vc=25f961ff' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6151&vc=25f961ff' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6152&vc=020f1a49' target='_blank'>虎门国际公馆银湖别墅区44号</a></td><td><a href='BeianDetail.aspx?id=6152&vc=020f1a49' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6152&vc=020f1a49' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6152&vc=020f1a49' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6153&vc=3f703292' target='_blank'>虎门国际公馆银湖别墅区45号</a></td><td><a href='BeianDetail.aspx?id=6153&vc=3f703292' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6153&vc=3f703292' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6153&vc=3f703292' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6154&vc=65567157' target='_blank'>虎门国际公馆银湖别墅区46号</a></td><td><a href='BeianDetail.aspx?id=6154&vc=65567157' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6154&vc=65567157' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6154&vc=65567157' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6156&vc=84a73bf5' target='_blank'>虎门国际公馆银湖别墅区47号</a></td><td><a href='BeianDetail.aspx?id=6156&vc=84a73bf5' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6156&vc=84a73bf5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6156&vc=84a73bf5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6157&vc=2379fda9' target='_blank'>虎门国际公馆银湖别墅区48号</a></td><td><a href='BeianDetail.aspx?id=6157&vc=2379fda9' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6157&vc=2379fda9' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6157&vc=2379fda9' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6159&vc=8de6e9b8' target='_blank'>虎门国际公馆银湖别墅区49号</a></td><td><a href='BeianDetail.aspx?id=6159&vc=8de6e9b8' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6159&vc=8de6e9b8' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6159&vc=8de6e9b8' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5737&vc=82e256d0' target='_blank'>虎门国际公馆银湖别墅区4号</a></td><td><a href='BeianDetail.aspx?id=5737&vc=82e256d0' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5737&vc=82e256d0' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5737&vc=82e256d0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6162&vc=523dc9db' target='_blank'>虎门国际公馆银湖别墅区50号</a></td><td><a href='BeianDetail.aspx?id=6162&vc=523dc9db' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6162&vc=523dc9db' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6162&vc=523dc9db' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6164&vc=e0a20db0' target='_blank'>虎门国际公馆银湖别墅区51号</a></td><td><a href='BeianDetail.aspx?id=6164&vc=e0a20db0' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6164&vc=e0a20db0' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6164&vc=e0a20db0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6166&vc=d758e2f5' target='_blank'>虎门国际公馆银湖别墅区52号</a></td><td><a href='BeianDetail.aspx?id=6166&vc=d758e2f5' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6166&vc=d758e2f5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6166&vc=d758e2f5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6167&vc=83f94ac8' target='_blank'>虎门国际公馆银湖别墅区53号</a></td><td><a href='BeianDetail.aspx?id=6167&vc=83f94ac8' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6167&vc=83f94ac8' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6167&vc=83f94ac8' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6171&vc=4e2a9c6d' target='_blank'>虎门国际公馆银湖别墅区54号</a></td><td><a href='BeianDetail.aspx?id=6171&vc=4e2a9c6d' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6171&vc=4e2a9c6d' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6171&vc=4e2a9c6d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6172&vc=8269eb24' target='_blank'>虎门国际公馆银湖别墅区55号</a></td><td><a href='BeianDetail.aspx?id=6172&vc=8269eb24' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=6172&vc=8269eb24' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6172&vc=8269eb24' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5736&vc=96ca0e84' target='_blank'>虎门国际公馆银湖别墅区5号</a></td><td><a href='BeianDetail.aspx?id=5736&vc=96ca0e84' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5736&vc=96ca0e84' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5736&vc=96ca0e84' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5738&vc=8a1d8d89' target='_blank'>虎门国际公馆银湖别墅区6号</a></td><td><a href='BeianDetail.aspx?id=5738&vc=8a1d8d89' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5738&vc=8a1d8d89' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5738&vc=8a1d8d89' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5739&vc=2d7b73f5' target='_blank'>虎门国际公馆银湖别墅区7号</a></td><td><a href='BeianDetail.aspx?id=5739&vc=2d7b73f5' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5739&vc=2d7b73f5' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5739&vc=2d7b73f5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5740&vc=773b112d' target='_blank'>虎门国际公馆银湖别墅区8号</a></td><td><a href='BeianDetail.aspx?id=5740&vc=773b112d' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5740&vc=773b112d' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5740&vc=773b112d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5742&vc=26446caf' target='_blank'>虎门国际公馆银湖别墅区9号</a></td><td><a href='BeianDetail.aspx?id=5742&vc=26446caf' target='_blank'>东莞市虎门镇 白沙社区</a></td><td><a href='BeianDetail.aspx?id=5742&vc=26446caf' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5742&vc=26446caf' target='_blank'>0</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

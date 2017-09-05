@@ -1,0 +1,613 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" />
+    <style type="text/css">
+        .saleable
+        {
+            background-color: #ccffff;
+        }
+        .sold
+        {
+            background-color: #006633;
+        }
+        .forSale
+        {
+            background-color: #fec002;
+        }
+        .unsaleable
+        {
+            background-color: #ffff00;
+        }
+        .roomTable, .roomTable table
+        {
+            width: 100%;
+            border: 0px none;
+            text-align: center;
+            vertical-align: middle;
+            background-color: White;
+            border-collapse: collapse;
+        }
+        .roomTable td
+        {
+            border: 1px solid #ECE9D8;
+            height: 30px;
+        }
+        .roomTable table td
+        {
+            border: 2px solid white;
+            width: 16%;
+        }
+        .roomTable table td a
+        {
+            text-decoration: none;
+            color: Black;
+            font-weight: bold;
+        }
+        img
+        {
+            width: 10px;
+            height: 10px;
+            border: 1px black solid;
+        }
+        #mapDiv, #remarkDiv
+        {
+            text-align: left;
+        }
+        #mapDiv table, #remarkDiv table
+        {
+            border-collapse: collapse;
+            border: 0px none;
+        }
+        #mapDiv table, #remarkDiv td
+        {
+            line-height: 160%;
+            text-align: left;
+        }
+        #mapDiv td.td0
+        {
+            padding-left: 8px;
+            width: 60px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="roomTable.aspx?id=27706&amp;vc=e370094e" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE2MDg0NzM3MzdkZAWWj+xOmNXpHpMV+rx3Qtx0goXR" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 房间信息</div>
+        <div style="width: 98%; margin: 0px auto;">
+            <div style="line-height: 160%;">
+                <b>项目名称：</b>
+                富盈香茶郡2幢（<span style='color: red'>已确权</span>）
+                <br />
+                <b>产籍证号：</b>
+                33_0601_00002
+            </div>
+            <div id="mapDiv">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #ccffff;">
+                        </td>
+                        <td class="td0">
+                            可售
+                        </td>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #006633;">
+                        </td>
+                        <td class="td0">
+                            已售
+                        </td>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #fec002;">
+                        </td>
+                        <td class="td0">
+                            待售
+                        </td>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #ffff00;">
+                        </td>
+                        <td class="td0">
+                            不可销售
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table id='roomTable' class='roomTable'><col style='width: 12%;' /><col stle='width: 88%' /><tr><td>所在层</td><td>房间</td></tr><tr><td>第 15 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：401000.00 元
+公示单价：5895.33 元/㎡'><a href='RoomInfo.aspx?id=567108&vc=fe0444d5' target='_blank'>1501</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：391000.00 元
+公示单价：5748.31 元/㎡'><a href='RoomInfo.aspx?id=567109&vc=f956ff34' target='_blank'>1502</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：606000.00 元
+公示单价：5991.70 元/㎡'><a href='RoomInfo.aspx?id=567110&vc=f497c37d' target='_blank'>1503</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：592000.00 元
+公示单价：6046.99 元/㎡'><a href='RoomInfo.aspx?id=567111&vc=6a7e16d2' target='_blank'>1504</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 14 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：402000.00 元
+公示单价：5910.03 元/㎡'><a href='RoomInfo.aspx?id=567104&vc=6eb1bc52' target='_blank'>1401</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：395000.00 元
+公示单价：5807.12 元/㎡'><a href='RoomInfo.aspx?id=567105&vc=d6210a7d' target='_blank'>1402</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：611000.00 元
+公示单价：6041.13 元/㎡'><a href='RoomInfo.aspx?id=567106&vc=14834723' target='_blank'>1403</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：596000.00 元
+公示单价：6087.85 元/㎡'><a href='RoomInfo.aspx?id=567107&vc=6143ffbe' target='_blank'>1404</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 13 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：401000.00 元
+公示单价：5895.33 元/㎡'><a href='RoomInfo.aspx?id=567100&vc=71858e87' target='_blank'>1301</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：393000.00 元
+公示单价：5777.71 元/㎡'><a href='RoomInfo.aspx?id=567101&vc=a71639b4' target='_blank'>1302</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：609000.00 元
+公示单价：6021.36 元/㎡'><a href='RoomInfo.aspx?id=567102&vc=5ec975ed' target='_blank'>1303</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：594000.00 元
+公示单价：6067.42 元/㎡'><a href='RoomInfo.aspx?id=567103&vc=2f23db02' target='_blank'>1304</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 12 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：399000.00 元
+公示单价：5865.92 元/㎡'><a href='RoomInfo.aspx?id=567096&vc=0607750a' target='_blank'>1201</a></td><td class='saleable' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：可售
+公示价格：392000.00 元
+公示单价：5763.01 元/㎡'><a href='RoomInfo.aspx?id=567097&vc=870983a3' target='_blank'>1202</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：606000.00 元
+公示单价：5991.70 元/㎡'><a href='RoomInfo.aspx?id=567098&vc=d9e08b99' target='_blank'>1203</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：592000.00 元
+公示单价：6046.99 元/㎡'><a href='RoomInfo.aspx?id=567099&vc=0d573656' target='_blank'>1204</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 11 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：398000.00 元
+公示单价：5851.22 元/㎡'><a href='RoomInfo.aspx?id=567092&vc=d541489a' target='_blank'>1101</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：390000.00 元
+公示单价：5733.61 元/㎡'><a href='RoomInfo.aspx?id=567093&vc=29f3cfd6' target='_blank'>1102</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：604000.00 元
+公示单价：5971.92 元/㎡'><a href='RoomInfo.aspx?id=567094&vc=b9f89716' target='_blank'>1103</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：590000.00 元
+公示单价：6026.56 元/㎡'><a href='RoomInfo.aspx?id=567095&vc=5d9b12f3' target='_blank'>1104</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 10 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：396000.00 元
+公示单价：5821.82 元/㎡'><a href='RoomInfo.aspx?id=567088&vc=f4e3dc41' target='_blank'>1001</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：389000.00 元
+公示单价：5718.91 元/㎡'><a href='RoomInfo.aspx?id=567089&vc=6666ab8a' target='_blank'>1002</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：602000.00 元
+公示单价：5952.15 元/㎡'><a href='RoomInfo.aspx?id=567090&vc=8ebd79ec' target='_blank'>1003</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：588000.00 元
+公示单价：6006.13 元/㎡'><a href='RoomInfo.aspx?id=567091&vc=1eb433cb' target='_blank'>1004</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 9 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：395000.00 元
+公示单价：5807.12 元/㎡'><a href='RoomInfo.aspx?id=567084&vc=21710edc' target='_blank'>901</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：388000.00 元
+公示单价：5704.21 元/㎡'><a href='RoomInfo.aspx?id=567085&vc=812acec8' target='_blank'>902</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：600000.00 元
+公示单价：5932.37 元/㎡'><a href='RoomInfo.aspx?id=567086&vc=36d5c1dd' target='_blank'>903</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：586000.00 元
+公示单价：5985.70 元/㎡'><a href='RoomInfo.aspx?id=567087&vc=f0c2626f' target='_blank'>904</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 8 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：394000.00 元
+公示单价：5792.41 元/㎡'><a href='RoomInfo.aspx?id=567080&vc=15ee1fa5' target='_blank'>801</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：387000.00 元
+公示单价：5689.50 元/㎡'><a href='RoomInfo.aspx?id=567081&vc=e2bf4eec' target='_blank'>802</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：599000.00 元
+公示单价：5922.48 元/㎡'><a href='RoomInfo.aspx?id=567082&vc=816628aa' target='_blank'>803</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：585000.00 元
+公示单价：5975.49 元/㎡'><a href='RoomInfo.aspx?id=567083&vc=811724db' target='_blank'>804</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 7 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：392000.00 元
+公示单价：5763.01 元/㎡'><a href='RoomInfo.aspx?id=567076&vc=9c11c49c' target='_blank'>701</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：385000.00 元
+公示单价：5660.10 元/㎡'><a href='RoomInfo.aspx?id=567077&vc=18154323' target='_blank'>702</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：596000.00 元
+公示单价：5892.82 元/㎡'><a href='RoomInfo.aspx?id=567078&vc=73862f60' target='_blank'>703</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：582000.00 元
+公示单价：5944.84 元/㎡'><a href='RoomInfo.aspx?id=567079&vc=ddb0dd36' target='_blank'>704</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 6 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：390000.00 元
+公示单价：5733.61 元/㎡'><a href='RoomInfo.aspx?id=567072&vc=b727da8a' target='_blank'>601</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：383000.00 元
+公示单价：5630.70 元/㎡'><a href='RoomInfo.aspx?id=567073&vc=e2559358' target='_blank'>602</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：593000.00 元
+公示单价：5863.16 元/㎡'><a href='RoomInfo.aspx?id=567074&vc=33ff3e59' target='_blank'>603</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：580000.00 元
+公示单价：5924.41 元/㎡'><a href='RoomInfo.aspx?id=567075&vc=01bc0547' target='_blank'>604</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 5 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：389000.00 元
+公示单价：5718.91 元/㎡'><a href='RoomInfo.aspx?id=567068&vc=e176d8bd' target='_blank'>501</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：382000.00 元
+公示单价：5616.00 元/㎡'><a href='RoomInfo.aspx?id=567069&vc=ff67fbb9' target='_blank'>502</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：591000.00 元
+公示单价：5843.39 元/㎡'><a href='RoomInfo.aspx?id=567070&vc=cfafcab9' target='_blank'>503</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：577000.00 元
+公示单价：5893.77 元/㎡'><a href='RoomInfo.aspx?id=567071&vc=7ba05386' target='_blank'>504</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 4 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：388000.00 元
+公示单价：5704.21 元/㎡'><a href='RoomInfo.aspx?id=567064&vc=a3647938' target='_blank'>401</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：380000.00 元
+公示单价：5586.59 元/㎡'><a href='RoomInfo.aspx?id=567065&vc=a6579188' target='_blank'>402</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：589000.00 元
+公示单价：5823.61 元/㎡'><a href='RoomInfo.aspx?id=567066&vc=5cfceb6b' target='_blank'>403</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：575000.00 元
+公示单价：5873.34 元/㎡'><a href='RoomInfo.aspx?id=567067&vc=e8a3f6c5' target='_blank'>404</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 3 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：386000.00 元
+公示单价：5674.80 元/㎡'><a href='RoomInfo.aspx?id=567060&vc=67008b11' target='_blank'>301</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：379000.00 元
+公示单价：5571.89 元/㎡'><a href='RoomInfo.aspx?id=567061&vc=095a2117' target='_blank'>302</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：587000.00 元
+公示单价：5803.84 元/㎡'><a href='RoomInfo.aspx?id=567062&vc=2e111ab9' target='_blank'>303</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：573000.00 元
+公示单价：5852.91 元/㎡'><a href='RoomInfo.aspx?id=567063&vc=935b971b' target='_blank'>304</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 2 层</td><td><table><tr><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：382000.00 元
+公示单价：5616.00 元/㎡'><a href='RoomInfo.aspx?id=567056&vc=f86af96f' target='_blank'>201</a></td><td class='sold' title='建筑面积：68.02 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：375000.00 元
+公示单价：5513.08 元/㎡'><a href='RoomInfo.aspx?id=567057&vc=39e384c5' target='_blank'>202</a></td><td class='sold' title='建筑面积：101.14 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：656000.00 元
+公示单价：6486.06 元/㎡'><a href='RoomInfo.aspx?id=567058&vc=3d25ffda' target='_blank'>203</a></td><td class='sold' title='建筑面积：97.90 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：648000.00 元
+公示单价：6619.00 元/㎡'><a href='RoomInfo.aspx?id=567059&vc=decfe98b' target='_blank'>204</a></td><td></td><td></td></tr></table></td></tr><tr><td>第 1 层</td><td><table><tr><td class='saleable' title='建筑面积：50.37 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567038&vc=aa195bd6' target='_blank'>商铺101</a></td><td class='saleable' title='建筑面积：50.37 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567039&vc=c6e167d2' target='_blank'>商铺102</a></td><td class='saleable' title='建筑面积：49.08 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567040&vc=0d772fc7' target='_blank'>商铺103</a></td><td class='saleable' title='建筑面积：65.84 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567041&vc=e174f8e2' target='_blank'>商铺104</a></td><td class='saleable' title='建筑面积：64.28 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567042&vc=548446f9' target='_blank'>商铺105</a></td><td class='saleable' title='建筑面积：64.28 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567043&vc=7197a0ac' target='_blank'>商铺106</a></td></tr><tr><td class='sold' title='建筑面积：53.80 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567044&vc=85321a7b' target='_blank'>商铺107</a></td><td class='sold' title='建筑面积：53.51 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567045&vc=03c0858c' target='_blank'>商铺108</a></td><td class='saleable' title='建筑面积：52.93 ㎡
+规划用途：商铺
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567046&vc=fd804b18' target='_blank'>商铺109</a></td><td class='sold' title='建筑面积：57.79 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567047&vc=4721a460' target='_blank'>商铺110</a></td><td class='sold' title='建筑面积：55.43 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567048&vc=4512ba1e' target='_blank'>商铺111</a></td><td class='sold' title='建筑面积：55.33 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567049&vc=1534cd97' target='_blank'>商铺112</a></td></tr><tr><td class='sold' title='建筑面积：55.33 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567050&vc=6dee3bd2' target='_blank'>商铺113</a></td><td class='sold' title='建筑面积：55.33 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567051&vc=bd05b6ce' target='_blank'>商铺114</a></td><td class='sold' title='建筑面积：55.33 ㎡
+规划用途：商铺
+房屋状态：已售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=567052&vc=9b8d3635' target='_blank'>商铺115</a></td><td class='unsaleable' title='建筑面积：94.46 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>警务、物业管理中心</td><td class='sold' title='建筑面积：64.88 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：351000.00 元
+公示单价：5409.99 元/㎡'><a href='RoomInfo.aspx?id=567054&vc=f82b7133' target='_blank'>101</a></td><td class='sold' title='建筑面积：64.65 ㎡
+规划用途：住宅
+房屋状态：已售
+公示价格：349000.00 元
+公示单价：5398.30 元/㎡'><a href='RoomInfo.aspx?id=567055&vc=30c7e0f2' target='_blank'>102</a></td></tr></table></td></tr>
+            </div>
+            <div id="remarkDiv">
+                <table style="margin-top: 8px; margin-bottom: 8px;">
+                    <tr>
+                        <td style="width: 20px;">
+                            <img src="../images/8x8.gif" style="background-color: #ccffff;">
+                        </td>
+                        <td style="width: 80px;">
+                            可售
+                        </td>
+                        <td>
+                            房屋可以签订商品房买卖合同。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #006633;">
+                        </td>
+                        <td>
+                            已售
+                        </td>
+                        <td>
+                            房屋已签订了商品房买卖合同。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #fec002;">
+                        </td>
+                        <td>
+                            待售
+                        </td>
+                        <td>
+                            可销售的车库（车位）正处于公示期。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #ffff00;">
+                        </td>
+                        <td>
+                            不可销售
+                        </td>
+                        <td>
+                            房屋不可签订商品房买卖合同，包括：未纳入销售、法院查封、物留自用和在建工程抵押等情况。
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

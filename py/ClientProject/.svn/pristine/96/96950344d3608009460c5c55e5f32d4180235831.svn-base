@@ -1,0 +1,119 @@
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+import pymysql, re, socket, time
+#from pymysql.cursors import DictCursor
+#from DBUtils.PersistentDB import PersistentDB
+
+from log.logger import *
+LOG=logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.DEBUG)
+
+
+global HOSTIP,PID
+HOSTIP = str(socket.gethostbyname(socket.gethostname()))
+PID = str(os.getpid())
+
+#数据库工具类
+class MySqlEx():
+    __pool = None
+    __con = None
+    __cur = None
+    __re = re.compile(r'\s')
+
+    @classmethod
+    def getConn(cls, CF):
+        if cls.__cur is None:
+            #__host = 'localhost'
+            #__db = 'gxd'
+            # cls.__pool = PersistentDB(host=__host, port=3306, db=__db,
+            #                   user='root', passwd='123456',
+            #                   creator=pymysql,
+            #                   maxusage=0,
+            #                   #mincached=6,
+            #                   #maxcached=6,
+            #                   #maxconnections=6,
+            #                   #blocking=False,
+            #                   use_unicode=True,
+            #                   charset='utf8',
+            #                   cursorclass=DictCursor)
+            #cls.__con = cls.__pool.connection()
+            cls.__con = pymysql.connect(host=CF.get('db', 'host'),
+                                        port=CF.getint('db', 'port'),
+                                        db=CF.get('db', 'db'),
+                                        user=CF.get('db', 'user'),
+                                        passwd=CF.get('db', 'passwd'),
+                                        charset='utf8')
+            LOG.info('连接%s主机%s数据库成功!', cls.__con.host, cls.__con.db.decode('utf8'))
+            cls.__cur = cls.__con.cursor()
+            LOG.info('打开cursor成功!')
+
+    def __openclose(f):
+        def fn(*args, **kw):
+            try:
+                if MySqlEx.__cur is None:
+                    MySqlEx.__getConn()
+            except Exception as e:
+                LOG.error('连接mysql出错,错误信息:%s', str(e))
+            t1 = time.time()
+            fr = f(*args, **kw)
+            t2 = time.time()
+            LOG.info('存储数据耗时:%f' % (t2-t1))
+            return fr
+        return fn
+
+    @classmethod
+    @__openclose
+    def save(cls, obj, metadatas, autocommit=True):
+        try:
+            #将信息转换成SQL语句
+            save_sql = 'insert into t_esf (%s) values ("%s","%s","%s")' % (', '.join(metadatas) + ', IP, PID', '", "'.join([re.sub(cls.__re, '', obj[metadata].replace('"', "'")) for metadata in metadatas]), HOSTIP, PID)
+            # if not cls.__con.ping():
+            #     cls.close()
+            #     cls.init()
+            cls.__cur.execute(save_sql)
+            #cls.__con.insert_id()
+            #obj.setId(cls.__con.insert_id())
+            if autocommit :
+                MySqlEx.__con.commit()
+        except Exception as e:
+            LOG.error('数据插入mysql出错,SQL语句:%s, 错误信息:%s', sql, str(e))
+
+    @classmethod
+    @__openclose
+    def savelog(cls, url, msg, str_order, errcode):
+        try:
+            if str_order is None:
+                str_order = ''
+            log_sql = 'insert into t_log (url,msg,str_order,errcode,ip,pid) values ("%s","%s","%s","%s", "%s")' %(url,msg,str_order,errcode,HOSTIP,PID)
+            # if not cls.__con.ping():
+            #    cls.close()
+            #    cls.init()
+            cls.__cur.execute(log_sql)
+            cls.__con.commit()
+        except Exception as e:
+            LOG.error('错误日志插入mysql出错,SQL语句:%s, 错误信息:%s', sql, str(e))
+
+    @classmethod
+    def deposit(cls):
+        try:
+            if cls.__cur is not None:
+                cls.__cur.close()
+                cls.__cur = None
+                LOG.info('关闭cursor')
+        except Exception as e:
+            LOG.error('关闭连接出错!错误信息:%s', str(e))
+        finally:
+            if cls.__con is not None:
+                cls.__con.close()
+                cls.__con = None
+                LOG.info('关闭connect')
+
+if __name__ == '__main__':
+    #print(type(MySqlEx.save))
+    MySqlEx.savelog('text', 'text', 'success')
+    MySqlEx.deposit()

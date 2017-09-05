@@ -1,0 +1,207 @@
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+import cx_Oracle, re, socket, time, os
+from DBUtils.PooledDB import PooledDB
+
+from log.logger import LOG
+from config import CF
+from dispatch.pydecorator import retries
+
+global HOSTIP,PID
+HOSTIP = str(socket.gethostbyname(socket.gethostname()))
+PID = str(os.getpid())
+
+def errorhook(tries_remaining, exception, delay):
+    LOG.error('写oracle库失败, %d秒后重试, 还可以重试%d次, 异常信息:%s, 异常类型:%s', delay, tries_remaining, str(exception), type(exception))
+
+
+#数据库工具类
+class MySqlEx():
+    __pool = None
+    __re = re.compile(r'\s')        #r'^\s+|\s+$|[\f\n\r\t\v]*'
+    __re_fbsj = re.compile(r'^\s+|\s+$|[\f\n\r\t\v]*')
+
+    @classmethod
+    def getConn(cls):
+        if cls.__pool is None:
+            cls.__pool = PooledDB(creator=cx_Oracle,
+                                  user=CF.get('db', 'user'),
+                                  password=CF.get('db', 'passwd'),
+                                  dsn='%s:%d/%s' % (CF.get('db', 'host'), CF.getint('db', 'port'), CF.get('db', 'db')),
+                                  threaded=True,
+                                  mincached=1,
+                                  maxcached=1,
+                                  maxshared=1,
+                                  maxconnections=1,
+                                  blocking=True)
+            LOG.info('创建%s主机%s数据库连接池成功!', CF.get('db', 'host'), CF.get('db', 'db'))
+        return cls.__pool.connection()
+
+    def __openclose(f):
+        def fn(*args, **kw):
+            t1 = time.time()
+            fr = f(*args, **kw)
+            t2 = time.time()
+            LOG.info('存储数据耗时:%f' % (t2-t1))
+            return fr
+        return fn
+
+    @classmethod
+    @__openclose
+    def save(cls, obj, metadatas, autocommit=True):
+        #将信息转换成SQL语句
+        try:
+            cols = '"%s", IP, PID' % '","'.join([meta.upper() for meta in metadatas])
+            pos = '%s, :IP, :PID' %', '.join([":%s" % meta for meta in metadatas])
+            save_sql = "insert into gxd.t_esf (%s) values (%s)" % (cols, pos)
+            #编码转换
+            for metadata in metadatas:
+                # if metadata == '发布时间':
+                #     obj[metadata] = re.sub(cls.__re_fbsj, '', obj[metadata].replace('\'', '"')).encode('gbk', errors='ignore').decode('gbk')
+                # else:
+                obj[metadata] = re.sub(cls.__re, '', obj[metadata].replace('\'', '"')).encode('gbk', errors='ignore').decode('gbk')
+            obj["IP"] = HOSTIP
+            obj["PID"] = PID
+        except Exception as e:
+            LOG.error('组装SQL语句出错, 丢弃数据, 异常信息:%s, 异常类型:%s', str(e), type(e))
+            return
+        cls.execute(save_sql, esf=obj)
+
+    @classmethod
+    @__openclose
+    def savex(cls, obj, metadatas, autocommit=True):
+        #将信息转换成SQL语句
+        try:
+            cols = '"%s", IP, PID' % '","'.join([meta for meta in metadatas])
+            pos = '%s, :IP, :PID' %','.join([":%s" % meta for meta in metadatas])
+            save_sql = "insert into gxd.t_sl_h (%s) values (%s)" % (cols, pos)
+            #编码转换
+            for metadata in metadatas:
+                obj[metadata]=re.sub(cls.__re, '', obj[metadata].replace('\'', '"')).encode('gbk', errors='ignore').decode('gbk')
+            obj["IP"]=HOSTIP
+            obj["PID"]=PID
+        except Exception as e:
+            LOG.error('组装SQL语句出错, 丢弃数据, 异常信息:%s, 异常类型:%s', str(e), type(e))
+            return
+        cls.execute(save_sql, ex=obj)
+
+    @classmethod
+    @__openclose
+    def savecj(cls, obj, metadatas, autocommit=True):
+        #将信息转换成SQL语句
+        try:
+            cols = '"%s", IP, PID' % '","'.join([meta for meta in metadatas])
+            pos = '%s, :IP, :PID' %','.join([":%s" % meta for meta in metadatas])
+            save_sql = "insert into  gxd.t_cj (%s) values (%s)" % (cols, pos)
+            #编码转换
+            for metadata in metadatas:
+                obj[metadata]=re.sub(cls.__re, '', obj[metadata].replace('\'', '"')).encode('gbk', errors='ignore').decode('gbk')
+            obj["IP"]=HOSTIP
+            obj["PID"]=PID
+        except Exception as e:
+            LOG.error('组装SQL语句出错, 丢弃数据, 异常信息:%s, 异常类型:%s', str(e), type(e))
+            return
+        cls.execute(save_sql, dr=obj)
+
+    @classmethod
+    @__openclose
+    def savewq(cls, ls, metadatas, autocommit=True):
+        #将信息转换成SQL语句
+        try:
+            cols = '"%s", IP, PID' % '","'.join([meta.upper() for meta in metadatas])
+            pos = '%s, :IP, :PID' %', '.join([":%s" % meta.upper() for meta in metadatas])
+            save_sql = "insert into gxd.t_wq (%s) values (%s)" % (cols, pos)
+            #编码转换
+            for obj in ls:
+                for metadata in metadatas:
+                    obj[metadata] = re.sub(cls.__re, '', obj[metadata].replace('\'', '"')).encode('gbk', errors='ignore').decode('gbk')
+                obj["IP"] = HOSTIP
+                obj["PID"] = PID
+        except Exception as e:
+            LOG.error('组装SQL语句出错, 丢弃数据, 异常信息:%s, 异常类型:%s', str(e), type(e))
+            return
+        cls.execute(save_sql, wq=ls)
+
+    @classmethod
+    @__openclose
+    def savelog(cls, url, msg, str_order, errcode):
+        try:
+            log_sql = "insert into gxd.t_log (url,msg,str_order,errcode,ip,pid) values ('%s','%s','%s','%s','%s','%s')" %(url,msg,str_order,errcode.replace('\'', '"'),HOSTIP,PID)
+            cls.execute(log_sql)
+        except Exception as e:
+            #此处异常处理SQL语句异常与达到重试次数后的cx_Oracle.DatabaseError异常
+            LOG.error('写oracle库失败, SQL语句:%s, 异常信息:%s, 异常类型:%s', sql, str(e), type(e))
+
+    @classmethod
+    @retries(3, 2, 1, exceptions=(cx_Oracle.DatabaseError), hook=errorhook)
+    def execute(cls, sql, ls=None, esf=None, ex=None, dr=None, wq=None):
+        hasError = False
+        try:
+            con = cls.getConn()
+            cur = con.cursor()
+            if ls:
+                cur.executemany(sql, ls)
+            elif esf:
+                #先特殊处理一下
+                for meta in ('小区简介', '交通状况', '配套设施'):
+                    clob = cur.var(cx_Oracle.CLOB)
+                    clob.setvalue(0, esf[meta])
+                    esf[meta]=clob
+                cur.execute(sql, esf)
+            elif ex:
+                #先特殊处理一下
+                clob = cur.var(cx_Oracle.CLOB)
+                clob.setvalue(0, ex['街道路'])
+                ex['街道路']=clob
+                cur.execute(sql, ex)
+            elif dr:
+                cur.execute(sql, dr)
+            elif wq:
+                #特殊处理一下,扩展信息
+                clobs = cur.var(cx_Oracle.CLOB, arraysize=len(wq))
+                for indx, item in enumerate(wq):
+                    clobs.setvalue(indx, str(item['扩展信息']))
+                    item['扩展信息']=clobs
+                cur.executemany(sql, wq)
+            else:
+                cur.execute(sql)
+        except cx_Oracle.DatabaseError as e:
+            hasError = True
+            raise
+        except Exception as e:
+            hasError = True
+            LOG.error('写oracle库出错, SQL语句:%s, 异常信息:%s, 异常类型:%s', sql, str(e), type(e))
+        finally:
+            try: cur.close();
+            except Exception as e: pass
+            try:
+                if not hasError:
+                    con.commit();
+                else:
+                    con.rollback();
+            except Exception as e: pass
+            try: con.close();
+            except Exception as e: pass
+
+    @classmethod
+    def deposit(cls):
+        try:
+            if cls.__pool is not None:
+                cls.__pool.close()
+                cls.__pool = None
+                LOG.info('关闭数据库连接池成功!')
+        except Exception as e:
+            LOG.error('关闭数据库连接池出错!错误信息:%s', str(e))
+
+if __name__ == '__main__':
+    #print(type(MySqlEx.save))
+    #MySqlEx.save(obj)
+    MySqlEx.savelog('text', 'text', '123', 'success')
+    MySqlEx.savelog('text', 'text', '1234', 'success')
+    MySqlEx.savelog('text', 'text', '1235', 'success')
+    MySqlEx.savelog('text', 'text', '1236', 'success')
+    MySqlEx.deposit()

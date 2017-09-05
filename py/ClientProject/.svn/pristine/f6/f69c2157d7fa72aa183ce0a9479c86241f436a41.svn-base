@@ -1,0 +1,422 @@
+# coding=gbk
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+from webparser.webparserbase import ParserBase
+from serializ.htmlfile import *
+from serializ.oracle import *
+from bean.urlbean import *
+from log.logger import *
+
+LOG=logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.DEBUG)
+
+################################
+# metadatas = ('题名','来源链接','小区名称','所属区域','小区链接','楼栋名称','地址','建成年份',                  #7
+#             '总楼层','当前层','朝向','建筑面积','使用面积','产权性质','装修情况','户型','卧室数量',            #16
+#             '客厅数量','卫生间数量','厨房数量','阳台数量','单价','总价','挂牌时间','房屋图片','信息来源',      #25
+#             '联系人','经纪公司','电话号码','纬度','经度','发布时间','住宅类别','建筑类别','配套设施','交通状况', #35
+#             '楼盘物业类型','楼盘绿化率','楼盘物业费','数据来源','城市','行政区','str_order')                    #41
+
+metadatas = ('信息来源','城市','行政区','片区','来源链接','题名','小区名称','小区链接','地址','建成年份','房龄',                     #10
+             '楼层','总楼层','当前层','朝向','建筑面积','使用面积','户型','卧室数量','客厅数量','卫生间数量',                        #20
+             '厨房数量','阳台数量','总价','单价','本月均价','小区开盘单价','住宅类别','产权性质','装修情况','建筑类别',               #30
+             '楼盘物业类型','小区简介','联系人','联系人链接','经纪公司','门店','电话号码','服务商圈','注册时间','经纪公司房源编号',    #40
+             '发布时间','小区总户数','小区总建筑面积','容积率','小区总停车位','开发商','交通状况','配套设施','楼盘绿化率','物业公司',  #50
+             '楼盘物业费','土地使用年限','入住率','学校','地上层数','花园面积','地下室面积','车库数量','车位数量','厅结构',           #60
+             '导航','房屋图片','纬度','经度','str_order','数据来源')
+import socket,time
+#socket.timeout = 3
+import requests, re
+from bs4 import BeautifulSoup, Tag
+#解析搜房网站
+class wwwfangcomSC(ParserBase):
+    htmlwrite = HtmlFile()
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36 LBBROWSER', 'Connection': 'keep-alive'}
+    shi = re.compile(r'(\d+)室|卧|卧室')
+    ting = re.compile(r'(\d+)厅')
+    wei = re.compile(r'(\d+)卫')
+    chu = re.compile(r'(\d+)厨')
+    yangtai = re.compile(r'(\d+)台|阳台')
+
+    def __init__(self):
+        super(wwwfangcomSC, self).__init__()
+    def default(self, urlbase):
+        LOG.info('搜房默认方法获得城市列表!')
+        t = ('阿坝州','宿州','阿拉尔','阿拉善盟','阿里','安达','安康','安宁','安庆','安丘','安顺','安溪','安阳','澳门','白城','百色','白山','白银','宝鸡','保山','包头','宝应','巴彦','巴彦淖尔','巴中','巴州','博尔塔拉','北海','蚌埠','本溪','毕节','宾县','宾阳','璧山','沧州','昌都','长丰','长葛','长乐','昌乐','长寿','常熟','长兴','昌邑','长治','巢湖','朝阳','潮州','承德','郴州','赤峰','池州','崇州','崇左','淳安','楚雄','滁州','慈溪','大理','丹东','当涂','当阳','大同','大兴安岭','大邑','达州','大足','德宏','德惠','登封','德清','德阳','德州','垫江','定西','定州','迪庆','东方','东港','东台','东营','鄂尔多斯','恩平','恩施','鄂州','法库','肥城','肥东','肥西','凤城','奉化','奉节','丰县','涪陵','福清','抚顺','阜新','阜阳','富阳','抚州','甘南','赣州','甘孜','高碑店','高密','高邮','巩义','广安','广饶','广元','贵港','果洛','固原','固镇','海北','海东','海拉尔','海门','海宁','海西','哈密','邯郸','汉中','亳州','元氏','鹤壁','河池','合川','鹤岗','黑河','横县','衡阳','和田','河源','菏泽','贺州','伊春','红河','淮北','怀化','淮南','怀远','黄冈','黄南','黄山','惠安','惠东','葫芦岛','呼伦贝尔','霍邱','户县','湖州','佳木斯','吉安','建德','江都','江津','简阳','胶南','焦作','嘉峪关','揭阳','即墨','金昌','晋城','景德镇','靖江','荆门','荆州','济宁','金坛','金堂','进贤','晋中','锦州','晋州','酒泉','鸡西','济阳','济源','句容','开封','开平','开县','开阳','康平','喀什','克拉玛依','克孜勒苏','来宾','莱芜','莱西','莱阳','莱州','蓝田','拉萨','乐山','乐亭','梁平','凉山','连江','连云港','聊城','辽阳','辽源','辽中','丽江','醴陵','临安','临沧','临汾','临海','临清','临朐','临夏','临沂','临猗','林芝','丽水','六盘水','浏阳','柳州','溧阳','龙海','龙口','龙门','陇南','龙岩','娄底','六安','滦南','滦县','庐江','漯河','洛宁','泸州','吕梁','马鞍山','茂名','眉山','梅州','孟津','绵阳','牡丹江','南安','南充','南平','南阳','那曲','内江','宁德','宁海','宁乡','农安','怒江','盘锦','攀枝花','沛县','蓬莱','彭州','平顶山','平度','平湖','平凉','平潭','萍乡','平阴','邳州','普洱','普兰店','莆田','濮阳','迁安','黔东南','黔江','潜江','黔南','迁西','黔西南','启东','綦江','青龙','清徐','清远','青州','钦州','邛崃','齐齐哈尔','七台河','曲靖','衢州','日喀则','日照','荣昌','如东','如皋','瑞安','瑞金','汝阳','三门峡','三明','三沙','商河','商洛','商丘','上饶','上虞','尚志','山南','汕头','汕尾','韶关','绍兴','邵阳','神农架','石狮','十堰','石柱','石嘴山','寿光','双鸭山','顺德','朔州','沭阳','四平','嵩县','松原','绥化','睢宁','随州','宿迁','榆林','泰安','太仓','台山','泰兴','台州','滕州','天门','天水','铁岭','桐城','铜川','通化','通辽','铜陵','桐庐','潼南','铜仁','桐乡','吐鲁番','图木舒克','瓦房店','万州','渭南','文安','温岭','文山','乌兰察布','五常','乌海','五河','芜湖','无极','吴江','五家渠','武隆','武威','五指山','吴忠','梧州','象山','湘西','湘乡','襄阳','咸宁','仙桃','孝感','新安','兴安盟','兴化','邢台','荥阳','辛集','新建','新乐','锡林郭勒盟','新密','新民','新泰','新乡','信阳','新沂','新余','新郑','忻州','西双版纳','修文','宣城','许昌','雅安','延安','延边','盐城','阳春','阳江','阳泉','鄢陵','偃师','宜宾','伊川','宜春','宜都','依兰','营口','鹰潭','宜兴','益阳','宜阳','仪征','永川','永春','永登','永州','攸县','乐清','岳阳','玉环','玉林','运城','云浮','云阳','玉树','榆树','玉田','玉溪','余姚','榆中','禹州','枣庄','张北','张家港','张家界','张家口','章丘','张掖','湛江','肇东','肇庆','昭通','赵县','招远','肇源','肇州','镇江','枝江','中牟','中卫','忠县','周口','舟山','周至','庄河','诸城','诸暨','驻马店','株洲','淄博','自贡','资阳','邹城','邹平','遵化','遵义')
+
+        r = requests.get(urlbase.url, headers=self.headers, timeout=(3.05, 1.5))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwfangcomSC %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        soup = BeautifulSoup(r.content.decode('gbk'), 'html.parser') #lxml
+        citys = soup.find('div', id='c01').find_all('a')
+        list = []
+        i_order = urlbase.order+'0'
+        for i in citys:
+            list.append(UrlBean(i['href']+'/esfhouse/h31/', self.message('getpages'), param=1, headers=i.text, order=i_order))
+            LOG.info('获得城市%s页面信息%s', i.text, i['href']+'/esfhouse/h31/')
+            list.append(UrlBean(i['href']+'/esfhouse/h32/', self.message('getpages'), param=2, headers=i.text, order=i_order))
+            LOG.info('获得城市%s页面信息%s', i.text, i['href']+'/esfhouse/h32/')
+        return list
+
+    #解析城市二手房列表页
+    def getpages(self, urlbase):
+        LOG.info('fangSCgetpages获得城市%s二手房列表信息', urlbase.url)
+        r = requests.get(urlbase.url, headers=self.headers, timeout=(3.05, 3.5))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwfangcomSC %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        soup = BeautifulSoup(r.content.decode('gbk', 'ignore'), 'html.parser') #lxml
+        #没有找到信息就返回空
+        try:
+            items = soup.find('div',attrs={'class':'houseList'}).find_all('a')
+        except:
+            return []
+        list = []
+        host = '/'.join(r.url.split('/')[:3])
+        itemIndex = 1
+        i_order = urlbase.order+'1'
+        for item in items:
+            try:
+                if item.text !='' and item.text !='\n' and '/cs/' in item['href'] and item['title'] != '置顶房源' :
+                    list.append(UrlBean(host+item['href'], self.message('getitem'), key=host+item['href'], param=urlbase.headers, order=i_order))
+                    LOG.debug('%s第%d页%d项' % (urlbase.headers, urlbase.param, itemIndex))
+                    itemIndex += 1
+            except Exception as e:
+                continue
+        #存在分页信息
+        # if urlbase.param and urlbase.param<=self.fetchpage:
+        #     #获得下一页地址
+        #     nextpage = soup.find('div', id='list_D10_15')
+        #     if nextpage:
+        #         nextpageurl = nextpage.find('a', id ='PageControl1_hlk_next')
+        #         if nextpageurl:
+        #             list.append(UrlBean(host+nextpageurl['href'], self.message('getpages'), param=urlbase.param+1, headers=urlbase.headers))
+        #             LOG.debug('%s第%d页' % (urlbase.headers, urlbase.param))
+        return list;
+
+    #解析详细页面信息
+    def getitem(self, urlbase):
+        LOG.info('fangSCgetinfo获得城市%s挂牌详细信息', urlbase.url)
+        r = requests.get(urlbase.url, headers=self.headers, timeout=(3.05, 3.5))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        self.htmlwrite.save('%s\\%s\\%s' %(self.__class__.__name__, '二手房', urlbase.param), r.url, r.text)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwfangcomSC %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        reText = r.text
+        soup = BeautifulSoup(r.content.decode('gbk', 'ignore'), 'html.parser') #lxml
+        lr = {}
+        ###############################################
+        def _split(str_all, str, index):
+            try:
+                return _strip(str_all).split(str)[index]
+            except Exception:
+                return ''
+
+        def _strip(str_info):
+            return str_info.strip().replace('\n', '').replace(' ', '').replace('\t', '').replace('\r', '')
+
+        title1 = soup.find('h2',attrs={'class':'title clearfix'}).find_all('span',attrs={'class':'txt floatl'})
+        for title2 in title1:
+            lr[metadatas[5]] = title2.text.strip()
+
+        lr[metadatas[4]] = urlbase.url
+        try:
+            xq_name = re.findall('小<span class="pl27"></span>区：</span><strong style="font-size: 14px;">(.*?)</strong>',reText,re.S) or re.findall('小 区：</span><strong style="font-size: 14px;">(.*?)</strong>',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[6]] = dr.sub('',xq_name[0]).strip()
+        except:
+            lr[metadatas[6]] =''
+
+
+        try:
+            area = re.findall('id="detail05">(.*?)<',reText,re.S)
+            lr[metadatas[3]] =area[0].replace('二手房','').strip()
+        except:
+            lr[metadatas[3]] =''
+
+
+
+        ld_name = soup.find('div',attrs={'class':'bread'}).find_all('a')
+        try:
+            lr[metadatas[61]] = (">".join([_strip(dd.text) for dd in ld_name])).replace('二手房', '').strip()
+        except:
+            lr[metadatas[61]] =''
+
+        try:
+            year = re.findall('年<span class="pl27"></span>代：</span><strong style="font-size: 14px;">(.*?)</strong>',reText,re.S)
+            lr[metadatas[9]] = year[0]
+        except:
+            lr[metadatas[9]] =''
+
+        try:
+            floor = re.findall('</span>层：</span>(.*?)</dd>',reText,re.S)[0]
+            lr[metadatas[11]] = floor.strip()
+        except:
+            lr[metadatas[11]] = ''
+
+        try:
+            z_floor = re.findall('\(共(.*?)层',reText,re.S)
+            lr[metadatas[12]]= z_floor[0]
+        except:
+            lr[metadatas[12]] =''
+
+        try:
+            dq_floor = re.findall('层：</span>第(.*?)层',reText,re.S)
+            lr[metadatas[13]] = dq_floor[0]
+        except:
+            lr[metadatas[13]] =''
+
+        try:
+            toward = re.findall('向：</span>(.*?)<',reText,re.S)
+            lr[metadatas[14]] = toward[0]
+        except:
+            lr[metadatas[14]] =''
+
+        try:
+            jz_area = re.findall('建筑面积：</span>(.*?)O',reText,re.S)
+            lr[metadatas[15]] = re.search(r"\d+\.?\d*",jz_area[0].strip()).group()
+            if lr[metadatas[15]] is None:
+                lr[metadatas[15]] =''
+        except:
+            lr[metadatas[15]] =''
+
+        try:
+            cqxz = re.findall('产权性质：</span>(.*?)<',reText,re.S)
+            lr[metadatas[28]] = cqxz[0]
+        except:
+            lr[metadatas[28]] =''
+
+        try:
+            decorate = re.findall('修：</span>(.*?)<',reText,re.S)
+            lr[metadatas[29]] = decorate[0]
+        except:
+            lr[metadatas[29]] =''
+
+        try:
+            house = re.findall('户 型：</span>(.*?)</dd>',reText,re.S)
+            house_t= house[0]
+            lr[metadatas[17]] =house_t
+        except:
+            lr[metadatas[17]] =''
+        try:
+            lr[metadatas[18]] = re.search(wwwfangcomSC.shi,lr[metadatas[17]]).group(1)
+        except:
+            lr[metadatas[18]] = ''
+        try:
+            lr[metadatas[19]] = re.search(wwwfangcomSC.ting,lr[metadatas[17]]).group(1)
+        except:
+            lr[metadatas[19]] = ''
+        try:
+            lr[metadatas[20]] = re.search(wwwfangcomSC.wei,lr[metadatas[17]]).group(1)
+        except:
+            lr[metadatas[20]] = ''
+        try:
+            lr[metadatas[21]] = re.search(wwwfangcomSC.chu,lr[metadatas[17]]).group(1)
+        except:
+            lr[metadatas[21]] = ''
+        try:
+            lr[metadatas[22]] = re.search(wwwfangcomSC.yangtai,lr[metadatas[17]]).group(1)
+        except:
+            lr[metadatas[22]] = ''
+        try:
+            u_price = re.findall('</span>万\（(.*?)元',reText,re.S)
+            lr[metadatas[23]] = u_price[0].replace('O', '').replace('㎡','')
+        except:
+            lr[metadatas[23]] =''
+
+        try:
+            t_price = re.findall('</span><span class="num30">(.*?)<',reText,re.S)
+            lr[metadatas[24]] = t_price[0]
+        except:
+            lr[metadatas[24]] =''
+        try:
+            lxr_name = re.findall('<strong class="black">(.*?)</span>',reText,re.S) or re.findall('<span class="name floatl">(.*?)<span class="org">',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[33]] = dr.sub('',lxr_name[0]).replace(' ','').strip()
+        except:
+            lr[metadatas[33]] =''
+
+        try:
+            lr[metadatas[34]] = soup.find('span',class_='Span3').find('a')['href']
+        except:
+            lr[metadatas[34]] = ''
+
+
+        try:
+            telephone = re.findall('<input type="hidden" value="(.*?)"',reText,re.S)
+            lr[metadatas[37]] = telephone[0]
+        except:
+            lr[metadatas[37]] =''
+
+        try:
+            fybh = re.findall('房源编号：(.*?)<span class="pl25">',reText,re.S)[0]
+            lr[metadatas[40]] = _strip(fybh).replace('&nbsp;','')
+        except:
+            lr[metadatas[40]] =''
+
+        try:
+            fb_time = re.findall('发布时间：(.*?)<',reText,re.S)
+            lr[metadatas[41]] = fb_time[0]
+        except:
+            lr[metadatas[41]] =''
+
+        try:
+            zz_category = re.findall('住宅类型：</span>(.*?)<',reText,re.S)
+            lr[metadatas[27]] = zz_category[0]
+        except:
+            lr[metadatas[27]] =''
+
+        try:
+            jz_category = re.findall('建筑类型：</span>(.*?)<',reText,re.S)
+            lr[metadatas[30]] = jz_category[0]
+        except:
+            lr[metadatas[30]] =''
+
+        try:
+            facilities = re.findall('配套设施：</span>(.*?)<',reText,re.S) or re.findall('<span class="bluebtn" id="detail17">(.*?)</span>',reText,re.S)
+            lr[metadatas[48]] = facilities[0].strip().replace('<div>','').replace('</div>','')
+        except:
+            lr[metadatas[48]] =''
+
+        try:
+            facilities = re.findall('物业类型：</span>(.*?)<',reText,re.S)
+            lr[metadatas[31]] = facilities[0]
+        except:
+            lr[metadatas[31]] =''
+
+        try:
+            xqjj = re.findall('小区简介：</span>(.*?)</dt>',reText,re.S)[0]
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[32]] = _strip(re.sub(dr,'',xqjj))[0:2000]
+        except:
+            lr[metadatas[32]] = ''
+        try:
+            kfs = re.findall('发</span>商：</span>(.*?)</dd>',reText,re.S)[0]
+            lr[metadatas[46]] = _strip(kfs)
+        except:
+            lr[metadatas[46]] = ''
+
+        try:
+            greening = re.findall('率：</span>(.*?)<',reText,re.S)
+            lr[metadatas[49]] = greening[0]
+        except:
+            lr[metadatas[49]] =''
+
+        try:
+            wygs = re.findall('物业公司：</span>(.*?)</dd>',reText,re.S)[0]
+            lr[metadatas[50]] = _strip(wygs)
+        except:
+            lr[metadatas[50]] = ''
+
+        try:
+            costs = re.findall('费：</span>(.*?)<',reText,re.S)
+            lr[metadatas[51]] = costs[0]
+        except:
+            lr[metadatas[51]] =''
+
+        try:
+            city = re.findall('name="city" value="(.*?)"',reText,re.S)
+            lr[metadatas[1]] =city[0]
+        except:
+            lr[metadatas[1]] =''
+
+        xz_area = soup.find('div',attrs={'class':'bread'}).find_all('a',id='detail03')
+        try:
+            for xz_area1 in xz_area:
+                lr[metadatas[2]] =xz_area1.text.strip()
+        except:
+             lr[metadatas[2]] =''
+
+        lr[metadatas[0]] = 's00000sf'
+        lr[metadatas[66]] = 'sf'
+
+        lr[metadatas[65]] = urlbase.order if urlbase.order is not None else ''
+
+        lr[metadatas[7]] = ''
+        lr[metadatas[8]] = ''
+        lr[metadatas[10]] = ''
+        lr[metadatas[16]] =''
+        lr[metadatas[25]] = ''
+        lr[metadatas[26]] = ''
+        lr[metadatas[35]] = ''
+        lr[metadatas[36]] = ''
+        lr[metadatas[38]] = ''
+        lr[metadatas[39]] = ''
+        lr[metadatas[42]] = ''
+        lr[metadatas[43]] = ''
+        lr[metadatas[44]] = ''
+        lr[metadatas[45]] = ''
+        lr[metadatas[47]] = ''
+        lr[metadatas[52]] = ''
+        lr[metadatas[53]] = ''
+        lr[metadatas[54]] = ''
+        lr[metadatas[55]] = ''
+        lr[metadatas[56]] = ''
+        lr[metadatas[57]] = ''
+        lr[metadatas[58]] = ''
+        lr[metadatas[59]] = ''
+        lr[metadatas[60]] = ''
+        lr[metadatas[62]] = ''
+        lr[metadatas[63]] = ''
+        lr[metadatas[64]] = ''
+
+        ###############################################
+        #将分析的信息写入数据库
+        # self.mysql.save(lr, metadatas)
+        MySqlEx.save(lr, metadatas)
+        time.sleep(1)
+    #def getinfo(self, urlbase):
+        #LOG.info('fang8getinfo获得%s挂牌详细信息' , urlbase.url)
+
+
+if __name__ == '__main__':
+    wfang = wwwfangcomSC()
+    # wfang.default(UrlBase('http://esf.fang.com/newsecond/esfcities.aspx', 'wwwsjcomSZ',order='123'))
+    wfang.getpages(UrlBean('http://esf.yangqu.fang.com/esfhouse/h31/', 'wwwsfcom#getitem', param=10, headers='哈尔滨',order='123'))
+    #wfang.getitem(UrlBean('http://esf.yangchun.fang.com/cs/20415.htm', 'wwwsfcomSC#getitem', param=9, headers='哈尔滨',order='123456'))
+    # wfang.getitem(UrlBean('http://esf.zb.fang.com/cs/3_152025664.htm', 'wwwfangcomSC#getitem', param='北京',order='1234'))
+
+#print(www58com.__name__)
+#print(www58com.getcitys.__name__)
+#print(isinstance([], list))
+
+"""
+print(www58com.__name__)
+#print(sys.modules.keys())
+print(sys.modules['__main__'])
+
+import sys
+import os
+
+def get_module():
+
+    def main_module_name():
+        mod = sys.modules['__main__']
+        file = getattr(mod, '__file__', None)
+        return file and os.path.splitext(os.path.basename(file))[0]
+
+    def modname(fvars):
+
+        file, name = fvars.get('__file__'), fvars.get('__name__')
+        if file is None or name is None:
+            return None
+
+        if name == '__main__':
+            name = main_module_name()
+        return name
+
+    module_name = modname(globals())
+    # print globals()
+    # print module_name
+
+get_module()
+"""

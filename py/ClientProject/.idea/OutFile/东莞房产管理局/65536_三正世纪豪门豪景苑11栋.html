@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=231&amp;vc=29dfed3a" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>东莞市三正房地产开发有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>三正世纪豪门豪景苑11栋
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>预售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=1465&vc=d339e43f' target='_blank'>(06)00174</a></td><td><a href='roomTable.aspx?id=1465&vc=d339e43f' target='_blank'>东莞市寮步镇东区大道三正世纪豪门豪景苑11栋</a></td><td><a href='roomTable.aspx?id=1465&vc=d339e43f' target='_blank'>15</a><td><a href='roomTable.aspx?id=1465&vc=d339e43f' target='_blank'>60</a><td><a href='roomTable.aspx?id=1465&vc=d339e43f' target='_blank'>住宅</a><td><a href='roomTable.aspx?id=1465&vc=d339e43f' target='_blank'>8889.29</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：三正世纪豪门豪景苑11栋
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市寮步镇东区大道
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            0
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2006-9-30
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            预售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            (06)00174
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=231&vc=29dfed3a' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            东莞市三正房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市三正房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            一级
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市三正房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523710
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            500万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            莫浩棠
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            13712277847
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            邓瑞芳
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            87864903
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            szfdc-999@vip.163.com
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=231&vc=29dfed3a' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1831&vc=d7c0d88d' target='_blank'>凤岗三正财富新地商住区10、11幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1831&vc=d7c0d88d' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1831&vc=d7c0d88d' target='_blank'>108</a></td><td><a href='BeianDetail.aspx?id=1831&vc=d7c0d88d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1832&vc=808df345' target='_blank'>凤岗三正财富新地商住区12、13幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1832&vc=808df345' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1832&vc=808df345' target='_blank'>154</a></td><td><a href='BeianDetail.aspx?id=1832&vc=808df345' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1833&vc=6280bebb' target='_blank'>凤岗三正财富新地商住区14幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1833&vc=6280bebb' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1833&vc=6280bebb' target='_blank'>80</a></td><td><a href='BeianDetail.aspx?id=1833&vc=6280bebb' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1834&vc=1f21ec50' target='_blank'>凤岗三正财富新地商住区15幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1834&vc=1f21ec50' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1834&vc=1f21ec50' target='_blank'>78</a></td><td><a href='BeianDetail.aspx?id=1834&vc=1f21ec50' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1835&vc=b8f9677b' target='_blank'>凤岗三正财富新地商住区16幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1835&vc=b8f9677b' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1835&vc=b8f9677b' target='_blank'>11</a></td><td><a href='BeianDetail.aspx?id=1835&vc=b8f9677b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1836&vc=03d0748b' target='_blank'>凤岗三正财富新地商住区17幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1836&vc=03d0748b' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1836&vc=03d0748b' target='_blank'>24</a></td><td><a href='BeianDetail.aspx?id=1836&vc=03d0748b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1837&vc=c10ed10c' target='_blank'>凤岗三正财富新地商住区18幢商住楼  </a></td><td><a href='BeianDetail.aspx?id=1837&vc=c10ed10c' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1837&vc=c10ed10c' target='_blank'>26</a></td><td><a href='BeianDetail.aspx?id=1837&vc=c10ed10c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2078&vc=3aa6c93e' target='_blank'>凤岗三正财富新地商住区19、20幢商住楼</a></td><td><a href='BeianDetail.aspx?id=2078&vc=3aa6c93e' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2078&vc=3aa6c93e' target='_blank'>19</a></td><td><a href='BeianDetail.aspx?id=2078&vc=3aa6c93e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1825&vc=7cdd7293' target='_blank'>凤岗三正财富新地商住区1、2幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1825&vc=7cdd7293' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1825&vc=7cdd7293' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=1825&vc=7cdd7293' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2079&vc=8f41d4ad' target='_blank'>凤岗三正财富新地商住区21幢商住楼</a></td><td><a href='BeianDetail.aspx?id=2079&vc=8f41d4ad' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2079&vc=8f41d4ad' target='_blank'>83</a></td><td><a href='BeianDetail.aspx?id=2079&vc=8f41d4ad' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1838&vc=24c57066' target='_blank'>凤岗三正财富新地商住区22幢商住楼 </a></td><td><a href='BeianDetail.aspx?id=1838&vc=24c57066' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1838&vc=24c57066' target='_blank'>82</a></td><td><a href='BeianDetail.aspx?id=1838&vc=24c57066' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1826&vc=1c8e3a86' target='_blank'>凤岗三正财富新地商住区3幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1826&vc=1c8e3a86' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1826&vc=1c8e3a86' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=1826&vc=1c8e3a86' target='_blank'>4</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1827&vc=85f9abbf' target='_blank'>凤岗三正财富新地商住区4、5幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1827&vc=85f9abbf' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1827&vc=85f9abbf' target='_blank'>20</a></td><td><a href='BeianDetail.aspx?id=1827&vc=85f9abbf' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1828&vc=49133be1' target='_blank'>凤岗三正财富新地商住区6、7幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1828&vc=49133be1' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1828&vc=49133be1' target='_blank'>30</a></td><td><a href='BeianDetail.aspx?id=1828&vc=49133be1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1829&vc=f443edc1' target='_blank'>凤岗三正财富新地商住区8幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1829&vc=f443edc1' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1829&vc=f443edc1' target='_blank'>59</a></td><td><a href='BeianDetail.aspx?id=1829&vc=f443edc1' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1830&vc=63986672' target='_blank'>凤岗三正财富新地商住区9幢商住楼</a></td><td><a href='BeianDetail.aspx?id=1830&vc=63986672' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=1830&vc=63986672' target='_blank'>57</a></td><td><a href='BeianDetail.aspx?id=1830&vc=63986672' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2914&vc=de77545b' target='_blank'>凤岗三正财富新地商住区地下室2 </a></td><td><a href='BeianDetail.aspx?id=2914&vc=de77545b' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2914&vc=de77545b' target='_blank'>159</a></td><td><a href='BeianDetail.aspx?id=2914&vc=de77545b' target='_blank'>14</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2057&vc=dcadf3bf' target='_blank'>凤岗卧龙山花园住宅小区(一期)叠翠区宝石B型别墅139栋 </a></td><td><a href='BeianDetail.aspx?id=2057&vc=dcadf3bf' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=2057&vc=dcadf3bf' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=2057&vc=dcadf3bf' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4943&vc=c5b1ff67' target='_blank'>上河坊1幢</a></td><td><a href='BeianDetail.aspx?id=4943&vc=c5b1ff67' target='_blank'>东莞市凤岗镇 永盛北路旁</a></td><td><a href='BeianDetail.aspx?id=4943&vc=c5b1ff67' target='_blank'>29</a></td><td><a href='BeianDetail.aspx?id=4943&vc=c5b1ff67' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6465&vc=7e5d80f0' target='_blank'>卧龙山花园(二期)半山区地下车库二(1区)</a></td><td><a href='BeianDetail.aspx?id=6465&vc=7e5d80f0' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=6465&vc=7e5d80f0' target='_blank'>73</a></td><td><a href='BeianDetail.aspx?id=6465&vc=7e5d80f0' target='_blank'>25</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6466&vc=ae05003b' target='_blank'>卧龙山花园(二期)半山区地下车库二(2区)</a></td><td><a href='BeianDetail.aspx?id=6466&vc=ae05003b' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=6466&vc=ae05003b' target='_blank'>329</a></td><td><a href='BeianDetail.aspx?id=6466&vc=ae05003b' target='_blank'>138</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1048&vc=e0fede90' target='_blank'>卧龙山花园住宅小区 (一期)翠湖区侯爵A型别墅25 </a></td><td><a href='BeianDetail.aspx?id=1048&vc=e0fede90' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=1048&vc=e0fede90' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1048&vc=e0fede90' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1049&vc=a28d56e3' target='_blank'>卧龙山花园住宅小区 (一期)怡翠区钻石A型别墅20.42</a></td><td><a href='BeianDetail.aspx?id=1049&vc=a28d56e3' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=1049&vc=a28d56e3' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=1049&vc=a28d56e3' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1052&vc=1cdb02c1' target='_blank'>卧龙山花园住宅小区 (一期)怡翠区翡翠B型别墅100</a></td><td><a href='BeianDetail.aspx?id=1052&vc=1cdb02c1' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=1052&vc=1cdb02c1' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1052&vc=1cdb02c1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1053&vc=5055f7f1' target='_blank'>卧龙山花园住宅小区 (一期)怡翠区翡翠B型别墅102</a></td><td><a href='BeianDetail.aspx?id=1053&vc=5055f7f1' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=1053&vc=5055f7f1' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1053&vc=5055f7f1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=587&vc=56ffd45d' target='_blank'>卧龙山花园住宅小区(一期).怡翠区.38.43.45.46.48.49.55.56.58.59.60.61.123</a></td><td><a href='BeianDetail.aspx?id=587&vc=56ffd45d' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=587&vc=56ffd45d' target='_blank'>13</a></td><td><a href='BeianDetail.aspx?id=587&vc=56ffd45d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=590&vc=7c1ede0c' target='_blank'>卧龙山花园住宅小区(一期)翠湖区35</a></td><td><a href='BeianDetail.aspx?id=590&vc=7c1ede0c' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=590&vc=7c1ede0c' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=590&vc=7c1ede0c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=588&vc=1ba44d05' target='_blank'>卧龙山花园住宅小区(一期)叠翠区19.20.21</a></td><td><a href='BeianDetail.aspx?id=588&vc=1ba44d05' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=588&vc=1ba44d05' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=588&vc=1ba44d05' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=986&vc=3cc40ac4' target='_blank'>卧龙山花园住宅小区(一期)叠翠区宝石D型别墅10.11.12</a></td><td><a href='BeianDetail.aspx?id=986&vc=3cc40ac4' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=986&vc=3cc40ac4' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=986&vc=3cc40ac4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=985&vc=05529922' target='_blank'>卧龙山花园住宅小区(一期)叠翠区翡翠A型别墅16.18</a></td><td><a href='BeianDetail.aspx?id=985&vc=05529922' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=985&vc=05529922' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=985&vc=05529922' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=589&vc=a484812b' target='_blank'>卧龙山花园住宅小区(一期)湖景区16.18</a></td><td><a href='BeianDetail.aspx?id=589&vc=a484812b' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=589&vc=a484812b' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=589&vc=a484812b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1050&vc=6262522f' target='_blank'>卧龙山花园住宅小区(一期)怡翠区宝石B型别墅26.28-30.35.36.50-53</a></td><td><a href='BeianDetail.aspx?id=1050&vc=6262522f' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=1050&vc=6262522f' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=1050&vc=6262522f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1051&vc=566d5a3d' target='_blank'>卧龙山花园住宅小区(一期)怡翠区翡翠A型别墅73.75.76</a></td><td><a href='BeianDetail.aspx?id=1051&vc=566d5a3d' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=1051&vc=566d5a3d' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=1051&vc=566d5a3d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=987&vc=0cd56404' target='_blank'>卧龙山花园住宅小区(一期)怡翠区翡翠B型别墅93.95.96.101.103</a></td><td><a href='BeianDetail.aspx?id=987&vc=0cd56404' target='_blank'>东莞市凤岗镇 中心区(东深河旁)</a></td><td><a href='BeianDetail.aspx?id=987&vc=0cd56404' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=987&vc=0cd56404' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4607&vc=6edf2121' target='_blank'>卧龙山花园住宅小区半山区10幢</a></td><td><a href='BeianDetail.aspx?id=4607&vc=6edf2121' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4607&vc=6edf2121' target='_blank'>62</a></td><td><a href='BeianDetail.aspx?id=4607&vc=6edf2121' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4467&vc=6469775e' target='_blank'>卧龙山花园住宅小区半山区11幢</a></td><td><a href='BeianDetail.aspx?id=4467&vc=6469775e' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4467&vc=6469775e' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=4467&vc=6469775e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4468&vc=d6e0a178' target='_blank'>卧龙山花园住宅小区半山区12幢</a></td><td><a href='BeianDetail.aspx?id=4468&vc=d6e0a178' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4468&vc=d6e0a178' target='_blank'>62</a></td><td><a href='BeianDetail.aspx?id=4468&vc=d6e0a178' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4469&vc=77e23eaf' target='_blank'>卧龙山花园住宅小区半山区13幢</a></td><td><a href='BeianDetail.aspx?id=4469&vc=77e23eaf' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4469&vc=77e23eaf' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=4469&vc=77e23eaf' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4604&vc=ff62d9b7' target='_blank'>卧龙山花园住宅小区半山区1幢</a></td><td><a href='BeianDetail.aspx?id=4604&vc=ff62d9b7' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4604&vc=ff62d9b7' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=4604&vc=ff62d9b7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4605&vc=1c759bd2' target='_blank'>卧龙山花园住宅小区半山区2幢</a></td><td><a href='BeianDetail.aspx?id=4605&vc=1c759bd2' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4605&vc=1c759bd2' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=4605&vc=1c759bd2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4244&vc=c59d127e' target='_blank'>卧龙山花园住宅小区半山区3幢</a></td><td><a href='BeianDetail.aspx?id=4244&vc=c59d127e' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4244&vc=c59d127e' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=4244&vc=c59d127e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4247&vc=9f7550ce' target='_blank'>卧龙山花园住宅小区半山区4幢</a></td><td><a href='BeianDetail.aspx?id=4247&vc=9f7550ce' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4247&vc=9f7550ce' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=4247&vc=9f7550ce' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4245&vc=88e6c577' target='_blank'>卧龙山花园住宅小区半山区5幢</a></td><td><a href='BeianDetail.aspx?id=4245&vc=88e6c577' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4245&vc=88e6c577' target='_blank'>51</a></td><td><a href='BeianDetail.aspx?id=4245&vc=88e6c577' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4246&vc=7e2d8115' target='_blank'>卧龙山花园住宅小区半山区6幢</a></td><td><a href='BeianDetail.aspx?id=4246&vc=7e2d8115' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4246&vc=7e2d8115' target='_blank'>51</a></td><td><a href='BeianDetail.aspx?id=4246&vc=7e2d8115' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4465&vc=abef7d2c' target='_blank'>卧龙山花园住宅小区半山区7幢</a></td><td><a href='BeianDetail.aspx?id=4465&vc=abef7d2c' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4465&vc=abef7d2c' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=4465&vc=abef7d2c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4466&vc=1f86cd61' target='_blank'>卧龙山花园住宅小区半山区8幢</a></td><td><a href='BeianDetail.aspx?id=4466&vc=1f86cd61' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4466&vc=1f86cd61' target='_blank'>62</a></td><td><a href='BeianDetail.aspx?id=4466&vc=1f86cd61' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4606&vc=a885819f' target='_blank'>卧龙山花园住宅小区半山区9幢</a></td><td><a href='BeianDetail.aspx?id=4606&vc=a885819f' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4606&vc=a885819f' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=4606&vc=a885819f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3425&vc=df6840a4' target='_blank'>卧龙山花园住宅小区翠湖区10、11、12、13幢</a></td><td><a href='BeianDetail.aspx?id=3425&vc=df6840a4' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3425&vc=df6840a4' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=3425&vc=df6840a4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3426&vc=4302f4b7' target='_blank'>卧龙山花园住宅小区翠湖区14、15、17、19、20、21、22、23、29、30、31、32、33、43、44、45、46幢</a></td><td><a href='BeianDetail.aspx?id=3426&vc=4302f4b7' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3426&vc=4302f4b7' target='_blank'>34</a></td><td><a href='BeianDetail.aspx?id=3426&vc=4302f4b7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3427&vc=637feeb6' target='_blank'>卧龙山花园住宅小区翠湖区24、26、27、28幢</a></td><td><a href='BeianDetail.aspx?id=3427&vc=637feeb6' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3427&vc=637feeb6' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=3427&vc=637feeb6' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3423&vc=1296f82b' target='_blank'>卧龙山花园住宅小区翠湖区2、3、4、6幢</a></td><td><a href='BeianDetail.aspx?id=3423&vc=1296f82b' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3423&vc=1296f82b' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=3423&vc=1296f82b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4243&vc=ec6d213c' target='_blank'>卧龙山花园住宅小区翠湖区34、36、37、38、39、40、41、42幢</a></td><td><a href='BeianDetail.aspx?id=4243&vc=ec6d213c' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4243&vc=ec6d213c' target='_blank'>16</a></td><td><a href='BeianDetail.aspx?id=4243&vc=ec6d213c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4696&vc=d41c13b1' target='_blank'>卧龙山花园住宅小区翠湖区47幢</a></td><td><a href='BeianDetail.aspx?id=4696&vc=d41c13b1' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4696&vc=d41c13b1' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=4696&vc=d41c13b1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4697&vc=82e53cb1' target='_blank'>卧龙山花园住宅小区翠湖区48、49、50、51、52、53、54幢</a></td><td><a href='BeianDetail.aspx?id=4697&vc=82e53cb1' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4697&vc=82e53cb1' target='_blank'>14</a></td><td><a href='BeianDetail.aspx?id=4697&vc=82e53cb1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3424&vc=8055dfab' target='_blank'>卧龙山花园住宅小区翠湖区5、7幢</a></td><td><a href='BeianDetail.aspx?id=3424&vc=8055dfab' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3424&vc=8055dfab' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=3424&vc=8055dfab' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3428&vc=50a637d1' target='_blank'>卧龙山花园住宅小区叠翠区22、23、24、25幢</a></td><td><a href='BeianDetail.aspx?id=3428&vc=50a637d1' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3428&vc=50a637d1' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=3428&vc=50a637d1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3429&vc=8e43ee67' target='_blank'>卧龙山花园住宅小区叠翠区26、27、28幢</a></td><td><a href='BeianDetail.aspx?id=3429&vc=8e43ee67' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3429&vc=8e43ee67' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=3429&vc=8e43ee67' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3430&vc=957db5dc' target='_blank'>卧龙山花园住宅小区叠翠区29幢</a></td><td><a href='BeianDetail.aspx?id=3430&vc=957db5dc' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3430&vc=957db5dc' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=3430&vc=957db5dc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4694&vc=3f13324f' target='_blank'>卧龙山花园住宅小区叠翠区30幢</a></td><td><a href='BeianDetail.aspx?id=4694&vc=3f13324f' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4694&vc=3f13324f' target='_blank'>24</a></td><td><a href='BeianDetail.aspx?id=4694&vc=3f13324f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4695&vc=aa36d631' target='_blank'>卧龙山花园住宅小区叠翠区31幢</a></td><td><a href='BeianDetail.aspx?id=4695&vc=aa36d631' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4695&vc=aa36d631' target='_blank'>32</a></td><td><a href='BeianDetail.aspx?id=4695&vc=aa36d631' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4612&vc=19d749b7' target='_blank'>卧龙山花园住宅小区叠翠区32幢</a></td><td><a href='BeianDetail.aspx?id=4612&vc=19d749b7' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4612&vc=19d749b7' target='_blank'>32</a></td><td><a href='BeianDetail.aspx?id=4612&vc=19d749b7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4560&vc=3304bc9f' target='_blank'>卧龙山花园住宅小区叠翠区33幢</a></td><td><a href='BeianDetail.aspx?id=4560&vc=3304bc9f' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4560&vc=3304bc9f' target='_blank'>16</a></td><td><a href='BeianDetail.aspx?id=4560&vc=3304bc9f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6511&vc=e455b30a' target='_blank'>卧龙山花园住宅小区湖景区43幢</a></td><td><a href='BeianDetail.aspx?id=6511&vc=e455b30a' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=6511&vc=e455b30a' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=6511&vc=e455b30a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3438&vc=2373b36e' target='_blank'>卧龙山花园住宅小区依山区1幢</a></td><td><a href='BeianDetail.aspx?id=3438&vc=2373b36e' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3438&vc=2373b36e' target='_blank'>56</a></td><td><a href='BeianDetail.aspx?id=3438&vc=2373b36e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3439&vc=98510383' target='_blank'>卧龙山花园住宅小区依山区2幢</a></td><td><a href='BeianDetail.aspx?id=3439&vc=98510383' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3439&vc=98510383' target='_blank'>81</a></td><td><a href='BeianDetail.aspx?id=3439&vc=98510383' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3440&vc=e3d3c124' target='_blank'>卧龙山花园住宅小区依山区3幢</a></td><td><a href='BeianDetail.aspx?id=3440&vc=e3d3c124' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3440&vc=e3d3c124' target='_blank'>80</a></td><td><a href='BeianDetail.aspx?id=3440&vc=e3d3c124' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3441&vc=a4185654' target='_blank'>卧龙山花园住宅小区依山区4幢</a></td><td><a href='BeianDetail.aspx?id=3441&vc=a4185654' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3441&vc=a4185654' target='_blank'>80</a></td><td><a href='BeianDetail.aspx?id=3441&vc=a4185654' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3442&vc=3f0dca9c' target='_blank'>卧龙山花园住宅小区依山区5幢</a></td><td><a href='BeianDetail.aspx?id=3442&vc=3f0dca9c' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3442&vc=3f0dca9c' target='_blank'>81</a></td><td><a href='BeianDetail.aspx?id=3442&vc=3f0dca9c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3443&vc=84dd2073' target='_blank'>卧龙山花园住宅小区依山区6幢</a></td><td><a href='BeianDetail.aspx?id=3443&vc=84dd2073' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3443&vc=84dd2073' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=3443&vc=84dd2073' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3444&vc=cfd1c531' target='_blank'>卧龙山花园住宅小区依山区7幢</a></td><td><a href='BeianDetail.aspx?id=3444&vc=cfd1c531' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3444&vc=cfd1c531' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=3444&vc=cfd1c531' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4699&vc=46a83c8f' target='_blank'>卧龙山花园住宅小区怡翠区132、133幢</a></td><td><a href='BeianDetail.aspx?id=4699&vc=46a83c8f' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4699&vc=46a83c8f' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=4699&vc=46a83c8f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4470&vc=2fe206f7' target='_blank'>卧龙山花园住宅小区怡翠区62、63、64、65幢</a></td><td><a href='BeianDetail.aspx?id=4470&vc=2fe206f7' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4470&vc=2fe206f7' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=4470&vc=2fe206f7' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4698&vc=f308c363' target='_blank'>卧龙山花园住宅小区怡翠区66、131幢</a></td><td><a href='BeianDetail.aspx?id=4698&vc=f308c363' target='_blank'>东莞市凤岗镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4698&vc=f308c363' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=4698&vc=f308c363' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7279&vc=00efb9b8' target='_blank'>卧龙山水月湾10幢</a></td><td><a href='BeianDetail.aspx?id=7279&vc=00efb9b8' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7279&vc=00efb9b8' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=7279&vc=00efb9b8' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7426&vc=fb299f0d' target='_blank'>卧龙山水月湾11幢</a></td><td><a href='BeianDetail.aspx?id=7426&vc=fb299f0d' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7426&vc=fb299f0d' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=7426&vc=fb299f0d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7280&vc=31102894' target='_blank'>卧龙山水月湾12、13幢</a></td><td><a href='BeianDetail.aspx?id=7280&vc=31102894' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7280&vc=31102894' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=7280&vc=31102894' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7427&vc=431ada72' target='_blank'>卧龙山水月湾14、25幢</a></td><td><a href='BeianDetail.aspx?id=7427&vc=431ada72' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7427&vc=431ada72' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=7427&vc=431ada72' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7281&vc=8b4b2b45' target='_blank'>卧龙山水月湾15幢</a></td><td><a href='BeianDetail.aspx?id=7281&vc=8b4b2b45' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7281&vc=8b4b2b45' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=7281&vc=8b4b2b45' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7428&vc=c2a00dc6' target='_blank'>卧龙山水月湾16幢</a></td><td><a href='BeianDetail.aspx?id=7428&vc=c2a00dc6' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7428&vc=c2a00dc6' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=7428&vc=c2a00dc6' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7282&vc=e2a98a29' target='_blank'>卧龙山水月湾17、18、24幢</a></td><td><a href='BeianDetail.aspx?id=7282&vc=e2a98a29' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7282&vc=e2a98a29' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=7282&vc=e2a98a29' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7429&vc=91bfd305' target='_blank'>卧龙山水月湾19幢</a></td><td><a href='BeianDetail.aspx?id=7429&vc=91bfd305' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7429&vc=91bfd305' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=7429&vc=91bfd305' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7261&vc=ec92afe4' target='_blank'>卧龙山水月湾1幢</a></td><td><a href='BeianDetail.aspx?id=7261&vc=ec92afe4' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7261&vc=ec92afe4' target='_blank'>124</a></td><td><a href='BeianDetail.aspx?id=7261&vc=ec92afe4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7284&vc=c6aada09' target='_blank'>卧龙山水月湾20、26幢</a></td><td><a href='BeianDetail.aspx?id=7284&vc=c6aada09' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7284&vc=c6aada09' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=7284&vc=c6aada09' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7283&vc=01441321' target='_blank'>卧龙山水月湾21、27幢</a></td><td><a href='BeianDetail.aspx?id=7283&vc=01441321' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7283&vc=01441321' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=7283&vc=01441321' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7430&vc=11a356a1' target='_blank'>卧龙山水月湾22幢</a></td><td><a href='BeianDetail.aspx?id=7430&vc=11a356a1' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7430&vc=11a356a1' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=7430&vc=11a356a1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7285&vc=daf844dc' target='_blank'>卧龙山水月湾23、29幢</a></td><td><a href='BeianDetail.aspx?id=7285&vc=daf844dc' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7285&vc=daf844dc' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=7285&vc=daf844dc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7431&vc=9632ed95' target='_blank'>卧龙山水月湾28幢</a></td><td><a href='BeianDetail.aspx?id=7431&vc=9632ed95' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7431&vc=9632ed95' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=7431&vc=9632ed95' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7262&vc=6a07f979' target='_blank'>卧龙山水月湾2幢</a></td><td><a href='BeianDetail.aspx?id=7262&vc=6a07f979' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7262&vc=6a07f979' target='_blank'>122</a></td><td><a href='BeianDetail.aspx?id=7262&vc=6a07f979' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7286&vc=11407bb7' target='_blank'>卧龙山水月湾30幢</a></td><td><a href='BeianDetail.aspx?id=7286&vc=11407bb7' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7286&vc=11407bb7' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=7286&vc=11407bb7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7608&vc=2298becf' target='_blank'>卧龙山水月湾3幢</a></td><td><a href='BeianDetail.aspx?id=7608&vc=2298becf' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7608&vc=2298becf' target='_blank'>150</a></td><td><a href='BeianDetail.aspx?id=7608&vc=2298becf' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7425&vc=ce3c8ef6' target='_blank'>卧龙山水月湾4幢</a></td><td><a href='BeianDetail.aspx?id=7425&vc=ce3c8ef6' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7425&vc=ce3c8ef6' target='_blank'>151</a></td><td><a href='BeianDetail.aspx?id=7425&vc=ce3c8ef6' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7506&vc=8497aca5' target='_blank'>卧龙山水月湾5幢</a></td><td><a href='BeianDetail.aspx?id=7506&vc=8497aca5' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7506&vc=8497aca5' target='_blank'>126</a></td><td><a href='BeianDetail.aspx?id=7506&vc=8497aca5' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7507&vc=260dca73' target='_blank'>卧龙山水月湾6幢</a></td><td><a href='BeianDetail.aspx?id=7507&vc=260dca73' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7507&vc=260dca73' target='_blank'>98</a></td><td><a href='BeianDetail.aspx?id=7507&vc=260dca73' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7263&vc=3175a7a2' target='_blank'>卧龙山水月湾7幢</a></td><td><a href='BeianDetail.aspx?id=7263&vc=3175a7a2' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7263&vc=3175a7a2' target='_blank'>90</a></td><td><a href='BeianDetail.aspx?id=7263&vc=3175a7a2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7508&vc=34e50763' target='_blank'>卧龙山水月湾8幢</a></td><td><a href='BeianDetail.aspx?id=7508&vc=34e50763' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7508&vc=34e50763' target='_blank'>65</a></td><td><a href='BeianDetail.aspx?id=7508&vc=34e50763' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7264&vc=7d3316cc' target='_blank'>卧龙山水月湾9幢</a></td><td><a href='BeianDetail.aspx?id=7264&vc=7d3316cc' target='_blank'>东莞市凤岗镇 永盛北路</a></td><td><a href='BeianDetail.aspx?id=7264&vc=7d3316cc' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=7264&vc=7d3316cc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4876&vc=3ebb4152' target='_blank'>依山区地下车库</a></td><td><a href='BeianDetail.aspx?id=4876&vc=3ebb4152' target='_blank'>东莞市凤岗镇 中心区卧龙山花园住宅小区</a></td><td><a href='BeianDetail.aspx?id=4876&vc=3ebb4152' target='_blank'>215</a></td><td><a href='BeianDetail.aspx?id=4876&vc=3ebb4152' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5706&vc=9c00b5a4' target='_blank'>三正半山豪苑16幢</a></td><td><a href='BeianDetail.aspx?id=5706&vc=9c00b5a4' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5706&vc=9c00b5a4' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=5706&vc=9c00b5a4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5707&vc=b05ad9f7' target='_blank'>三正半山豪苑17幢</a></td><td><a href='BeianDetail.aspx?id=5707&vc=b05ad9f7' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5707&vc=b05ad9f7' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=5707&vc=b05ad9f7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5708&vc=54baee99' target='_blank'>三正半山豪苑18幢</a></td><td><a href='BeianDetail.aspx?id=5708&vc=54baee99' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5708&vc=54baee99' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=5708&vc=54baee99' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5709&vc=5a86322c' target='_blank'>三正半山豪苑19幢</a></td><td><a href='BeianDetail.aspx?id=5709&vc=5a86322c' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5709&vc=5a86322c' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=5709&vc=5a86322c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11070&vc=1a5b8086' target='_blank'>三正半山豪苑1幢</a></td><td><a href='BeianDetail.aspx?id=11070&vc=1a5b8086' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=11070&vc=1a5b8086' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11070&vc=1a5b8086' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5710&vc=363c6169' target='_blank'>三正半山豪苑20幢</a></td><td><a href='BeianDetail.aspx?id=5710&vc=363c6169' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5710&vc=363c6169' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=5710&vc=363c6169' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5711&vc=da3a88fa' target='_blank'>三正半山豪苑21幢</a></td><td><a href='BeianDetail.aspx?id=5711&vc=da3a88fa' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5711&vc=da3a88fa' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=5711&vc=da3a88fa' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5712&vc=977e4ce2' target='_blank'>三正半山豪苑22幢</a></td><td><a href='BeianDetail.aspx?id=5712&vc=977e4ce2' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5712&vc=977e4ce2' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=5712&vc=977e4ce2' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5713&vc=212399d7' target='_blank'>三正半山豪苑23幢</a></td><td><a href='BeianDetail.aspx?id=5713&vc=212399d7' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5713&vc=212399d7' target='_blank'>48</a></td><td><a href='BeianDetail.aspx?id=5713&vc=212399d7' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5714&vc=cf3f0caf' target='_blank'>三正半山豪苑24幢</a></td><td><a href='BeianDetail.aspx?id=5714&vc=cf3f0caf' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5714&vc=cf3f0caf' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=5714&vc=cf3f0caf' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5715&vc=7c2fbb26' target='_blank'>三正半山豪苑25幢</a></td><td><a href='BeianDetail.aspx?id=5715&vc=7c2fbb26' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5715&vc=7c2fbb26' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=5715&vc=7c2fbb26' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5716&vc=2d161632' target='_blank'>三正半山豪苑26幢</a></td><td><a href='BeianDetail.aspx?id=5716&vc=2d161632' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5716&vc=2d161632' target='_blank'>48</a></td><td><a href='BeianDetail.aspx?id=5716&vc=2d161632' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11071&vc=7c2480fa' target='_blank'>三正半山豪苑2幢</a></td><td><a href='BeianDetail.aspx?id=11071&vc=7c2480fa' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=11071&vc=7c2480fa' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11071&vc=7c2480fa' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11072&vc=6d8ccebb' target='_blank'>三正半山豪苑3幢</a></td><td><a href='BeianDetail.aspx?id=11072&vc=6d8ccebb' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=11072&vc=6d8ccebb' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11072&vc=6d8ccebb' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11073&vc=deeb6b55' target='_blank'>三正半山豪苑4幢</a></td><td><a href='BeianDetail.aspx?id=11073&vc=deeb6b55' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=11073&vc=deeb6b55' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11073&vc=deeb6b55' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11074&vc=f62b5bdd' target='_blank'>三正半山豪苑5幢</a></td><td><a href='BeianDetail.aspx?id=11074&vc=f62b5bdd' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=11074&vc=f62b5bdd' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11074&vc=f62b5bdd' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5953&vc=b7919fba' target='_blank'>三正半山豪苑6幢</a></td><td><a href='BeianDetail.aspx?id=5953&vc=b7919fba' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5953&vc=b7919fba' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5953&vc=b7919fba' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5954&vc=27f80ad8' target='_blank'>三正半山豪苑7幢</a></td><td><a href='BeianDetail.aspx?id=5954&vc=27f80ad8' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5954&vc=27f80ad8' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5954&vc=27f80ad8' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5955&vc=20cb2cae' target='_blank'>三正半山豪苑8幢</a></td><td><a href='BeianDetail.aspx?id=5955&vc=20cb2cae' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5955&vc=20cb2cae' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5955&vc=20cb2cae' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5705&vc=6e19c334' target='_blank'>三正半山豪苑9、10、11、12、13、14、15幢</a></td><td><a href='BeianDetail.aspx?id=5705&vc=6e19c334' target='_blank'>东莞市塘厦镇 四村迎宾大道</a></td><td><a href='BeianDetail.aspx?id=5705&vc=6e19c334' target='_blank'>21</a></td><td><a href='BeianDetail.aspx?id=5705&vc=6e19c334' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2487&vc=eeba6b2c' target='_blank'>三正世纪豪庭1幢</a></td><td><a href='BeianDetail.aspx?id=2487&vc=eeba6b2c' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街</a></td><td><a href='BeianDetail.aspx?id=2487&vc=eeba6b2c' target='_blank'>49</a></td><td><a href='BeianDetail.aspx?id=2487&vc=eeba6b2c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2488&vc=9eda2021' target='_blank'>三正世纪豪庭2幢</a></td><td><a href='BeianDetail.aspx?id=2488&vc=9eda2021' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街</a></td><td><a href='BeianDetail.aspx?id=2488&vc=9eda2021' target='_blank'>45</a></td><td><a href='BeianDetail.aspx?id=2488&vc=9eda2021' target='_blank'>8</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2582&vc=419f12c0' target='_blank'>塘厦三正世纪新城-世纪豪庭1、2、3、4、5、6栋商住楼车库</a></td><td><a href='BeianDetail.aspx?id=2582&vc=419f12c0' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街1号</a></td><td><a href='BeianDetail.aspx?id=2582&vc=419f12c0' target='_blank'>147</a></td><td><a href='BeianDetail.aspx?id=2582&vc=419f12c0' target='_blank'>110</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2489&vc=93578bb6' target='_blank'>塘厦三正世纪新城世纪豪庭3栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2489&vc=93578bb6' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街1号</a></td><td><a href='BeianDetail.aspx?id=2489&vc=93578bb6' target='_blank'>58</a></td><td><a href='BeianDetail.aspx?id=2489&vc=93578bb6' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2492&vc=72ee7f4d' target='_blank'>塘厦三正世纪新城世纪豪庭4栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2492&vc=72ee7f4d' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街1号</a></td><td><a href='BeianDetail.aspx?id=2492&vc=72ee7f4d' target='_blank'>57</a></td><td><a href='BeianDetail.aspx?id=2492&vc=72ee7f4d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2493&vc=9628c055' target='_blank'>塘厦三正世纪新城世纪豪庭5栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2493&vc=9628c055' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街1号</a></td><td><a href='BeianDetail.aspx?id=2493&vc=9628c055' target='_blank'>56</a></td><td><a href='BeianDetail.aspx?id=2493&vc=9628c055' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2494&vc=dab46c7d' target='_blank'>塘厦三正世纪新城世纪豪庭6栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2494&vc=dab46c7d' target='_blank'>东莞市塘厦镇 蛟乙塘宝发街1号</a></td><td><a href='BeianDetail.aspx?id=2494&vc=dab46c7d' target='_blank'>64</a></td><td><a href='BeianDetail.aspx?id=2494&vc=dab46c7d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>三正世纪豪门豪景苑10栋</a></td><td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>东莞市寮步镇 东区大道 </a></td><td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>三正世纪豪门豪景苑11栋</a></td><td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>东莞市寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>三正世纪豪门豪景苑12栋</a></td><td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>东莞市寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>三正世纪豪门豪景苑13栋</a></td><td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>东莞市寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>三正世纪豪门豪景苑15栋</a></td><td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>东莞市寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>60</a></td><td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>三正世纪豪门豪景苑1栋</a></td><td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>98</a></td><td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>三正世纪豪门豪景苑2栋</a></td><td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>97</a></td><td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>三正世纪豪门豪景苑3栋</a></td><td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>96</a></td><td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>三正世纪豪门豪景苑5栋</a></td><td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>96</a></td><td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>三正世纪豪门豪景苑6栋</a></td><td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>78</a></td><td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>三正世纪豪门豪景苑8 栋</a></td><td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>东莞市寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>三正世纪豪门豪景苑9栋</a></td><td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>东莞市寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>三正世纪豪门豪景苑车库</a></td><td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>396</a></td><td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>13</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>三正世纪豪门乐事大街3栋</a></td><td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>24</a></td><td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>三正世纪豪门乐事大街5栋</a></td><td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>59</a></td><td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>三正世纪豪门乐事大街6栋</a></td><td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>东莞市寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>41</a></td><td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>0</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

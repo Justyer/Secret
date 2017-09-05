@@ -1,0 +1,489 @@
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+from webparser.webparserbase import ParserBase
+from serializ.htmlfile import *
+from serializ.mysql import *
+from bean.urlbean import *
+from log.logger import *
+LOG=logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.INFO)
+
+################################
+metadatas = ('题名','来源链接','小区名称','所属区域','小区链接','楼栋名称','地址','建成年份',
+            '总楼层','当前层','朝向','建筑面积','使用面积','产权性质','装修情况','户型','卧室数量',
+            '客厅数量','卫生间数量','厨房数量','阳台数量','单价','总价','挂牌时间','房屋图片','信息来源',
+            '联系人','经纪公司','电话号码','纬度','经度','发布时间','住宅类别','建筑类别','配套设施','交通状况',
+            '楼盘物业类型','楼盘绿化率','楼盘物业费','数据来源','城市','行政区')
+
+import requests, re
+from bs4 import BeautifulSoup, Tag
+#解析58同城网站
+class www58com(ParserBase):
+    htmlwrite = HtmlFile()
+    #mysql = MySqlEx()
+    #fetchpage = 30
+    lou = re.compile(r'(\d+)\D+(\d+)')
+    shi = re.compile(r'(\d+)室|卧|卧室')
+    ting = re.compile(r'(\d+)厅')
+    wei = re.compile(r'(\d+)卫')
+    chu = re.compile(r'(\d+)厨')
+    yangtai = re.compile(r'(\d+)台|阳台')
+    mi = re.compile(r'(\d+.?\d*)㎡')
+    jg = re.compile(r'(\d+)[.\W]*万[.\W]*(\d+)元/㎡')
+    def __init__(self):
+        super(www58com, self).__init__()
+    def default(self, urlbase):
+        LOG.info('58默认方法获得城市列表!')
+        #for i in ('北京', '上海', '广州', '深圳'):
+        #    list.append(UrlBase('url%s' % (i), self.message('getpages')))
+        r = requests.get(urlbase.url)
+        #r.headers['Content-Type']
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('www58com %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        soup = BeautifulSoup(r.content.decode('utf8'), 'html.parser') #lxml
+        citys = soup.find('dl', id='clist').find_all('a')
+        list = []
+        i_order = urlbase.order+'0'
+        t_30 = ('北京','上海','广州','深圳')
+        t_20 = ('南京','成都','杭州','南京','天津','武汉','重庆')
+        t_12 = ('青岛','济南','烟台','苏州','无锡','杭州','宁波','温州','合肥','广州','东莞','佛山','福州','厦门','海口','郑州','武汉','长沙','沈阳','大连','哈尔滨','长春','吉林','昆明','拉萨','石家庄','太原','呼和浩特','西安','乌鲁木齐','兰州','西宁')
+        for i in citys:
+            #if i.text not in ('北京', '上海', '广州', '深圳'): continue
+            if i.text in t_30:
+                i_count = 30
+                while i_count >0:
+                    list.append(UrlBean(i['href']+'pn'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'pn'+str(i_count)+'/')
+                    i_count -= 1
+            elif i.text in t_20:
+                i_count = 20
+                while i_count >0:
+                    list.append(UrlBean(i['href']+'pn'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'pn'+str(i_count)+'/')
+                    i_count -= 1
+            elif i.text in t_12:
+                i_count = 12
+                while i_count >0:
+                    list.append(UrlBean(i['href']+'pn'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'pn'+str(i_count)+'/')
+                    i_count -= 1
+            # else:
+            #     list.append(UrlBean(i['href']+'pn1/', self.message('getpages'), param=1, headers=i.text))
+            #     LOG.info('获得城市%s页面信息%s', i.text, i['href']+'pn'+str(i_count)+'/')
+            # list.append(UrlBean(i['href'], self.message('getpages'), param=1, headers=i.text))
+            # LOG.info('获得城市%s页面信息%s', i.text, i['href'])
+        return list
+
+    #解析城市二手房列表页
+    def getpages(self, urlbase):
+        LOG.info('58getpages获得城市%s二手房列表信息', urlbase.url)
+        r = requests.get(urlbase.url)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('www58com %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        soup = BeautifulSoup(r.content.decode('utf8'), 'html.parser') #lxml
+        items = soup.find('div', id='infolist').find_all('a', attrs={'infoid': True})
+        list = []
+        itemIndex = 1
+        i_order = urlbase.order+'1'
+        for item in items:
+            if '.shtml' in item['href']:
+                list.append(UrlBean(item['href'], self.message('getitem'), key=None if '.shtml' not in item['href'] else item['href'].split('?')[0], param=urlbase.headers, order=i_order))
+                LOG.debug('%s第%d页%d项' % (urlbase.headers, urlbase.param, itemIndex))
+                itemIndex += 1
+        #存在分页信息
+        # if urlbase.param and urlbase.param<=self.fetchpage:
+        #     #获得下一页地址
+        #     nextpage = soup.find('div', id='house-area')
+        #     if nextpage:
+        #         nextpageurl = nextpage.find('a', class_='next')
+        #         if nextpageurl:
+        #             host = '/'.join(r.url.split('/')[:3])
+        #             list.append(UrlBean(host+nextpageurl['href'], self.message('getpages'), param=urlbase.param+1, headers=urlbase.headers))
+        #             LOG.debug('%s第%d页' % (urlbase.headers, urlbase.param))
+        return list;
+
+    #解析详细页面信息
+    def getitem(self, urlbase):
+        LOG.info('58getinfo获得城市%s挂牌详细信息', urlbase.url)
+        try:
+            r = requests.get(urlbase.url)
+        except Exception as e:
+            return  urlbase
+        #存储页面信息
+        self.htmlwrite.save('%s\\%s\\%s' %(self.__class__.__name__, '二手房', urlbase.param), r.url, r.text)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('www58com %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        soup = BeautifulSoup(r.content.decode('utf8'), 'html.parser') #lxml
+        mainPart = soup.find('div', class_='mainTitle')
+        lr = {}
+        try:
+            #获得标题
+            #print(metadatas[0], mainPart.div.text)
+            lr[metadatas[0]] = mainPart.div.text
+        except Exception as e:
+            lr[metadatas[0]] = ''
+
+        try:
+            #获得来源链接
+            #print(metadatas[1], r.url)
+            lr[metadatas[1]] = r.url.split('?')[0]
+        except Exception as e:
+            lr[metadatas[1]] = ''
+
+        infoPart = soup.find('div', class_='sumary')
+        try:
+            weizhi = soup.find('div', class_='su_tit', text='位置：').parent
+            pos = re.sub(r'[\W\r\n]+', '-', weizhi.getText(strip=True)).split('-')
+            #获得小区名称
+            #print(metadatas[2], pos[3])
+            lr[metadatas[2]] = pos[3]
+        except Exception as e:
+            lr[metadatas[2]] = ''
+
+        try:
+            #获得所属区域
+            #print(metadatas[3], pos[2])
+            lr[metadatas[3]] = pos[2]
+        except Exception as e:
+            lr[metadatas[3]] = ''
+
+        try:
+            #获得小区链接
+            #print(metadatas[4], weizhi.find_all('a')[2]['href'])
+            lr[metadatas[4]] = weizhi.find_all('a')[2]['href']
+        except Exception as e:
+            lr[metadatas[4]] = ''
+
+        try:
+            #获得楼栋名称
+            #print(metadatas[5], '暂无')
+            lr[metadatas[5]] = ''
+        except Exception as e:
+            lr[metadatas[5]] = ''
+
+        xq = soup.find('div', class_='xiaoqu_txt')
+        try:
+            #获得地址
+            #print(metadatas[6], xq.find_all('p')[1].text.split("：")[1])
+            lr[metadatas[6]] = xq.find_all('p')[1].text.split("：")[1]
+        except Exception as e:
+            lr[metadatas[6]] = ''
+
+        fydes = soup.find('section', id='fyms')
+        try:
+            #建成年份
+            li = fydes.find(lambda x:re.compile('建造年代：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            #print(metadatas[7], result)
+            lr[metadatas[7]] = result
+        except Exception as e:
+            lr[metadatas[7]] = ''
+
+        try:
+            #总楼层
+            li = fydes.find(lambda x:re.compile('房屋楼层：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            gr = re.search(self.lou, result).groups()
+            #print(metadatas[8], gr[1])
+            lr[metadatas[8]] = gr[1]
+        except Exception as e:
+            lr[metadatas[8]] = ''
+
+        try:
+            #当前层
+            #print(metadatas[9], gr[0])
+            lr[metadatas[9]] = gr[0]
+        except Exception as e:
+            lr[metadatas[9]] = ''
+
+        try:
+            #朝向
+            li = fydes.find(lambda x:re.compile('朝向：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            #print(metadatas[10], result)
+            lr[metadatas[10]] = result
+        except Exception as e:
+            lr[metadatas[10]] = ''
+
+        try:
+            #建筑面积
+            hx = soup.find('div', class_='su_tit', text='户型：').parent
+            #print(metadatas[11], re.search(self.mi, hx.text).group(1))
+            lr[metadatas[11]] = re.search(self.mi, hx.text).group(1)
+        except Exception as e:
+            lr[metadatas[11]] = ''
+
+        try:
+            #使用面积
+            #li = infoPart.find(lambda x:re.compile('户型：').match(x.text) is not None)
+            #print(metadatas[12], lr[metadatas[11]])
+            lr[metadatas[12]] = lr[metadatas[11]]
+        except Exception as e:
+            lr[metadatas[12]] = ''
+
+        try:
+            #产权性质
+            li = fydes.find(lambda x:re.compile('房屋类型：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            #print(metadatas[13], result)
+            lr[metadatas[13]] = result
+        except Exception as e:
+            lr[metadatas[13]] = ''
+
+        try:
+            #装修情况
+            li = fydes.find(lambda x:re.compile('装修程度：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            #print(metadatas[14], result)
+            lr[metadatas[14]] = result
+        except Exception as e:
+            lr[metadatas[14]] = ''
+
+        try:
+            #户型
+            #print(metadatas[15], ''.join(re.sub(r'[\W|\r|\n]+', '-', hx.getText(strip=True)).split('-')[1:4]))
+            lr[metadatas[15]] = ''.join(re.sub(r'[\W\r\n]+', '-', hx.getText(strip=True)).split('-')[1:4])
+        except Exception as e:
+            lr[metadatas[15]] = ''
+
+        try:
+            #卧室数量
+            #print(metadatas[16], re.search(self.shi, hx.text).group(1))
+            lr[metadatas[16]] = re.search(self.shi, hx.text).group(1)
+        except Exception as e:
+            lr[metadatas[16]] = ''
+
+        try:
+            #客厅数量
+            #print(metadatas[17], re.search(self.ting, hx.text).group(1))
+            lr[metadatas[17]] = re.search(self.ting, hx.text).group(1)
+        except Exception as e:
+            lr[metadatas[17]] = ''
+
+        try:
+            #卫生间数量
+            #print(metadatas[18], re.search(self.wei, hx.text).group(1))
+            lr[metadatas[18]] = re.search(self.wei, hx.text).group(1)
+        except Exception as e:
+            lr[metadatas[18]] = ''
+
+        try:
+            #厨房数量
+            #print(metadatas[19], re.search(self.chu, hx.text).group(1))
+            lr[metadatas[19]] = re.search(self.chu, hx.text).group(1)
+        except Exception as e:
+            lr[metadatas[19]] = ''
+
+        try:
+            #阳台数量
+            #print(metadatas[20], re.search(self.yangtai, hx.text).group(1))
+            lr[metadatas[20]] = re.search(self.yangtai, hx.text).group(1)
+        except Exception as e:
+            lr[metadatas[20]] = ''
+
+        try:
+            #单价
+            sj = infoPart.find(lambda x:re.compile('售价：').match(x.text) is not None)
+            jg = re.search(self.jg, sj.parent.text)
+            #print(metadatas[21], jg.group(2))
+            lr[metadatas[21]] = jg.group(2)
+        except Exception as e:
+            lr[metadatas[21]] = ''
+
+        try:
+            #总价
+            #print(metadatas[22], jg.group(1))
+            lr[metadatas[22]] = jg.group(1)
+        except Exception as e:
+            lr[metadatas[22]] = ''
+
+        try:
+            #挂牌时间,动态JS
+            #print(metadatas[23], mainPart.find('li', class_='time').script)
+            #for child in mainPart.find('li', class_='time').children:
+                #print(child)
+            lr[metadatas[23]] = mainPart.find('li', class_='time').text
+        except Exception as e:
+            lr[metadatas[23]] = ''
+
+        try:
+            #房屋图片
+            #print(metadatas[24], soup.find('img', id='img1')['src'])
+            lr[metadatas[24]] = soup.find('img', id='img1')['src']
+        except Exception as e:
+            lr[metadatas[24]] = ''
+
+        #信息来源
+        # try:
+        #     lr[metadatas[25]] = soup.find('div', class_='nav').a.text
+        # except Exception as e:
+        #     lr[metadatas[25]] = ''
+
+        try:
+            #联系人
+            #print(metadatas[26], fydes.find('p', class_='broker_r_p').text)
+            lr[metadatas[26]] = fydes.find('p', class_='broker_r_p').text
+        except Exception as e:
+            lr[metadatas[26]] = ''
+
+        try:
+            #经纪公司
+            jjr = soup.find('div', class_='jjreninfo')
+            if (jjr):
+                #print(metadatas[27], jjr.find('li', class_='jjreninfo_des_com').text)
+                lr[metadatas[27]] = jjr.find('li', class_='jjreninfo_des_com').text
+            else:
+                #print(metadatas[27], fydes.find('span', id='broker_corp').text)
+                lr[metadatas[27]] = jjr.find('span', id='broker_corp').text
+        except Exception as e:
+            lr[metadatas[27]] = ''
+
+        try:
+            #电话号码
+            #print(metadatas[28], fydes.find('span', class_='arial').text)
+            lr[metadatas[28]] = fydes.find('span', class_='arial').text
+        except Exception as e:
+            lr[metadatas[28]] = ''
+
+        lr[metadatas[29]] = ''
+        lr[metadatas[30]] = ''
+        lr[metadatas[31]] = lr[metadatas[23]]
+
+        try:
+            des_table = fydes.find('ul', class_='des_table')
+            #住宅类别
+            li = des_table.find(lambda x:re.compile('住宅类别：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            #print(metadatas[32], result)
+            lr[metadatas[32]] = result
+        except Exception as e:
+            lr[metadatas[32]] = ''
+
+        try:
+            #建筑类别
+            li = des_table.find(lambda x:re.compile('建筑结构：').match(x.text) is not None)
+            result = ''
+            for li in li.next_siblings:
+                if isinstance(li, Tag) and li.name == 'li':
+                    result = li.text
+                    break
+            #print(metadatas[33], result)
+            lr[metadatas[33]] = result
+        except Exception as e:
+            lr[metadatas[33]] = ''
+
+        try:
+            #配套设施,动态JS
+            spans = fydes.find('div', class_='peizhi').find_all('span')
+            #print(metadatas[34], ''.join(span.text for span in spans))
+            lr[metadatas[34]] = ''.join(span.text for span in spans)
+        except Exception as e:
+            lr[metadatas[34]] = ''
+
+        try:
+            #交通状况
+            ps = fydes.find('article', class_='description_con').find_all('p')
+            #print(metadatas[35], ''.join(p.text for p in ps))
+            lr[metadatas[35]] = ''.join(p.text for p in ps)
+        except Exception as e:
+            lr[metadatas[35]] = ''
+
+        lr[metadatas[36]] = ''
+        lr[metadatas[37]] = ''
+        lr[metadatas[38]] = ''
+        lr[metadatas[39]] = lr[metadatas[25]] = '58'
+
+        try:
+            #城市
+            #print(metadatas[40], soup.find('div', class_='nav').a.text.split('58')[0])
+            lr[metadatas[40]] = soup.find('div', class_='nav').a.text.split('58')[0]
+        except Exception as e:
+            lr[metadatas[40]] = ''
+
+        try:
+            #行政区
+            #print(metadatas[41], pos[1])
+            lr[metadatas[41]] = pos[1]
+        except Exception as e:
+            lr[metadatas[41]] = ''
+        #将分析的信息写入数据库
+        self.mysql.save(lr, metadatas)
+
+    #def getinfo(self, urlbase):
+        #LOG.info('58getinfo获得%s挂牌详细信息' , urlbase.url)
+
+
+if __name__ == '__main__':
+    w58 = www58com()
+    #print(w58.default(UrlBase('http://www.58.com/ershoufang/changecity/', 'www58com')))
+    #print(w58.getpages(UrlBean('http://bj.58.com/ershoufang/', 'www58com#getitem', param=10, headers='北京')))
+    #print(w58.getpages(UrlBean('http://bj.58.com/ershoufang/pn2', 'www58com#getitem', param=9, headers='北京')))
+    #print(w58.getitem(UrlBean('http://jump.zhineng.58.com/clk?target=mv7V0A-b5HThmvqfpv--5yndsvOJR-G1IARZNYVZRjFaPyGVEy0q5iubpgPGujYQPHcYn1cOnjNQrHTkPHTOrHTLrjmdn1NknHmh0vQfIjd_pgPYUARhIaubpgPYUHYQPjEOrH01rH9Orjn1FMF-uWdCIZwkrBtfmhC8PH98mvqVsvRz0v6fIyu6Uh0fFMPfIgFWuHYQFMuG0LRGujYkFMuG0LRG0jYQnHn8na3zri3Lnzu-UMwY0jYkFMK60h7V5HDkP10lnauG0vR3IAR8ujdhmyQ1uiukUAmqsHDhpyd-pHYhIy-b5HcLPHbvnHN3PWTOPjDdFhP_pv-b5ycQmyNOmvN3sHnkmhNVPj-Wnid6uAmvsywbPhPbny76nAD3PaukpyEqriu-UMwGujYzPjnQPWmQnWNdPWcQPiu-UMwY0jYkFMKzpyP-5HDzrjEh0hRbpgcqpZwY0jCfsvFJsWN3shPfUiq-0MPCULRhmyOMs1cYn1DvPWDzPHNvnWDdXaO1pZwVUaubpgPkULnqniu1IyFGujYQrHcznjN3nBuW0hR6IARb5HDvPHbzPW9zP1bOPjn3PaukmgF6Uy-b5HDkP10huA-1mvDqnHch0vR_uhP65HDzFhwG0vQf5HDh0vR_uhQf5HDh0HYQsWN1nH0vPHTLPj0YnWE1n1mh0A7MuyOdUHYQFhFGujYQrHmdFMIGUAwWmgFb5HThmgKkuyObpvROIvqzujYkFMF-mv7_UAu_UL0qnau6mMEquh78uvPCmyOxnWTQPHDznj6xngkQ&psid=152432905190050990786535016&entinfo=24316612556215_0', 'www58com#getpages', param='北京')))
+
+#print(www58com.__name__)
+#print(www58com.getcitys.__name__)
+#print(isinstance([], list))
+
+"""
+print(www58com.__name__)
+#print(sys.modules.keys())
+print(sys.modules['__main__'])
+
+import sys
+import os
+
+def get_module():
+
+    def main_module_name():
+        mod = sys.modules['__main__']
+        file = getattr(mod, '__file__', None)
+        return file and os.path.splitext(os.path.basename(file))[0]
+
+    def modname(fvars):
+
+        file, name = fvars.get('__file__'), fvars.get('__name__')
+        if file is None or name is None:
+            return None
+
+        if name == '__main__':
+            name = main_module_name()
+        return name
+
+    module_name = modname(globals())
+    # print globals()
+    # print module_name
+
+get_module()
+"""

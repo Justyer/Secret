@@ -1,0 +1,800 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option selected="selected" value="67108864">东莞市桥头镇</option>
+	<option value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=558&vc=37d950cb' target='_blank'>凯达华庭别墅A型01号</a></td><td><a href='BeianDetail.aspx?id=558&vc=37d950cb' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=558&vc=37d950cb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=565&vc=2ca8fe32' target='_blank'>凯达华庭别墅B型02.06.07.11.13号</a></td><td><a href='BeianDetail.aspx?id=565&vc=2ca8fe32' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=565&vc=2ca8fe32' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=568&vc=52c64f06' target='_blank'>凯达华庭别墅C型03.12号</a></td><td><a href='BeianDetail.aspx?id=568&vc=52c64f06' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=568&vc=52c64f06' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=566&vc=e1027780' target='_blank'>凯达华庭别墅D型05.08.09.10号</a></td><td><a href='BeianDetail.aspx?id=566&vc=e1027780' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=566&vc=e1027780' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=567&vc=36bdeb70' target='_blank'>凯达华庭别墅P型33.35.36.37.38.79.80.81.92.93.95.96.132.133.135号</a></td><td><a href='BeianDetail.aspx?id=567&vc=36bdeb70' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=567&vc=36bdeb70' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=328&vc=733dc44b' target='_blank'>凯达华庭二期B区17号公寓楼</a></td><td><a href='BeianDetail.aspx?id=328&vc=733dc44b' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=328&vc=733dc44b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=329&vc=ab2caf7f' target='_blank'>凯达华庭二期B区18号公寓楼</a></td><td><a href='BeianDetail.aspx?id=329&vc=ab2caf7f' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=329&vc=ab2caf7f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=330&vc=40a0c773' target='_blank'>凯达华庭二期B区19号公寓楼</a></td><td><a href='BeianDetail.aspx?id=330&vc=40a0c773' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=330&vc=40a0c773' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=331&vc=c985a7d6' target='_blank'>凯达华庭二期B区20号公寓楼</a></td><td><a href='BeianDetail.aspx?id=331&vc=c985a7d6' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=331&vc=c985a7d6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=332&vc=d479138a' target='_blank'>凯达华庭二期B区21号商住楼</a></td><td><a href='BeianDetail.aspx?id=332&vc=d479138a' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=332&vc=d479138a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=333&vc=6da6a349' target='_blank'>凯达华庭二期B区32号公寓楼</a></td><td><a href='BeianDetail.aspx?id=333&vc=6da6a349' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=333&vc=6da6a349' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=334&vc=fd2df8ce' target='_blank'>凯达华庭二期B区33号公寓楼</a></td><td><a href='BeianDetail.aspx?id=334&vc=fd2df8ce' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=334&vc=fd2df8ce' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=335&vc=1219bec8' target='_blank'>凯达华庭二期B区35号公寓楼</a></td><td><a href='BeianDetail.aspx?id=335&vc=1219bec8' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=335&vc=1219bec8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=336&vc=92568436' target='_blank'>凯达华庭二期B区36号公寓楼</a></td><td><a href='BeianDetail.aspx?id=336&vc=92568436' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=336&vc=92568436' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=69&vc=aff2d93e' target='_blank'>凯达华庭居住小区二期B区22号商住楼</a></td><td><a href='BeianDetail.aspx?id=69&vc=aff2d93e' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=69&vc=aff2d93e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=76&vc=000aa21a' target='_blank'>凯达华庭居住小区二期B区23号商住楼</a></td><td><a href='BeianDetail.aspx?id=76&vc=000aa21a' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=76&vc=000aa21a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=70&vc=382b5e5a' target='_blank'>凯达华庭居住小区二期B区25号商住楼</a></td><td><a href='BeianDetail.aspx?id=70&vc=382b5e5a' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=70&vc=382b5e5a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=71&vc=d4d32794' target='_blank'>凯达华庭居住小区二期B区26号商住楼</a></td><td><a href='BeianDetail.aspx?id=71&vc=d4d32794' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=71&vc=d4d32794' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=72&vc=8e5e8813' target='_blank'>凯达华庭居住小区二期B区27号商住楼</a></td><td><a href='BeianDetail.aspx?id=72&vc=8e5e8813' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=72&vc=8e5e8813' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=67&vc=9808a1fe' target='_blank'>凯达华庭居住小区二期B区28号商住楼</a></td><td><a href='BeianDetail.aspx?id=67&vc=9808a1fe' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=67&vc=9808a1fe' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=73&vc=867b486f' target='_blank'>凯达华庭居住小区二期B区29号商住楼</a></td><td><a href='BeianDetail.aspx?id=73&vc=867b486f' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=73&vc=867b486f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=74&vc=ebeefdd6' target='_blank'>凯达华庭居住小区二期B区30号商住楼</a></td><td><a href='BeianDetail.aspx?id=74&vc=ebeefdd6' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=74&vc=ebeefdd6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=75&vc=5d318d81' target='_blank'>凯达华庭居住小区二期B区31号商住楼</a></td><td><a href='BeianDetail.aspx?id=75&vc=5d318d81' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=75&vc=5d318d81' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3566&vc=90f29142' target='_blank'>凯达华庭商铺</a></td><td><a href='BeianDetail.aspx?id=3566&vc=90f29142' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=3566&vc=90f29142' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2411&vc=cd34db82' target='_blank'>凯达华庭一期9座</a></td><td><a href='BeianDetail.aspx?id=2411&vc=cd34db82' target='_blank'>桥头镇 碧莲路</a></td><td><a href='BeianDetail.aspx?id=2411&vc=cd34db82' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2557&vc=2084acca' target='_blank'>石竹山水园听涛阁10#楼 </a></td><td><a href='BeianDetail.aspx?id=2557&vc=2084acca' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2557&vc=2084acca' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2558&vc=4db9e672' target='_blank'>石竹山水园听涛阁11#楼</a></td><td><a href='BeianDetail.aspx?id=2558&vc=4db9e672' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2558&vc=4db9e672' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2559&vc=aa097fa5' target='_blank'>石竹山水园听涛阁12#楼</a></td><td><a href='BeianDetail.aspx?id=2559&vc=aa097fa5' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2559&vc=aa097fa5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2560&vc=42f8fefc' target='_blank'>石竹山水园听涛阁13#楼  </a></td><td><a href='BeianDetail.aspx?id=2560&vc=42f8fefc' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2560&vc=42f8fefc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2561&vc=b22ba7f2' target='_blank'>石竹山水园听涛阁14#楼 </a></td><td><a href='BeianDetail.aspx?id=2561&vc=b22ba7f2' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2561&vc=b22ba7f2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2562&vc=e753faaa' target='_blank'>石竹山水园听涛阁15#楼 </a></td><td><a href='BeianDetail.aspx?id=2562&vc=e753faaa' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2562&vc=e753faaa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2556&vc=9708d410' target='_blank'>石竹山水园听涛阁地下室1</a></td><td><a href='BeianDetail.aspx?id=2556&vc=9708d410' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=2556&vc=9708d410' target='_blank'>19</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=672&vc=c6673fce' target='_blank'>石竹山水园椰林飘香1#.2#楼</a></td><td><a href='BeianDetail.aspx?id=672&vc=c6673fce' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=672&vc=c6673fce' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=675&vc=497c5b72' target='_blank'>石竹山水园椰林飘香10#.11#楼</a></td><td><a href='BeianDetail.aspx?id=675&vc=497c5b72' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=675&vc=497c5b72' target='_blank'>13</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1119&vc=c799483a' target='_blank'>石竹山水园椰林飘香17#、18#楼</a></td><td><a href='BeianDetail.aspx?id=1119&vc=c799483a' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=1119&vc=c799483a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=835&vc=2fbe8563' target='_blank'>石竹山水园椰林飘香19#.20#.21#楼</a></td><td><a href='BeianDetail.aspx?id=835&vc=2fbe8563' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=835&vc=2fbe8563' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=676&vc=58ac65f4' target='_blank'>石竹山水园椰林飘香22#.23#楼</a></td><td><a href='BeianDetail.aspx?id=676&vc=58ac65f4' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=676&vc=58ac65f4' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=674&vc=468a1368' target='_blank'>石竹山水园椰林飘香3#楼</a></td><td><a href='BeianDetail.aspx?id=674&vc=468a1368' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=674&vc=468a1368' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=673&vc=5324cc2c' target='_blank'>石竹山水园椰林飘香5#楼</a></td><td><a href='BeianDetail.aspx?id=673&vc=5324cc2c' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=673&vc=5324cc2c' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1118&vc=88297a25' target='_blank'>石竹山水园椰林飘香6#、7#楼 </a></td><td><a href='BeianDetail.aspx?id=1118&vc=88297a25' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=1118&vc=88297a25' target='_blank'>12</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=633&vc=0b359028' target='_blank'>石竹山水园椰林飘香B-1.B-3型别墅</a></td><td><a href='BeianDetail.aspx?id=633&vc=0b359028' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=633&vc=0b359028' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=634&vc=7041aca0' target='_blank'>石竹山水园椰林飘香B-2.B-5型别墅</a></td><td><a href='BeianDetail.aspx?id=634&vc=7041aca0' target='_blank'>桥头镇 邓屋村</a></td><td><a href='BeianDetail.aspx?id=634&vc=7041aca0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9161&vc=c2731d55' target='_blank'>温馨家园1幢</a></td><td><a href='BeianDetail.aspx?id=9161&vc=c2731d55' target='_blank'>桥头镇 邓屋村桥龙路678号</a></td><td><a href='BeianDetail.aspx?id=9161&vc=c2731d55' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8212&vc=2f11aecb' target='_blank'>温馨家园2幢</a></td><td><a href='BeianDetail.aspx?id=8212&vc=2f11aecb' target='_blank'>桥头镇 邓屋村桥龙路678号</a></td><td><a href='BeianDetail.aspx?id=8212&vc=2f11aecb' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8213&vc=d9d6811b' target='_blank'>温馨家园3幢</a></td><td><a href='BeianDetail.aspx?id=8213&vc=d9d6811b' target='_blank'>桥头镇 邓屋村桥龙路678号</a></td><td><a href='BeianDetail.aspx?id=8213&vc=d9d6811b' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11282&vc=61257465' target='_blank'>温馨家园4幢5幢</a></td><td><a href='BeianDetail.aspx?id=11282&vc=61257465' target='_blank'>桥头镇 邓屋村桥龙路678号</a></td><td><a href='BeianDetail.aspx?id=11282&vc=61257465' target='_blank'>509</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8214&vc=2866c918' target='_blank'>温馨家园6幢</a></td><td><a href='BeianDetail.aspx?id=8214&vc=2866c918' target='_blank'>桥头镇 邓屋村桥龙路678号</a></td><td><a href='BeianDetail.aspx?id=8214&vc=2866c918' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10758&vc=9f583e0b' target='_blank'>温馨家园8幢</a></td><td><a href='BeianDetail.aspx?id=10758&vc=9f583e0b' target='_blank'>桥头镇 邓屋村桥龙路678号</a></td><td><a href='BeianDetail.aspx?id=10758&vc=9f583e0b' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1204&vc=bbc0ce27' target='_blank'>石竹山水园椰林飘香12#、13#楼</a></td><td><a href='BeianDetail.aspx?id=1204&vc=bbc0ce27' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=1204&vc=bbc0ce27' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1470&vc=3c1c70d1' target='_blank'>石竹山水园椰林飘香15#、16#楼</a></td><td><a href='BeianDetail.aspx?id=1470&vc=3c1c70d1' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=1470&vc=3c1c70d1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1203&vc=9d584e93' target='_blank'>石竹山水园椰林飘香8#、9#楼 </a></td><td><a href='BeianDetail.aspx?id=1203&vc=9d584e93' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=1203&vc=9d584e93' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=466&vc=bebec312' target='_blank'>石竹山水园椰林飘香A-1.A-3型别墅</a></td><td><a href='BeianDetail.aspx?id=466&vc=bebec312' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=466&vc=bebec312' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=467&vc=c28a08dd' target='_blank'>石竹山水园椰林飘香A-2型别墅</a></td><td><a href='BeianDetail.aspx?id=467&vc=c28a08dd' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=467&vc=c28a08dd' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=464&vc=4dd61893' target='_blank'>石竹山水园椰林飘香AA-1.AA-2.AA-3.AA-5.AA-6型别墅</a></td><td><a href='BeianDetail.aspx?id=464&vc=4dd61893' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=464&vc=4dd61893' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=468&vc=1e37da3a' target='_blank'>石竹山水园椰林飘香AA-7.AA-8.AA-9.AA-10.AA-11型别墅</a></td><td><a href='BeianDetail.aspx?id=468&vc=1e37da3a' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=468&vc=1e37da3a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=473&vc=a0ae0e36' target='_blank'>石竹山水园椰林飘香C型别墅(C1-3.C5-12)</a></td><td><a href='BeianDetail.aspx?id=473&vc=a0ae0e36' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=473&vc=a0ae0e36' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=471&vc=1cf4566b' target='_blank'>石竹山水园椰林飘香D型别墅(D1-3.D5-10)</a></td><td><a href='BeianDetail.aspx?id=471&vc=1cf4566b' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=471&vc=1cf4566b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=472&vc=cbc5192d' target='_blank'>石竹山水园椰林飘香D型别墅(D11-13.D15-23)</a></td><td><a href='BeianDetail.aspx?id=472&vc=cbc5192d' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=472&vc=cbc5192d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1952&vc=fdc789fa' target='_blank'>石竹山水园椰林飘香地下车库</a></td><td><a href='BeianDetail.aspx?id=1952&vc=fdc789fa' target='_blank'>桥头镇 邓屋村桥新路</a></td><td><a href='BeianDetail.aspx?id=1952&vc=fdc789fa' target='_blank'>15</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8187&vc=dcd199e6' target='_blank'>凯逸豪庭16幢住宅</a></td><td><a href='BeianDetail.aspx?id=8187&vc=dcd199e6' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=8187&vc=dcd199e6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8189&vc=b04fe863' target='_blank'>凯逸豪庭17幢住宅</a></td><td><a href='BeianDetail.aspx?id=8189&vc=b04fe863' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=8189&vc=b04fe863' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6765&vc=8c922184' target='_blank'>凯逸豪庭18幢住宅</a></td><td><a href='BeianDetail.aspx?id=6765&vc=8c922184' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=6765&vc=8c922184' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7369&vc=8c99b4f6' target='_blank'>凯逸豪庭19幢住宅</a></td><td><a href='BeianDetail.aspx?id=7369&vc=8c99b4f6' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=7369&vc=8c99b4f6' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6028&vc=e15ce2bd' target='_blank'>凯逸豪庭1幢住宅</a></td><td><a href='BeianDetail.aspx?id=6028&vc=e15ce2bd' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=6028&vc=e15ce2bd' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7514&vc=3bfd8c75' target='_blank'>凯逸豪庭20幢住宅</a></td><td><a href='BeianDetail.aspx?id=7514&vc=3bfd8c75' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=7514&vc=3bfd8c75' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11262&vc=04755ae8' target='_blank'>凯逸豪庭24幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=11262&vc=04755ae8' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=11262&vc=04755ae8' target='_blank'>61</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6029&vc=e583b7e9' target='_blank'>凯逸豪庭2幢住宅</a></td><td><a href='BeianDetail.aspx?id=6029&vc=e583b7e9' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=6029&vc=e583b7e9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6108&vc=bc215770' target='_blank'>凯逸豪庭3幢住宅</a></td><td><a href='BeianDetail.aspx?id=6108&vc=bc215770' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=6108&vc=bc215770' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6109&vc=f2cd7ef6' target='_blank'>凯逸豪庭4幢住宅</a></td><td><a href='BeianDetail.aspx?id=6109&vc=f2cd7ef6' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=6109&vc=f2cd7ef6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10555&vc=bced71be' target='_blank'>凯逸豪庭一期地下室</a></td><td><a href='BeianDetail.aspx?id=10555&vc=bced71be' target='_blank'>桥头镇 桥光大道(岭头段)322号</a></td><td><a href='BeianDetail.aspx?id=10555&vc=bced71be' target='_blank'>207</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8172&vc=697660b6' target='_blank'>凯逸豪庭21幢(商业网点)</a></td><td><a href='BeianDetail.aspx?id=8172&vc=697660b6' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=8172&vc=697660b6' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8173&vc=0d03380f' target='_blank'>凯逸豪庭23幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=8173&vc=0d03380f' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=8173&vc=0d03380f' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8808&vc=1cb166e6' target='_blank'>凯逸豪庭25幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=8808&vc=1cb166e6' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=8808&vc=1cb166e6' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8809&vc=9ddbf688' target='_blank'>凯逸豪庭26幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=8809&vc=9ddbf688' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=8809&vc=9ddbf688' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8810&vc=365ff17a' target='_blank'>凯逸豪庭27幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=8810&vc=365ff17a' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=8810&vc=365ff17a' target='_blank'>10</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8811&vc=9b7283ea' target='_blank'>凯逸豪庭28幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=8811&vc=9b7283ea' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=8811&vc=9b7283ea' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5786&vc=5d408eb0' target='_blank'>凯逸豪庭5、6、7、8、9、10、11、12、13、14、15幢住宅</a></td><td><a href='BeianDetail.aspx?id=5786&vc=5d408eb0' target='_blank'>桥头镇 桥光大道（岭头段）322号</a></td><td><a href='BeianDetail.aspx?id=5786&vc=5d408eb0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6711&vc=9cb982c4' target='_blank'>山水江南花园10号楼</a></td><td><a href='BeianDetail.aspx?id=6711&vc=9cb982c4' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6711&vc=9cb982c4' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6712&vc=a0163841' target='_blank'>山水江南花园11号楼</a></td><td><a href='BeianDetail.aspx?id=6712&vc=a0163841' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6712&vc=a0163841' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6713&vc=388e4fca' target='_blank'>山水江南花园12号楼</a></td><td><a href='BeianDetail.aspx?id=6713&vc=388e4fca' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6713&vc=388e4fca' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6714&vc=deef645d' target='_blank'>山水江南花园13号楼</a></td><td><a href='BeianDetail.aspx?id=6714&vc=deef645d' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6714&vc=deef645d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6715&vc=8bd4ad1e' target='_blank'>山水江南花园14号楼</a></td><td><a href='BeianDetail.aspx?id=6715&vc=8bd4ad1e' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6715&vc=8bd4ad1e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6716&vc=b41e9d37' target='_blank'>山水江南花园15号楼</a></td><td><a href='BeianDetail.aspx?id=6716&vc=b41e9d37' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6716&vc=b41e9d37' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6717&vc=4d3ff9c5' target='_blank'>山水江南花园16号楼</a></td><td><a href='BeianDetail.aspx?id=6717&vc=4d3ff9c5' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6717&vc=4d3ff9c5' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6718&vc=6caed5bb' target='_blank'>山水江南花园17号楼</a></td><td><a href='BeianDetail.aspx?id=6718&vc=6caed5bb' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6718&vc=6caed5bb' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6719&vc=a9419a42' target='_blank'>山水江南花园18号楼</a></td><td><a href='BeianDetail.aspx?id=6719&vc=a9419a42' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6719&vc=a9419a42' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6720&vc=405fa1a9' target='_blank'>山水江南花园19号楼</a></td><td><a href='BeianDetail.aspx?id=6720&vc=405fa1a9' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6720&vc=405fa1a9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6721&vc=506370c9' target='_blank'>山水江南花园20号楼</a></td><td><a href='BeianDetail.aspx?id=6721&vc=506370c9' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6721&vc=506370c9' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6722&vc=0f25ad70' target='_blank'>山水江南花园21号楼</a></td><td><a href='BeianDetail.aspx?id=6722&vc=0f25ad70' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6722&vc=0f25ad70' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6723&vc=07ecce66' target='_blank'>山水江南花园22号楼</a></td><td><a href='BeianDetail.aspx?id=6723&vc=07ecce66' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6723&vc=07ecce66' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6724&vc=e4eac9a1' target='_blank'>山水江南花园23号楼</a></td><td><a href='BeianDetail.aspx?id=6724&vc=e4eac9a1' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6724&vc=e4eac9a1' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6725&vc=d6efc4b3' target='_blank'>山水江南花园24号楼</a></td><td><a href='BeianDetail.aspx?id=6725&vc=d6efc4b3' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6725&vc=d6efc4b3' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6726&vc=b0eb94e8' target='_blank'>山水江南花园25号楼</a></td><td><a href='BeianDetail.aspx?id=6726&vc=b0eb94e8' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6726&vc=b0eb94e8' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6727&vc=2b604193' target='_blank'>山水江南花园26号楼</a></td><td><a href='BeianDetail.aspx?id=6727&vc=2b604193' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6727&vc=2b604193' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6728&vc=9f15f4df' target='_blank'>山水江南花园27号楼</a></td><td><a href='BeianDetail.aspx?id=6728&vc=9f15f4df' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6728&vc=9f15f4df' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6729&vc=5de026aa' target='_blank'>山水江南花园28号楼</a></td><td><a href='BeianDetail.aspx?id=6729&vc=5de026aa' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6729&vc=5de026aa' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6730&vc=9838797d' target='_blank'>山水江南花园29号楼</a></td><td><a href='BeianDetail.aspx?id=6730&vc=9838797d' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6730&vc=9838797d' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6703&vc=209cea1a' target='_blank'>山水江南花园2号楼</a></td><td><a href='BeianDetail.aspx?id=6703&vc=209cea1a' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6703&vc=209cea1a' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6731&vc=4d5fc907' target='_blank'>山水江南花园30号楼</a></td><td><a href='BeianDetail.aspx?id=6731&vc=4d5fc907' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6731&vc=4d5fc907' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6732&vc=40cbf909' target='_blank'>山水江南花园31号楼</a></td><td><a href='BeianDetail.aspx?id=6732&vc=40cbf909' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6732&vc=40cbf909' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6733&vc=1b991a91' target='_blank'>山水江南花园32号楼</a></td><td><a href='BeianDetail.aspx?id=6733&vc=1b991a91' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6733&vc=1b991a91' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6734&vc=dc438400' target='_blank'>山水江南花园33号楼</a></td><td><a href='BeianDetail.aspx?id=6734&vc=dc438400' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6734&vc=dc438400' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6735&vc=06524e28' target='_blank'>山水江南花园34号楼</a></td><td><a href='BeianDetail.aspx?id=6735&vc=06524e28' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6735&vc=06524e28' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6996&vc=65e809b9' target='_blank'>山水江南花园35号楼</a></td><td><a href='BeianDetail.aspx?id=6996&vc=65e809b9' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6996&vc=65e809b9' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6997&vc=d36d203b' target='_blank'>山水江南花园36号楼</a></td><td><a href='BeianDetail.aspx?id=6997&vc=d36d203b' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6997&vc=d36d203b' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6998&vc=cf25d2df' target='_blank'>山水江南花园37号楼</a></td><td><a href='BeianDetail.aspx?id=6998&vc=cf25d2df' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6998&vc=cf25d2df' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6999&vc=c96bca33' target='_blank'>山水江南花园38号楼</a></td><td><a href='BeianDetail.aspx?id=6999&vc=c96bca33' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6999&vc=c96bca33' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7000&vc=9acac043' target='_blank'>山水江南花园39号楼</a></td><td><a href='BeianDetail.aspx?id=7000&vc=9acac043' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7000&vc=9acac043' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6704&vc=e96bad2a' target='_blank'>山水江南花园3号楼</a></td><td><a href='BeianDetail.aspx?id=6704&vc=e96bad2a' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6704&vc=e96bad2a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6736&vc=3cb9de78' target='_blank'>山水江南花园40号楼</a></td><td><a href='BeianDetail.aspx?id=6736&vc=3cb9de78' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6736&vc=3cb9de78' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6737&vc=ee4f5cf2' target='_blank'>山水江南花园41号楼</a></td><td><a href='BeianDetail.aspx?id=6737&vc=ee4f5cf2' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6737&vc=ee4f5cf2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6738&vc=e4f633ff' target='_blank'>山水江南花园42号楼</a></td><td><a href='BeianDetail.aspx?id=6738&vc=e4f633ff' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6738&vc=e4f633ff' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6739&vc=903745ff' target='_blank'>山水江南花园43号楼</a></td><td><a href='BeianDetail.aspx?id=6739&vc=903745ff' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6739&vc=903745ff' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6740&vc=8e541bd4' target='_blank'>山水江南花园44号楼</a></td><td><a href='BeianDetail.aspx?id=6740&vc=8e541bd4' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6740&vc=8e541bd4' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6741&vc=943effbd' target='_blank'>山水江南花园45号楼</a></td><td><a href='BeianDetail.aspx?id=6741&vc=943effbd' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6741&vc=943effbd' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6742&vc=594ac3f0' target='_blank'>山水江南花园46号楼</a></td><td><a href='BeianDetail.aspx?id=6742&vc=594ac3f0' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6742&vc=594ac3f0' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6743&vc=7d914bd0' target='_blank'>山水江南花园47号楼</a></td><td><a href='BeianDetail.aspx?id=6743&vc=7d914bd0' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6743&vc=7d914bd0' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6744&vc=767f3a93' target='_blank'>山水江南花园48号楼</a></td><td><a href='BeianDetail.aspx?id=6744&vc=767f3a93' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6744&vc=767f3a93' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6745&vc=a35174ca' target='_blank'>山水江南花园49号楼</a></td><td><a href='BeianDetail.aspx?id=6745&vc=a35174ca' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6745&vc=a35174ca' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6705&vc=3f02e5f0' target='_blank'>山水江南花园4号楼</a></td><td><a href='BeianDetail.aspx?id=6705&vc=3f02e5f0' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6705&vc=3f02e5f0' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6746&vc=c1628315' target='_blank'>山水江南花园50号楼</a></td><td><a href='BeianDetail.aspx?id=6746&vc=c1628315' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6746&vc=c1628315' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6747&vc=bc55f3cb' target='_blank'>山水江南花园51号楼</a></td><td><a href='BeianDetail.aspx?id=6747&vc=bc55f3cb' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6747&vc=bc55f3cb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6748&vc=f93fb61a' target='_blank'>山水江南花园52号楼</a></td><td><a href='BeianDetail.aspx?id=6748&vc=f93fb61a' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6748&vc=f93fb61a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6749&vc=81308290' target='_blank'>山水江南花园53号楼</a></td><td><a href='BeianDetail.aspx?id=6749&vc=81308290' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6749&vc=81308290' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6750&vc=2d45dcf1' target='_blank'>山水江南花园54号楼</a></td><td><a href='BeianDetail.aspx?id=6750&vc=2d45dcf1' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6750&vc=2d45dcf1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6751&vc=ed9f827d' target='_blank'>山水江南花园55号楼</a></td><td><a href='BeianDetail.aspx?id=6751&vc=ed9f827d' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6751&vc=ed9f827d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6752&vc=369d21be' target='_blank'>山水江南花园56号楼</a></td><td><a href='BeianDetail.aspx?id=6752&vc=369d21be' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6752&vc=369d21be' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7001&vc=5eb25e43' target='_blank'>山水江南花园57号楼</a></td><td><a href='BeianDetail.aspx?id=7001&vc=5eb25e43' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7001&vc=5eb25e43' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7002&vc=ac5058a7' target='_blank'>山水江南花园58号楼</a></td><td><a href='BeianDetail.aspx?id=7002&vc=ac5058a7' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7002&vc=ac5058a7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7003&vc=33df4907' target='_blank'>山水江南花园59号楼</a></td><td><a href='BeianDetail.aspx?id=7003&vc=33df4907' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7003&vc=33df4907' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6706&vc=31be2fad' target='_blank'>山水江南花园5号楼</a></td><td><a href='BeianDetail.aspx?id=6706&vc=31be2fad' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6706&vc=31be2fad' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7004&vc=d82b66b8' target='_blank'>山水江南花园60号楼</a></td><td><a href='BeianDetail.aspx?id=7004&vc=d82b66b8' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7004&vc=d82b66b8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7005&vc=c46865ad' target='_blank'>山水江南花园61号楼</a></td><td><a href='BeianDetail.aspx?id=7005&vc=c46865ad' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7005&vc=c46865ad' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6754&vc=742e1d50' target='_blank'>山水江南花园62号楼</a></td><td><a href='BeianDetail.aspx?id=6754&vc=742e1d50' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6754&vc=742e1d50' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6753&vc=8e434aa3' target='_blank'>山水江南花园63号楼</a></td><td><a href='BeianDetail.aspx?id=6753&vc=8e434aa3' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6753&vc=8e434aa3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7006&vc=b249ab47' target='_blank'>山水江南花园64号楼</a></td><td><a href='BeianDetail.aspx?id=7006&vc=b249ab47' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7006&vc=b249ab47' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6755&vc=2a230f2e' target='_blank'>山水江南花园65号楼</a></td><td><a href='BeianDetail.aspx?id=6755&vc=2a230f2e' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6755&vc=2a230f2e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7007&vc=424fe6ef' target='_blank'>山水江南花园66号楼</a></td><td><a href='BeianDetail.aspx?id=7007&vc=424fe6ef' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7007&vc=424fe6ef' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6756&vc=69aa7d95' target='_blank'>山水江南花园67号楼</a></td><td><a href='BeianDetail.aspx?id=6756&vc=69aa7d95' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6756&vc=69aa7d95' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7008&vc=2fbde30b' target='_blank'>山水江南花园68号楼</a></td><td><a href='BeianDetail.aspx?id=7008&vc=2fbde30b' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=7008&vc=2fbde30b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6757&vc=6d1c841a' target='_blank'>山水江南花园69号楼</a></td><td><a href='BeianDetail.aspx?id=6757&vc=6d1c841a' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6757&vc=6d1c841a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6707&vc=62fa96b1' target='_blank'>山水江南花园6号楼</a></td><td><a href='BeianDetail.aspx?id=6707&vc=62fa96b1' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6707&vc=62fa96b1' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6708&vc=b2a127f8' target='_blank'>山水江南花园7号楼</a></td><td><a href='BeianDetail.aspx?id=6708&vc=b2a127f8' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6708&vc=b2a127f8' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6709&vc=3372b049' target='_blank'>山水江南花园8号楼</a></td><td><a href='BeianDetail.aspx?id=6709&vc=3372b049' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6709&vc=3372b049' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6710&vc=492ff5d6' target='_blank'>山水江南花园9号楼</a></td><td><a href='BeianDetail.aspx?id=6710&vc=492ff5d6' target='_blank'>桥头镇 桥新东二路六号</a></td><td><a href='BeianDetail.aspx?id=6710&vc=492ff5d6' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9746&vc=9992c972' target='_blank'>东鸿花园1号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=9746&vc=9992c972' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=9746&vc=9992c972' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9750&vc=d3762fa1' target='_blank'>东鸿花园2号商铺</a></td><td><a href='BeianDetail.aspx?id=9750&vc=d3762fa1' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=9750&vc=d3762fa1' target='_blank'>26</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9749&vc=107285f8' target='_blank'>东鸿花园3号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=9749&vc=107285f8' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=9749&vc=107285f8' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9751&vc=068cc48c' target='_blank'>东鸿花园4号商铺</a></td><td><a href='BeianDetail.aspx?id=9751&vc=068cc48c' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=9751&vc=068cc48c' target='_blank'>26</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10982&vc=440217f8' target='_blank'>东鸿花园5号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10982&vc=440217f8' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=10982&vc=440217f8' target='_blank'>16</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10983&vc=b0e82544' target='_blank'>东鸿花园6号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10983&vc=b0e82544' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=10983&vc=b0e82544' target='_blank'>16</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10482&vc=083b995c' target='_blank'>东鸿花园7号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=10482&vc=083b995c' target='_blank'>桥头镇 桥新路13号</a></td><td><a href='BeianDetail.aspx?id=10482&vc=083b995c' target='_blank'>57</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5018&vc=a6370f10' target='_blank'>石竹山水园蓝湖半岛12、13栋</a></td><td><a href='BeianDetail.aspx?id=5018&vc=a6370f10' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5018&vc=a6370f10' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5019&vc=27a811f2' target='_blank'>石竹山水园蓝湖半岛14、15栋</a></td><td><a href='BeianDetail.aspx?id=5019&vc=27a811f2' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5019&vc=27a811f2' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5020&vc=fcab439b' target='_blank'>石竹山水园蓝湖半岛16、18栋</a></td><td><a href='BeianDetail.aspx?id=5020&vc=fcab439b' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5020&vc=fcab439b' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5021&vc=8aa2b4dd' target='_blank'>石竹山水园蓝湖半岛17栋</a></td><td><a href='BeianDetail.aspx?id=5021&vc=8aa2b4dd' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5021&vc=8aa2b4dd' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5022&vc=6032a8cb' target='_blank'>石竹山水园蓝湖半岛19、20栋</a></td><td><a href='BeianDetail.aspx?id=5022&vc=6032a8cb' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5022&vc=6032a8cb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5013&vc=78ced4b6' target='_blank'>石竹山水园蓝湖半岛1、2栋</a></td><td><a href='BeianDetail.aspx?id=5013&vc=78ced4b6' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5013&vc=78ced4b6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5023&vc=3a0e629d' target='_blank'>石竹山水园蓝湖半岛21栋</a></td><td><a href='BeianDetail.aspx?id=5023&vc=3a0e629d' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5023&vc=3a0e629d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5024&vc=aa8929a5' target='_blank'>石竹山水园蓝湖半岛22、23、24、25、26、27、28、29栋</a></td><td><a href='BeianDetail.aspx?id=5024&vc=aa8929a5' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5024&vc=aa8929a5' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5025&vc=8e2f03e9' target='_blank'>石竹山水园蓝湖半岛30栋</a></td><td><a href='BeianDetail.aspx?id=5025&vc=8e2f03e9' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5025&vc=8e2f03e9' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5014&vc=50fbaa3b' target='_blank'>石竹山水园蓝湖半岛3栋</a></td><td><a href='BeianDetail.aspx?id=5014&vc=50fbaa3b' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5014&vc=50fbaa3b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5015&vc=4d6ea790' target='_blank'>石竹山水园蓝湖半岛4栋</a></td><td><a href='BeianDetail.aspx?id=5015&vc=4d6ea790' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5015&vc=4d6ea790' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5016&vc=3e2fd7b4' target='_blank'>石竹山水园蓝湖半岛5、6、8、9、10、11栋</a></td><td><a href='BeianDetail.aspx?id=5016&vc=3e2fd7b4' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5016&vc=3e2fd7b4' target='_blank'>9</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5017&vc=5675d378' target='_blank'>石竹山水园蓝湖半岛7栋</a></td><td><a href='BeianDetail.aspx?id=5017&vc=5675d378' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=5017&vc=5675d378' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3686&vc=4aeb0bae' target='_blank'>石竹山水园听涛阁16座</a></td><td><a href='BeianDetail.aspx?id=3686&vc=4aeb0bae' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3686&vc=4aeb0bae' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3687&vc=069a4e96' target='_blank'>石竹山水园听涛阁17座</a></td><td><a href='BeianDetail.aspx?id=3687&vc=069a4e96' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3687&vc=069a4e96' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3184&vc=1ebfbb96' target='_blank'>石竹山水园听涛阁18#楼 </a></td><td><a href='BeianDetail.aspx?id=3184&vc=1ebfbb96' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3184&vc=1ebfbb96' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3187&vc=85e60f2f' target='_blank'>石竹山水园听涛阁19#楼 </a></td><td><a href='BeianDetail.aspx?id=3187&vc=85e60f2f' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3187&vc=85e60f2f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3683&vc=052bcb23' target='_blank'>石竹山水园听涛阁1座</a></td><td><a href='BeianDetail.aspx?id=3683&vc=052bcb23' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3683&vc=052bcb23' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3688&vc=4b6e3084' target='_blank'>石竹山水园听涛阁20座</a></td><td><a href='BeianDetail.aspx?id=3688&vc=4b6e3084' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3688&vc=4b6e3084' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3689&vc=00078af6' target='_blank'>石竹山水园听涛阁21座</a></td><td><a href='BeianDetail.aspx?id=3689&vc=00078af6' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3689&vc=00078af6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3684&vc=eab3456d' target='_blank'>石竹山水园听涛阁2座</a></td><td><a href='BeianDetail.aspx?id=3684&vc=eab3456d' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3684&vc=eab3456d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3685&vc=d2763675' target='_blank'>石竹山水园听涛阁3座</a></td><td><a href='BeianDetail.aspx?id=3685&vc=d2763675' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3685&vc=d2763675' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3188&vc=df853497' target='_blank'>石竹山水园听涛阁4#楼 </a></td><td><a href='BeianDetail.aspx?id=3188&vc=df853497' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3188&vc=df853497' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3189&vc=bec56226' target='_blank'>石竹山水园听涛阁5#楼 </a></td><td><a href='BeianDetail.aspx?id=3189&vc=bec56226' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3189&vc=bec56226' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3191&vc=353e6362' target='_blank'>石竹山水园听涛阁6#楼 </a></td><td><a href='BeianDetail.aspx?id=3191&vc=353e6362' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3191&vc=353e6362' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3193&vc=4e6ecc1f' target='_blank'>石竹山水园听涛阁7#楼 </a></td><td><a href='BeianDetail.aspx?id=3193&vc=4e6ecc1f' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3193&vc=4e6ecc1f' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3194&vc=7874301f' target='_blank'>石竹山水园听涛阁8#楼 </a></td><td><a href='BeianDetail.aspx?id=3194&vc=7874301f' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3194&vc=7874301f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3195&vc=9886bdf4' target='_blank'>石竹山水园听涛阁9#楼 </a></td><td><a href='BeianDetail.aspx?id=3195&vc=9886bdf4' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3195&vc=9886bdf4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3771&vc=6c7f375c' target='_blank'>石竹山水园听涛阁地下室2</a></td><td><a href='BeianDetail.aspx?id=3771&vc=6c7f375c' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=3771&vc=6c7f375c' target='_blank'>37</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11263&vc=94036902' target='_blank'>石竹山水园望景台1、2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11263&vc=94036902' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=11263&vc=94036902' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11264&vc=bb35cb33' target='_blank'>石竹山水园望景台3、4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11264&vc=bb35cb33' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=11264&vc=bb35cb33' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11265&vc=9d33b9c4' target='_blank'>石竹山水园望景台5、6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11265&vc=9d33b9c4' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=11265&vc=9d33b9c4' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7258&vc=10395c0d' target='_blank'>石竹山水园望龙轩10号楼</a></td><td><a href='BeianDetail.aspx?id=7258&vc=10395c0d' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7258&vc=10395c0d' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7049&vc=436ea9d0' target='_blank'>石竹山水园望龙轩1号楼</a></td><td><a href='BeianDetail.aspx?id=7049&vc=436ea9d0' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7049&vc=436ea9d0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7050&vc=47509658' target='_blank'>石竹山水园望龙轩2号楼</a></td><td><a href='BeianDetail.aspx?id=7050&vc=47509658' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7050&vc=47509658' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7152&vc=12fae168' target='_blank'>石竹山水园望龙轩3号楼</a></td><td><a href='BeianDetail.aspx?id=7152&vc=12fae168' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7152&vc=12fae168' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7153&vc=2b1b5d41' target='_blank'>石竹山水园望龙轩4号楼</a></td><td><a href='BeianDetail.aspx?id=7153&vc=2b1b5d41' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7153&vc=2b1b5d41' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7474&vc=22d1e5b4' target='_blank'>石竹山水园望龙轩5号楼</a></td><td><a href='BeianDetail.aspx?id=7474&vc=22d1e5b4' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7474&vc=22d1e5b4' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7484&vc=62f6ca11' target='_blank'>石竹山水园望龙轩6号楼</a></td><td><a href='BeianDetail.aspx?id=7484&vc=62f6ca11' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7484&vc=62f6ca11' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7485&vc=83cfa734' target='_blank'>石竹山水园望龙轩7号楼</a></td><td><a href='BeianDetail.aspx?id=7485&vc=83cfa734' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7485&vc=83cfa734' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7486&vc=7b028a0a' target='_blank'>石竹山水园望龙轩8号楼</a></td><td><a href='BeianDetail.aspx?id=7486&vc=7b028a0a' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7486&vc=7b028a0a' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7257&vc=bd3f6e14' target='_blank'>石竹山水园望龙轩9号楼</a></td><td><a href='BeianDetail.aspx?id=7257&vc=bd3f6e14' target='_blank'>桥头镇 桥新路26号</a></td><td><a href='BeianDetail.aspx?id=7257&vc=bd3f6e14' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11366&vc=00b5eb9e' target='_blank'>帝庭山花园15、20、22、28号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11366&vc=00b5eb9e' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11366&vc=00b5eb9e' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11367&vc=b4d26c81' target='_blank'>帝庭山花园16、29号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11367&vc=b4d26c81' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11367&vc=b4d26c81' target='_blank'>13</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11368&vc=214f9227' target='_blank'>帝庭山花园17、23、32号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11368&vc=214f9227' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11368&vc=214f9227' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11369&vc=ff63a0fb' target='_blank'>帝庭山花园19、27、34号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11369&vc=ff63a0fb' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11369&vc=ff63a0fb' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11362&vc=3f7b9bdf' target='_blank'>帝庭山花园1、2、35号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11362&vc=3f7b9bdf' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11362&vc=3f7b9bdf' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11370&vc=757b952b' target='_blank'>帝庭山花园21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11370&vc=757b952b' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11370&vc=757b952b' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11371&vc=60d09d21' target='_blank'>帝庭山花园24、26、39号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11371&vc=60d09d21' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11371&vc=60d09d21' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11372&vc=f93a44b8' target='_blank'>帝庭山花园25号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11372&vc=f93a44b8' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11372&vc=f93a44b8' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11373&vc=eb7c0335' target='_blank'>帝庭山花园30、40号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11373&vc=eb7c0335' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11373&vc=eb7c0335' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11374&vc=8655de39' target='_blank'>帝庭山花园31、38号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11374&vc=8655de39' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11374&vc=8655de39' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11375&vc=8a38c715' target='_blank'>帝庭山花园33号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11375&vc=8a38c715' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11375&vc=8a38c715' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11376&vc=2618fec4' target='_blank'>帝庭山花园36、37号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11376&vc=2618fec4' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11376&vc=2618fec4' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11363&vc=abb95656' target='_blank'>帝庭山花园3、4、7-14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11363&vc=abb95656' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11363&vc=abb95656' target='_blank'>19</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11364&vc=c2cb3c9e' target='_blank'>帝庭山花园5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11364&vc=c2cb3c9e' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11364&vc=c2cb3c9e' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11365&vc=73519abd' target='_blank'>帝庭山花园6、18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11365&vc=73519abd' target='_blank'>桥头镇 石水口村水口城路333号</a></td><td><a href='BeianDetail.aspx?id=11365&vc=73519abd' target='_blank'>16</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="209" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

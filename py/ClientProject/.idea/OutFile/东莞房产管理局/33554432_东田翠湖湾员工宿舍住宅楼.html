@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=7597&amp;vc=eea96722" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>东莞市常平房地产开发实业公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>东田翠湖湾员工宿舍住宅楼
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>现售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=28245&vc=f9db50d8' target='_blank'>201300087</a></td><td><a href='roomTable.aspx?id=28245&vc=f9db50d8' target='_blank'>东莞市常平镇板石村东田翠湖湾员工宿舍住宅楼</a></td><td><a href='roomTable.aspx?id=28245&vc=f9db50d8' target='_blank'>11</a><td><a href='roomTable.aspx?id=28245&vc=f9db50d8' target='_blank'>25</a><td><a href='roomTable.aspx?id=28245&vc=f9db50d8' target='_blank'>宿舍、车库</a><td><a href='roomTable.aspx?id=28245&vc=f9db50d8' target='_blank'>3530.72</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：东田翠湖湾员工宿舍住宅楼
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市常平镇板石村
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            267
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2013-12-24
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            现售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            201300087
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=7597&vc=eea96722' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            东莞市常平房地产开发实业公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市常平房地产开发实业公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            二级
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市常平镇河东路1号
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523560
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            2000万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            周柱良
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            83334075
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            周柱良
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            83338088
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            zhishengsun@163.com
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=7597&vc=eea96722' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1697&vc=5adc8dd0' target='_blank'>常平翠景湾1栋(1、2、3、5、座) </a></td><td><a href='BeianDetail.aspx?id=1697&vc=5adc8dd0' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=1697&vc=5adc8dd0' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=1697&vc=5adc8dd0' target='_blank'>9</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1699&vc=92a411c5' target='_blank'>常平翠景湾2栋(6、8、9、11座) </a></td><td><a href='BeianDetail.aspx?id=1699&vc=92a411c5' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=1699&vc=92a411c5' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=1699&vc=92a411c5' target='_blank'>11</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1698&vc=f48c0bf8' target='_blank'>常平翠景湾3栋(12、13、15、16座) </a></td><td><a href='BeianDetail.aspx?id=1698&vc=f48c0bf8' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=1698&vc=f48c0bf8' target='_blank'>181</a></td><td><a href='BeianDetail.aspx?id=1698&vc=f48c0bf8' target='_blank'>20</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2960&vc=46fdf336' target='_blank'>常平翠景湾4栋(22座住宅)</a></td><td><a href='BeianDetail.aspx?id=2960&vc=46fdf336' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=2960&vc=46fdf336' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=2960&vc=46fdf336' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2961&vc=21c4aed8' target='_blank'>常平翠景湾4栋(23座住宅)  </a></td><td><a href='BeianDetail.aspx?id=2961&vc=21c4aed8' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=2961&vc=21c4aed8' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=2961&vc=21c4aed8' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2964&vc=45df50b6' target='_blank'>常平翠景湾5栋(18座住宅) </a></td><td><a href='BeianDetail.aspx?id=2964&vc=45df50b6' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=2964&vc=45df50b6' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=2964&vc=45df50b6' target='_blank'>3</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2963&vc=e5aa7508' target='_blank'>常平翠景湾5栋(19座住宅) </a></td><td><a href='BeianDetail.aspx?id=2963&vc=e5aa7508' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=2963&vc=e5aa7508' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=2963&vc=e5aa7508' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2962&vc=164e9458' target='_blank'>常平翠景湾5栋(21座住宅)  </a></td><td><a href='BeianDetail.aspx?id=2962&vc=164e9458' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=2962&vc=164e9458' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=2962&vc=164e9458' target='_blank'>3</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2965&vc=dee026c8' target='_blank'>常平翠景湾地下室</a></td><td><a href='BeianDetail.aspx?id=2965&vc=dee026c8' target='_blank'>东莞市常平镇 沿河东路</a></td><td><a href='BeianDetail.aspx?id=2965&vc=dee026c8' target='_blank'>312</a></td><td><a href='BeianDetail.aspx?id=2965&vc=dee026c8' target='_blank'>255</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7359&vc=890291da' target='_blank'>翠景湾6栋</a></td><td><a href='BeianDetail.aspx?id=7359&vc=890291da' target='_blank'>东莞市常平镇 沿河东一路</a></td><td><a href='BeianDetail.aspx?id=7359&vc=890291da' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=7359&vc=890291da' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=921&vc=9c6477e5' target='_blank'>东田翠湖湾翠湖轩C1、C2幢地下室车库</a></td><td><a href='BeianDetail.aspx?id=921&vc=9c6477e5' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=921&vc=9c6477e5' target='_blank'>45</a></td><td><a href='BeianDetail.aspx?id=921&vc=9c6477e5' target='_blank'>10</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=917&vc=0c02ed00' target='_blank'>东田翠湖湾翠湖轩C1幢住宅楼 </a></td><td><a href='BeianDetail.aspx?id=917&vc=0c02ed00' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=917&vc=0c02ed00' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=917&vc=0c02ed00' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=918&vc=e918ec41' target='_blank'>东田翠湖湾翠湖轩C2幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=918&vc=e918ec41' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=918&vc=e918ec41' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=918&vc=e918ec41' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=922&vc=71b08805' target='_blank'>东田翠湖湾翠湖轩C3、C4幢地下室车库</a></td><td><a href='BeianDetail.aspx?id=922&vc=71b08805' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=922&vc=71b08805' target='_blank'>41</a></td><td><a href='BeianDetail.aspx?id=922&vc=71b08805' target='_blank'>12</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=919&vc=5633cf62' target='_blank'>东田翠湖湾翠湖轩C3幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=919&vc=5633cf62' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=919&vc=5633cf62' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=919&vc=5633cf62' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=920&vc=889fc722' target='_blank'>东田翠湖湾翠湖轩C4幢住宅楼 </a></td><td><a href='BeianDetail.aspx?id=920&vc=889fc722' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=920&vc=889fc722' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=920&vc=889fc722' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=779&vc=4348b9f4' target='_blank'>东田翠湖湾景湖居A1、A2栋地下室及裙楼</a></td><td><a href='BeianDetail.aspx?id=779&vc=4348b9f4' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=779&vc=4348b9f4' target='_blank'>90</a></td><td><a href='BeianDetail.aspx?id=779&vc=4348b9f4' target='_blank'>9</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=777&vc=bca8febe' target='_blank'>东田翠湖湾景湖居A1栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=777&vc=bca8febe' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=777&vc=bca8febe' target='_blank'>28</a></td><td><a href='BeianDetail.aspx?id=777&vc=bca8febe' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=778&vc=e8ccb1e5' target='_blank'>东田翠湖湾景湖居A2栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=778&vc=e8ccb1e5' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=778&vc=e8ccb1e5' target='_blank'>32</a></td><td><a href='BeianDetail.aspx?id=778&vc=e8ccb1e5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1231&vc=eb0688fa' target='_blank'>东田翠湖湾景湖居A3-A5栋地下室车库</a></td><td><a href='BeianDetail.aspx?id=1231&vc=eb0688fa' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1231&vc=eb0688fa' target='_blank'>126</a></td><td><a href='BeianDetail.aspx?id=1231&vc=eb0688fa' target='_blank'>46</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1228&vc=08a712a8' target='_blank'>东田翠湖湾景湖居A3栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=1228&vc=08a712a8' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1228&vc=08a712a8' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1228&vc=08a712a8' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1229&vc=576ea137' target='_blank'>东田翠湖湾景湖居A4栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=1229&vc=576ea137' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1229&vc=576ea137' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1229&vc=576ea137' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1230&vc=77f8d6ec' target='_blank'>东田翠湖湾景湖居A5栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=1230&vc=77f8d6ec' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1230&vc=77f8d6ec' target='_blank'>30</a></td><td><a href='BeianDetail.aspx?id=1230&vc=77f8d6ec' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7865&vc=0f265d93' target='_blank'>东田翠湖湾赏湖居9栋住宅</a></td><td><a href='BeianDetail.aspx?id=7865&vc=0f265d93' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7865&vc=0f265d93' target='_blank'>11</a></td><td><a href='BeianDetail.aspx?id=7865&vc=0f265d93' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1070&vc=04011db2' target='_blank'>东田翠湖湾赏湖居B1、B2、B3栋车位 </a></td><td><a href='BeianDetail.aspx?id=1070&vc=04011db2' target='_blank'>东莞市常平镇 板石村站前路</a></td><td><a href='BeianDetail.aspx?id=1070&vc=04011db2' target='_blank'>182</a></td><td><a href='BeianDetail.aspx?id=1070&vc=04011db2' target='_blank'>131</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1067&vc=76cd20c0' target='_blank'>东田翠湖湾赏湖居B1栋</a></td><td><a href='BeianDetail.aspx?id=1067&vc=76cd20c0' target='_blank'>东莞市常平镇 板石村站前路</a></td><td><a href='BeianDetail.aspx?id=1067&vc=76cd20c0' target='_blank'>34</a></td><td><a href='BeianDetail.aspx?id=1067&vc=76cd20c0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1068&vc=23c51162' target='_blank'>东田翠湖湾赏湖居B2栋 </a></td><td><a href='BeianDetail.aspx?id=1068&vc=23c51162' target='_blank'>东莞市常平镇 板石村站前路</a></td><td><a href='BeianDetail.aspx?id=1068&vc=23c51162' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1068&vc=23c51162' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1069&vc=2d37dd11' target='_blank'>东田翠湖湾赏湖居B3栋</a></td><td><a href='BeianDetail.aspx?id=1069&vc=2d37dd11' target='_blank'>东莞市常平镇 板石村站前路</a></td><td><a href='BeianDetail.aspx?id=1069&vc=2d37dd11' target='_blank'>32</a></td><td><a href='BeianDetail.aspx?id=1069&vc=2d37dd11' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7597&vc=eea96722' target='_blank'>东田翠湖湾员工宿舍住宅楼</a></td><td><a href='BeianDetail.aspx?id=7597&vc=eea96722' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7597&vc=eea96722' target='_blank'>25</a></td><td><a href='BeianDetail.aspx?id=7597&vc=eea96722' target='_blank'>22</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=343&vc=9eb628d7' target='_blank'>东田丽园彩田居10栋(T4型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=343&vc=9eb628d7' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=343&vc=9eb628d7' target='_blank'>58</a></td><td><a href='BeianDetail.aspx?id=343&vc=9eb628d7' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1037&vc=a6077e2e' target='_blank'>东田丽园彩田居11栋(W1型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1037&vc=a6077e2e' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=1037&vc=a6077e2e' target='_blank'>53</a></td><td><a href='BeianDetail.aspx?id=1037&vc=a6077e2e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1159&vc=490a672b' target='_blank'>东田丽园彩田居12栋(W2型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1159&vc=490a672b' target='_blank'>东莞市常平镇 常东路</a></td><td><a href='BeianDetail.aspx?id=1159&vc=490a672b' target='_blank'>53</a></td><td><a href='BeianDetail.aspx?id=1159&vc=490a672b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1492&vc=cd68e29e' target='_blank'>东田丽园彩田居13-15栋(S1-S2型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1492&vc=cd68e29e' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1492&vc=cd68e29e' target='_blank'>96</a></td><td><a href='BeianDetail.aspx?id=1492&vc=cd68e29e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1493&vc=948209e6' target='_blank'>东田丽园彩田居16栋(V1型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1493&vc=948209e6' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1493&vc=948209e6' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=1493&vc=948209e6' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1878&vc=2239f594' target='_blank'>东田丽园彩田居17栋(X1型)、18栋(X2型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1878&vc=2239f594' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=1878&vc=2239f594' target='_blank'>202</a></td><td><a href='BeianDetail.aspx?id=1878&vc=2239f594' target='_blank'>5</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1160&vc=36d68d04' target='_blank'>东田丽园彩田居1栋(R1型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1160&vc=36d68d04' target='_blank'>东莞市常平镇 常东路</a></td><td><a href='BeianDetail.aspx?id=1160&vc=36d68d04' target='_blank'>19</a></td><td><a href='BeianDetail.aspx?id=1160&vc=36d68d04' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1033&vc=c0252074' target='_blank'>东田丽园彩田居2~3栋地下室车库</a></td><td><a href='BeianDetail.aspx?id=1033&vc=c0252074' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=1033&vc=c0252074' target='_blank'>41</a></td><td><a href='BeianDetail.aspx?id=1033&vc=c0252074' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1031&vc=83b95e60' target='_blank'>东田丽园彩田居2栋(R2)型住宅楼</a></td><td><a href='BeianDetail.aspx?id=1031&vc=83b95e60' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=1031&vc=83b95e60' target='_blank'>18</a></td><td><a href='BeianDetail.aspx?id=1031&vc=83b95e60' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1032&vc=dfa570c0' target='_blank'>东田丽园彩田居3栋(R3)型住宅楼</a></td><td><a href='BeianDetail.aspx?id=1032&vc=dfa570c0' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=1032&vc=dfa570c0' target='_blank'>18</a></td><td><a href='BeianDetail.aspx?id=1032&vc=dfa570c0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=338&vc=3215d5cc' target='_blank'>东田丽园彩田居5栋(R4型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=338&vc=3215d5cc' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=338&vc=3215d5cc' target='_blank'>19</a></td><td><a href='BeianDetail.aspx?id=338&vc=3215d5cc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=339&vc=542bc552' target='_blank'>东田丽园彩田居6栋(R5型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=339&vc=542bc552' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=339&vc=542bc552' target='_blank'>19</a></td><td><a href='BeianDetail.aspx?id=339&vc=542bc552' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=340&vc=3ade27ec' target='_blank'>东田丽园彩田居7栋(T1型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=340&vc=3ade27ec' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=340&vc=3ade27ec' target='_blank'>58</a></td><td><a href='BeianDetail.aspx?id=340&vc=3ade27ec' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=341&vc=d3a46fa4' target='_blank'>东田丽园彩田居8栋(T2型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=341&vc=d3a46fa4' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=341&vc=d3a46fa4' target='_blank'>58</a></td><td><a href='BeianDetail.aspx?id=341&vc=d3a46fa4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=342&vc=27245548' target='_blank'>东田丽园彩田居9栋(T3型)住宅楼</a></td><td><a href='BeianDetail.aspx?id=342&vc=27245548' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=342&vc=27245548' target='_blank'>58</a></td><td><a href='BeianDetail.aspx?id=342&vc=27245548' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=356&vc=1c9bb134' target='_blank'>东田丽园彩田居地下车库</a></td><td><a href='BeianDetail.aspx?id=356&vc=1c9bb134' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=356&vc=1c9bb134' target='_blank'>284</a></td><td><a href='BeianDetail.aspx?id=356&vc=1c9bb134' target='_blank'>53</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5542&vc=df6b0cae' target='_blank'>东田丽园富田居(15-17)栋住宅楼地下室</a></td><td><a href='BeianDetail.aspx?id=5542&vc=df6b0cae' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=5542&vc=df6b0cae' target='_blank'>206</a></td><td><a href='BeianDetail.aspx?id=5542&vc=df6b0cae' target='_blank'>67</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6649&vc=cd55cc28' target='_blank'>东田丽园富田居(18-19)栋住宅楼地下室</a></td><td><a href='BeianDetail.aspx?id=6649&vc=cd55cc28' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=6649&vc=cd55cc28' target='_blank'>276</a></td><td><a href='BeianDetail.aspx?id=6649&vc=cd55cc28' target='_blank'>157</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7383&vc=aa6f3715' target='_blank'>东田丽园富田居(20-21)栋住宅楼地下室车库</a></td><td><a href='BeianDetail.aspx?id=7383&vc=aa6f3715' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7383&vc=aa6f3715' target='_blank'>135</a></td><td><a href='BeianDetail.aspx?id=7383&vc=aa6f3715' target='_blank'>38</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6413&vc=e6c86a04' target='_blank'>东田丽园富田居10栋</a></td><td><a href='BeianDetail.aspx?id=6413&vc=e6c86a04' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=6413&vc=e6c86a04' target='_blank'>108</a></td><td><a href='BeianDetail.aspx?id=6413&vc=e6c86a04' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4774&vc=8d0ec6f7' target='_blank'>东田丽园富田居11-13幢地下室</a></td><td><a href='BeianDetail.aspx?id=4774&vc=8d0ec6f7' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4774&vc=8d0ec6f7' target='_blank'>146</a></td><td><a href='BeianDetail.aspx?id=4774&vc=8d0ec6f7' target='_blank'>22</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3169&vc=6c4baca2' target='_blank'>东田丽园富田居11幢 </a></td><td><a href='BeianDetail.aspx?id=3169&vc=6c4baca2' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=3169&vc=6c4baca2' target='_blank'>154</a></td><td><a href='BeianDetail.aspx?id=3169&vc=6c4baca2' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3170&vc=bc2ddf83' target='_blank'>东田丽园富田居12幢 </a></td><td><a href='BeianDetail.aspx?id=3170&vc=bc2ddf83' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=3170&vc=bc2ddf83' target='_blank'>155</a></td><td><a href='BeianDetail.aspx?id=3170&vc=bc2ddf83' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3168&vc=0df7a3ef' target='_blank'>东田丽园富田居13幢 </a></td><td><a href='BeianDetail.aspx?id=3168&vc=0df7a3ef' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=3168&vc=0df7a3ef' target='_blank'>154</a></td><td><a href='BeianDetail.aspx?id=3168&vc=0df7a3ef' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4076&vc=d593ed13' target='_blank'>东田丽园富田居15栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=4076&vc=d593ed13' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4076&vc=d593ed13' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=4076&vc=d593ed13' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4077&vc=1b29e351' target='_blank'>东田丽园富田居16栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=4077&vc=1b29e351' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4077&vc=1b29e351' target='_blank'>95</a></td><td><a href='BeianDetail.aspx?id=4077&vc=1b29e351' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4078&vc=2a127555' target='_blank'>东田丽园富田居17栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=4078&vc=2a127555' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4078&vc=2a127555' target='_blank'>87</a></td><td><a href='BeianDetail.aspx?id=4078&vc=2a127555' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4463&vc=0dba1e75' target='_blank'>东田丽园富田居18栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=4463&vc=0dba1e75' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4463&vc=0dba1e75' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=4463&vc=0dba1e75' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4464&vc=0e4d8930' target='_blank'>东田丽园富田居19栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=4464&vc=0e4d8930' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4464&vc=0e4d8930' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=4464&vc=0e4d8930' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7355&vc=8e59ba83' target='_blank'>东田丽园富田居1栋</a></td><td><a href='BeianDetail.aspx?id=7355&vc=8e59ba83' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7355&vc=8e59ba83' target='_blank'>18</a></td><td><a href='BeianDetail.aspx?id=7355&vc=8e59ba83' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5083&vc=3bbac4b9' target='_blank'>东田丽园富田居20栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=5083&vc=3bbac4b9' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=5083&vc=3bbac4b9' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=5083&vc=3bbac4b9' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5084&vc=f06fd55a' target='_blank'>东田丽园富田居21栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=5084&vc=f06fd55a' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=5084&vc=f06fd55a' target='_blank'>139</a></td><td><a href='BeianDetail.aspx?id=5084&vc=f06fd55a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2581&vc=49819574' target='_blank'>东田丽园富田居22幢(S13型)住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2581&vc=49819574' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=2581&vc=49819574' target='_blank'>108</a></td><td><a href='BeianDetail.aspx?id=2581&vc=49819574' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4163&vc=3cfc78a7' target='_blank'>东田丽园富田居22幢地下室</a></td><td><a href='BeianDetail.aspx?id=4163&vc=3cfc78a7' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=4163&vc=3cfc78a7' target='_blank'>82</a></td><td><a href='BeianDetail.aspx?id=4163&vc=3cfc78a7' target='_blank'>13</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7033&vc=c03248a7' target='_blank'>东田丽园富田居23栋</a></td><td><a href='BeianDetail.aspx?id=7033&vc=c03248a7' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7033&vc=c03248a7' target='_blank'>57</a></td><td><a href='BeianDetail.aspx?id=7033&vc=c03248a7' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7356&vc=4705d3d0' target='_blank'>东田丽园富田居2栋</a></td><td><a href='BeianDetail.aspx?id=7356&vc=4705d3d0' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7356&vc=4705d3d0' target='_blank'>22</a></td><td><a href='BeianDetail.aspx?id=7356&vc=4705d3d0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2433&vc=d631c292' target='_blank'>东田丽园富田居7幢 </a></td><td><a href='BeianDetail.aspx?id=2433&vc=d631c292' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=2433&vc=d631c292' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=2433&vc=d631c292' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2434&vc=622bc18b' target='_blank'>东田丽园富田居8幢 </a></td><td><a href='BeianDetail.aspx?id=2434&vc=622bc18b' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=2434&vc=622bc18b' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=2434&vc=622bc18b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6412&vc=ad90ecfb' target='_blank'>东田丽园富田居9栋</a></td><td><a href='BeianDetail.aspx?id=6412&vc=ad90ecfb' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=6412&vc=ad90ecfb' target='_blank'>109</a></td><td><a href='BeianDetail.aspx?id=6412&vc=ad90ecfb' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=45&vc=1ec92b1b' target='_blank'>东田丽园丽峰阁C(L2)座</a></td><td><a href='BeianDetail.aspx?id=45&vc=1ec92b1b' target='_blank'>东莞市常平镇 常东路东田丽园</a></td><td><a href='BeianDetail.aspx?id=45&vc=1ec92b1b' target='_blank'>72</a></td><td><a href='BeianDetail.aspx?id=45&vc=1ec92b1b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=46&vc=468f8072' target='_blank'>东田丽园丽峰阁D(L1)座</a></td><td><a href='BeianDetail.aspx?id=46&vc=468f8072' target='_blank'>东莞市常平镇 常东路东田丽园</a></td><td><a href='BeianDetail.aspx?id=46&vc=468f8072' target='_blank'>72</a></td><td><a href='BeianDetail.aspx?id=46&vc=468f8072' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=47&vc=1d4710aa' target='_blank'>东田丽园丽峰阁车库</a></td><td><a href='BeianDetail.aspx?id=47&vc=1d4710aa' target='_blank'>东莞市常平镇 常东路东田丽园</a></td><td><a href='BeianDetail.aspx?id=47&vc=1d4710aa' target='_blank'>240</a></td><td><a href='BeianDetail.aspx?id=47&vc=1d4710aa' target='_blank'>38</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1210&vc=d4ab4890' target='_blank'>东田丽园丽明居1-6栋(Z1-Z6型)别墅</a></td><td><a href='BeianDetail.aspx?id=1210&vc=d4ab4890' target='_blank'>东莞市常平镇 板石村常东路</a></td><td><a href='BeianDetail.aspx?id=1210&vc=d4ab4890' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=1210&vc=d4ab4890' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5916&vc=361ce6b1' target='_blank'>东田丽园领豪坊</a></td><td><a href='BeianDetail.aspx?id=5916&vc=361ce6b1' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=5916&vc=361ce6b1' target='_blank'>244</a></td><td><a href='BeianDetail.aspx?id=5916&vc=361ce6b1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7851&vc=3d55dd29' target='_blank'>东田丽园职工宿舍</a></td><td><a href='BeianDetail.aspx?id=7851&vc=3d55dd29' target='_blank'>东莞市常平镇 板石村</a></td><td><a href='BeianDetail.aspx?id=7851&vc=3d55dd29' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=7851&vc=3d55dd29' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8961&vc=b49ecfa1' target='_blank'>东田山畔华庭10栋</a></td><td><a href='BeianDetail.aspx?id=8961&vc=b49ecfa1' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=8961&vc=b49ecfa1' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=8961&vc=b49ecfa1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11271&vc=beb5670d' target='_blank'>东田山畔华庭11、12栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=11271&vc=beb5670d' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=11271&vc=beb5670d' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=11271&vc=beb5670d' target='_blank'>22</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6471&vc=1e162268' target='_blank'>东田山畔华庭1、2栋</a></td><td><a href='BeianDetail.aspx?id=6471&vc=1e162268' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=6471&vc=1e162268' target='_blank'>129</a></td><td><a href='BeianDetail.aspx?id=6471&vc=1e162268' target='_blank'>9</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9899&vc=7379b3dd' target='_blank'>东田山畔华庭1、2栋地下室</a></td><td><a href='BeianDetail.aspx?id=9899&vc=7379b3dd' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=9899&vc=7379b3dd' target='_blank'>85</a></td><td><a href='BeianDetail.aspx?id=9899&vc=7379b3dd' target='_blank'>81</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7052&vc=f876ba07' target='_blank'>东田山畔华庭3栋</a></td><td><a href='BeianDetail.aspx?id=7052&vc=f876ba07' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=7052&vc=f876ba07' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=7052&vc=f876ba07' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9901&vc=2f104751' target='_blank'>东田山畔华庭3栋地下室</a></td><td><a href='BeianDetail.aspx?id=9901&vc=2f104751' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=9901&vc=2f104751' target='_blank'>51</a></td><td><a href='BeianDetail.aspx?id=9901&vc=2f104751' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7204&vc=50c39e5a' target='_blank'>东田山畔华庭4栋</a></td><td><a href='BeianDetail.aspx?id=7204&vc=50c39e5a' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=7204&vc=50c39e5a' target='_blank'>129</a></td><td><a href='BeianDetail.aspx?id=7204&vc=50c39e5a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9902&vc=e0f32abf' target='_blank'>东田山畔华庭4栋地下室</a></td><td><a href='BeianDetail.aspx?id=9902&vc=e0f32abf' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=9902&vc=e0f32abf' target='_blank'>26</a></td><td><a href='BeianDetail.aspx?id=9902&vc=e0f32abf' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7205&vc=8582e3db' target='_blank'>东田山畔华庭5栋</a></td><td><a href='BeianDetail.aspx?id=7205&vc=8582e3db' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=7205&vc=8582e3db' target='_blank'>106</a></td><td><a href='BeianDetail.aspx?id=7205&vc=8582e3db' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8105&vc=deab3a01' target='_blank'>东田山畔华庭6栋</a></td><td><a href='BeianDetail.aspx?id=8105&vc=deab3a01' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=8105&vc=deab3a01' target='_blank'>45</a></td><td><a href='BeianDetail.aspx?id=8105&vc=deab3a01' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8106&vc=5df30f08' target='_blank'>东田山畔华庭7栋</a></td><td><a href='BeianDetail.aspx?id=8106&vc=5df30f08' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=8106&vc=5df30f08' target='_blank'>45</a></td><td><a href='BeianDetail.aspx?id=8106&vc=5df30f08' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8959&vc=4def06ca' target='_blank'>东田山畔华庭8栋</a></td><td><a href='BeianDetail.aspx?id=8959&vc=4def06ca' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=8959&vc=4def06ca' target='_blank'>137</a></td><td><a href='BeianDetail.aspx?id=8959&vc=4def06ca' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8960&vc=2901835e' target='_blank'>东田山畔华庭9栋</a></td><td><a href='BeianDetail.aspx?id=8960&vc=2901835e' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=8960&vc=2901835e' target='_blank'>137</a></td><td><a href='BeianDetail.aspx?id=8960&vc=2901835e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=414&vc=e0431478' target='_blank'>东逸高尔夫花园G栋(G1、G2)</a></td><td><a href='BeianDetail.aspx?id=414&vc=e0431478' target='_blank'>东莞市常平镇 木伦村口岸大道</a></td><td><a href='BeianDetail.aspx?id=414&vc=e0431478' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=414&vc=e0431478' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1276&vc=6efbea18' target='_blank'>东逸高尔夫花园H栋(H1、H2) </a></td><td><a href='BeianDetail.aspx?id=1276&vc=6efbea18' target='_blank'>东莞市常平镇 木伦村口岸大道</a></td><td><a href='BeianDetail.aspx?id=1276&vc=6efbea18' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=1276&vc=6efbea18' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=415&vc=4b4c5258' target='_blank'>东逸高尔夫花园J栋</a></td><td><a href='BeianDetail.aspx?id=415&vc=4b4c5258' target='_blank'>东莞市常平镇 木伦村口岸大道</a></td><td><a href='BeianDetail.aspx?id=415&vc=4b4c5258' target='_blank'>171</a></td><td><a href='BeianDetail.aspx?id=415&vc=4b4c5258' target='_blank'>11</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=831&vc=72909de0' target='_blank'>丰华大厦</a></td><td><a href='BeianDetail.aspx?id=831&vc=72909de0' target='_blank'>东莞市常平镇 朗贝村</a></td><td><a href='BeianDetail.aspx?id=831&vc=72909de0' target='_blank'>341</a></td><td><a href='BeianDetail.aspx?id=831&vc=72909de0' target='_blank'>16</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1803&vc=17eff27c' target='_blank'>豪苑广场三期(豪苑华庭)C、D座商住楼裙楼</a></td><td><a href='BeianDetail.aspx?id=1803&vc=17eff27c' target='_blank'>东莞市常平镇 常朗大道</a></td><td><a href='BeianDetail.aspx?id=1803&vc=17eff27c' target='_blank'>28</a></td><td><a href='BeianDetail.aspx?id=1803&vc=17eff27c' target='_blank'>24</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1804&vc=a3f896ee' target='_blank'>豪苑广场三期(豪苑华庭)C座商住楼</a></td><td><a href='BeianDetail.aspx?id=1804&vc=a3f896ee' target='_blank'>东莞市常平镇 常朗大道</a></td><td><a href='BeianDetail.aspx?id=1804&vc=a3f896ee' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=1804&vc=a3f896ee' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1805&vc=d4e148e4' target='_blank'>豪苑广场三期(豪苑华庭)D座商住楼 </a></td><td><a href='BeianDetail.aspx?id=1805&vc=d4e148e4' target='_blank'>东莞市常平镇 常朗大道</a></td><td><a href='BeianDetail.aspx?id=1805&vc=d4e148e4' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=1805&vc=d4e148e4' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6320&vc=b7fdbf26' target='_blank'>金碧花园1幢</a></td><td><a href='BeianDetail.aspx?id=6320&vc=b7fdbf26' target='_blank'>东莞市常平镇 常黄公路104号</a></td><td><a href='BeianDetail.aspx?id=6320&vc=b7fdbf26' target='_blank'>222</a></td><td><a href='BeianDetail.aspx?id=6320&vc=b7fdbf26' target='_blank'>4</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11042&vc=384fe930' target='_blank'>金碧花园2幢</a></td><td><a href='BeianDetail.aspx?id=11042&vc=384fe930' target='_blank'>东莞市常平镇 常黄公路104号</a></td><td><a href='BeianDetail.aspx?id=11042&vc=384fe930' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=11042&vc=384fe930' target='_blank'>7</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11528&vc=bee3e031' target='_blank'>金碧花园3幢</a></td><td><a href='BeianDetail.aspx?id=11528&vc=bee3e031' target='_blank'>东莞市常平镇 常黄公路104号</a></td><td><a href='BeianDetail.aspx?id=11528&vc=bee3e031' target='_blank'>206</a></td><td><a href='BeianDetail.aspx?id=11528&vc=bee3e031' target='_blank'>129</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11295&vc=c1e3b2ee' target='_blank'>金碧花园4幢</a></td><td><a href='BeianDetail.aspx?id=11295&vc=c1e3b2ee' target='_blank'>东莞市常平镇 常黄公路104号</a></td><td><a href='BeianDetail.aspx?id=11295&vc=c1e3b2ee' target='_blank'>206</a></td><td><a href='BeianDetail.aspx?id=11295&vc=c1e3b2ee' target='_blank'>25</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10015&vc=e6a66011' target='_blank'>金碧花园5幢</a></td><td><a href='BeianDetail.aspx?id=10015&vc=e6a66011' target='_blank'>东莞市常平镇 常黄公路104号</a></td><td><a href='BeianDetail.aspx?id=10015&vc=e6a66011' target='_blank'>52</a></td><td><a href='BeianDetail.aspx?id=10015&vc=e6a66011' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10025&vc=20d87492' target='_blank'>金碧花园6幢</a></td><td><a href='BeianDetail.aspx?id=10025&vc=20d87492' target='_blank'>东莞市常平镇 常黄公路104号</a></td><td><a href='BeianDetail.aspx?id=10025&vc=20d87492' target='_blank'>55</a></td><td><a href='BeianDetail.aspx?id=10025&vc=20d87492' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1245&vc=8c5fc944' target='_blank'>金凯水都(一期)地下室</a></td><td><a href='BeianDetail.aspx?id=1245&vc=8c5fc944' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1245&vc=8c5fc944' target='_blank'>392</a></td><td><a href='BeianDetail.aspx?id=1245&vc=8c5fc944' target='_blank'>139</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=298&vc=6038d04e' target='_blank'>金凯水都(一期)凯汇轩1号</a></td><td><a href='BeianDetail.aspx?id=298&vc=6038d04e' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=298&vc=6038d04e' target='_blank'>49</a></td><td><a href='BeianDetail.aspx?id=298&vc=6038d04e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=289&vc=2be6a20f' target='_blank'>金凯水都(一期)凯汇轩2号</a></td><td><a href='BeianDetail.aspx?id=289&vc=2be6a20f' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=289&vc=2be6a20f' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=289&vc=2be6a20f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=297&vc=d9026494' target='_blank'>金凯水都(一期)凯汇轩3号</a></td><td><a href='BeianDetail.aspx?id=297&vc=d9026494' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=297&vc=d9026494' target='_blank'>61</a></td><td><a href='BeianDetail.aspx?id=297&vc=d9026494' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=546&vc=72b58891' target='_blank'>金凯水都(一期)凯汇轩5号</a></td><td><a href='BeianDetail.aspx?id=546&vc=72b58891' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=546&vc=72b58891' target='_blank'>65</a></td><td><a href='BeianDetail.aspx?id=546&vc=72b58891' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=547&vc=5b08b56b' target='_blank'>金凯水都(一期)凯汇轩6号</a></td><td><a href='BeianDetail.aspx?id=547&vc=5b08b56b' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=547&vc=5b08b56b' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=547&vc=5b08b56b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=548&vc=3aca6021' target='_blank'>金凯水都(一期)凯汇轩7号</a></td><td><a href='BeianDetail.aspx?id=548&vc=3aca6021' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=548&vc=3aca6021' target='_blank'>51</a></td><td><a href='BeianDetail.aspx?id=548&vc=3aca6021' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2317&vc=8e05923b' target='_blank'>金凯水都(一期)凯茵·水岸1号</a></td><td><a href='BeianDetail.aspx?id=2317&vc=8e05923b' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=2317&vc=8e05923b' target='_blank'>40</a></td><td><a href='BeianDetail.aspx?id=2317&vc=8e05923b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2318&vc=9ad1000d' target='_blank'>金凯水都(一期)凯茵·水岸2-11号</a></td><td><a href='BeianDetail.aspx?id=2318&vc=9ad1000d' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=2318&vc=9ad1000d' target='_blank'>27</a></td><td><a href='BeianDetail.aspx?id=2318&vc=9ad1000d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1514&vc=25605a5d' target='_blank'>金凯水都(一期)凯源轩1号</a></td><td><a href='BeianDetail.aspx?id=1514&vc=25605a5d' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1514&vc=25605a5d' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=1514&vc=25605a5d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1515&vc=f2927584' target='_blank'>金凯水都(一期)凯源轩2号</a></td><td><a href='BeianDetail.aspx?id=1515&vc=f2927584' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1515&vc=f2927584' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1515&vc=f2927584' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1516&vc=6a9f2196' target='_blank'>金凯水都(一期)凯源轩3号 </a></td><td><a href='BeianDetail.aspx?id=1516&vc=6a9f2196' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1516&vc=6a9f2196' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=1516&vc=6a9f2196' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1517&vc=fc5bf867' target='_blank'>金凯水都(一期)凯源轩5号 </a></td><td><a href='BeianDetail.aspx?id=1517&vc=fc5bf867' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1517&vc=fc5bf867' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=1517&vc=fc5bf867' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1518&vc=dd50ec0c' target='_blank'>金凯水都(一期)凯源轩6号</a></td><td><a href='BeianDetail.aspx?id=1518&vc=dd50ec0c' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1518&vc=dd50ec0c' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=1518&vc=dd50ec0c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1519&vc=7f59a028' target='_blank'>金凯水都(一期)凯源轩7号</a></td><td><a href='BeianDetail.aspx?id=1519&vc=7f59a028' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=1519&vc=7f59a028' target='_blank'>37</a></td><td><a href='BeianDetail.aspx?id=1519&vc=7f59a028' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8556&vc=75e0a999' target='_blank'>金凯水都101栋</a></td><td><a href='BeianDetail.aspx?id=8556&vc=75e0a999' target='_blank'>东莞市常平镇 江厦村</a></td><td><a href='BeianDetail.aspx?id=8556&vc=75e0a999' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=8556&vc=75e0a999' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8854&vc=28d73e5d' target='_blank'>金凯水都102栋</a></td><td><a href='BeianDetail.aspx?id=8854&vc=28d73e5d' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=8854&vc=28d73e5d' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=8854&vc=28d73e5d' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9321&vc=b11f566d' target='_blank'>金凯水都103栋</a></td><td><a href='BeianDetail.aspx?id=9321&vc=b11f566d' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=9321&vc=b11f566d' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=9321&vc=b11f566d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8860&vc=abb542ca' target='_blank'>金凯水都104栋</a></td><td><a href='BeianDetail.aspx?id=8860&vc=abb542ca' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=8860&vc=abb542ca' target='_blank'>51</a></td><td><a href='BeianDetail.aspx?id=8860&vc=abb542ca' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8861&vc=4580c830' target='_blank'>金凯水都105栋</a></td><td><a href='BeianDetail.aspx?id=8861&vc=4580c830' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=8861&vc=4580c830' target='_blank'>34</a></td><td><a href='BeianDetail.aspx?id=8861&vc=4580c830' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8853&vc=a91983d4' target='_blank'>金凯水都106栋</a></td><td><a href='BeianDetail.aspx?id=8853&vc=a91983d4' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=8853&vc=a91983d4' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=8853&vc=a91983d4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8855&vc=62b77b4d' target='_blank'>金凯水都107栋</a></td><td><a href='BeianDetail.aspx?id=8855&vc=62b77b4d' target='_blank'>东莞市常平镇 横江厦村</a></td><td><a href='BeianDetail.aspx?id=8855&vc=62b77b4d' target='_blank'>36</a></td><td><a href='BeianDetail.aspx?id=8855&vc=62b77b4d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8555&vc=872c8944' target='_blank'>金凯水都99-100栋</a></td><td><a href='BeianDetail.aspx?id=8555&vc=872c8944' target='_blank'>东莞市常平镇 江厦村</a></td><td><a href='BeianDetail.aspx?id=8555&vc=872c8944' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8555&vc=872c8944' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6487&vc=0badd0be' target='_blank'>金田花园18栋</a></td><td><a href='BeianDetail.aspx?id=6487&vc=0badd0be' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=6487&vc=0badd0be' target='_blank'>104</a></td><td><a href='BeianDetail.aspx?id=6487&vc=0badd0be' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7060&vc=1840985e' target='_blank'>金田花园19栋</a></td><td><a href='BeianDetail.aspx?id=7060&vc=1840985e' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=7060&vc=1840985e' target='_blank'>227</a></td><td><a href='BeianDetail.aspx?id=7060&vc=1840985e' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11183&vc=d4cbf541' target='_blank'>金田花园22栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=11183&vc=d4cbf541' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=11183&vc=d4cbf541' target='_blank'>286</a></td><td><a href='BeianDetail.aspx?id=11183&vc=d4cbf541' target='_blank'>30</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=7061&vc=2842d05b' target='_blank'>金田花园25、26、27、28、29、30、31、32、33栋</a></td><td><a href='BeianDetail.aspx?id=7061&vc=2842d05b' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=7061&vc=2842d05b' target='_blank'>22</a></td><td><a href='BeianDetail.aspx?id=7061&vc=2842d05b' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1109&vc=a03ebb3f' target='_blank'>金田花园金湖苑1#2#楼</a></td><td><a href='BeianDetail.aspx?id=1109&vc=a03ebb3f' target='_blank'>东莞市常平镇 司马村东深公路旁</a></td><td><a href='BeianDetail.aspx?id=1109&vc=a03ebb3f' target='_blank'>72</a></td><td><a href='BeianDetail.aspx?id=1109&vc=a03ebb3f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2969&vc=f8b0a348' target='_blank'>金田花园金湖苑1#、2#楼地下室</a></td><td><a href='BeianDetail.aspx?id=2969&vc=f8b0a348' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2969&vc=f8b0a348' target='_blank'>83</a></td><td><a href='BeianDetail.aspx?id=2969&vc=f8b0a348' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3060&vc=4ae254db' target='_blank'>金田花园金湖苑12#13#楼 </a></td><td><a href='BeianDetail.aspx?id=3060&vc=4ae254db' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=3060&vc=4ae254db' target='_blank'>88</a></td><td><a href='BeianDetail.aspx?id=3060&vc=4ae254db' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2973&vc=8743fef5' target='_blank'>金田花园金湖苑12#、13#楼地下室</a></td><td><a href='BeianDetail.aspx?id=2973&vc=8743fef5' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2973&vc=8743fef5' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=2973&vc=8743fef5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2110&vc=7898333e' target='_blank'>金田花园金湖苑15#16#楼</a></td><td><a href='BeianDetail.aspx?id=2110&vc=7898333e' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2110&vc=7898333e' target='_blank'>204</a></td><td><a href='BeianDetail.aspx?id=2110&vc=7898333e' target='_blank'>6</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2974&vc=9167fb51' target='_blank'>金田花园金湖苑15#、16#楼地下室</a></td><td><a href='BeianDetail.aspx?id=2974&vc=9167fb51' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2974&vc=9167fb51' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=2974&vc=9167fb51' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1550&vc=6df06e36' target='_blank'>金田花园金湖苑17#、18#楼 </a></td><td><a href='BeianDetail.aspx?id=1550&vc=6df06e36' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=1550&vc=6df06e36' target='_blank'>204</a></td><td><a href='BeianDetail.aspx?id=1550&vc=6df06e36' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2975&vc=51dca91e' target='_blank'>金田花园金湖苑17#、18#楼地下室</a></td><td><a href='BeianDetail.aspx?id=2975&vc=51dca91e' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2975&vc=51dca91e' target='_blank'>11</a></td><td><a href='BeianDetail.aspx?id=2975&vc=51dca91e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1110&vc=1a36d654' target='_blank'>金田花园金湖苑3#5#楼</a></td><td><a href='BeianDetail.aspx?id=1110&vc=1a36d654' target='_blank'>东莞市常平镇 司马村东深公路旁</a></td><td><a href='BeianDetail.aspx?id=1110&vc=1a36d654' target='_blank'>38</a></td><td><a href='BeianDetail.aspx?id=1110&vc=1a36d654' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2970&vc=c2a93d9b' target='_blank'>金田花园金湖苑4#地下车库二期</a></td><td><a href='BeianDetail.aspx?id=2970&vc=c2a93d9b' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2970&vc=c2a93d9b' target='_blank'>280</a></td><td><a href='BeianDetail.aspx?id=2970&vc=c2a93d9b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1297&vc=32265b6d' target='_blank'>金田花园金湖苑6#/7#/8# 住宅楼</a></td><td><a href='BeianDetail.aspx?id=1297&vc=32265b6d' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=1297&vc=32265b6d' target='_blank'>133</a></td><td><a href='BeianDetail.aspx?id=1297&vc=32265b6d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2971&vc=ef311e64' target='_blank'>金田花园金湖苑6#、7#、8#楼地下室</a></td><td><a href='BeianDetail.aspx?id=2971&vc=ef311e64' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2971&vc=ef311e64' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=2971&vc=ef311e64' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1908&vc=b03ac7fd' target='_blank'>金田花园金湖苑9#-11#楼 </a></td><td><a href='BeianDetail.aspx?id=1908&vc=b03ac7fd' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=1908&vc=b03ac7fd' target='_blank'>132</a></td><td><a href='BeianDetail.aspx?id=1908&vc=b03ac7fd' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2972&vc=ced5e8c7' target='_blank'>金田花园金湖苑9#~11#楼地下室</a></td><td><a href='BeianDetail.aspx?id=2972&vc=ced5e8c7' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2972&vc=ced5e8c7' target='_blank'>30</a></td><td><a href='BeianDetail.aspx?id=2972&vc=ced5e8c7' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1566&vc=b637af33' target='_blank'>金田花园金田苑1#地下车库</a></td><td><a href='BeianDetail.aspx?id=1566&vc=b637af33' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=1566&vc=b637af33' target='_blank'>96</a></td><td><a href='BeianDetail.aspx?id=1566&vc=b637af33' target='_blank'>10</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=787&vc=58f3d480' target='_blank'>金田花园金田苑10#楼</a></td><td><a href='BeianDetail.aspx?id=787&vc=58f3d480' target='_blank'>东莞市常平镇 司马村东深公路旁</a></td><td><a href='BeianDetail.aspx?id=787&vc=58f3d480' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=787&vc=58f3d480' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=80&vc=e0019aeb' target='_blank'>金田花园金田苑1号住宅</a></td><td><a href='BeianDetail.aspx?id=80&vc=e0019aeb' target='_blank'>东莞市常平镇 东深大道司马路段</a></td><td><a href='BeianDetail.aspx?id=80&vc=e0019aeb' target='_blank'>46</a></td><td><a href='BeianDetail.aspx?id=80&vc=e0019aeb' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=81&vc=6e1d715e' target='_blank'>金田花园金田苑2号住宅</a></td><td><a href='BeianDetail.aspx?id=81&vc=6e1d715e' target='_blank'>东莞市常平镇 东深大道司马路段</a></td><td><a href='BeianDetail.aspx?id=81&vc=6e1d715e' target='_blank'>55</a></td><td><a href='BeianDetail.aspx?id=81&vc=6e1d715e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=441&vc=882b7c92' target='_blank'>金田花园金田苑3#楼</a></td><td><a href='BeianDetail.aspx?id=441&vc=882b7c92' target='_blank'>东莞市常平镇 东深公路司马路段</a></td><td><a href='BeianDetail.aspx?id=441&vc=882b7c92' target='_blank'>49</a></td><td><a href='BeianDetail.aspx?id=441&vc=882b7c92' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=442&vc=29e785b1' target='_blank'>金田花园金田苑5#楼</a></td><td><a href='BeianDetail.aspx?id=442&vc=29e785b1' target='_blank'>东莞市常平镇 东深公路司马路段</a></td><td><a href='BeianDetail.aspx?id=442&vc=29e785b1' target='_blank'>54</a></td><td><a href='BeianDetail.aspx?id=442&vc=29e785b1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=443&vc=2d7dc0fd' target='_blank'>金田花园金田苑6#楼</a></td><td><a href='BeianDetail.aspx?id=443&vc=2d7dc0fd' target='_blank'>东莞市常平镇 东深公路司马路段</a></td><td><a href='BeianDetail.aspx?id=443&vc=2d7dc0fd' target='_blank'>54</a></td><td><a href='BeianDetail.aspx?id=443&vc=2d7dc0fd' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=782&vc=65c4dacf' target='_blank'>金田花园金田苑7#楼</a></td><td><a href='BeianDetail.aspx?id=782&vc=65c4dacf' target='_blank'>东莞市常平镇 司马村东深公路旁</a></td><td><a href='BeianDetail.aspx?id=782&vc=65c4dacf' target='_blank'>54</a></td><td><a href='BeianDetail.aspx?id=782&vc=65c4dacf' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=783&vc=847048c3' target='_blank'>金田花园金田苑8#楼</a></td><td><a href='BeianDetail.aspx?id=783&vc=847048c3' target='_blank'>东莞市常平镇 司马村东深公路旁</a></td><td><a href='BeianDetail.aspx?id=783&vc=847048c3' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=783&vc=847048c3' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=784&vc=1e8bd434' target='_blank'>金田花园金田苑9#楼</a></td><td><a href='BeianDetail.aspx?id=784&vc=1e8bd434' target='_blank'>东莞市常平镇 司马村东深公路旁</a></td><td><a href='BeianDetail.aspx?id=784&vc=1e8bd434' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=784&vc=1e8bd434' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2180&vc=0cdc598e' target='_blank'>金田花园商铺二期 </a></td><td><a href='BeianDetail.aspx?id=2180&vc=0cdc598e' target='_blank'>东莞市常平镇 司马村</a></td><td><a href='BeianDetail.aspx?id=2180&vc=0cdc598e' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=2180&vc=0cdc598e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1439&vc=2b5e0f62' target='_blank'>丽景花园G区绿华庭1-5号楼裙楼</a></td><td><a href='BeianDetail.aspx?id=1439&vc=2b5e0f62' target='_blank'>东莞市常平镇 横江厦村丽城开发区</a></td><td><a href='BeianDetail.aspx?id=1439&vc=2b5e0f62' target='_blank'>190</a></td><td><a href='BeianDetail.aspx?id=1439&vc=2b5e0f62' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1440&vc=87d7bf1f' target='_blank'>丽景花园G区绿华庭1号楼 </a></td><td><a href='BeianDetail.aspx?id=1440&vc=87d7bf1f' target='_blank'>东莞市常平镇 横江厦村丽城开发区</a></td><td><a href='BeianDetail.aspx?id=1440&vc=87d7bf1f' target='_blank'>130</a></td><td><a href='BeianDetail.aspx?id=1440&vc=87d7bf1f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1441&vc=ccd0e954' target='_blank'>丽景花园G区绿华庭2号楼</a></td><td><a href='BeianDetail.aspx?id=1441&vc=ccd0e954' target='_blank'>东莞市常平镇 横江厦村丽城开发区</a></td><td><a href='BeianDetail.aspx?id=1441&vc=ccd0e954' target='_blank'>130</a></td><td><a href='BeianDetail.aspx?id=1441&vc=ccd0e954' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1442&vc=44c866ad' target='_blank'>丽景花园G区绿华庭3号楼</a></td><td><a href='BeianDetail.aspx?id=1442&vc=44c866ad' target='_blank'>东莞市常平镇 横江厦村丽城开发区</a></td><td><a href='BeianDetail.aspx?id=1442&vc=44c866ad' target='_blank'>182</a></td><td><a href='BeianDetail.aspx?id=1442&vc=44c866ad' target='_blank'>70</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1443&vc=74bd2c3d' target='_blank'>丽景花园G区绿华庭4号楼</a></td><td><a href='BeianDetail.aspx?id=1443&vc=74bd2c3d' target='_blank'>东莞市常平镇 横江厦村丽城开发区</a></td><td><a href='BeianDetail.aspx?id=1443&vc=74bd2c3d' target='_blank'>176</a></td><td><a href='BeianDetail.aspx?id=1443&vc=74bd2c3d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1444&vc=b8cc5373' target='_blank'>丽景花园G区绿华庭5号楼</a></td><td><a href='BeianDetail.aspx?id=1444&vc=b8cc5373' target='_blank'>东莞市常平镇 横江厦村丽城开发区</a></td><td><a href='BeianDetail.aspx?id=1444&vc=b8cc5373' target='_blank'>176</a></td><td><a href='BeianDetail.aspx?id=1444&vc=b8cc5373' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=276&vc=5ab95193' target='_blank'>玫瑰新村怡景豪苑(二期)5#楼</a></td><td><a href='BeianDetail.aspx?id=276&vc=5ab95193' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=276&vc=5ab95193' target='_blank'>20</a></td><td><a href='BeianDetail.aspx?id=276&vc=5ab95193' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=277&vc=0c78fb1a' target='_blank'>玫瑰新村怡景豪苑(二期)6#楼</a></td><td><a href='BeianDetail.aspx?id=277&vc=0c78fb1a' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=277&vc=0c78fb1a' target='_blank'>20</a></td><td><a href='BeianDetail.aspx?id=277&vc=0c78fb1a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=278&vc=d1db1044' target='_blank'>玫瑰新村怡景豪苑(二期)7#楼</a></td><td><a href='BeianDetail.aspx?id=278&vc=d1db1044' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=278&vc=d1db1044' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=278&vc=d1db1044' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=279&vc=9216ddaa' target='_blank'>玫瑰新村怡景豪苑(二期)8#楼</a></td><td><a href='BeianDetail.aspx?id=279&vc=9216ddaa' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=279&vc=9216ddaa' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=279&vc=9216ddaa' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=280&vc=0aaceaf0' target='_blank'>玫瑰新村怡景豪苑(二期)9#楼</a></td><td><a href='BeianDetail.aspx?id=280&vc=0aaceaf0' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=280&vc=0aaceaf0' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=280&vc=0aaceaf0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=281&vc=9ee205e2' target='_blank'>玫瑰新村怡景豪苑D10号楼</a></td><td><a href='BeianDetail.aspx?id=281&vc=9ee205e2' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=281&vc=9ee205e2' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=281&vc=9ee205e2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1460&vc=7ad22e2a' target='_blank'>玫瑰新村怡景豪苑D13/D14号楼 </a></td><td><a href='BeianDetail.aspx?id=1460&vc=7ad22e2a' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=1460&vc=7ad22e2a' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=1460&vc=7ad22e2a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1461&vc=2397f019' target='_blank'>玫瑰新村怡景豪苑D15/D16号楼 </a></td><td><a href='BeianDetail.aspx?id=1461&vc=2397f019' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=1461&vc=2397f019' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=1461&vc=2397f019' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=282&vc=ab15dc33' target='_blank'>玫瑰新村怡景豪苑D9号楼</a></td><td><a href='BeianDetail.aspx?id=282&vc=ab15dc33' target='_blank'>东莞市常平镇 元江元村</a></td><td><a href='BeianDetail.aspx?id=282&vc=ab15dc33' target='_blank'>50</a></td><td><a href='BeianDetail.aspx?id=282&vc=ab15dc33' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4352&vc=848d9945' target='_blank'>明珠广场第3幢</a></td><td><a href='BeianDetail.aspx?id=4352&vc=848d9945' target='_blank'>东莞市常平镇 木棆村</a></td><td><a href='BeianDetail.aspx?id=4352&vc=848d9945' target='_blank'>841</a></td><td><a href='BeianDetail.aspx?id=4352&vc=848d9945' target='_blank'>466</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3172&vc=99d24c02' target='_blank'>侨丰大厦 </a></td><td><a href='BeianDetail.aspx?id=3172&vc=99d24c02' target='_blank'>东莞市常平镇 市场路旁 </a></td><td><a href='BeianDetail.aspx?id=3172&vc=99d24c02' target='_blank'>226</a></td><td><a href='BeianDetail.aspx?id=3172&vc=99d24c02' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4755&vc=f87fe303' target='_blank'>盛都花园第9栋</a></td><td><a href='BeianDetail.aspx?id=4755&vc=f87fe303' target='_blank'>东莞市常平镇 土塘村</a></td><td><a href='BeianDetail.aspx?id=4755&vc=f87fe303' target='_blank'>278</a></td><td><a href='BeianDetail.aspx?id=4755&vc=f87fe303' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3827&vc=c954cca4' target='_blank'>霞晖花园27栋</a></td><td><a href='BeianDetail.aspx?id=3827&vc=c954cca4' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=3827&vc=c954cca4' target='_blank'>127</a></td><td><a href='BeianDetail.aspx?id=3827&vc=c954cca4' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3828&vc=73000e7e' target='_blank'>霞晖花园28栋</a></td><td><a href='BeianDetail.aspx?id=3828&vc=73000e7e' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=3828&vc=73000e7e' target='_blank'>255</a></td><td><a href='BeianDetail.aspx?id=3828&vc=73000e7e' target='_blank'>8</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5479&vc=a231a318' target='_blank'>霞晖花园地下室</a></td><td><a href='BeianDetail.aspx?id=5479&vc=a231a318' target='_blank'>东莞市常平镇 霞坑村</a></td><td><a href='BeianDetail.aspx?id=5479&vc=a231a318' target='_blank'>166</a></td><td><a href='BeianDetail.aspx?id=5479&vc=a231a318' target='_blank'>163</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3517&vc=772d2ef6' target='_blank'>紫荆花园(L、O、J区)翰林雅苑1-4幢地下室</a></td><td><a href='BeianDetail.aspx?id=3517&vc=772d2ef6' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=3517&vc=772d2ef6' target='_blank'>179</a></td><td><a href='BeianDetail.aspx?id=3517&vc=772d2ef6' target='_blank'>95</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2658&vc=876195a0' target='_blank'>紫荆花园(L、O、J区)翰林雅苑1幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=2658&vc=876195a0' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=2658&vc=876195a0' target='_blank'>69</a></td><td><a href='BeianDetail.aspx?id=2658&vc=876195a0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2659&vc=d8a1a715' target='_blank'>紫荆花园(L、O、J区)翰林雅苑2幢住宅楼  </a></td><td><a href='BeianDetail.aspx?id=2659&vc=d8a1a715' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=2659&vc=d8a1a715' target='_blank'>101</a></td><td><a href='BeianDetail.aspx?id=2659&vc=d8a1a715' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2660&vc=cfff0444' target='_blank'>紫荆花园(L、O、J区)翰林雅苑3幢住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2660&vc=cfff0444' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=2660&vc=cfff0444' target='_blank'>101</a></td><td><a href='BeianDetail.aspx?id=2660&vc=cfff0444' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2661&vc=70ee90db' target='_blank'>紫荆花园(L、O、J区)翰林雅苑4幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=2661&vc=70ee90db' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=2661&vc=70ee90db' target='_blank'>101</a></td><td><a href='BeianDetail.aspx?id=2661&vc=70ee90db' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2578&vc=186e07d5' target='_blank'>紫荆花园(L、O、J区)翰林雅苑5-6幢住宅楼  </a></td><td><a href='BeianDetail.aspx?id=2578&vc=186e07d5' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=2578&vc=186e07d5' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=2578&vc=186e07d5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2579&vc=f8d807df' target='_blank'>紫荆花园(L、O、J区)翰林雅苑7-8幢住宅楼  </a></td><td><a href='BeianDetail.aspx?id=2579&vc=f8d807df' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=2579&vc=f8d807df' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=2579&vc=f8d807df' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11443&vc=2e03a474' target='_blank'>紫荆花园(L、O、J区)翰林雅苑商业用房9幢</a></td><td><a href='BeianDetail.aspx?id=11443&vc=2e03a474' target='_blank'>东莞市常平镇 还珠沥村</a></td><td><a href='BeianDetail.aspx?id=11443&vc=2e03a474' target='_blank'>97</a></td><td><a href='BeianDetail.aspx?id=11443&vc=2e03a474' target='_blank'>0</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

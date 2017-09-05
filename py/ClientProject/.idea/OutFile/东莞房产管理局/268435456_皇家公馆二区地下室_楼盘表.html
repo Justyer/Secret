@@ -1,0 +1,981 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" />
+    <style type="text/css">
+        .saleable
+        {
+            background-color: #ccffff;
+        }
+        .sold
+        {
+            background-color: #006633;
+        }
+        .forSale
+        {
+            background-color: #fec002;
+        }
+        .unsaleable
+        {
+            background-color: #ffff00;
+        }
+        .roomTable, .roomTable table
+        {
+            width: 100%;
+            border: 0px none;
+            text-align: center;
+            vertical-align: middle;
+            background-color: White;
+            border-collapse: collapse;
+        }
+        .roomTable td
+        {
+            border: 1px solid #ECE9D8;
+            height: 30px;
+        }
+        .roomTable table td
+        {
+            border: 2px solid white;
+            width: 16%;
+        }
+        .roomTable table td a
+        {
+            text-decoration: none;
+            color: Black;
+            font-weight: bold;
+        }
+        img
+        {
+            width: 10px;
+            height: 10px;
+            border: 1px black solid;
+        }
+        #mapDiv, #remarkDiv
+        {
+            text-align: left;
+        }
+        #mapDiv table, #remarkDiv table
+        {
+            border-collapse: collapse;
+            border: 0px none;
+        }
+        #mapDiv table, #remarkDiv td
+        {
+            line-height: 160%;
+            text-align: left;
+        }
+        #mapDiv td.td0
+        {
+            padding-left: 8px;
+            width: 60px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="roomTable.aspx?id=28027&amp;vc=3d05ab9a" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE2MDg0NzM3MzdkZAWWj+xOmNXpHpMV+rx3Qtx0goXR" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 房间信息</div>
+        <div style="width: 98%; margin: 0px auto;">
+            <div style="line-height: 160%;">
+                <b>项目名称：</b>
+                皇家公馆二区地下室（<span style='color: red'>已确权</span>）
+                <br />
+                <b>产籍证号：</b>
+                30_1302_00021
+            </div>
+            <div id="mapDiv">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #ccffff;">
+                        </td>
+                        <td class="td0">
+                            可售
+                        </td>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #006633;">
+                        </td>
+                        <td class="td0">
+                            已售
+                        </td>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #fec002;">
+                        </td>
+                        <td class="td0">
+                            待售
+                        </td>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #ffff00;">
+                        </td>
+                        <td class="td0">
+                            不可销售
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table id='roomTable' class='roomTable'><col style='width: 12%;' /><col stle='width: 88%' /><tr><td>所在层</td><td>房间</td></tr><tr><td>第 -1 层</td><td><table><tr><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库001</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库002</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库003</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585066&vc=72ddfbaf' target='_blank'>地下车库004</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585067&vc=6ca2d453' target='_blank'>地下车库005</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585068&vc=88492633' target='_blank'>地下车库006</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585069&vc=1ccb2fd7' target='_blank'>地下车库007</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585070&vc=a06f8f19' target='_blank'>地下车库008</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585071&vc=eaae7785' target='_blank'>地下车库009</a></td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库010</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库011</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库012</td></tr><tr><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库013</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库014</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库015</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库016</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库017</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库018</td></tr><tr><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库019</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585082&vc=86a60867' target='_blank'>地下车库020</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585083&vc=61fd78bc' target='_blank'>地下车库021</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585084&vc=60f125b7' target='_blank'>地下车库022</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585085&vc=efe18bfa' target='_blank'>地下车库023</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585086&vc=21edd7a1' target='_blank'>地下车库024</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585087&vc=324acbc6' target='_blank'>地下车库025</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585088&vc=fc1b738c' target='_blank'>地下车库026</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585089&vc=5e9f68c7' target='_blank'>地下车库027</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585090&vc=67a5a98f' target='_blank'>地下车库028</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585091&vc=fb1be1bc' target='_blank'>地下车库029</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585092&vc=c4102163' target='_blank'>地下车库030</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585093&vc=0c812535' target='_blank'>地下车库031</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585094&vc=e2928b3c' target='_blank'>地下车库032</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585095&vc=a6c307bd' target='_blank'>地下车库033</a></td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库034</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库035</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库036</td></tr><tr><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库037</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库038</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库039</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库040</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库041</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库042</td></tr><tr><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库043</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库044</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库045</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库046</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库047</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库048</td></tr><tr><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库049</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库050</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库051</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库052</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库053</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库054</td></tr><tr><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库055</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库056</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585119&vc=70bba4cd' target='_blank'>地下车库057</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585120&vc=f886ff99' target='_blank'>地下车库058</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585121&vc=9a0042c3' target='_blank'>地下车库059</a></td><td class='unsaleable' title='建筑面积：11.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库060</td></tr><tr><td class='unsaleable' title='建筑面积：11.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库061</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库062</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585125&vc=b83155e0' target='_blank'>地下车库063</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585126&vc=ad95084c' target='_blank'>地下车库064</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585127&vc=4aecd5fe' target='_blank'>地下车库065</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585128&vc=f648f218' target='_blank'>地下车库066</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585129&vc=02b18cc4' target='_blank'>地下车库067</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585130&vc=43675768' target='_blank'>地下车库068</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585131&vc=cee8c463' target='_blank'>地下车库069</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585132&vc=21747a32' target='_blank'>地下车库070</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585133&vc=15f4c50f' target='_blank'>地下车库071</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585134&vc=70269e9f' target='_blank'>地下车库072</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585135&vc=60c5eaba' target='_blank'>地下车库073</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585136&vc=4fb7f3bc' target='_blank'>地下车库074</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585137&vc=d16cfb74' target='_blank'>地下车库075</a></td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库076</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585139&vc=3af1456a' target='_blank'>地下车库077</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585140&vc=b1c31641' target='_blank'>地下车库078</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585141&vc=337968e6' target='_blank'>地下车库079</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585142&vc=6ea0b11c' target='_blank'>地下车库080</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585143&vc=1c968d5d' target='_blank'>地下车库083</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585144&vc=4e0db081' target='_blank'>地下车库084</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585145&vc=62403916' target='_blank'>地下车库085</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585146&vc=3209d99b' target='_blank'>地下车库086</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585147&vc=820af634' target='_blank'>地下车库087</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585148&vc=f920938b' target='_blank'>地下车库088</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585149&vc=a06687aa' target='_blank'>地下车库089</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585150&vc=fdac6fe0' target='_blank'>地下车库090</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585151&vc=133af388' target='_blank'>地下车库091</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585152&vc=763bce45' target='_blank'>地下车库092</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585153&vc=c8bd6775' target='_blank'>地下车库093</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585154&vc=bed92d8a' target='_blank'>地下车库094</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585155&vc=febe260a' target='_blank'>地下车库095</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585156&vc=883156ef' target='_blank'>地下车库096</a></td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库097</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库098</td></tr><tr><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库099</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库100</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库101</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库102</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库103</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库104</td></tr><tr><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库105</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库106</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库107</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库108</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库109</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库110</td></tr><tr><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库111</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库112</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库113</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库114</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585175&vc=dbf5e2e6' target='_blank'>地下车库115</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585176&vc=1298c698' target='_blank'>地下车库116</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585177&vc=668a550c' target='_blank'>地下车库117</a></td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库118</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库119</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585180&vc=433667a9' target='_blank'>地下车库120</a></td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库121</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585182&vc=76d2dc19' target='_blank'>地下车库122</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585183&vc=d64d370c' target='_blank'>地下车库123</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585184&vc=f34a6d33' target='_blank'>地下车库124</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585185&vc=9a34c2ab' target='_blank'>地下车库125</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585186&vc=bdff7012' target='_blank'>地下车库126</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585187&vc=8d7318bd' target='_blank'>地下车库127</a></td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库128</td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585189&vc=f50c46d7' target='_blank'>地下车库129</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585190&vc=3c364dc7' target='_blank'>地下车库130</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585191&vc=a7297e9a' target='_blank'>地下车库131</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585192&vc=65eab51c' target='_blank'>地下车库132</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585193&vc=59b01546' target='_blank'>地下车库133</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585194&vc=d4b56ff4' target='_blank'>地下车库134</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585195&vc=9c31be25' target='_blank'>地下车库135</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585196&vc=b83d0173' target='_blank'>地下车库136</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585197&vc=603d6b24' target='_blank'>地下车库137</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585198&vc=803964d8' target='_blank'>地下车库138</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585199&vc=28ee7592' target='_blank'>地下车库139</a></td><td class='saleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585200&vc=f4096330' target='_blank'>地下车库140</a></td></tr><tr><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库141</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库142</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库143</td><td class='unsaleable' title='建筑面积：24.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库144</td><td class='unsaleable' title='建筑面积：24.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库145</td><td class='unsaleable' title='建筑面积：24.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库146</td></tr><tr><td class='unsaleable' title='建筑面积：24.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库147</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库148</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库149</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585210&vc=a7e8d1ce' target='_blank'>地下车库150</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585211&vc=001321f5' target='_blank'>地下车库151</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585212&vc=c6b4e4d6' target='_blank'>地下车库152</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585213&vc=56c706f7' target='_blank'>地下车库153</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585214&vc=12524210' target='_blank'>地下车库154</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585215&vc=99045922' target='_blank'>地下车库155</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585216&vc=3f37744f' target='_blank'>地下车库156</a></td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库157</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库158</td></tr><tr><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库159</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585220&vc=f280ee71' target='_blank'>地下车库160</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585221&vc=1f8d9541' target='_blank'>地下车库161</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585222&vc=852ade98' target='_blank'>地下车库162</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585223&vc=77d6b6a6' target='_blank'>地下车库163</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585224&vc=72d12f7f' target='_blank'>地下车库164</a></td></tr><tr><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585225&vc=31edb1be' target='_blank'>地下车库165</a></td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库166</td><td class='saleable' title='建筑面积：11.45 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585227&vc=b59eb9c7' target='_blank'>地下车库167</a></td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库168</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库169</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库170</td></tr><tr><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库171</td><td class='unsaleable' title='建筑面积：11.45 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库172</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库173</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库174</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库175</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库176</td></tr><tr><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库177</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库178</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库179</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库180</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库181</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库182</td></tr><tr><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库183</td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库184</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585245&vc=b8f00b07' target='_blank'>地下车库185</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585246&vc=bbd0bfe1' target='_blank'>地下车库186</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585247&vc=595b6e0a' target='_blank'>地下车库187</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585248&vc=30d05187' target='_blank'>地下车库188</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585249&vc=4852e4f9' target='_blank'>地下车库189</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585250&vc=66ab1b8d' target='_blank'>地下车库190</a></td><td class='unsaleable' title='建筑面积：11.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库191</td><td class='unsaleable' title='建筑面积：11.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库192</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585253&vc=ad8810a4' target='_blank'>地下车库193</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585254&vc=fcd74502' target='_blank'>地下车库194</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585255&vc=030e52fc' target='_blank'>地下车库195</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585256&vc=a3a0bc2d' target='_blank'>地下车库196</a></td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库197</td><td class='unsaleable' title='建筑面积：11.45 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库198</td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585259&vc=172244fb' target='_blank'>地下车库199</a></td><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585260&vc=9fbda1b7' target='_blank'>地下车库200</a></td></tr><tr><td class='saleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585261&vc=b5aa84b4' target='_blank'>地下车库201</a></td><td class='unsaleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库202</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库203</td><td class='unsaleable' title='建筑面积：11.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库205</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585265&vc=8dce4e40' target='_blank'>地下车库206</a></td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库207</td></tr><tr><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库208</td><td class='unsaleable' title='建筑面积：25.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库209</td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585269&vc=ae8fff79' target='_blank'>地下车库210</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585270&vc=b33f8a21' target='_blank'>地下车库211</a></td><td class='saleable' title='建筑面积：12.50 ㎡
+规划用途：车库
+房屋状态：可售
+公示价格：0.00 元
+公示单价：0.00 元/㎡'><a href='RoomInfo.aspx?id=585271&vc=be64a62b' target='_blank'>地下车库212</a></td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库213</td></tr><tr><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库214</td><td class='unsaleable' title='建筑面积：12.00 ㎡
+规划用途：车库
+房屋状态：物留自用'>地下车库215</td><td class='unsaleable' title='建筑面积：128.52 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>梯间</td><td class='unsaleable' title='建筑面积：72.07 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>电梯间</td><td class='unsaleable' title='建筑面积：144.35 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>前室</td><td class='unsaleable' title='建筑面积：101.78 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>排风机房</td></tr><tr><td class='unsaleable' title='建筑面积：14.27 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>送风机房</td><td class='unsaleable' title='建筑面积：5.42 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>送风井</td><td class='unsaleable' title='建筑面积：10.02 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>设备间</td><td class='unsaleable' title='建筑面积：125.44 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>发电机房</td><td class='unsaleable' title='建筑面积：36.31 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>配电间</td><td class='unsaleable' title='建筑面积：72.23 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>制冷机房</td></tr><tr><td class='unsaleable' title='建筑面积：44.37 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>控制室</td><td class='unsaleable' title='建筑面积：6139.91 ㎡
+规划用途：其它用途
+房屋状态：未纳入销售'>车道</td><td></td><td></td><td></td><td></td></tr></table></td></tr>
+            </div>
+            <div id="remarkDiv">
+                <table style="margin-top: 8px; margin-bottom: 8px;">
+                    <tr>
+                        <td style="width: 20px;">
+                            <img src="../images/8x8.gif" style="background-color: #ccffff;">
+                        </td>
+                        <td style="width: 80px;">
+                            可售
+                        </td>
+                        <td>
+                            房屋可以签订商品房买卖合同。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #006633;">
+                        </td>
+                        <td>
+                            已售
+                        </td>
+                        <td>
+                            房屋已签订了商品房买卖合同。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #fec002;">
+                        </td>
+                        <td>
+                            待售
+                        </td>
+                        <td>
+                            可销售的车库（车位）正处于公示期。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="../images/8x8.gif" style="background-color: #ffff00;">
+                        </td>
+                        <td>
+                            不可销售
+                        </td>
+                        <td>
+                            房屋不可签订商品房买卖合同，包括：未纳入销售、法院查封、物留自用和在建工程抵押等情况。
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

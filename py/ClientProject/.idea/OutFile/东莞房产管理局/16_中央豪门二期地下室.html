@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=6096&amp;vc=6af535de" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>东莞市石龙镇房地产公司、东莞市盈盛房地产开发有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>中央豪门二期地下室
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>现售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=25832&vc=cab9eb4c' target='_blank'>201200035</a></td><td><a href='roomTable.aspx?id=25832&vc=cab9eb4c' target='_blank'>东莞市石龙镇龙升路152号中央豪门二期地下室</a></td><td><a href='roomTable.aspx?id=25832&vc=cab9eb4c' target='_blank'>1</a><td><a href='roomTable.aspx?id=25832&vc=cab9eb4c' target='_blank'>138</a><td><a href='roomTable.aspx?id=25832&vc=cab9eb4c' target='_blank'>车库</a><td><a href='roomTable.aspx?id=25832&vc=cab9eb4c' target='_blank'>1613.64</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：中央豪门二期地下室
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市石龙镇龙升路152号
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            511.5
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2012-9-20
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            现售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            201200035
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=6096&vc=6af535de' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            东莞市石龙镇房地产公司、东莞市盈盛房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市石龙镇房地产公司、东莞市盈盛房地产开发有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市石龙镇新城区裕兴路9号城建办公楼三楼、东莞市南城区胜和路金盈大厦第10层1005室
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523071
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            赖松波、罗汉敦
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            13018670897/22801111
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            林小红
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=6096&vc=6af535de' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3972&vc=abfac97a' target='_blank'>中央豪门10栋</a></td><td><a href='BeianDetail.aspx?id=3972&vc=abfac97a' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=3972&vc=abfac97a' target='_blank'>260</a></td><td><a href='BeianDetail.aspx?id=3972&vc=abfac97a' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3973&vc=6c0e887a' target='_blank'>中央豪门11栋</a></td><td><a href='BeianDetail.aspx?id=3973&vc=6c0e887a' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=3973&vc=6c0e887a' target='_blank'>260</a></td><td><a href='BeianDetail.aspx?id=3973&vc=6c0e887a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4284&vc=db42eca9' target='_blank'>中央豪门12栋</a></td><td><a href='BeianDetail.aspx?id=4284&vc=db42eca9' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=4284&vc=db42eca9' target='_blank'>143</a></td><td><a href='BeianDetail.aspx?id=4284&vc=db42eca9' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4630&vc=99501453' target='_blank'>中央豪门13栋</a></td><td><a href='BeianDetail.aspx?id=4630&vc=99501453' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=4630&vc=99501453' target='_blank'>162</a></td><td><a href='BeianDetail.aspx?id=4630&vc=99501453' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4631&vc=83f254f8' target='_blank'>中央豪门14栋</a></td><td><a href='BeianDetail.aspx?id=4631&vc=83f254f8' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=4631&vc=83f254f8' target='_blank'>197</a></td><td><a href='BeianDetail.aspx?id=4631&vc=83f254f8' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4632&vc=6fef062b' target='_blank'>中央豪门15栋</a></td><td><a href='BeianDetail.aspx?id=4632&vc=6fef062b' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=4632&vc=6fef062b' target='_blank'>253</a></td><td><a href='BeianDetail.aspx?id=4632&vc=6fef062b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2801&vc=86e4c467' target='_blank'>中央豪门16、17栋</a></td><td><a href='BeianDetail.aspx?id=2801&vc=86e4c467' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=2801&vc=86e4c467' target='_blank'>14</a></td><td><a href='BeianDetail.aspx?id=2801&vc=86e4c467' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2569&vc=d5865e14' target='_blank'>中央豪门16栋   </a></td><td><a href='BeianDetail.aspx?id=2569&vc=d5865e14' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=2569&vc=d5865e14' target='_blank'>162</a></td><td><a href='BeianDetail.aspx?id=2569&vc=d5865e14' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2570&vc=1706ef59' target='_blank'>中央豪门17栋</a></td><td><a href='BeianDetail.aspx?id=2570&vc=1706ef59' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=2570&vc=1706ef59' target='_blank'>243</a></td><td><a href='BeianDetail.aspx?id=2570&vc=1706ef59' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5983&vc=651718ad' target='_blank'>中央豪门18栋</a></td><td><a href='BeianDetail.aspx?id=5983&vc=651718ad' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=5983&vc=651718ad' target='_blank'>164</a></td><td><a href='BeianDetail.aspx?id=5983&vc=651718ad' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5984&vc=a90975c6' target='_blank'>中央豪门19栋</a></td><td><a href='BeianDetail.aspx?id=5984&vc=a90975c6' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=5984&vc=a90975c6' target='_blank'>207</a></td><td><a href='BeianDetail.aspx?id=5984&vc=a90975c6' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2800&vc=6fd081cd' target='_blank'>中央豪门1、2栋 </a></td><td><a href='BeianDetail.aspx?id=2800&vc=6fd081cd' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=2800&vc=6fd081cd' target='_blank'>13</a></td><td><a href='BeianDetail.aspx?id=2800&vc=6fd081cd' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2086&vc=5ac60f30' target='_blank'>中央豪门1栋</a></td><td><a href='BeianDetail.aspx?id=2086&vc=5ac60f30' target='_blank'>东莞市石龙镇 新城市中心区</a></td><td><a href='BeianDetail.aspx?id=2086&vc=5ac60f30' target='_blank'>84</a></td><td><a href='BeianDetail.aspx?id=2086&vc=5ac60f30' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5985&vc=6ac39beb' target='_blank'>中央豪门20栋</a></td><td><a href='BeianDetail.aspx?id=5985&vc=6ac39beb' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=5985&vc=6ac39beb' target='_blank'>120</a></td><td><a href='BeianDetail.aspx?id=5985&vc=6ac39beb' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6628&vc=84bf327e' target='_blank'>中央豪门21栋</a></td><td><a href='BeianDetail.aspx?id=6628&vc=84bf327e' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=6628&vc=84bf327e' target='_blank'>174</a></td><td><a href='BeianDetail.aspx?id=6628&vc=84bf327e' target='_blank'>7</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6629&vc=e1af1c4d' target='_blank'>中央豪门22栋</a></td><td><a href='BeianDetail.aspx?id=6629&vc=e1af1c4d' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=6629&vc=e1af1c4d' target='_blank'>201</a></td><td><a href='BeianDetail.aspx?id=6629&vc=e1af1c4d' target='_blank'>4</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6630&vc=b43699a4' target='_blank'>中央豪门23栋</a></td><td><a href='BeianDetail.aspx?id=6630&vc=b43699a4' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=6630&vc=b43699a4' target='_blank'>163</a></td><td><a href='BeianDetail.aspx?id=6630&vc=b43699a4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5986&vc=e716821e' target='_blank'>中央豪门24栋</a></td><td><a href='BeianDetail.aspx?id=5986&vc=e716821e' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=5986&vc=e716821e' target='_blank'>186</a></td><td><a href='BeianDetail.aspx?id=5986&vc=e716821e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2087&vc=876e59d2' target='_blank'>中央豪门2栋</a></td><td><a href='BeianDetail.aspx?id=2087&vc=876e59d2' target='_blank'>东莞市石龙镇 新城市中心区</a></td><td><a href='BeianDetail.aspx?id=2087&vc=876e59d2' target='_blank'>118</a></td><td><a href='BeianDetail.aspx?id=2087&vc=876e59d2' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2088&vc=3a8134e0' target='_blank'>中央豪门3栋</a></td><td><a href='BeianDetail.aspx?id=2088&vc=3a8134e0' target='_blank'>东莞市石龙镇 新城市中心区</a></td><td><a href='BeianDetail.aspx?id=2088&vc=3a8134e0' target='_blank'>77</a></td><td><a href='BeianDetail.aspx?id=2088&vc=3a8134e0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2084&vc=f9e93eed' target='_blank'>中央豪门4栋</a></td><td><a href='BeianDetail.aspx?id=2084&vc=f9e93eed' target='_blank'>东莞市石龙镇 新城市中心区</a></td><td><a href='BeianDetail.aspx?id=2084&vc=f9e93eed' target='_blank'>73</a></td><td><a href='BeianDetail.aspx?id=2084&vc=f9e93eed' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2089&vc=3d0ef23c' target='_blank'>中央豪门5栋 </a></td><td><a href='BeianDetail.aspx?id=2089&vc=3d0ef23c' target='_blank'>东莞市石龙镇 新城市中心区</a></td><td><a href='BeianDetail.aspx?id=2089&vc=3d0ef23c' target='_blank'>76</a></td><td><a href='BeianDetail.aspx?id=2089&vc=3d0ef23c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2085&vc=3a9ade12' target='_blank'>中央豪门6栋</a></td><td><a href='BeianDetail.aspx?id=2085&vc=3a9ade12' target='_blank'>东莞市石龙镇 新城市中心区</a></td><td><a href='BeianDetail.aspx?id=2085&vc=3a9ade12' target='_blank'>77</a></td><td><a href='BeianDetail.aspx?id=2085&vc=3a9ade12' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2567&vc=31c49877' target='_blank'>中央豪门7栋 </a></td><td><a href='BeianDetail.aspx?id=2567&vc=31c49877' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=2567&vc=31c49877' target='_blank'>125</a></td><td><a href='BeianDetail.aspx?id=2567&vc=31c49877' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2568&vc=ec792613' target='_blank'>中央豪门8栋</a></td><td><a href='BeianDetail.aspx?id=2568&vc=ec792613' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=2568&vc=ec792613' target='_blank'>228</a></td><td><a href='BeianDetail.aspx?id=2568&vc=ec792613' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3635&vc=5fe70aca' target='_blank'>中央豪门9栋</a></td><td><a href='BeianDetail.aspx?id=3635&vc=5fe70aca' target='_blank'>东莞市石龙镇 龙升路</a></td><td><a href='BeianDetail.aspx?id=3635&vc=5fe70aca' target='_blank'>231</a></td><td><a href='BeianDetail.aspx?id=3635&vc=5fe70aca' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6096&vc=6af535de' target='_blank'>中央豪门二期地下室</a></td><td><a href='BeianDetail.aspx?id=6096&vc=6af535de' target='_blank'>东莞市石龙镇 龙升路152号</a></td><td><a href='BeianDetail.aspx?id=6096&vc=6af535de' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=6096&vc=6af535de' target='_blank'>43</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6097&vc=0b2301ce' target='_blank'>中央豪门三期地下室</a></td><td><a href='BeianDetail.aspx?id=6097&vc=0b2301ce' target='_blank'>东莞市石龙镇 龙升路152号</a></td><td><a href='BeianDetail.aspx?id=6097&vc=0b2301ce' target='_blank'>546</a></td><td><a href='BeianDetail.aspx?id=6097&vc=0b2301ce' target='_blank'>198</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8115&vc=1eefabb5' target='_blank'>中央豪门四期地下室</a></td><td><a href='BeianDetail.aspx?id=8115&vc=1eefabb5' target='_blank'>东莞市石龙镇 中山东社区龙城路33号</a></td><td><a href='BeianDetail.aspx?id=8115&vc=1eefabb5' target='_blank'>519</a></td><td><a href='BeianDetail.aspx?id=8115&vc=1eefabb5' target='_blank'>209</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6095&vc=b244f17c' target='_blank'>中央豪门一期地下室</a></td><td><a href='BeianDetail.aspx?id=6095&vc=b244f17c' target='_blank'>东莞市石龙镇 龙升路152号</a></td><td><a href='BeianDetail.aspx?id=6095&vc=b244f17c' target='_blank'>339</a></td><td><a href='BeianDetail.aspx?id=6095&vc=b244f17c' target='_blank'>103</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

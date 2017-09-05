@@ -1,0 +1,982 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option selected="selected" value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option value="67108864">东莞市桥头镇</option>
+	<option value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>盈丰·田源居</a></td><td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>沙田镇 横流居民委员会沙太一路</a></td><td><a href='BeianDetail.aspx?id=4287&vc=22c6a4d6' target='_blank'>40</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2608&vc=3b4a6fbb' target='_blank'>庄士新都滨江豪园2#楼 </a></td><td><a href='BeianDetail.aspx?id=2608&vc=3b4a6fbb' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2608&vc=3b4a6fbb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2609&vc=b134d075' target='_blank'>庄士新都滨江豪园3#楼</a></td><td><a href='BeianDetail.aspx?id=2609&vc=b134d075' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2609&vc=b134d075' target='_blank'>8</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2610&vc=a87023b2' target='_blank'>庄士新都滨江豪园4#楼   </a></td><td><a href='BeianDetail.aspx?id=2610&vc=a87023b2' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2610&vc=a87023b2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2611&vc=764daaa5' target='_blank'>庄士新都滨江豪园5#楼  </a></td><td><a href='BeianDetail.aspx?id=2611&vc=764daaa5' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2611&vc=764daaa5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2612&vc=18a9935e' target='_blank'>庄士新都滨江豪园6#楼         </a></td><td><a href='BeianDetail.aspx?id=2612&vc=18a9935e' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2612&vc=18a9935e' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2613&vc=a52d582a' target='_blank'>庄士新都滨江豪园7#楼</a></td><td><a href='BeianDetail.aspx?id=2613&vc=a52d582a' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2613&vc=a52d582a' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2614&vc=cb66b9a1' target='_blank'>庄士新都滨江豪园8#楼  </a></td><td><a href='BeianDetail.aspx?id=2614&vc=cb66b9a1' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=2614&vc=cb66b9a1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1912&vc=d0950d87' target='_blank'>庄士新都二期1#、2#、3#、5#、6#、7#、8-12#地下室车库</a></td><td><a href='BeianDetail.aspx?id=1912&vc=d0950d87' target='_blank'>沙田镇 横流区工业大道</a></td><td><a href='BeianDetail.aspx?id=1912&vc=d0950d87' target='_blank'>252</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6376&vc=72d407b2' target='_blank'>庄士新都·滨江豪园商场1</a></td><td><a href='BeianDetail.aspx?id=6376&vc=72d407b2' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=6376&vc=72d407b2' target='_blank'>10</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6377&vc=79c68149' target='_blank'>庄士新都·滨江豪园商场2</a></td><td><a href='BeianDetail.aspx?id=6377&vc=79c68149' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=6377&vc=79c68149' target='_blank'>15</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7414&vc=8d69548f' target='_blank'>庄士新都滨江豪园10幢</a></td><td><a href='BeianDetail.aspx?id=7414&vc=8d69548f' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=7414&vc=8d69548f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7415&vc=9e17ec65' target='_blank'>庄士新都滨江豪园11幢</a></td><td><a href='BeianDetail.aspx?id=7415&vc=9e17ec65' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=7415&vc=9e17ec65' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7666&vc=50b908a6' target='_blank'>庄士新都滨江豪园12幢</a></td><td><a href='BeianDetail.aspx?id=7666&vc=50b908a6' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=7666&vc=50b908a6' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7667&vc=0ec729e0' target='_blank'>庄士新都滨江豪园13幢</a></td><td><a href='BeianDetail.aspx?id=7667&vc=0ec729e0' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=7667&vc=0ec729e0' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7668&vc=dab8462f' target='_blank'>庄士新都滨江豪园14幢</a></td><td><a href='BeianDetail.aspx?id=7668&vc=dab8462f' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=7668&vc=dab8462f' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5100&vc=565ae455' target='_blank'>庄士新都滨江豪园1幢</a></td><td><a href='BeianDetail.aspx?id=5100&vc=565ae455' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=5100&vc=565ae455' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9808&vc=977d58f8' target='_blank'>庄士新都滨江豪园29幢</a></td><td><a href='BeianDetail.aspx?id=9808&vc=977d58f8' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=9808&vc=977d58f8' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9809&vc=333a8ca1' target='_blank'>庄士新都滨江豪园30幢</a></td><td><a href='BeianDetail.aspx?id=9809&vc=333a8ca1' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=9809&vc=333a8ca1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9810&vc=9300bd0e' target='_blank'>庄士新都滨江豪园31幢</a></td><td><a href='BeianDetail.aspx?id=9810&vc=9300bd0e' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=9810&vc=9300bd0e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7413&vc=675bf855' target='_blank'>庄士新都滨江豪园9幢</a></td><td><a href='BeianDetail.aspx?id=7413&vc=675bf855' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=7413&vc=675bf855' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9811&vc=92f896bf' target='_blank'>庄士新都滨江豪园商铺1商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=9811&vc=92f896bf' target='_blank'>沙田镇 横流区工业大道8号</a></td><td><a href='BeianDetail.aspx?id=9811&vc=92f896bf' target='_blank'>28</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7251&vc=1f002ea8' target='_blank'>湖景花园13号</a></td><td><a href='BeianDetail.aspx?id=7251&vc=1f002ea8' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7251&vc=1f002ea8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7252&vc=a66df954' target='_blank'>湖景花园14号</a></td><td><a href='BeianDetail.aspx?id=7252&vc=a66df954' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7252&vc=a66df954' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7288&vc=c04c28b1' target='_blank'>湖景花园15号</a></td><td><a href='BeianDetail.aspx?id=7288&vc=c04c28b1' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7288&vc=c04c28b1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7289&vc=ad273f17' target='_blank'>湖景花园16号</a></td><td><a href='BeianDetail.aspx?id=7289&vc=ad273f17' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7289&vc=ad273f17' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7290&vc=6fb7c4f1' target='_blank'>湖景花园18号</a></td><td><a href='BeianDetail.aspx?id=7290&vc=6fb7c4f1' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7290&vc=6fb7c4f1' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7291&vc=087de136' target='_blank'>湖景花园19号</a></td><td><a href='BeianDetail.aspx?id=7291&vc=087de136' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7291&vc=087de136' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7292&vc=d9bed728' target='_blank'>湖景花园22号</a></td><td><a href='BeianDetail.aspx?id=7292&vc=d9bed728' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7292&vc=d9bed728' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7293&vc=9dde3644' target='_blank'>湖景花园23号</a></td><td><a href='BeianDetail.aspx?id=7293&vc=9dde3644' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7293&vc=9dde3644' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7294&vc=bc1bec43' target='_blank'>湖景花园24号</a></td><td><a href='BeianDetail.aspx?id=7294&vc=bc1bec43' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7294&vc=bc1bec43' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7295&vc=01275514' target='_blank'>湖景花园25号</a></td><td><a href='BeianDetail.aspx?id=7295&vc=01275514' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7295&vc=01275514' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7296&vc=6a9aa37e' target='_blank'>湖景花园26号</a></td><td><a href='BeianDetail.aspx?id=7296&vc=6a9aa37e' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7296&vc=6a9aa37e' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7297&vc=f1e0130f' target='_blank'>湖景花园44号</a></td><td><a href='BeianDetail.aspx?id=7297&vc=f1e0130f' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=7297&vc=f1e0130f' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10903&vc=1f65dfaf' target='_blank'>沙田湖景花园1号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10903&vc=1f65dfaf' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=10903&vc=1f65dfaf' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10904&vc=fc0aff7b' target='_blank'>沙田湖景花园3号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10904&vc=fc0aff7b' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=10904&vc=fc0aff7b' target='_blank'>9</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10905&vc=f6818ec2' target='_blank'>沙田湖景花园4号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10905&vc=f6818ec2' target='_blank'>沙田镇 民田村</a></td><td><a href='BeianDetail.aspx?id=10905&vc=f6818ec2' target='_blank'>18</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5374&vc=5ce39906' target='_blank'>粤港花园三期(江畔居)</a></td><td><a href='BeianDetail.aspx?id=5374&vc=5ce39906' target='_blank'>沙田镇 民田村沙太二路</a></td><td><a href='BeianDetail.aspx?id=5374&vc=5ce39906' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5455&vc=6cd8b91f' target='_blank'>湖景花园10号</a></td><td><a href='BeianDetail.aspx?id=5455&vc=6cd8b91f' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5455&vc=6cd8b91f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5456&vc=37e84c2e' target='_blank'>湖景花园11号</a></td><td><a href='BeianDetail.aspx?id=5456&vc=37e84c2e' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5456&vc=37e84c2e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5457&vc=9ea254bc' target='_blank'>湖景花园12号</a></td><td><a href='BeianDetail.aspx?id=5457&vc=9ea254bc' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5457&vc=9ea254bc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5458&vc=69a11a40' target='_blank'>湖景花园27号</a></td><td><a href='BeianDetail.aspx?id=5458&vc=69a11a40' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5458&vc=69a11a40' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5459&vc=84920597' target='_blank'>湖景花园28号</a></td><td><a href='BeianDetail.aspx?id=5459&vc=84920597' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5459&vc=84920597' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5460&vc=cc1d09c1' target='_blank'>湖景花园29号</a></td><td><a href='BeianDetail.aspx?id=5460&vc=cc1d09c1' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5460&vc=cc1d09c1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5461&vc=8f11a512' target='_blank'>湖景花园30号</a></td><td><a href='BeianDetail.aspx?id=5461&vc=8f11a512' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5461&vc=8f11a512' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5439&vc=3b9e74f4' target='_blank'>湖景花园7#商铺 </a></td><td><a href='BeianDetail.aspx?id=5439&vc=3b9e74f4' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5439&vc=3b9e74f4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5454&vc=8133d276' target='_blank'>湖景花园9号</a></td><td><a href='BeianDetail.aspx?id=5454&vc=8133d276' target='_blank'>沙田镇 民田村沙田</a></td><td><a href='BeianDetail.aspx?id=5454&vc=8133d276' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7117&vc=9d625ab7' target='_blank'>汇景凯伦湾花园103、117、128号楼</a></td><td><a href='BeianDetail.aspx?id=7117&vc=9d625ab7' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7117&vc=9d625ab7' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6038&vc=0d166d5b' target='_blank'>汇景凯伦湾花园104、118号楼</a></td><td><a href='BeianDetail.aspx?id=6038&vc=0d166d5b' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6038&vc=0d166d5b' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4779&vc=4a8a539d' target='_blank'>汇景凯伦湾花园10、16号楼</a></td><td><a href='BeianDetail.aspx?id=4779&vc=4a8a539d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4779&vc=4a8a539d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4780&vc=e3031161' target='_blank'>汇景凯伦湾花园11号楼</a></td><td><a href='BeianDetail.aspx?id=4780&vc=e3031161' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4780&vc=e3031161' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7118&vc=c28268d1' target='_blank'>汇景凯伦湾花园122-127号楼</a></td><td><a href='BeianDetail.aspx?id=7118&vc=c28268d1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7118&vc=c28268d1' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4781&vc=9f99d489' target='_blank'>汇景凯伦湾花园12号楼</a></td><td><a href='BeianDetail.aspx?id=4781&vc=9f99d489' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4781&vc=9f99d489' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6454&vc=30611e87' target='_blank'>汇景凯伦湾花园130号楼</a></td><td><a href='BeianDetail.aspx?id=6454&vc=30611e87' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6454&vc=30611e87' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6455&vc=cb79358e' target='_blank'>汇景凯伦湾花园131号楼</a></td><td><a href='BeianDetail.aspx?id=6455&vc=cb79358e' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6455&vc=cb79358e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6456&vc=3b24685b' target='_blank'>汇景凯伦湾花园132号楼</a></td><td><a href='BeianDetail.aspx?id=6456&vc=3b24685b' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6456&vc=3b24685b' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7382&vc=d2ab70d7' target='_blank'>汇景凯伦湾花园133号楼</a></td><td><a href='BeianDetail.aspx?id=7382&vc=d2ab70d7' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7382&vc=d2ab70d7' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7610&vc=36536f29' target='_blank'>汇景凯伦湾花园134号楼</a></td><td><a href='BeianDetail.aspx?id=7610&vc=36536f29' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7610&vc=36536f29' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7773&vc=0110882d' target='_blank'>汇景凯伦湾花园135号楼</a></td><td><a href='BeianDetail.aspx?id=7773&vc=0110882d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7773&vc=0110882d' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9459&vc=1b94b91e' target='_blank'>汇景凯伦湾花园136号楼</a></td><td><a href='BeianDetail.aspx?id=9459&vc=1b94b91e' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9459&vc=1b94b91e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9460&vc=e34cc4b3' target='_blank'>汇景凯伦湾花园137号楼</a></td><td><a href='BeianDetail.aspx?id=9460&vc=e34cc4b3' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9460&vc=e34cc4b3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9461&vc=2d839ec5' target='_blank'>汇景凯伦湾花园138号楼</a></td><td><a href='BeianDetail.aspx?id=9461&vc=2d839ec5' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9461&vc=2d839ec5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9462&vc=4087dac9' target='_blank'>汇景凯伦湾花园139号楼</a></td><td><a href='BeianDetail.aspx?id=9462&vc=4087dac9' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9462&vc=4087dac9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4782&vc=1d34b36d' target='_blank'>汇景凯伦湾花园13、18号楼</a></td><td><a href='BeianDetail.aspx?id=4782&vc=1d34b36d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4782&vc=1d34b36d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9463&vc=c6a863e4' target='_blank'>汇景凯伦湾花园140号楼</a></td><td><a href='BeianDetail.aspx?id=9463&vc=c6a863e4' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9463&vc=c6a863e4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9464&vc=c4f6e1a1' target='_blank'>汇景凯伦湾花园141号楼</a></td><td><a href='BeianDetail.aspx?id=9464&vc=c4f6e1a1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9464&vc=c4f6e1a1' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9465&vc=5e968f2e' target='_blank'>汇景凯伦湾花园142号楼</a></td><td><a href='BeianDetail.aspx?id=9465&vc=5e968f2e' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9465&vc=5e968f2e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9466&vc=86e4fa55' target='_blank'>汇景凯伦湾花园143号楼</a></td><td><a href='BeianDetail.aspx?id=9466&vc=86e4fa55' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9466&vc=86e4fa55' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9467&vc=34bcf08d' target='_blank'>汇景凯伦湾花园144号楼</a></td><td><a href='BeianDetail.aspx?id=9467&vc=34bcf08d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9467&vc=34bcf08d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9468&vc=e7c5dd1f' target='_blank'>汇景凯伦湾花园145号楼</a></td><td><a href='BeianDetail.aspx?id=9468&vc=e7c5dd1f' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9468&vc=e7c5dd1f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9469&vc=0dbb1aa1' target='_blank'>汇景凯伦湾花园146号楼</a></td><td><a href='BeianDetail.aspx?id=9469&vc=0dbb1aa1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9469&vc=0dbb1aa1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9470&vc=fb1e9ac6' target='_blank'>汇景凯伦湾花园147号楼</a></td><td><a href='BeianDetail.aspx?id=9470&vc=fb1e9ac6' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9470&vc=fb1e9ac6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9471&vc=0a382eed' target='_blank'>汇景凯伦湾花园148号楼</a></td><td><a href='BeianDetail.aspx?id=9471&vc=0a382eed' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9471&vc=0a382eed' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9472&vc=a44820b1' target='_blank'>汇景凯伦湾花园149号楼</a></td><td><a href='BeianDetail.aspx?id=9472&vc=a44820b1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9472&vc=a44820b1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4783&vc=4533f586' target='_blank'>汇景凯伦湾花园14号楼</a></td><td><a href='BeianDetail.aspx?id=4783&vc=4533f586' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4783&vc=4533f586' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9473&vc=5d593e83' target='_blank'>汇景凯伦湾花园150号楼</a></td><td><a href='BeianDetail.aspx?id=9473&vc=5d593e83' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9473&vc=5d593e83' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9474&vc=be0721ea' target='_blank'>汇景凯伦湾花园151号楼</a></td><td><a href='BeianDetail.aspx?id=9474&vc=be0721ea' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9474&vc=be0721ea' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9475&vc=bdac91c3' target='_blank'>汇景凯伦湾花园152号楼</a></td><td><a href='BeianDetail.aspx?id=9475&vc=bdac91c3' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9475&vc=bdac91c3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9476&vc=016d5a17' target='_blank'>汇景凯伦湾花园153号楼</a></td><td><a href='BeianDetail.aspx?id=9476&vc=016d5a17' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9476&vc=016d5a17' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9477&vc=00547e17' target='_blank'>汇景凯伦湾花园154号楼</a></td><td><a href='BeianDetail.aspx?id=9477&vc=00547e17' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9477&vc=00547e17' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9478&vc=802e4cf1' target='_blank'>汇景凯伦湾花园155号楼</a></td><td><a href='BeianDetail.aspx?id=9478&vc=802e4cf1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9478&vc=802e4cf1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9479&vc=56f56ae4' target='_blank'>汇景凯伦湾花园156号楼</a></td><td><a href='BeianDetail.aspx?id=9479&vc=56f56ae4' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9479&vc=56f56ae4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9480&vc=3d1138b4' target='_blank'>汇景凯伦湾花园157号楼</a></td><td><a href='BeianDetail.aspx?id=9480&vc=3d1138b4' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9480&vc=3d1138b4' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9481&vc=b0227051' target='_blank'>汇景凯伦湾花园158号楼</a></td><td><a href='BeianDetail.aspx?id=9481&vc=b0227051' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9481&vc=b0227051' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9482&vc=11581795' target='_blank'>汇景凯伦湾花园159号楼</a></td><td><a href='BeianDetail.aspx?id=9482&vc=11581795' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9482&vc=11581795' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4784&vc=fcb43caf' target='_blank'>汇景凯伦湾花园15号楼</a></td><td><a href='BeianDetail.aspx?id=4784&vc=fcb43caf' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4784&vc=fcb43caf' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9483&vc=52348925' target='_blank'>汇景凯伦湾花园160号楼</a></td><td><a href='BeianDetail.aspx?id=9483&vc=52348925' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9483&vc=52348925' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9484&vc=b7aef28b' target='_blank'>汇景凯伦湾花园161号楼</a></td><td><a href='BeianDetail.aspx?id=9484&vc=b7aef28b' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9484&vc=b7aef28b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9485&vc=8ac7ec5c' target='_blank'>汇景凯伦湾花园162号楼</a></td><td><a href='BeianDetail.aspx?id=9485&vc=8ac7ec5c' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9485&vc=8ac7ec5c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9486&vc=a877d475' target='_blank'>汇景凯伦湾花园163号楼</a></td><td><a href='BeianDetail.aspx?id=9486&vc=a877d475' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9486&vc=a877d475' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9487&vc=fbb9cd61' target='_blank'>汇景凯伦湾花园164号楼</a></td><td><a href='BeianDetail.aspx?id=9487&vc=fbb9cd61' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9487&vc=fbb9cd61' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9488&vc=6cf93974' target='_blank'>汇景凯伦湾花园165号楼</a></td><td><a href='BeianDetail.aspx?id=9488&vc=6cf93974' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9488&vc=6cf93974' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9489&vc=fa13eac4' target='_blank'>汇景凯伦湾花园166号楼</a></td><td><a href='BeianDetail.aspx?id=9489&vc=fa13eac4' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9489&vc=fa13eac4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9490&vc=dc6920fe' target='_blank'>汇景凯伦湾花园167号楼</a></td><td><a href='BeianDetail.aspx?id=9490&vc=dc6920fe' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9490&vc=dc6920fe' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9491&vc=97a4866b' target='_blank'>汇景凯伦湾花园168号楼</a></td><td><a href='BeianDetail.aspx?id=9491&vc=97a4866b' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9491&vc=97a4866b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9493&vc=3f4d2875' target='_blank'>汇景凯伦湾花园169号楼</a></td><td><a href='BeianDetail.aspx?id=9493&vc=3f4d2875' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9493&vc=3f4d2875' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9494&vc=cef47d3a' target='_blank'>汇景凯伦湾花园170号楼</a></td><td><a href='BeianDetail.aspx?id=9494&vc=cef47d3a' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9494&vc=cef47d3a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9495&vc=758434c8' target='_blank'>汇景凯伦湾花园171号楼</a></td><td><a href='BeianDetail.aspx?id=9495&vc=758434c8' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9495&vc=758434c8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9496&vc=1e207825' target='_blank'>汇景凯伦湾花园172号楼</a></td><td><a href='BeianDetail.aspx?id=9496&vc=1e207825' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9496&vc=1e207825' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9497&vc=75ec415e' target='_blank'>汇景凯伦湾花园173号楼</a></td><td><a href='BeianDetail.aspx?id=9497&vc=75ec415e' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9497&vc=75ec415e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9498&vc=39951f62' target='_blank'>汇景凯伦湾花园174号楼</a></td><td><a href='BeianDetail.aspx?id=9498&vc=39951f62' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9498&vc=39951f62' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9499&vc=69e42c27' target='_blank'>汇景凯伦湾花园175号楼</a></td><td><a href='BeianDetail.aspx?id=9499&vc=69e42c27' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9499&vc=69e42c27' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9500&vc=284f2f9a' target='_blank'>汇景凯伦湾花园176号楼</a></td><td><a href='BeianDetail.aspx?id=9500&vc=284f2f9a' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9500&vc=284f2f9a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9501&vc=0e277436' target='_blank'>汇景凯伦湾花园177号楼</a></td><td><a href='BeianDetail.aspx?id=9501&vc=0e277436' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=9501&vc=0e277436' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8966&vc=b6d41324' target='_blank'>汇景凯伦湾花园178-181、193-195号楼</a></td><td><a href='BeianDetail.aspx?id=8966&vc=b6d41324' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8966&vc=b6d41324' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4785&vc=a74a1318' target='_blank'>汇景凯伦湾花园17号楼</a></td><td><a href='BeianDetail.aspx?id=4785&vc=a74a1318' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4785&vc=a74a1318' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8967&vc=253fe865' target='_blank'>汇景凯伦湾花园182、196号楼</a></td><td><a href='BeianDetail.aspx?id=8967&vc=253fe865' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8967&vc=253fe865' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8971&vc=be7f6a10' target='_blank'>汇景凯伦湾花园183-184、197-198、209-210号楼</a></td><td><a href='BeianDetail.aspx?id=8971&vc=be7f6a10' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8971&vc=be7f6a10' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8977&vc=db61fc59' target='_blank'>汇景凯伦湾花园185、199、211号楼</a></td><td><a href='BeianDetail.aspx?id=8977&vc=db61fc59' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8977&vc=db61fc59' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8968&vc=0d63967d' target='_blank'>汇景凯伦湾花园186-188号楼</a></td><td><a href='BeianDetail.aspx?id=8968&vc=0d63967d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8968&vc=0d63967d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8969&vc=4d58607e' target='_blank'>汇景凯伦湾花园189号楼</a></td><td><a href='BeianDetail.aspx?id=8969&vc=4d58607e' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8969&vc=4d58607e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8974&vc=03e79fe3' target='_blank'>汇景凯伦湾花园190-191、203-204号楼</a></td><td><a href='BeianDetail.aspx?id=8974&vc=03e79fe3' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8974&vc=03e79fe3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8978&vc=cb37c97f' target='_blank'>汇景凯伦湾花园192、205号楼</a></td><td><a href='BeianDetail.aspx?id=8978&vc=cb37c97f' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8978&vc=cb37c97f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4786&vc=db959cf6' target='_blank'>汇景凯伦湾花园19号楼</a></td><td><a href='BeianDetail.aspx?id=4786&vc=db959cf6' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4786&vc=db959cf6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4776&vc=ea7bee0f' target='_blank'>汇景凯伦湾花园1号楼</a></td><td><a href='BeianDetail.aspx?id=4776&vc=ea7bee0f' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4776&vc=ea7bee0f' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8975&vc=58e37454' target='_blank'>汇景凯伦湾花园200-201号楼</a></td><td><a href='BeianDetail.aspx?id=8975&vc=58e37454' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8975&vc=58e37454' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8976&vc=801156e5' target='_blank'>汇景凯伦湾花园202号楼</a></td><td><a href='BeianDetail.aspx?id=8976&vc=801156e5' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8976&vc=801156e5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8970&vc=56d92864' target='_blank'>汇景凯伦湾花园206-207号楼</a></td><td><a href='BeianDetail.aspx?id=8970&vc=56d92864' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8970&vc=56d92864' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8973&vc=2f92a201' target='_blank'>汇景凯伦湾花园208号楼</a></td><td><a href='BeianDetail.aspx?id=8973&vc=2f92a201' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8973&vc=2f92a201' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4787&vc=46b92371' target='_blank'>汇景凯伦湾花园20、27、28号楼</a></td><td><a href='BeianDetail.aspx?id=4787&vc=46b92371' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4787&vc=46b92371' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6468&vc=1711842d' target='_blank'>汇景凯伦湾花园219号楼</a></td><td><a href='BeianDetail.aspx?id=6468&vc=1711842d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6468&vc=1711842d' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4789&vc=2502ca9f' target='_blank'>汇景凯伦湾花园21、29号楼</a></td><td><a href='BeianDetail.aspx?id=4789&vc=2502ca9f' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4789&vc=2502ca9f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4788&vc=32127696' target='_blank'>汇景凯伦湾花园22、34、35、36号楼</a></td><td><a href='BeianDetail.aspx?id=4788&vc=32127696' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4788&vc=32127696' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6032&vc=8bffd626' target='_blank'>汇景凯伦湾花园23、44、55、56、59号楼</a></td><td><a href='BeianDetail.aspx?id=6032&vc=8bffd626' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6032&vc=8bffd626' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8392&vc=4bdaf831' target='_blank'>汇景凯伦湾花园248号楼</a></td><td><a href='BeianDetail.aspx?id=8392&vc=4bdaf831' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8392&vc=4bdaf831' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8441&vc=1da69037' target='_blank'>汇景凯伦湾花园249号楼</a></td><td><a href='BeianDetail.aspx?id=8441&vc=1da69037' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8441&vc=1da69037' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6033&vc=a70340b1' target='_blank'>汇景凯伦湾花园24、25、26、45、46、47、53、58、61号楼</a></td><td><a href='BeianDetail.aspx?id=6033&vc=a70340b1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6033&vc=a70340b1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8442&vc=69cd30e2' target='_blank'>汇景凯伦湾花园251号楼</a></td><td><a href='BeianDetail.aspx?id=8442&vc=69cd30e2' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8442&vc=69cd30e2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10546&vc=26bf74b4' target='_blank'>汇景凯伦湾花园252号楼</a></td><td><a href='BeianDetail.aspx?id=10546&vc=26bf74b4' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=10546&vc=26bf74b4' target='_blank'>15</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4777&vc=8647c58f' target='_blank'>汇景凯伦湾花园2号楼</a></td><td><a href='BeianDetail.aspx?id=4777&vc=8647c58f' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4777&vc=8647c58f' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4790&vc=dd3583de' target='_blank'>汇景凯伦湾花园30号楼</a></td><td><a href='BeianDetail.aspx?id=4790&vc=dd3583de' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4790&vc=dd3583de' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4791&vc=d1e6f1cd' target='_blank'>汇景凯伦湾花园31号楼</a></td><td><a href='BeianDetail.aspx?id=4791&vc=d1e6f1cd' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4791&vc=d1e6f1cd' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4792&vc=d182b2f5' target='_blank'>汇景凯伦湾花园32号楼</a></td><td><a href='BeianDetail.aspx?id=4792&vc=d182b2f5' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4792&vc=d182b2f5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4793&vc=b15794b2' target='_blank'>汇景凯伦湾花园33号楼</a></td><td><a href='BeianDetail.aspx?id=4793&vc=b15794b2' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4793&vc=b15794b2' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4794&vc=715268cc' target='_blank'>汇景凯伦湾花园37号楼</a></td><td><a href='BeianDetail.aspx?id=4794&vc=715268cc' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4794&vc=715268cc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5717&vc=f3cfc46a' target='_blank'>汇景凯伦湾花园38、39、48、49号楼</a></td><td><a href='BeianDetail.aspx?id=5717&vc=f3cfc46a' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=5717&vc=f3cfc46a' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4778&vc=4fb7c33a' target='_blank'>汇景凯伦湾花园3、4号楼</a></td><td><a href='BeianDetail.aspx?id=4778&vc=4fb7c33a' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=4778&vc=4fb7c33a' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5722&vc=bbe20dbf' target='_blank'>汇景凯伦湾花园40、41、42、50号楼</a></td><td><a href='BeianDetail.aspx?id=5722&vc=bbe20dbf' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=5722&vc=bbe20dbf' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5724&vc=bd757caa' target='_blank'>汇景凯伦湾花园43、88号楼</a></td><td><a href='BeianDetail.aspx?id=5724&vc=bd757caa' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=5724&vc=bd757caa' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5723&vc=51aa7d18' target='_blank'>汇景凯伦湾花园51、52号楼</a></td><td><a href='BeianDetail.aspx?id=5723&vc=51aa7d18' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=5723&vc=51aa7d18' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6034&vc=4f8ed3be' target='_blank'>汇景凯伦湾花园54、57、60号楼</a></td><td><a href='BeianDetail.aspx?id=6034&vc=4f8ed3be' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6034&vc=4f8ed3be' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8965&vc=b1ba71ca' target='_blank'>汇景凯伦湾花园5号楼</a></td><td><a href='BeianDetail.aspx?id=8965&vc=b1ba71ca' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=8965&vc=b1ba71ca' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6447&vc=259f4813' target='_blank'>汇景凯伦湾花园62号楼</a></td><td><a href='BeianDetail.aspx?id=6447&vc=259f4813' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6447&vc=259f4813' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6448&vc=a87335ef' target='_blank'>汇景凯伦湾花园63、68号楼</a></td><td><a href='BeianDetail.aspx?id=6448&vc=a87335ef' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6448&vc=a87335ef' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6451&vc=f12da863' target='_blank'>汇景凯伦湾花园65、67、69、72号楼</a></td><td><a href='BeianDetail.aspx?id=6451&vc=f12da863' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6451&vc=f12da863' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6453&vc=0fdff336' target='_blank'>汇景凯伦湾花园66、73、129号楼</a></td><td><a href='BeianDetail.aspx?id=6453&vc=0fdff336' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6453&vc=0fdff336' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6449&vc=cebf05f1' target='_blank'>汇景凯伦湾花园70号楼</a></td><td><a href='BeianDetail.aspx?id=6449&vc=cebf05f1' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6449&vc=cebf05f1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6450&vc=6e9f3bc0' target='_blank'>汇景凯伦湾花园71号楼</a></td><td><a href='BeianDetail.aspx?id=6450&vc=6e9f3bc0' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6450&vc=6e9f3bc0' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6452&vc=d19cb077' target='_blank'>汇景凯伦湾花园75号楼</a></td><td><a href='BeianDetail.aspx?id=6452&vc=d19cb077' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6452&vc=d19cb077' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6035&vc=d9ff8698' target='_blank'>汇景凯伦湾花园76、119、120、121号楼</a></td><td><a href='BeianDetail.aspx?id=6035&vc=d9ff8698' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6035&vc=d9ff8698' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6036&vc=16be5fbf' target='_blank'>汇景凯伦湾花园77、78、79、89、90、91、92、105、106、107号楼</a></td><td><a href='BeianDetail.aspx?id=6036&vc=16be5fbf' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6036&vc=16be5fbf' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10545&vc=25145122' target='_blank'>汇景凯伦湾花园7号楼</a></td><td><a href='BeianDetail.aspx?id=10545&vc=25145122' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=10545&vc=25145122' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5725&vc=b80b24cb' target='_blank'>汇景凯伦湾花园80、81、82、83、84、85、86、87号楼</a></td><td><a href='BeianDetail.aspx?id=5725&vc=b80b24cb' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=5725&vc=b80b24cb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6037&vc=0dd9aa50' target='_blank'>汇景凯伦湾花园93、108号楼</a></td><td><a href='BeianDetail.aspx?id=6037&vc=0dd9aa50' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=6037&vc=0dd9aa50' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7115&vc=afdaac2d' target='_blank'>汇景凯伦湾花园94、109号楼</a></td><td><a href='BeianDetail.aspx?id=7115&vc=afdaac2d' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7115&vc=afdaac2d' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7116&vc=1cf66c49' target='_blank'>汇景凯伦湾花园95-102、110-116号楼</a></td><td><a href='BeianDetail.aspx?id=7116&vc=1cf66c49' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=7116&vc=1cf66c49' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10878&vc=71d12083' target='_blank'>汇景凯伦湾花园9号楼</a></td><td><a href='BeianDetail.aspx?id=10878&vc=71d12083' target='_blank'>沙田镇 民田广荣路2号</a></td><td><a href='BeianDetail.aspx?id=10878&vc=71d12083' target='_blank'>18</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10461&vc=6ca72f17' target='_blank'>碧海云天花园银海湾107号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10461&vc=6ca72f17' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10461&vc=6ca72f17' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10439&vc=8eb9b06e' target='_blank'>碧海云天花园银海湾10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10439&vc=8eb9b06e' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10439&vc=8eb9b06e' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10440&vc=4824bee6' target='_blank'>碧海云天花园银海湾11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10440&vc=4824bee6' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10440&vc=4824bee6' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10441&vc=a0c10cdc' target='_blank'>碧海云天花园银海湾19号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10441&vc=a0c10cdc' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10441&vc=a0c10cdc' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10442&vc=be49c847' target='_blank'>碧海云天花园银海湾20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10442&vc=be49c847' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10442&vc=be49c847' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10443&vc=8cbdc89f' target='_blank'>碧海云天花园银海湾21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10443&vc=8cbdc89f' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10443&vc=8cbdc89f' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10444&vc=a5956893' target='_blank'>碧海云天花园银海湾22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10444&vc=a5956893' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10444&vc=a5956893' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10438&vc=136c8e6e' target='_blank'>碧海云天花园银海湾2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10438&vc=136c8e6e' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10438&vc=136c8e6e' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10364&vc=e915e82c' target='_blank'>碧海云天花园银海湾43号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10364&vc=e915e82c' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10364&vc=e915e82c' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10363&vc=0e3502bf' target='_blank'>碧海云天花园银海湾44号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10363&vc=0e3502bf' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10363&vc=0e3502bf' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10813&vc=bcc25364' target='_blank'>碧海云天花园银海湾45号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10813&vc=bcc25364' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10813&vc=bcc25364' target='_blank'>25</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10814&vc=20fc6f40' target='_blank'>碧海云天花园银海湾46号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10814&vc=20fc6f40' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10814&vc=20fc6f40' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10445&vc=8e03c002' target='_blank'>碧海云天花园银海湾59号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10445&vc=8e03c002' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10445&vc=8e03c002' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10446&vc=753bbb90' target='_blank'>碧海云天花园银海湾69号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10446&vc=753bbb90' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10446&vc=753bbb90' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10447&vc=b01c2235' target='_blank'>碧海云天花园银海湾70号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10447&vc=b01c2235' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10447&vc=b01c2235' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10453&vc=aa9b7b2c' target='_blank'>碧海云天花园银海湾80号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10453&vc=aa9b7b2c' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10453&vc=aa9b7b2c' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10455&vc=3588375b' target='_blank'>碧海云天花园银海湾81号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10455&vc=3588375b' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10455&vc=3588375b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10456&vc=df0c9a42' target='_blank'>碧海云天花园银海湾82号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10456&vc=df0c9a42' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10456&vc=df0c9a42' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10448&vc=6f92bc0c' target='_blank'>碧海云天花园银海湾83号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10448&vc=6f92bc0c' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10448&vc=6f92bc0c' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10449&vc=d111ac6b' target='_blank'>碧海云天花园银海湾84号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10449&vc=d111ac6b' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10449&vc=d111ac6b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10457&vc=d9650293' target='_blank'>碧海云天花园银海湾85号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10457&vc=d9650293' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10457&vc=d9650293' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10458&vc=41ffc620' target='_blank'>碧海云天花园银海湾86号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10458&vc=41ffc620' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10458&vc=41ffc620' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10450&vc=a66fd497' target='_blank'>碧海云天花园银海湾87号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10450&vc=a66fd497' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10450&vc=a66fd497' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10451&vc=e3c53323' target='_blank'>碧海云天花园银海湾88号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10451&vc=e3c53323' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10451&vc=e3c53323' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10459&vc=a0e10f7b' target='_blank'>碧海云天花园银海湾89号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10459&vc=a0e10f7b' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10459&vc=a0e10f7b' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10460&vc=9ce9cf39' target='_blank'>碧海云天花园银海湾90号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10460&vc=9ce9cf39' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10460&vc=9ce9cf39' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10452&vc=a77a9341' target='_blank'>碧海云天花园银海湾91号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10452&vc=a77a9341' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10452&vc=a77a9341' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10454&vc=8281c2b1' target='_blank'>碧海云天花园银海湾92号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10454&vc=8281c2b1' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=10454&vc=8281c2b1' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8910&vc=cf402355' target='_blank'>礼顿住宅小区13号楼</a></td><td><a href='BeianDetail.aspx?id=8910&vc=cf402355' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8910&vc=cf402355' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8911&vc=5d9f111f' target='_blank'>礼顿住宅小区14号楼</a></td><td><a href='BeianDetail.aspx?id=8911&vc=5d9f111f' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8911&vc=5d9f111f' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8912&vc=887878d8' target='_blank'>礼顿住宅小区15号楼</a></td><td><a href='BeianDetail.aspx?id=8912&vc=887878d8' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8912&vc=887878d8' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8902&vc=4fada672' target='_blank'>礼顿住宅小区1号楼</a></td><td><a href='BeianDetail.aspx?id=8902&vc=4fada672' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8902&vc=4fada672' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8905&vc=1c32cad1' target='_blank'>礼顿住宅小区2号楼</a></td><td><a href='BeianDetail.aspx?id=8905&vc=1c32cad1' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8905&vc=1c32cad1' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8901&vc=2f4ed031' target='_blank'>礼顿住宅小区3号楼</a></td><td><a href='BeianDetail.aspx?id=8901&vc=2f4ed031' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8901&vc=2f4ed031' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8903&vc=1f8f11f9' target='_blank'>礼顿住宅小区4号楼</a></td><td><a href='BeianDetail.aspx?id=8903&vc=1f8f11f9' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8903&vc=1f8f11f9' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8904&vc=52c5603c' target='_blank'>礼顿住宅小区5号楼</a></td><td><a href='BeianDetail.aspx?id=8904&vc=52c5603c' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8904&vc=52c5603c' target='_blank'>8</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8906&vc=41216349' target='_blank'>礼顿住宅小区6号楼</a></td><td><a href='BeianDetail.aspx?id=8906&vc=41216349' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8906&vc=41216349' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8907&vc=af80e596' target='_blank'>礼顿住宅小区7号楼</a></td><td><a href='BeianDetail.aspx?id=8907&vc=af80e596' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8907&vc=af80e596' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8908&vc=a20a2da9' target='_blank'>礼顿住宅小区8号楼</a></td><td><a href='BeianDetail.aspx?id=8908&vc=a20a2da9' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8908&vc=a20a2da9' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8909&vc=61c4e937' target='_blank'>礼顿住宅小区9号楼</a></td><td><a href='BeianDetail.aspx?id=8909&vc=61c4e937' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=8909&vc=61c4e937' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2606&vc=382990d2' target='_blank'>利澳花园海云轩1#楼</a></td><td><a href='BeianDetail.aspx?id=2606&vc=382990d2' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=2606&vc=382990d2' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2607&vc=5bab0991' target='_blank'>利澳花园海云轩2#楼</a></td><td><a href='BeianDetail.aspx?id=2607&vc=5bab0991' target='_blank'>沙田镇 齐沙村</a></td><td><a href='BeianDetail.aspx?id=2607&vc=5bab0991' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10557&vc=2a0c6d84' target='_blank'>碧海云天花园银海湾41号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10557&vc=2a0c6d84' target='_blank'>沙田镇 齐沙村碧海云天花园</a></td><td><a href='BeianDetail.aspx?id=10557&vc=2a0c6d84' target='_blank'>9</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10558&vc=20116e4e' target='_blank'>碧海云天花园银海湾42号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10558&vc=20116e4e' target='_blank'>沙田镇 齐沙村碧海云天花园</a></td><td><a href='BeianDetail.aspx?id=10558&vc=20116e4e' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3058&vc=930a4b2c' target='_blank'>利澳花园海云轩10幢</a></td><td><a href='BeianDetail.aspx?id=3058&vc=930a4b2c' target='_blank'>沙田镇 齐沙村渡轮路</a></td><td><a href='BeianDetail.aspx?id=3058&vc=930a4b2c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3059&vc=fdbe1de8' target='_blank'>利澳花园海云轩11幢</a></td><td><a href='BeianDetail.aspx?id=3059&vc=fdbe1de8' target='_blank'>沙田镇 齐沙村渡轮路</a></td><td><a href='BeianDetail.aspx?id=3059&vc=fdbe1de8' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3055&vc=3f4094e8' target='_blank'>利澳花园海云轩6幢</a></td><td><a href='BeianDetail.aspx?id=3055&vc=3f4094e8' target='_blank'>沙田镇 齐沙村渡轮路</a></td><td><a href='BeianDetail.aspx?id=3055&vc=3f4094e8' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3056&vc=9afb2623' target='_blank'>利澳花园海云轩8幢</a></td><td><a href='BeianDetail.aspx?id=3056&vc=9afb2623' target='_blank'>沙田镇 齐沙村渡轮路</a></td><td><a href='BeianDetail.aspx?id=3056&vc=9afb2623' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3057&vc=74281dad' target='_blank'>利澳花园海云轩9幢</a></td><td><a href='BeianDetail.aspx?id=3057&vc=74281dad' target='_blank'>沙田镇 齐沙村渡轮路</a></td><td><a href='BeianDetail.aspx?id=3057&vc=74281dad' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=460&vc=47412d78' target='_blank'>利澳花园阳光美居1号楼</a></td><td><a href='BeianDetail.aspx?id=460&vc=47412d78' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=460&vc=47412d78' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=461&vc=b5e5dbc3' target='_blank'>利澳花园阳光美居2号楼</a></td><td><a href='BeianDetail.aspx?id=461&vc=b5e5dbc3' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=461&vc=b5e5dbc3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=462&vc=12ba1ae6' target='_blank'>利澳花园阳光美居3号楼</a></td><td><a href='BeianDetail.aspx?id=462&vc=12ba1ae6' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=462&vc=12ba1ae6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=463&vc=a76f2a9a' target='_blank'>利澳花园阳光美居5号楼</a></td><td><a href='BeianDetail.aspx?id=463&vc=a76f2a9a' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=463&vc=a76f2a9a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=474&vc=130636a6' target='_blank'>利澳花园阳光美居车库及商铺</a></td><td><a href='BeianDetail.aspx?id=474&vc=130636a6' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=474&vc=130636a6' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=612&vc=e5fef109' target='_blank'>利澳花园悦海轩5号楼</a></td><td><a href='BeianDetail.aspx?id=612&vc=e5fef109' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=612&vc=e5fef109' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=613&vc=c262b72c' target='_blank'>利澳花园悦海轩6号楼</a></td><td><a href='BeianDetail.aspx?id=613&vc=c262b72c' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=613&vc=c262b72c' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=615&vc=3facc18d' target='_blank'>利澳花园悦海轩8号楼</a></td><td><a href='BeianDetail.aspx?id=615&vc=3facc18d' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=615&vc=3facc18d' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=616&vc=71061cba' target='_blank'>利澳花园悦海轩9号楼</a></td><td><a href='BeianDetail.aspx?id=616&vc=71061cba' target='_blank'>沙田镇 齐沙管理区</a></td><td><a href='BeianDetail.aspx?id=616&vc=71061cba' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=602&vc=c358b99a' target='_blank'>利澳花园悦海轩1号楼</a></td><td><a href='BeianDetail.aspx?id=602&vc=c358b99a' target='_blank'>沙田镇 齐沙管理区渡轮路28号</a></td><td><a href='BeianDetail.aspx?id=602&vc=c358b99a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=603&vc=aa9ac2cd' target='_blank'>利澳花园悦海轩2号楼</a></td><td><a href='BeianDetail.aspx?id=603&vc=aa9ac2cd' target='_blank'>沙田镇 齐沙管理区渡轮路28号</a></td><td><a href='BeianDetail.aspx?id=603&vc=aa9ac2cd' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=604&vc=9a92559a' target='_blank'>利澳花园悦海轩3号楼</a></td><td><a href='BeianDetail.aspx?id=604&vc=9a92559a' target='_blank'>沙田镇 齐沙管理区渡轮路28号</a></td><td><a href='BeianDetail.aspx?id=604&vc=9a92559a' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3022&vc=a2f429eb' target='_blank'>东港城商住区3区2栋 </a></td><td><a href='BeianDetail.aspx?id=3022&vc=a2f429eb' target='_blank'>沙田镇 斜西村</a></td><td><a href='BeianDetail.aspx?id=3022&vc=a2f429eb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1789&vc=c20675ca' target='_blank'>活力粤港(西区)半地下室车库</a></td><td><a href='BeianDetail.aspx?id=1789&vc=c20675ca' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=1789&vc=c20675ca' target='_blank'>176</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=94&vc=c902adcf' target='_blank'>活力粤港-西区10栋</a></td><td><a href='BeianDetail.aspx?id=94&vc=c902adcf' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=94&vc=c902adcf' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=95&vc=d6708cf4' target='_blank'>活力粤港-西区11栋</a></td><td><a href='BeianDetail.aspx?id=95&vc=d6708cf4' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=95&vc=d6708cf4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=96&vc=12c4513a' target='_blank'>活力粤港-西区12栋</a></td><td><a href='BeianDetail.aspx?id=96&vc=12c4513a' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=96&vc=12c4513a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=97&vc=7767e856' target='_blank'>活力粤港-西区13栋</a></td><td><a href='BeianDetail.aspx?id=97&vc=7767e856' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=97&vc=7767e856' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=98&vc=61c0a085' target='_blank'>活力粤港-西区14栋</a></td><td><a href='BeianDetail.aspx?id=98&vc=61c0a085' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=98&vc=61c0a085' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=85&vc=3bbaad94' target='_blank'>活力粤港-西区1栋</a></td><td><a href='BeianDetail.aspx?id=85&vc=3bbaad94' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=85&vc=3bbaad94' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=86&vc=b54d23e7' target='_blank'>活力粤港-西区2栋</a></td><td><a href='BeianDetail.aspx?id=86&vc=b54d23e7' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=86&vc=b54d23e7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=87&vc=1b6980c4' target='_blank'>活力粤港-西区3栋</a></td><td><a href='BeianDetail.aspx?id=87&vc=1b6980c4' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=87&vc=1b6980c4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=88&vc=d0785a3e' target='_blank'>活力粤港-西区4栋</a></td><td><a href='BeianDetail.aspx?id=88&vc=d0785a3e' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=88&vc=d0785a3e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=89&vc=faa56f32' target='_blank'>活力粤港-西区5栋</a></td><td><a href='BeianDetail.aspx?id=89&vc=faa56f32' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=89&vc=faa56f32' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=90&vc=c9e39ab5' target='_blank'>活力粤港-西区6栋</a></td><td><a href='BeianDetail.aspx?id=90&vc=c9e39ab5' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=90&vc=c9e39ab5' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=91&vc=316fbc15' target='_blank'>活力粤港-西区7栋</a></td><td><a href='BeianDetail.aspx?id=91&vc=316fbc15' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=91&vc=316fbc15' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=92&vc=fb8431f8' target='_blank'>活力粤港-西区8栋</a></td><td><a href='BeianDetail.aspx?id=92&vc=fb8431f8' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=92&vc=fb8431f8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=93&vc=0d18019d' target='_blank'>活力粤港-西区9栋</a></td><td><a href='BeianDetail.aspx?id=93&vc=0d18019d' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=93&vc=0d18019d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=99&vc=4f7e5b6d' target='_blank'>活力粤港-西区会所</a></td><td><a href='BeianDetail.aspx?id=99&vc=4f7e5b6d' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=99&vc=4f7e5b6d' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7268&vc=9f8b65d7' target='_blank'>江畔花园(南区)10号楼</a></td><td><a href='BeianDetail.aspx?id=7268&vc=9f8b65d7' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7268&vc=9f8b65d7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7269&vc=6e0fac8f' target='_blank'>江畔花园(南区)11号楼</a></td><td><a href='BeianDetail.aspx?id=7269&vc=6e0fac8f' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7269&vc=6e0fac8f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6866&vc=3282426f' target='_blank'>江畔花园(南区)120、121、122、123、124、125、126、127、144、145、146、147、148、149、150、151、152、153号楼</a></td><td><a href='BeianDetail.aspx?id=6866&vc=3282426f' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6866&vc=3282426f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6859&vc=82f36475' target='_blank'>江畔花园(南区)12、13、14号楼</a></td><td><a href='BeianDetail.aspx?id=6859&vc=82f36475' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6859&vc=82f36475' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6860&vc=3ff02de4' target='_blank'>江畔花园(南区)15、16、17、18号楼</a></td><td><a href='BeianDetail.aspx?id=6860&vc=3ff02de4' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6860&vc=3ff02de4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6861&vc=883bc1a3' target='_blank'>江畔花园(南区)19号楼</a></td><td><a href='BeianDetail.aspx?id=6861&vc=883bc1a3' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6861&vc=883bc1a3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6778&vc=039cdafc' target='_blank'>江畔花园(南区)1号楼</a></td><td><a href='BeianDetail.aspx?id=6778&vc=039cdafc' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6778&vc=039cdafc' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6862&vc=527126a9' target='_blank'>江畔花园(南区)20至52号楼</a></td><td><a href='BeianDetail.aspx?id=6862&vc=527126a9' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6862&vc=527126a9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6780&vc=ece71932' target='_blank'>江畔花园(南区)2号楼</a></td><td><a href='BeianDetail.aspx?id=6780&vc=ece71932' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6780&vc=ece71932' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6779&vc=8d514c33' target='_blank'>江畔花园(南区)3号楼</a></td><td><a href='BeianDetail.aspx?id=6779&vc=8d514c33' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6779&vc=8d514c33' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6781&vc=034545cc' target='_blank'>江畔花园(南区)4号楼</a></td><td><a href='BeianDetail.aspx?id=6781&vc=034545cc' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6781&vc=034545cc' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6865&vc=87ee1e53' target='_blank'>江畔花园(南区)53、54、55、56、57、58、59、60号楼</a></td><td><a href='BeianDetail.aspx?id=6865&vc=87ee1e53' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6865&vc=87ee1e53' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6891&vc=35fa9c3c' target='_blank'>江畔花园(南区)5号楼 </a></td><td><a href='BeianDetail.aspx?id=6891&vc=35fa9c3c' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6891&vc=35fa9c3c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6863&vc=2a5768ad' target='_blank'>江畔花园(南区)61至83号楼</a></td><td><a href='BeianDetail.aspx?id=6863&vc=2a5768ad' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6863&vc=2a5768ad' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7082&vc=8930dea8' target='_blank'>江畔花园(南区)6号楼</a></td><td><a href='BeianDetail.aspx?id=7082&vc=8930dea8' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7082&vc=8930dea8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7164&vc=3bba8fe9' target='_blank'>江畔花园(南区)7号楼</a></td><td><a href='BeianDetail.aspx?id=7164&vc=3bba8fe9' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7164&vc=3bba8fe9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6864&vc=33cd3fd4' target='_blank'>江畔花园(南区)84至119号楼、128至143号楼</a></td><td><a href='BeianDetail.aspx?id=6864&vc=33cd3fd4' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=6864&vc=33cd3fd4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7267&vc=4c277d4a' target='_blank'>江畔花园(南区)9号楼</a></td><td><a href='BeianDetail.aspx?id=7267&vc=4c277d4a' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7267&vc=4c277d4a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7539&vc=511a6fec' target='_blank'>江畔花园(南区)商业、办公综合楼(商铺)</a></td><td><a href='BeianDetail.aspx?id=7539&vc=511a6fec' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7539&vc=511a6fec' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7309&vc=7622da11' target='_blank'>江畔花园（南区）8号楼</a></td><td><a href='BeianDetail.aspx?id=7309&vc=7622da11' target='_blank'>沙田镇 杨公洲村</a></td><td><a href='BeianDetail.aspx?id=7309&vc=7622da11' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8043&vc=5798c5b7' target='_blank'>港口国际华府2号</a></td><td><a href='BeianDetail.aspx?id=8043&vc=5798c5b7' target='_blank'>沙田镇 杨公洲村下谷村民小组</a></td><td><a href='BeianDetail.aspx?id=8043&vc=5798c5b7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10906&vc=6142b94f' target='_blank'>海月居1幢</a></td><td><a href='BeianDetail.aspx?id=10906&vc=6142b94f' target='_blank'>沙田镇 杨公洲村下谷村民小组</a></td><td><a href='BeianDetail.aspx?id=10906&vc=6142b94f' target='_blank'>59</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10907&vc=dec04a5f' target='_blank'>海月居2幢</a></td><td><a href='BeianDetail.aspx?id=10907&vc=dec04a5f' target='_blank'>沙田镇 杨公洲村下谷村民小组</a></td><td><a href='BeianDetail.aspx?id=10907&vc=dec04a5f' target='_blank'>46</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10908&vc=ec4c2546' target='_blank'>海月居3幢</a></td><td><a href='BeianDetail.aspx?id=10908&vc=ec4c2546' target='_blank'>沙田镇 杨公洲村下谷村民小组</a></td><td><a href='BeianDetail.aspx?id=10908&vc=ec4c2546' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2315&vc=872f90b1' target='_blank'>东港城商住区(二期)2区1栋 </a></td><td><a href='BeianDetail.aspx?id=2315&vc=872f90b1' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2315&vc=872f90b1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3766&vc=0a7de410' target='_blank'>东港城商住区(二期)2区地下室车库</a></td><td><a href='BeianDetail.aspx?id=3766&vc=0a7de410' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=3766&vc=0a7de410' target='_blank'>104</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2316&vc=50c9470e' target='_blank'>东港城商住区(二期)3区1栋 </a></td><td><a href='BeianDetail.aspx?id=2316&vc=50c9470e' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=2316&vc=50c9470e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5059&vc=ea2b2b9f' target='_blank'>东港城商住区(二期)4区1栋 </a></td><td><a href='BeianDetail.aspx?id=5059&vc=ea2b2b9f' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=5059&vc=ea2b2b9f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5060&vc=699e59b3' target='_blank'>东港城商住区(二期)4区2栋 </a></td><td><a href='BeianDetail.aspx?id=5060&vc=699e59b3' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=5060&vc=699e59b3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4740&vc=1dcf8a8e' target='_blank'>东港城商住区(二期)4区3栋</a></td><td><a href='BeianDetail.aspx?id=4740&vc=1dcf8a8e' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=4740&vc=1dcf8a8e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6857&vc=2953fd69' target='_blank'>东港城商住区(二期)4区地下车库</a></td><td><a href='BeianDetail.aspx?id=6857&vc=2953fd69' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=6857&vc=2953fd69' target='_blank'>23</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=909&vc=627e5508' target='_blank'>东港城商住区(二期)A区10栋</a></td><td><a href='BeianDetail.aspx?id=909&vc=627e5508' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=909&vc=627e5508' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=910&vc=7deb539e' target='_blank'>东港城商住区(二期)A区11栋 </a></td><td><a href='BeianDetail.aspx?id=910&vc=7deb539e' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=910&vc=7deb539e' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=911&vc=fb9fdb04' target='_blank'>东港城商住区(二期)A区12栋</a></td><td><a href='BeianDetail.aspx?id=911&vc=fb9fdb04' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=911&vc=fb9fdb04' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=912&vc=76571396' target='_blank'>东港城商住区(二期)A区13栋 </a></td><td><a href='BeianDetail.aspx?id=912&vc=76571396' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=912&vc=76571396' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=900&vc=a35c4de3' target='_blank'>东港城商住区(二期)A区1栋 </a></td><td><a href='BeianDetail.aspx?id=900&vc=a35c4de3' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=900&vc=a35c4de3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=901&vc=546505c9' target='_blank'>东港城商住区(二期)A区2栋</a></td><td><a href='BeianDetail.aspx?id=901&vc=546505c9' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=901&vc=546505c9' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=902&vc=cc43f637' target='_blank'>东港城商住区(二期)A区3栋</a></td><td><a href='BeianDetail.aspx?id=902&vc=cc43f637' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=902&vc=cc43f637' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=903&vc=627382a1' target='_blank'>东港城商住区(二期)A区4栋</a></td><td><a href='BeianDetail.aspx?id=903&vc=627382a1' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=903&vc=627382a1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=904&vc=83f0d84d' target='_blank'>东港城商住区(二期)A区5栋  </a></td><td><a href='BeianDetail.aspx?id=904&vc=83f0d84d' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=904&vc=83f0d84d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=905&vc=94607b33' target='_blank'>东港城商住区(二期)A区6栋</a></td><td><a href='BeianDetail.aspx?id=905&vc=94607b33' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=905&vc=94607b33' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=906&vc=733f05a1' target='_blank'>东港城商住区(二期)A区7栋</a></td><td><a href='BeianDetail.aspx?id=906&vc=733f05a1' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=906&vc=733f05a1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=907&vc=afcc3ad9' target='_blank'>东港城商住区(二期)A区8栋 </a></td><td><a href='BeianDetail.aspx?id=907&vc=afcc3ad9' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=907&vc=afcc3ad9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=908&vc=b55183a3' target='_blank'>东港城商住区(二期)A区9栋</a></td><td><a href='BeianDetail.aspx?id=908&vc=b55183a3' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=908&vc=b55183a3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=914&vc=1f66bb82' target='_blank'>东港城商住区(二期)A区地下室车库</a></td><td><a href='BeianDetail.aspx?id=914&vc=1f66bb82' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=914&vc=1f66bb82' target='_blank'>152</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=913&vc=06d60252' target='_blank'>东港城商住区(二期)A区商业街 </a></td><td><a href='BeianDetail.aspx?id=913&vc=06d60252' target='_blank'>沙田镇 中心区</a></td><td><a href='BeianDetail.aspx?id=913&vc=06d60252' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8937&vc=39a6d7c8' target='_blank'>东港城商住区东港城商业中心41号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=8937&vc=39a6d7c8' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=8937&vc=39a6d7c8' target='_blank'>266</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7341&vc=804ce19c' target='_blank'>东港华府1号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=7341&vc=804ce19c' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=7341&vc=804ce19c' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7342&vc=ab64a4ad' target='_blank'>东港华府2号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=7342&vc=ab64a4ad' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=7342&vc=ab64a4ad' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7202&vc=fac8cfd9' target='_blank'>东港华府3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7202&vc=fac8cfd9' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=7202&vc=fac8cfd9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7203&vc=8697ed48' target='_blank'>东港华府4号商业楼、住宅楼</a></td><td><a href='BeianDetail.aspx?id=7203&vc=8697ed48' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=7203&vc=8697ed48' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7682&vc=a0402414' target='_blank'>东港华府5号商业楼、办公楼</a></td><td><a href='BeianDetail.aspx?id=7682&vc=a0402414' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=7682&vc=a0402414' target='_blank'>286</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7343&vc=e2bca70a' target='_blank'>东港华府6号商业楼、住宅楼</a></td><td><a href='BeianDetail.aspx?id=7343&vc=e2bca70a' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=7343&vc=e2bca70a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8414&vc=9468e893' target='_blank'>东港华府8号地下室</a></td><td><a href='BeianDetail.aspx?id=8414&vc=9468e893' target='_blank'>沙田镇 阇西村</a></td><td><a href='BeianDetail.aspx?id=8414&vc=9468e893' target='_blank'>353</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8557&vc=e21c6e2e' target='_blank'>东港城商业中心40号商业楼</a></td><td><a href='BeianDetail.aspx?id=8557&vc=e21c6e2e' target='_blank'>沙田镇 阇西村东港城商住区</a></td><td><a href='BeianDetail.aspx?id=8557&vc=e21c6e2e' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8558&vc=2e4802e6' target='_blank'>东港城商住区东港城商业中心42号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=8558&vc=2e4802e6' target='_blank'>沙田镇 阇西村东港城商住区</a></td><td><a href='BeianDetail.aspx?id=8558&vc=2e4802e6' target='_blank'>79</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8559&vc=08da7236' target='_blank'>东港城商住区东港城商业中心43号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=8559&vc=08da7236' target='_blank'>沙田镇 阇西村东港城商住区</a></td><td><a href='BeianDetail.aspx?id=8559&vc=08da7236' target='_blank'>234</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11014&vc=183741ca' target='_blank'>紫薇银座1号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=11014&vc=183741ca' target='_blank'>沙田镇 阇西村中心区港口大道</a></td><td><a href='BeianDetail.aspx?id=11014&vc=183741ca' target='_blank'>45</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7323&vc=c207856e' target='_blank'>锦江丽园第15、16、17栋</a></td><td><a href='BeianDetail.aspx?id=7323&vc=c207856e' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7323&vc=c207856e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7324&vc=93f4734f' target='_blank'>锦江丽园第18、19、20、21、22栋</a></td><td><a href='BeianDetail.aspx?id=7324&vc=93f4734f' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7324&vc=93f4734f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7325&vc=36655a60' target='_blank'>锦江丽园第1栋</a></td><td><a href='BeianDetail.aspx?id=7325&vc=36655a60' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7325&vc=36655a60' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7535&vc=0415619a' target='_blank'>锦江丽园第2栋</a></td><td><a href='BeianDetail.aspx?id=7535&vc=0415619a' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7535&vc=0415619a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7370&vc=2b4632ae' target='_blank'>锦江丽园第3栋</a></td><td><a href='BeianDetail.aspx?id=7370&vc=2b4632ae' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7370&vc=2b4632ae' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7536&vc=6734fc1a' target='_blank'>锦江丽园第5栋</a></td><td><a href='BeianDetail.aspx?id=7536&vc=6734fc1a' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7536&vc=6734fc1a' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7322&vc=5ddad606' target='_blank'>锦江丽园第6、7、8、9、10、11、12、13栋</a></td><td><a href='BeianDetail.aspx?id=7322&vc=5ddad606' target='_blank'>沙田镇 稔洲村渡轮路边</a></td><td><a href='BeianDetail.aspx?id=7322&vc=5ddad606' target='_blank'>7</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="300" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

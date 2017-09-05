@@ -1,0 +1,160 @@
+import multiprocessing, time, re, threading
+import xmlrpc.client
+
+from bean.urlbean import *
+from dispatch.urldispatch import UrlDispatch
+from webparser.www_58_com import *
+from webparser.www_fang_com import *
+from log.logger import *
+import config
+#s = xmlrpc.client.ServerProxy('http://localhost:80')
+#print(s.system.listMethods())
+global WORKERS, JOBFETCH
+WORKERS = 2     #任务线程数
+JOBFETCH = 20   #每次获取任务个数
+TRYCOUNT = 5    #客户端重连次数
+TRYINTERVAL = 1*6 #客户端重连间隔1分钟
+global CF
+CF = config.initcf()
+
+class Worker(threading.Thread):
+
+    def __init__(self, num, interval):
+        threading.Thread.__init__(self)
+        self.num = num
+        self.interval = interval
+        self.process_stop = False
+        self.trycount = TRYCOUNT
+        self.tryinterval = TRYINTERVAL
+
+    def run(self):
+        #消息分发，根据URL和消息定位需要解析的方法,
+        ############### 如果要动态更改注册内容需要考虑多线程访问的问题
+        self.urldispatch = UrlDispatch([www58com,wwwfangcom])
+        #MySqlEx.getConn()
+        self.LOG=logging.getLogger()
+        self.LOG.handlers[0].setLevel(logging.DEBUG)
+        self.LOG.handlers[1].setLevel(logging.INFO)
+        #执行链接断开以后的重试
+        while (self.trycount>0):
+            try:
+                #链接服务器获取URL信息
+                #localip = socket.gethostbyname(socket.gethostname())
+                s = xmlrpc.client.ServerProxy('http://%s:6789' % (CF.get('server', 'ip')), allow_none=True)
+                #获取配置信息
+                config.merageDB(CF, s.getcf())
+                #MySqlEx.getConn(CF)
+                ###r = re.compile(r'(\D+)(\d+)')
+                while (not self.process_stop):
+                    t1 = time.time()
+                    jobs = s.getJobs(JOBFETCH)
+                    t2 = time.time()
+                    LOG.info('从服务器获取数据耗时:%f' % (t2-t1))
+                    self.LOG.debug(DEBUG.WORK_GETJOB, self.num, jobs)
+                    for i in jobs:
+                        #对URL进行分发
+                        #存在类变量就直接实例化类
+                        try:
+                            urlbean = None
+                            try:
+                                if 'classname' not in i:
+                                    urlbean = UrlBase(**i)
+                                else:
+                                    urlbean = globals()[i['classname']](**i)
+                            except Exception as e:
+                                self.LOG.error(ERROR.CLIENT_NEWFAILE, str(e))
+                                continue
+                            #如果处理失败，将此任务返回服务器队列
+                            try:
+                                rs, nextjobs = self.urldispatch.dispatch(urlbean)
+                                if not rs:
+                                    #s.addJob(urlbean)
+                                    self.LOG.warning(WARN.CLIENT_MESSAGE_FAILED)
+                                elif hasattr(nextjobs, '__iter__'):
+                                    t1 = time.time()
+                                    s.addJobs(nextjobs)
+                                    t2 = time.time()
+                                    LOG.info('向服务器传递数据耗时:%f' % (t2-t1))
+                            except Exception as e:
+                                self.LOG.error(ERROR.CLIENT_RETURNURLS_FAILE, str(rs), str(e))
+                            ###print(type(i))
+                            ###rs = re.search(r, i)
+                            ###if rs and int(rs.group(2))>=12:
+                                ###continue
+                            ###nextUrl = [ '%s%d' % (i, x) for x in range(1, 5)] if rs is None else [ '%s%d' % (rs.group(1), int(rs.group(2)) + x) for x in range(1, 5)]
+                            #print('线程生成任务', self.num, nextUrl)
+                            #s.addJobs(nextUrl)
+                        except Exception as e:
+                            #s.addJob(i)
+                            self.LOG.error(ERROR.CLIENT_RETURNURLS_FAILE, rs, str(e))
+                    time.sleep(self.interval)
+            except Exception as e:
+                if isinstance(e, ConnectionRefusedError):
+                    self.LOG.error(ERROR.CLIENT_CONNECT_FAILE, self.tryinterval, self.trycount)
+                    self.trycount-=1
+                    time.sleep(self.tryinterval)
+        self.LOG.info(INFO.CLIENT_CLOSED)
+        #关闭链接
+        try:
+            s.close()
+            MySqlEx.deposit()
+        except:
+            pass
+    #解析内存文件
+
+
+#链接服务器获取页面
+if __name__ == '__main__':
+    workers = []
+    for i in range(0, WORKERS):
+        worker = Worker(i, 0.5)
+        worker.start()
+        workers.append(worker)
+    for w in workers:
+        w.join()
+
+    # dworker1 = Worker(1, 1)
+    # dworker2 = Worker(2, 2)
+    # dworker3 = Worker(3, 3)
+    # dworker4 = Worker(4, 3)
+    # dworker5 = Worker(5, 3)
+    # dworker6 = Worker(6, 3)
+    # dworker7 = Worker(7, 3)
+    # dworker8 = Worker(8, 3)
+    # dworker9 = Worker(9, 3)
+    # dworker10 = Worker(10, 3)
+    # dworker1.start()
+    # dworker2.start()
+    # dworker3.start()
+    # dworker4.start()
+    # dworker5.start()
+    # dworker6.start()
+    # dworker7.start()
+    # dworker8.start()
+    # dworker9.start()
+    # dworker10.start()
+
+
+
+
+
+"""
+import zerorpc
+c=zerorpc.Client()
+c.connect("tcp://127.0.0.1:4242")#连接RPC服务端
+print (c.hello('www.ruifengyun.com'))
+"""
+"""
+import zmq
+context = zmq.Context()
+socket = context.socket(zmq.REQ)
+socket.connect("tcp://127.0.0.1:5000")
+socket.connect("tcp://127.0.0.1:6000")
+
+for i in range(10):
+    msg = "msg %s" % i
+    socket.send_string(msg)
+    print ("Sending", msg)
+    msg_in = socket.recv()
+"""
+

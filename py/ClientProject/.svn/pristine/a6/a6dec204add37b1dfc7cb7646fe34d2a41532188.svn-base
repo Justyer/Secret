@@ -1,0 +1,412 @@
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+from webparser.webparserbase import ParserBase
+from serializ.htmlfile import *
+from serializ.oracle import *
+from bean.urlbean import *
+from log.logger import *
+
+LOG=logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.INFO)
+
+################################
+metadatas = ('题名','来源链接','小区名称','所属区域','小区链接','楼栋名称','地址','建成年份',                  #7
+            '总楼层','当前层','朝向','建筑面积','使用面积','产权性质','装修情况','户型','卧室数量',            #16
+            '客厅数量','卫生间数量','厨房数量','阳台数量','单价','总价','挂牌时间','房屋图片','信息来源',      #25
+            '联系人','经纪公司','电话号码','纬度','经度','发布时间','住宅类别','建筑类别','配套设施','交通状况', #35
+            '楼盘物业类型','楼盘绿化率','楼盘物业费','数据来源','城市','行政区','str_order')                    #41
+
+import requests, re
+from bs4 import BeautifulSoup, Tag
+#解析安居客网站
+class wwwajkcom(ParserBase):
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36 LBBROWSER', 'Connection': 'keep-alive'}
+    htmlwrite = HtmlFile()
+
+    def __init__(self):
+        super(wwwajkcom, self).__init__()
+
+    def default(self, urlbase):
+        LOG.info('安居客默认方法获得城市列表!')
+        r = requests.get(urlbase.url,headers=self.headers, timeout=(3.05, 1.5))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwajkcom %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        soup = BeautifulSoup(r.content.decode('utf8'), 'html.parser') #lxml
+        citys = soup.find('div', class_='cities_boxer').find_all('a')
+        list = []
+        i_count = 1
+        i_order = urlbase.order+'0'
+        t_50 = ('上海')
+        t_20 = ('北京','深圳')
+        t_15 = ('南京','成都','杭州','天津','重庆','广州','昆山','昆明','沈阳','广州','厦门')
+        t_6 = ('青岛','济南','烟台','苏州','南京','杭州','武汉','温州','合肥','东莞','福州','海口','郑州','武汉','长沙','大连','哈尔滨','长春','石家庄','太原','西安','乌鲁木齐','兰州','西宁','南昌','珠海','大同','连云港','潍坊')
+        for i in citys:
+            #if i.text not in ('北京', '上海', '广州', '深圳'): continue
+            if i.text in t_20:
+                i_count = 1
+                while i_count <= 20:
+                    list.append(UrlBean(i['href']+'/sale/o5-p'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'sale/o5-p'+str(i_count)+'/')
+                    i_count += 1
+            elif i.text in t_50:
+                i_count = 1
+                while i_count <= 50:
+                    list.append(UrlBean(i['href']+'/sale/o5-p'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'sale/o5-p'+str(i_count)+'/')
+                    i_count += 1
+            elif i.text in t_15:
+                i_count = 1
+                while i_count <= 15:
+                    list.append(UrlBean(i['href']+'/sale/o5-p'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'sale/o5-p'+str(i_count)+'/')
+                    i_count += 1
+            elif i.text in t_6:
+                i_count = 1
+                while i_count <= 6:
+                    list.append(UrlBean(i['href']+'/sale/o5-p'+str(i_count)+'/', self.message('getpages'), param=i_count, headers=i.text, order=i_order))
+                    LOG.info('获得城市%s页面信息%s', i.text, i['href']+'sale/o5-p'+str(i_count)+'/')
+                    i_count += 1
+            else:
+                list.append(UrlBean(i['href']+'/sale/o5-p1/', self.message('getpages'), param=1, headers=i.text, order=i_order))
+                LOG.info('获得城市%s页面信息%s', i.text, i['href']+'sale/o5-p'+str(i_count)+'/')
+        return list
+
+    #解析城市二手房列表页
+    def getpages(self, urlbase):
+        LOG.info('ajkgetpages获得城市%s二手房列表信息', urlbase.url)
+        r = requests.get(urlbase.url,headers=self.headers, timeout=(3.05, 1.5))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwajkcom %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        html = r.text.encode('utf8',errors='ignore').decode('utf8',errors='ignore')
+        htmllist = '<ul id="house-list" class="house-list">'+html.split('<ul id="house-list" class="house-list">')[1].split('<div id="IFX_p937" class="" style=""></div>')[0]
+        soup = BeautifulSoup(htmllist, 'html.parser')
+        items = soup.find_all('a')
+        list = []
+        itemIndex = 1
+        i_order = urlbase.order+'1'
+        for item in items:
+            if '.58.com' not in item['href'] and 'fang_shou' not in item['href'] and 'fang_zu' not in item['href']:
+                sUrl = item['href'].split('?')[0]
+                list.append(UrlBean(sUrl, self.message('getitem'), key=sUrl, param=urlbase.headers, order=i_order))
+                LOG.debug('%s第%d页%d项' % (urlbase.headers, urlbase.param, itemIndex))
+                itemIndex += 1
+        #存在分页信息
+        # if urlbase.param and urlbase.param<=self.fetchpage:
+        #     #获得下一页地址
+        #     nextpage = soup.find('div', id='house-area')
+        #     if nextpage:
+        #         nextpageurl = nextpage.find('a', class_='next')
+        #         if nextpageurl:
+        #             host = '/'.join(r.url.split('/')[:3])
+        #             list.append(UrlBean(host+nextpageurl['href'], self.message('getpages'), param=urlbase.param+1, headers=urlbase.headers))
+        #             LOG.debug('%s第%d页' % (urlbase.headers, urlbase.param))
+        return list;
+
+    #解析详细页面信息
+    def getitem(self, urlbase):
+        LOG.info('ajkgetinfo获得城市%s挂牌详细信息', urlbase.url)
+        t1 = time.time()
+        r = requests.get(urlbase.url,headers=self.headers, timeout=(3.05, 1.5))
+        t2 = time.time()
+        LOG.info('处理ajk请求getitem耗时:%f' % (t2-t1))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        #存储页面信息
+        t1 = time.time()
+        self.htmlwrite.save('%s\\%s\\%s' %(self.__class__.__name__, '二手房', urlbase.param), r.url, r.text)
+        t2 = time.time()
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwajkom %s 返回状态:%s', r.request.url, r.status_code)
+            return
+        t1 = time.time()
+        reText = r.text
+        soup = BeautifulSoup(r.content.decode('utf8'), 'html.parser') #lxml
+        lr = {}
+        ###############################################################################################################
+        try:
+            title = re.findall('<h3 class="fl">(.*?)</h3>',reText,re.S)
+            lr[metadatas[0]]  = title[0]
+        except Exception as e:
+            lr[metadatas[0]]  =''
+    
+        lr[metadatas[1]] = urlbase.url
+    
+        try:
+            xq = re.findall('小区名</dt>(.*?)</a>',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[2]] = dr.sub('',xq[0]).strip()
+        except:
+            lr[metadatas[2]] =''
+    
+        try:
+            area1 = soup.find('div',attrs={'class':'block-area'}).find_all('a')
+            for area2 in area1:
+                 lr[metadatas[3]] = area2.text.replace('房价','')
+        except:
+            lr[metadatas[3]] =''
+    
+        try:
+            xq = re.findall('小区名</dt>(.*?)target="_blank">',reText,re.S)
+            xq_link = re.findall('<a href="(.*?)"',str(xq),re.S)
+            lr[metadatas[4]] = xq_link[0]
+        except:
+            lr[metadatas[4]] =''
+    
+        # try:
+        #     ld_name = re.findall('<div id="content">(.*?)</div>',reText,re.S)
+        #     dr = re.compile(r'<[^>]+>',re.S)
+        #     d['楼栋名称'] = dr.sub('',ld_name[0]).replace('&gt;','').replace('二手房','').strip()
+        # except:
+        #     d['楼栋名称'] =''
+    
+        try:
+            address = re.findall('地址</dt>(.*?)<a href',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[6]] = dr.sub('',address[0]).strip().replace('\n')
+        except:
+            lr[metadatas[6]] = ''
+    
+        try:
+            year = re.findall('建造年代</dt>(.*?)</dd>',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[7]] = dr.sub('',year[0]).strip()
+        except:
+            lr[metadatas[7]] =''
+    
+        try:
+            z_floor = re.findall('楼层</dt>(.*?)</dl>',reText,re.S)
+            floor = re.findall('/(.*?)<',str(z_floor),re.S)
+            lr[metadatas[8]] = floor[0]
+        except:
+            lr[metadatas[8]] =''
+    
+        try:
+            dq_floor = re.findall('<dd>(.*?)/',str(z_floor),re.S)
+            lr[metadatas[9]] = dq_floor[0]
+        except:
+            lr[metadatas[9]] =''
+    
+        try:
+            toward_t = re.findall('朝向</dt>(.*?)</dl>',reText,re.S)
+            toward = re.findall('<dd>(.*?)</dd>',str(toward_t),re.S)
+            lr[metadatas[10]] = toward[0]
+        except:
+            lr[metadatas[10]] =''
+    
+        try:
+            jz_area = re.findall('面积</dt>(.*?)</dl>',reText,re.S)
+            area = re.findall('<dd>(.*?)平米',str(jz_area),re.S)
+            lr[metadatas[11]] = area[0]
+        except:
+            lr[metadatas[11]] =''
+    
+        try:
+            decorate_t = re.findall('装修</dt>(.*?)</dl>',reText,re.S)
+            decorate = re.findall('<dd>(.*?)</dd>',str(decorate_t),re.S)
+            lr[metadatas[14]] = decorate[0]
+        except:
+            lr[metadatas[14]] =''
+    
+        try:
+            huose_t = re.findall('房型</dt>(.*?)</dl>',reText,re.S)
+            huose = re.findall('<dd>(.*?)</dd>',str(huose_t),re.S)
+            lr[metadatas[15]] = huose[0]
+        except:
+            lr[metadatas[15]] =''
+    
+        # try:
+        #     room_t = re.findall('房型</dt>(.*?)</dl>',reText,re.S)
+        #     room = re.findall('<dd>(.*?)室',str(room_t),re.S)
+        #     d['卧室数量'] = room[0]
+        # except:
+        #     d['卧室数量'] =''
+        #
+        # try:
+        #     living_t = re.findall('房型</dt>(.*?)</dl>',reText,re.S)
+        #     living = re.findall('室(.*?)厅',str(living_t),re.S)
+        #     d['客厅数量'] = living[0]
+        # except:
+        #     d['客厅数量'] =''
+        #
+        # try:
+        #     wc_t = re.findall('房型</dt>(.*?)</dl>',reText,re.S)
+        #     wc = re.findall('厅(.*?)卫',str(wc_t),re.S)
+        #     d['卫生间数量'] = wc[0]
+        # except:
+        #     d['卫生间数量'] =''
+    
+        try:
+            u_price_t = re.findall('单价</dt>(.*?)</dl>',reText,re.S)
+            u_price = re.findall('<dd>(.*?)元',str(u_price_t),re.S)
+            lr[metadatas[21]] = u_price[0]
+        except:
+            lr[metadatas[21]] =''
+    
+        try:
+            t_price_t = re.findall('售价</dt>(.*?)</dl>',reText,re.S)
+            t_price = re.findall('<strong><span class="f26">(.*?)<',str(t_price_t),re.S)
+            lr[metadatas[22]] = t_price[0]
+        except:
+            lr[metadatas[22]] =''
+    
+        lr[metadatas[25]] = 'ajk'
+    
+        try:
+            lxr_name = re.findall('<strong class="name">(.*?)<',reText,re.S)
+            lr[metadatas[26]] = lxr_name[0]
+        except:
+            lr[metadatas[26]] =''
+    
+        try:
+            company = re.findall('<p class="comp_info">(.*?)</a>',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[27]] = dr.sub('',company[0]).strip()
+        except:
+            lr[metadatas[27]] =''
+    
+        try:
+            telephone = re.findall('<div class="broker_icon broker_tel dark_grey"><i class="p_icon icon_tel"></i>(.*?)</div>',reText,re.S)
+            dr = re.compile(r'<[^>]+>',re.S)
+            lr[metadatas[28]] = dr.sub('',telephone[0]).strip()
+        except:
+            lr[metadatas[28]] =''
+    
+        try:
+            lng = re.findall('\'comm_lng\' : \'(.*?)\'',reText,re.S)
+            lr[metadatas[29]] = lng[0]
+        except:
+            lr[metadatas[29]] =''
+    
+        try:
+            lat = re.findall('\'comm_lat\' : \'(.*?)\'',reText,re.S)
+            lr[metadatas[30]] = lat[0]
+        except:
+            lr[metadatas[30]] =''
+    
+        try:
+            fb_time = re.findall('发布时间：(.*?)</div>',reText,re.S)
+            lr[metadatas[31]] = fb_time[0]
+        except:
+            lr[metadatas[31]] =''
+    
+        try:
+            zz_category = re.findall('类型</dt>(.*?)</dl>',reText,re.S)
+            category1 = re.findall('<dd>(.*?)</dd>',str(zz_category),re.S)
+            category = category1[1]
+            lr[metadatas[32]] = category.replace("\n","").strip()
+        except:
+             lr[metadatas[32]] =''
+
+    
+        try:
+            lpwylx_t = re.findall('物业类型</dt>(.*?)</dl>',reText,re.S)
+            lpwylx = re.findall('<dd>(.*?)</dd>',str(lpwylx_t),re.S)
+            lr[metadatas[36]] = lpwylx[0]
+        except:
+            lr[metadatas[36]] =''
+    
+        try:
+            greening = re.findall('绿化率</dt>(.*?)</dl>',reText,re.S)
+            green = re.findall('<dd>(.*?)</dd>',str(greening),re.S)
+            lr[metadatas[37]] = green[0]
+        except:
+            lr[metadatas[37]] =''
+    
+        try:
+            costs_t = re.findall('物业费用</dt>(.*?)</dl>',reText,re.S)
+            costs = re.findall('<dd>(.*?)</dd>',str(costs_t),re.S)
+            lr[metadatas[38]] = costs[0]
+        except:
+            lr[metadatas[38]] =''
+    
+    
+        lr[metadatas[39]] = 'ajk'
+    
+        try:
+            city = re.findall('<span class="city">(.*?)<',reText,re.S)
+            lr[metadatas[40]] =city[0]
+        except:
+            lr[metadatas[40]] =''
+    
+    
+        try:
+            xz_area1 = re.findall('位置</dt>(.*?)/a>',reText,re.S)
+            xz_area = re.findall('">(.*?)<',str(xz_area1),re.S)
+            lr[metadatas[41]] = xz_area[0]
+        except:
+            lr[metadatas[41]] =''
+        lr[metadatas[42]] = urlbase.order if urlbase.order is not None else ''
+
+        lr[metadatas[5]] = ''
+        lr[metadatas[12]] = ''
+        lr[metadatas[13]] = ''
+        lr[metadatas[16]] = ''
+        lr[metadatas[17]] = ''
+        lr[metadatas[18]] = ''
+        lr[metadatas[19]] = ''
+        lr[metadatas[20]] = ''
+        lr[metadatas[23]] = ''
+        lr[metadatas[24]] = ''
+        lr[metadatas[33]] = ''
+        lr[metadatas[34]] = ''
+        lr[metadatas[35]] = ''
+        ###############################################################################################################
+        t2 = time.time()
+        LOG.info('解析页面耗时:%f' % (t2-t1))
+        #将分析的信息写入数据库
+        #www58com.mysql.save(lr, metadatas)
+        MySqlEx.save(lr, metadatas)
+
+    #def getinfo(self, urlbase):
+        #LOG.info('58getinfo获得%s挂牌详细信息' , urlbase.url)
+
+
+if __name__ == '__main__':
+    wajk = wwwajkcom()
+    # wajk.default(UrlBase('http://www.anjuke.com/sy-city.html', 'wwwajkcom',order='123'))
+    # wajk.getpages(UrlBean('http://heb.anjuke.com/sale/o5-p2/', 'wwwajkcom#getitem', param=10, headers='哈尔滨',order='123'))
+    # wajk.getitem(UrlBean('http://tianjin.anjuke.com/prop/view/E117622966', 'wwwajkcom#getitem', param=9, headers='哈尔滨',order='123456'))
+    # print(w58.getitem(UrlBean('http://nj.58.com/ershoufang/23200967661449x.shtml?psid=199696111190136559394502435&entinfo=23200967661449_0', 'www58com#getpages', param='北京',order='12345632156')))
+#print(www58com.__name__)
+#print(www58com.getcitys.__name__)
+#print(isinstance([], list))
+
+"""
+print(www58com.__name__)
+#print(sys.modules.keys())
+print(sys.modules['__main__'])
+
+import sys
+import os
+
+def get_module():
+
+    def main_module_name():
+        mod = sys.modules['__main__']
+        file = getattr(mod, '__file__', None)
+        return file and os.path.splitext(os.path.basename(file))[0]
+
+    def modname(fvars):
+
+        file, name = fvars.get('__file__'), fvars.get('__name__')
+        if file is None or name is None:
+            return None
+
+        if name == '__main__':
+            name = main_module_name()
+        return name
+
+    module_name = modname(globals())
+    # print globals()
+    # print module_name
+
+get_module()
+"""

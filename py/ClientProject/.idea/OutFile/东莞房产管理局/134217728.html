@@ -1,0 +1,662 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option value="67108864">东莞市桥头镇</option>
+	<option selected="selected" value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8663&vc=37380d38' target='_blank'>横沥碧桂园10幢</a></td><td><a href='BeianDetail.aspx?id=8663&vc=37380d38' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8663&vc=37380d38' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8456&vc=13942e5a' target='_blank'>横沥碧桂园11幢</a></td><td><a href='BeianDetail.aspx?id=8456&vc=13942e5a' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8456&vc=13942e5a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8664&vc=c8b4a8a6' target='_blank'>横沥碧桂园12幢</a></td><td><a href='BeianDetail.aspx?id=8664&vc=c8b4a8a6' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8664&vc=c8b4a8a6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8457&vc=0fb8fbb4' target='_blank'>横沥碧桂园13幢</a></td><td><a href='BeianDetail.aspx?id=8457&vc=0fb8fbb4' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8457&vc=0fb8fbb4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11191&vc=f5954c2c' target='_blank'>横沥碧桂园14幢</a></td><td><a href='BeianDetail.aspx?id=11191&vc=f5954c2c' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=11191&vc=f5954c2c' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8458&vc=dfaf4b8f' target='_blank'>横沥碧桂园15幢</a></td><td><a href='BeianDetail.aspx?id=8458&vc=dfaf4b8f' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8458&vc=dfaf4b8f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8464&vc=17a34cdc' target='_blank'>横沥碧桂园16幢</a></td><td><a href='BeianDetail.aspx?id=8464&vc=17a34cdc' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8464&vc=17a34cdc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8465&vc=85824f4a' target='_blank'>横沥碧桂园17幢</a></td><td><a href='BeianDetail.aspx?id=8465&vc=85824f4a' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8465&vc=85824f4a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8466&vc=01384acd' target='_blank'>横沥碧桂园18幢</a></td><td><a href='BeianDetail.aspx?id=8466&vc=01384acd' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8466&vc=01384acd' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10006&vc=09207a37' target='_blank'>横沥碧桂园1幢</a></td><td><a href='BeianDetail.aspx?id=10006&vc=09207a37' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=10006&vc=09207a37' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10185&vc=5d3b096b' target='_blank'>横沥碧桂园2幢</a></td><td><a href='BeianDetail.aspx?id=10185&vc=5d3b096b' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=10185&vc=5d3b096b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10186&vc=857b29e8' target='_blank'>横沥碧桂园3幢</a></td><td><a href='BeianDetail.aspx?id=10186&vc=857b29e8' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=10186&vc=857b29e8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9783&vc=d4c27d2d' target='_blank'>横沥碧桂园4幢</a></td><td><a href='BeianDetail.aspx?id=9783&vc=d4c27d2d' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=9783&vc=d4c27d2d' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9785&vc=c8730417' target='_blank'>横沥碧桂园5幢</a></td><td><a href='BeianDetail.aspx?id=9785&vc=c8730417' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=9785&vc=c8730417' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9784&vc=4b973da3' target='_blank'>横沥碧桂园6幢</a></td><td><a href='BeianDetail.aspx?id=9784&vc=4b973da3' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=9784&vc=4b973da3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8544&vc=dbfcdabb' target='_blank'>横沥碧桂园7幢</a></td><td><a href='BeianDetail.aspx?id=8544&vc=dbfcdabb' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8544&vc=dbfcdabb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8640&vc=b590c38f' target='_blank'>横沥碧桂园8幢</a></td><td><a href='BeianDetail.aspx?id=8640&vc=b590c38f' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8640&vc=b590c38f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8665&vc=53c17c9b' target='_blank'>横沥碧桂园9幢</a></td><td><a href='BeianDetail.aspx?id=8665&vc=53c17c9b' target='_blank'>横沥镇 村尾村育才路</a></td><td><a href='BeianDetail.aspx?id=8665&vc=53c17c9b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=485&vc=2984c588' target='_blank'>东成花园I栋</a></td><td><a href='BeianDetail.aspx?id=485&vc=2984c588' target='_blank'>横沥镇 横沥村</a></td><td><a href='BeianDetail.aspx?id=485&vc=2984c588' target='_blank'>30</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2196&vc=5c848c76' target='_blank'>华侨新村盛世华庭一期10栋</a></td><td><a href='BeianDetail.aspx?id=2196&vc=5c848c76' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=2196&vc=5c848c76' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2026&vc=0497b123' target='_blank'>华侨新村盛世华庭一期11栋</a></td><td><a href='BeianDetail.aspx?id=2026&vc=0497b123' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=2026&vc=0497b123' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2027&vc=d32dbc9d' target='_blank'>华侨新村盛世华庭一期12栋</a></td><td><a href='BeianDetail.aspx?id=2027&vc=d32dbc9d' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=2027&vc=d32dbc9d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1572&vc=c25300d2' target='_blank'>华侨新村盛世华庭一期1栋</a></td><td><a href='BeianDetail.aspx?id=1572&vc=c25300d2' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=1572&vc=c25300d2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1573&vc=b1a83bcb' target='_blank'>华侨新村盛世华庭一期2栋</a></td><td><a href='BeianDetail.aspx?id=1573&vc=b1a83bcb' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=1573&vc=b1a83bcb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1574&vc=845c505b' target='_blank'>华侨新村盛世华庭一期3栋</a></td><td><a href='BeianDetail.aspx?id=1574&vc=845c505b' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=1574&vc=845c505b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1575&vc=68216bc7' target='_blank'>华侨新村盛世华庭一期5栋</a></td><td><a href='BeianDetail.aspx?id=1575&vc=68216bc7' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=1575&vc=68216bc7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1576&vc=22c05ead' target='_blank'>华侨新村盛世华庭一期6栋</a></td><td><a href='BeianDetail.aspx?id=1576&vc=22c05ead' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=1576&vc=22c05ead' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1899&vc=9f86d18f' target='_blank'>华侨新村盛世华庭一期7栋</a></td><td><a href='BeianDetail.aspx?id=1899&vc=9f86d18f' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=1899&vc=9f86d18f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2451&vc=b1a1046e' target='_blank'>华侨新村盛世华庭一期8栋 </a></td><td><a href='BeianDetail.aspx?id=2451&vc=b1a1046e' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=2451&vc=b1a1046e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2025&vc=a67690db' target='_blank'>华侨新村盛世华庭一期9栋</a></td><td><a href='BeianDetail.aspx?id=2025&vc=a67690db' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=2025&vc=a67690db' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2452&vc=b8137fb3' target='_blank'>华侨新村盛世华庭一期地下车库</a></td><td><a href='BeianDetail.aspx?id=2452&vc=b8137fb3' target='_blank'>横沥镇 江南路</a></td><td><a href='BeianDetail.aspx?id=2452&vc=b8137fb3' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11193&vc=214cfd23' target='_blank'>三羊大厦1、2幢</a></td><td><a href='BeianDetail.aspx?id=11193&vc=214cfd23' target='_blank'>横沥镇 康乐路</a></td><td><a href='BeianDetail.aspx?id=11193&vc=214cfd23' target='_blank'>39</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11100&vc=ed06a5a1' target='_blank'>三羊公馆3幢</a></td><td><a href='BeianDetail.aspx?id=11100&vc=ed06a5a1' target='_blank'>横沥镇 康乐路</a></td><td><a href='BeianDetail.aspx?id=11100&vc=ed06a5a1' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11101&vc=32dcc7d4' target='_blank'>三羊公馆4幢</a></td><td><a href='BeianDetail.aspx?id=11101&vc=32dcc7d4' target='_blank'>横沥镇 康乐路</a></td><td><a href='BeianDetail.aspx?id=11101&vc=32dcc7d4' target='_blank'>17</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11078&vc=7f496e32' target='_blank'>三羊公馆5幢</a></td><td><a href='BeianDetail.aspx?id=11078&vc=7f496e32' target='_blank'>横沥镇 康乐路</a></td><td><a href='BeianDetail.aspx?id=11078&vc=7f496e32' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11079&vc=1c03c754' target='_blank'>三羊公馆6幢</a></td><td><a href='BeianDetail.aspx?id=11079&vc=1c03c754' target='_blank'>横沥镇 康乐路</a></td><td><a href='BeianDetail.aspx?id=11079&vc=1c03c754' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11566&vc=ab391065' target='_blank'>玉兰居1栋</a></td><td><a href='BeianDetail.aspx?id=11566&vc=ab391065' target='_blank'>横沥镇 康乐路</a></td><td><a href='BeianDetail.aspx?id=11566&vc=ab391065' target='_blank'>180</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7662&vc=87150fdd' target='_blank'>东成花园28、29、30座</a></td><td><a href='BeianDetail.aspx?id=7662&vc=87150fdd' target='_blank'>横沥镇 瑞康路</a></td><td><a href='BeianDetail.aspx?id=7662&vc=87150fdd' target='_blank'>22</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6642&vc=9c3d6064' target='_blank'>东成花园31座</a></td><td><a href='BeianDetail.aspx?id=6642&vc=9c3d6064' target='_blank'>横沥镇 瑞康路</a></td><td><a href='BeianDetail.aspx?id=6642&vc=9c3d6064' target='_blank'>8</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6643&vc=e5cd764f' target='_blank'>东成花园32座</a></td><td><a href='BeianDetail.aspx?id=6643&vc=e5cd764f' target='_blank'>横沥镇 瑞康路</a></td><td><a href='BeianDetail.aspx?id=6643&vc=e5cd764f' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4801&vc=446eeda8' target='_blank'>瑞康花园</a></td><td><a href='BeianDetail.aspx?id=4801&vc=446eeda8' target='_blank'>横沥镇 瑞康路</a></td><td><a href='BeianDetail.aspx?id=4801&vc=446eeda8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9672&vc=afdc9204' target='_blank'>名巨中央花园10幢</a></td><td><a href='BeianDetail.aspx?id=9672&vc=afdc9204' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=9672&vc=afdc9204' target='_blank'>26</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9673&vc=6bac5880' target='_blank'>名巨中央花园11幢</a></td><td><a href='BeianDetail.aspx?id=9673&vc=6bac5880' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=9673&vc=6bac5880' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9674&vc=b8fa16b5' target='_blank'>名巨中央花园12幢</a></td><td><a href='BeianDetail.aspx?id=9674&vc=b8fa16b5' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=9674&vc=b8fa16b5' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9675&vc=cc64cb27' target='_blank'>名巨中央花园13幢</a></td><td><a href='BeianDetail.aspx?id=9675&vc=cc64cb27' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=9675&vc=cc64cb27' target='_blank'>9</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9671&vc=434601c7' target='_blank'>名巨中央花园9幢</a></td><td><a href='BeianDetail.aspx?id=9671&vc=434601c7' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=9671&vc=434601c7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8132&vc=c86e7fca' target='_blank'>名巨中央花园商铺</a></td><td><a href='BeianDetail.aspx?id=8132&vc=c86e7fca' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=8132&vc=c86e7fca' target='_blank'>18</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7912&vc=d20baa13' target='_blank'>名巨中央花园住宅楼1幢</a></td><td><a href='BeianDetail.aspx?id=7912&vc=d20baa13' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=7912&vc=d20baa13' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7913&vc=45388918' target='_blank'>名巨中央花园住宅楼2幢</a></td><td><a href='BeianDetail.aspx?id=7913&vc=45388918' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=7913&vc=45388918' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7914&vc=25a1fc3e' target='_blank'>名巨中央花园住宅楼3幢</a></td><td><a href='BeianDetail.aspx?id=7914&vc=25a1fc3e' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=7914&vc=25a1fc3e' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7915&vc=db82eebe' target='_blank'>名巨中央花园住宅楼4幢</a></td><td><a href='BeianDetail.aspx?id=7915&vc=db82eebe' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=7915&vc=db82eebe' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8128&vc=c1a10600' target='_blank'>名巨中央花园住宅楼5幢</a></td><td><a href='BeianDetail.aspx?id=8128&vc=c1a10600' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=8128&vc=c1a10600' target='_blank'>9</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8129&vc=ecf847d5' target='_blank'>名巨中央花园住宅楼6幢</a></td><td><a href='BeianDetail.aspx?id=8129&vc=ecf847d5' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=8129&vc=ecf847d5' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8130&vc=76543089' target='_blank'>名巨中央花园住宅楼7幢</a></td><td><a href='BeianDetail.aspx?id=8130&vc=76543089' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=8130&vc=76543089' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8131&vc=4f2a3363' target='_blank'>名巨中央花园住宅楼8幢</a></td><td><a href='BeianDetail.aspx?id=8131&vc=4f2a3363' target='_blank'>横沥镇 山厦村康乐路</a></td><td><a href='BeianDetail.aspx?id=8131&vc=4f2a3363' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5575&vc=8195e6b6' target='_blank'>长裕棕榈园10幢裕泽苑</a></td><td><a href='BeianDetail.aspx?id=5575&vc=8195e6b6' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5575&vc=8195e6b6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5576&vc=1eb67874' target='_blank'>长裕棕榈园11幢裕泽苑</a></td><td><a href='BeianDetail.aspx?id=5576&vc=1eb67874' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5576&vc=1eb67874' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5577&vc=40397d86' target='_blank'>长裕棕榈园12幢裕泽苑</a></td><td><a href='BeianDetail.aspx?id=5577&vc=40397d86' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5577&vc=40397d86' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5570&vc=e3f9d5b4' target='_blank'>长裕棕榈园4幢裕泰苑</a></td><td><a href='BeianDetail.aspx?id=5570&vc=e3f9d5b4' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5570&vc=e3f9d5b4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5571&vc=4bc53479' target='_blank'>长裕棕榈园5幢裕泰苑</a></td><td><a href='BeianDetail.aspx?id=5571&vc=4bc53479' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5571&vc=4bc53479' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5578&vc=112a5dad' target='_blank'>长裕棕榈园6幢裕豪苑</a></td><td><a href='BeianDetail.aspx?id=5578&vc=112a5dad' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5578&vc=112a5dad' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5579&vc=a6417848' target='_blank'>长裕棕榈园7幢裕豪苑</a></td><td><a href='BeianDetail.aspx?id=5579&vc=a6417848' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5579&vc=a6417848' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5573&vc=9690313d' target='_blank'>长裕棕榈园8幢裕芳苑</a></td><td><a href='BeianDetail.aspx?id=5573&vc=9690313d' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5573&vc=9690313d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5574&vc=4fad3df6' target='_blank'>长裕棕榈园9幢裕芳苑</a></td><td><a href='BeianDetail.aspx?id=5574&vc=4fad3df6' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=5574&vc=4fad3df6' target='_blank'>31</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1841&vc=c26f7add' target='_blank'>长裕棕榈园一期1#楼(裕景苑)</a></td><td><a href='BeianDetail.aspx?id=1841&vc=c26f7add' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=1841&vc=c26f7add' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1842&vc=31d9c6d3' target='_blank'>长裕棕榈园一期2#楼(裕怡苑)</a></td><td><a href='BeianDetail.aspx?id=1842&vc=31d9c6d3' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=1842&vc=31d9c6d3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1843&vc=42e6984e' target='_blank'>长裕棕榈园一期3#楼(裕馨苑)</a></td><td><a href='BeianDetail.aspx?id=1843&vc=42e6984e' target='_blank'>横沥镇 田头村</a></td><td><a href='BeianDetail.aspx?id=1843&vc=42e6984e' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11008&vc=c8516d9c' target='_blank'>盛和雅颂花园12幢</a></td><td><a href='BeianDetail.aspx?id=11008&vc=c8516d9c' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=11008&vc=c8516d9c' target='_blank'>44</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11009&vc=a6dc7fc4' target='_blank'>盛和雅颂花园13幢</a></td><td><a href='BeianDetail.aspx?id=11009&vc=a6dc7fc4' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=11009&vc=a6dc7fc4' target='_blank'>63</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11254&vc=d443a82f' target='_blank'>盛和雅颂花园14幢</a></td><td><a href='BeianDetail.aspx?id=11254&vc=d443a82f' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=11254&vc=d443a82f' target='_blank'>100</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10824&vc=aeb05456' target='_blank'>盛和雅颂花园22幢</a></td><td><a href='BeianDetail.aspx?id=10824&vc=aeb05456' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10824&vc=aeb05456' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10825&vc=aeba40f1' target='_blank'>盛和雅颂花园23幢</a></td><td><a href='BeianDetail.aspx?id=10825&vc=aeba40f1' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10825&vc=aeba40f1' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10826&vc=2c908df6' target='_blank'>盛和雅颂花园24幢</a></td><td><a href='BeianDetail.aspx?id=10826&vc=2c908df6' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10826&vc=2c908df6' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10827&vc=34c9e80e' target='_blank'>盛和雅颂花园25幢</a></td><td><a href='BeianDetail.aspx?id=10827&vc=34c9e80e' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10827&vc=34c9e80e' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10828&vc=51874bee' target='_blank'>盛和雅颂花园26幢</a></td><td><a href='BeianDetail.aspx?id=10828&vc=51874bee' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10828&vc=51874bee' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10829&vc=712d689a' target='_blank'>盛和雅颂花园27幢</a></td><td><a href='BeianDetail.aspx?id=10829&vc=712d689a' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10829&vc=712d689a' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10830&vc=027ece3d' target='_blank'>盛和雅颂花园28幢</a></td><td><a href='BeianDetail.aspx?id=10830&vc=027ece3d' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10830&vc=027ece3d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10831&vc=cd0ca6fe' target='_blank'>盛和雅颂花园29幢</a></td><td><a href='BeianDetail.aspx?id=10831&vc=cd0ca6fe' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10831&vc=cd0ca6fe' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10832&vc=9b116592' target='_blank'>盛和雅颂花园30幢</a></td><td><a href='BeianDetail.aspx?id=10832&vc=9b116592' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10832&vc=9b116592' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10833&vc=fdbd3bf2' target='_blank'>盛和雅颂花园31幢</a></td><td><a href='BeianDetail.aspx?id=10833&vc=fdbd3bf2' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10833&vc=fdbd3bf2' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10834&vc=b754f8e2' target='_blank'>盛和雅颂花园32幢</a></td><td><a href='BeianDetail.aspx?id=10834&vc=b754f8e2' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10834&vc=b754f8e2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10835&vc=2299f871' target='_blank'>盛和雅颂花园33幢</a></td><td><a href='BeianDetail.aspx?id=10835&vc=2299f871' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10835&vc=2299f871' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10836&vc=9df669f5' target='_blank'>盛和雅颂花园34幢</a></td><td><a href='BeianDetail.aspx?id=10836&vc=9df669f5' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10836&vc=9df669f5' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10837&vc=6bc8eb68' target='_blank'>盛和雅颂花园35幢</a></td><td><a href='BeianDetail.aspx?id=10837&vc=6bc8eb68' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10837&vc=6bc8eb68' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10838&vc=87936bf3' target='_blank'>盛和雅颂花园36幢</a></td><td><a href='BeianDetail.aspx?id=10838&vc=87936bf3' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10838&vc=87936bf3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10839&vc=18653a2b' target='_blank'>盛和雅颂花园37幢</a></td><td><a href='BeianDetail.aspx?id=10839&vc=18653a2b' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10839&vc=18653a2b' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10840&vc=13dc093b' target='_blank'>盛和雅颂花园38幢</a></td><td><a href='BeianDetail.aspx?id=10840&vc=13dc093b' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10840&vc=13dc093b' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10841&vc=a83c6c7f' target='_blank'>盛和雅颂花园39幢</a></td><td><a href='BeianDetail.aspx?id=10841&vc=a83c6c7f' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10841&vc=a83c6c7f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10842&vc=0f219d39' target='_blank'>盛和雅颂花园40幢</a></td><td><a href='BeianDetail.aspx?id=10842&vc=0f219d39' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10842&vc=0f219d39' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10843&vc=5fb3a338' target='_blank'>盛和雅颂花园41幢</a></td><td><a href='BeianDetail.aspx?id=10843&vc=5fb3a338' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10843&vc=5fb3a338' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10844&vc=4f1ec371' target='_blank'>盛和雅颂花园42幢</a></td><td><a href='BeianDetail.aspx?id=10844&vc=4f1ec371' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10844&vc=4f1ec371' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10845&vc=fce98154' target='_blank'>盛和雅颂花园43幢</a></td><td><a href='BeianDetail.aspx?id=10845&vc=fce98154' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10845&vc=fce98154' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10846&vc=bf92c6e5' target='_blank'>盛和雅颂花园44幢</a></td><td><a href='BeianDetail.aspx?id=10846&vc=bf92c6e5' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10846&vc=bf92c6e5' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10847&vc=8fc11bfb' target='_blank'>盛和雅颂花园45幢</a></td><td><a href='BeianDetail.aspx?id=10847&vc=8fc11bfb' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=10847&vc=8fc11bfb' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11007&vc=f6144436' target='_blank'>盛和雅颂花园9幢</a></td><td><a href='BeianDetail.aspx?id=11007&vc=f6144436' target='_blank'>横沥镇 新四村</a></td><td><a href='BeianDetail.aspx?id=11007&vc=f6144436' target='_blank'>90</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9780&vc=671659d5' target='_blank'>碧悦湾花园1幢</a></td><td><a href='BeianDetail.aspx?id=9780&vc=671659d5' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=9780&vc=671659d5' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9781&vc=9fef1381' target='_blank'>碧悦湾花园2幢</a></td><td><a href='BeianDetail.aspx?id=9781&vc=9fef1381' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=9781&vc=9fef1381' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9782&vc=9542fe23' target='_blank'>碧悦湾花园3幢</a></td><td><a href='BeianDetail.aspx?id=9782&vc=9542fe23' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=9782&vc=9542fe23' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10486&vc=ae19bebd' target='_blank'>碧悦湾花园4幢</a></td><td><a href='BeianDetail.aspx?id=10486&vc=ae19bebd' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=10486&vc=ae19bebd' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10487&vc=e7d67590' target='_blank'>碧悦湾花园5幢</a></td><td><a href='BeianDetail.aspx?id=10487&vc=e7d67590' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=10487&vc=e7d67590' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10488&vc=444a5037' target='_blank'>碧悦湾花园6幢</a></td><td><a href='BeianDetail.aspx?id=10488&vc=444a5037' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=10488&vc=444a5037' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10489&vc=1e5cb59b' target='_blank'>碧悦湾花园7幢</a></td><td><a href='BeianDetail.aspx?id=10489&vc=1e5cb59b' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=10489&vc=1e5cb59b' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10526&vc=7e24516a' target='_blank'>碧悦湾花园8幢</a></td><td><a href='BeianDetail.aspx?id=10526&vc=7e24516a' target='_blank'>横沥镇 沿江路</a></td><td><a href='BeianDetail.aspx?id=10526&vc=7e24516a' target='_blank'>23</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3466&vc=0b91ce14' target='_blank'>怡景湾商住小区怡景湾3幢住宅楼</a></td><td><a href='BeianDetail.aspx?id=3466&vc=0b91ce14' target='_blank'>横沥镇 中山东路</a></td><td><a href='BeianDetail.aspx?id=3466&vc=0b91ce14' target='_blank'>13</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=996&vc=68dead0c' target='_blank'>阳光粤港花园 (一期)南区4、5、6栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=996&vc=68dead0c' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=996&vc=68dead0c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2390&vc=8e7950af' target='_blank'>阳光粤港花园(二期)18栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2390&vc=8e7950af' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2390&vc=8e7950af' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2397&vc=c6596df1' target='_blank'>阳光粤港花园(二期)19栋商住楼</a></td><td><a href='BeianDetail.aspx?id=2397&vc=c6596df1' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2397&vc=c6596df1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2398&vc=99f6af4a' target='_blank'>阳光粤港花园(二期)20栋商住楼  </a></td><td><a href='BeianDetail.aspx?id=2398&vc=99f6af4a' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2398&vc=99f6af4a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2399&vc=eaa40ae8' target='_blank'>阳光粤港花园(二期)21栋商住楼    </a></td><td><a href='BeianDetail.aspx?id=2399&vc=eaa40ae8' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2399&vc=eaa40ae8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2400&vc=a2a24057' target='_blank'>阳光粤港花园(二期)22栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2400&vc=a2a24057' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2400&vc=a2a24057' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2401&vc=c74e5984' target='_blank'>阳光粤港花园(二期)23栋商住楼</a></td><td><a href='BeianDetail.aspx?id=2401&vc=c74e5984' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2401&vc=c74e5984' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2402&vc=c5c09ec2' target='_blank'>阳光粤港花园(二期)24栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2402&vc=c5c09ec2' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2402&vc=c5c09ec2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2403&vc=b04c0137' target='_blank'>阳光粤港花园(二期)25栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2403&vc=b04c0137' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2403&vc=b04c0137' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2404&vc=531f0d5c' target='_blank'>阳光粤港花园(二期)29栋商住楼</a></td><td><a href='BeianDetail.aspx?id=2404&vc=531f0d5c' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2404&vc=531f0d5c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2405&vc=66b59efe' target='_blank'>阳光粤港花园(二期)30栋商住楼</a></td><td><a href='BeianDetail.aspx?id=2405&vc=66b59efe' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2405&vc=66b59efe' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=998&vc=002a7825' target='_blank'>阳光粤港花园(一期)北区10、11、12栋商住楼</a></td><td><a href='BeianDetail.aspx?id=998&vc=002a7825' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=998&vc=002a7825' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=997&vc=4630a9ee' target='_blank'>阳光粤港花园(一期)北区7、8、9栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=997&vc=4630a9ee' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=997&vc=4630a9ee' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2431&vc=88c455a8' target='_blank'>阳光粤港花园(一期)北区半地下室车库 </a></td><td><a href='BeianDetail.aspx?id=2431&vc=88c455a8' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2431&vc=88c455a8' target='_blank'>47</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=995&vc=b59b8483' target='_blank'>阳光粤港花园(一期)南区1、2、3栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=995&vc=b59b8483' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=995&vc=b59b8483' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2432&vc=a405c8b8' target='_blank'>阳光粤港花园(一期)南区半地下室车库</a></td><td><a href='BeianDetail.aspx?id=2432&vc=a405c8b8' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2432&vc=a405c8b8' target='_blank'>51</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3042&vc=8336490e' target='_blank'>阳光粤港花园13栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3042&vc=8336490e' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3042&vc=8336490e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3045&vc=f5f950d9' target='_blank'>阳光粤港花园14栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3045&vc=f5f950d9' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3045&vc=f5f950d9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3046&vc=737fb28f' target='_blank'>阳光粤港花园15栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3046&vc=737fb28f' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3046&vc=737fb28f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3047&vc=4f59b9dc' target='_blank'>阳光粤港花园16栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3047&vc=4f59b9dc' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3047&vc=4f59b9dc' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3048&vc=46105f68' target='_blank'>阳光粤港花园17栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3048&vc=46105f68' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3048&vc=46105f68' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3910&vc=d02a0932' target='_blank'>阳光粤港花园26栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=3910&vc=d02a0932' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3910&vc=d02a0932' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3911&vc=bb98ce38' target='_blank'>阳光粤港花园27栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=3911&vc=bb98ce38' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3911&vc=bb98ce38' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3912&vc=91bf8437' target='_blank'>阳光粤港花园28栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=3912&vc=91bf8437' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3912&vc=91bf8437' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3049&vc=93e06f06' target='_blank'>阳光粤港花园31栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=3049&vc=93e06f06' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3049&vc=93e06f06' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3050&vc=7e3ca5fe' target='_blank'>阳光粤港花园32栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3050&vc=7e3ca5fe' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3050&vc=7e3ca5fe' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3051&vc=78c8b805' target='_blank'>阳光粤港花园33栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=3051&vc=78c8b805' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=3051&vc=78c8b805' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4412&vc=aaedfcc1' target='_blank'>怡景湾商业楼4幢</a></td><td><a href='BeianDetail.aspx?id=4412&vc=aaedfcc1' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=4412&vc=aaedfcc1' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4413&vc=d9c196d0' target='_blank'>怡景湾商业楼5幢</a></td><td><a href='BeianDetail.aspx?id=4413&vc=d9c196d0' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=4413&vc=d9c196d0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4414&vc=787e6b6e' target='_blank'>怡景湾商业楼6幢</a></td><td><a href='BeianDetail.aspx?id=4414&vc=787e6b6e' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=4414&vc=787e6b6e' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1701&vc=be16566e' target='_blank'>怡景湾商住小区1#住宅楼</a></td><td><a href='BeianDetail.aspx?id=1701&vc=be16566e' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=1701&vc=be16566e' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1657&vc=69069fd4' target='_blank'>怡景湾商住小区商业楼1栋</a></td><td><a href='BeianDetail.aspx?id=1657&vc=69069fd4' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=1657&vc=69069fd4' target='_blank'>36</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1658&vc=f6a7b646' target='_blank'>怡景湾商住小区商业楼2栋</a></td><td><a href='BeianDetail.aspx?id=1658&vc=f6a7b646' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=1658&vc=f6a7b646' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1932&vc=90aa75c1' target='_blank'>怡景湾商住小区商业楼3栋 </a></td><td><a href='BeianDetail.aspx?id=1932&vc=90aa75c1' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=1932&vc=90aa75c1' target='_blank'>30</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1931&vc=4bbd996b' target='_blank'>怡景湾商住小区怡景湾2#住宅楼</a></td><td><a href='BeianDetail.aspx?id=1931&vc=4bbd996b' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=1931&vc=4bbd996b' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2580&vc=030a1c77' target='_blank'>怡景湾商住小区怡景湾5#住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2580&vc=030a1c77' target='_blank'>横沥镇 中山路</a></td><td><a href='BeianDetail.aspx?id=2580&vc=030a1c77' target='_blank'>5</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="140" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

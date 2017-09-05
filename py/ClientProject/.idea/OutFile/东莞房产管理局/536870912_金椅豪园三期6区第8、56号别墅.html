@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=3659&amp;vc=aef13c08" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>广东鼎峰地产集团有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>金椅豪园三期6区第8、56号别墅
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>预售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=19805&vc=aa09b643' target='_blank'>(09)00196</a></td><td><a href='roomTable.aspx?id=19805&vc=aa09b643' target='_blank'>东莞市企石镇企石村金椅豪园三期6区第56号别墅</a></td><td><a href='roomTable.aspx?id=19805&vc=aa09b643' target='_blank'>3</a><td><a href='roomTable.aspx?id=19805&vc=aa09b643' target='_blank'>1</a><td><a href='roomTable.aspx?id=19805&vc=aa09b643' target='_blank'>别墅</a><td><a href='roomTable.aspx?id=19805&vc=aa09b643' target='_blank'>383</a></td><tr class='oddTr'><td><a href='roomTable.aspx?id=19804&vc=7a34826f' target='_blank'>(09)00196</a></td><td><a href='roomTable.aspx?id=19804&vc=7a34826f' target='_blank'>东莞市企石镇企石村金椅豪园三期6区第8号别墅</a></td><td><a href='roomTable.aspx?id=19804&vc=7a34826f' target='_blank'>3</a><td><a href='roomTable.aspx?id=19804&vc=7a34826f' target='_blank'>1</a><td><a href='roomTable.aspx?id=19804&vc=7a34826f' target='_blank'>别墅</a><td><a href='roomTable.aspx?id=19804&vc=7a34826f' target='_blank'>383</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 2 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：金椅豪园三期6区第8、56号别墅
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市企石镇企石村
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            0
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2009-12-18
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            预售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            (09)00196
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=3659&vc=aef13c08' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            广东鼎峰地产集团有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            广东鼎峰地产集团有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市南城区胜各路金盈大厦十五楼
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523071
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            9000万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            麦彦桐
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            13798876929
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            钱泽杰
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                <iframe src='BargainTemView.aspx?projectId=3659&vc=aef13c08' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1028&vc=edd7f805' target='_blank'>金椅豪园二期E-11别墅</a></td><td><a href='BeianDetail.aspx?id=1028&vc=edd7f805' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1028&vc=edd7f805' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1028&vc=edd7f805' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1029&vc=af1149e4' target='_blank'>金椅豪园二期E-12.E-15.E-16.E-17别墅</a></td><td><a href='BeianDetail.aspx?id=1029&vc=af1149e4' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1029&vc=af1149e4' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=1029&vc=af1149e4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1030&vc=4e5b5128' target='_blank'>金椅豪园二期E-18别墅</a></td><td><a href='BeianDetail.aspx?id=1030&vc=4e5b5128' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1030&vc=4e5b5128' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=1030&vc=4e5b5128' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1022&vc=b326e75a' target='_blank'>金椅豪园二期E-1住宅楼</a></td><td><a href='BeianDetail.aspx?id=1022&vc=b326e75a' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1022&vc=b326e75a' target='_blank'>31</a></td><td><a href='BeianDetail.aspx?id=1022&vc=b326e75a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1023&vc=17256635' target='_blank'>金椅豪园二期E-2住宅楼 </a></td><td><a href='BeianDetail.aspx?id=1023&vc=17256635' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1023&vc=17256635' target='_blank'>35</a></td><td><a href='BeianDetail.aspx?id=1023&vc=17256635' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1024&vc=8f908d61' target='_blank'>金椅豪园二期E-3住宅楼 </a></td><td><a href='BeianDetail.aspx?id=1024&vc=8f908d61' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1024&vc=8f908d61' target='_blank'>65</a></td><td><a href='BeianDetail.aspx?id=1024&vc=8f908d61' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1025&vc=4871ea46' target='_blank'>金椅豪园二期E-5住宅楼</a></td><td><a href='BeianDetail.aspx?id=1025&vc=4871ea46' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1025&vc=4871ea46' target='_blank'>62</a></td><td><a href='BeianDetail.aspx?id=1025&vc=4871ea46' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=1026&vc=477f8439' target='_blank'>金椅豪园二期E-6.E-19.E-20.E-21.E-22别墅</a></td><td><a href='BeianDetail.aspx?id=1026&vc=477f8439' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1026&vc=477f8439' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=1026&vc=477f8439' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=1027&vc=1d9ff078' target='_blank'>金椅豪园二期E-7.E-8.E-9.E-10别墅</a></td><td><a href='BeianDetail.aspx?id=1027&vc=1d9ff078' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=1027&vc=1d9ff078' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=1027&vc=1d9ff078' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3403&vc=ae3e14f0' target='_blank'>金椅豪园沁香堤沁雅园B1、B2栋</a></td><td><a href='BeianDetail.aspx?id=3403&vc=ae3e14f0' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3403&vc=ae3e14f0' target='_blank'>23</a></td><td><a href='BeianDetail.aspx?id=3403&vc=ae3e14f0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3404&vc=b02ee554' target='_blank'>金椅豪园沁香堤沁雍园C1栋商住楼</a></td><td><a href='BeianDetail.aspx?id=3404&vc=b02ee554' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3404&vc=b02ee554' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=3404&vc=b02ee554' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3405&vc=db14234d' target='_blank'>金椅豪园沁香堤沁雍园C2栋商住楼</a></td><td><a href='BeianDetail.aspx?id=3405&vc=db14234d' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3405&vc=db14234d' target='_blank'>22</a></td><td><a href='BeianDetail.aspx?id=3405&vc=db14234d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3406&vc=87f43928' target='_blank'>金椅豪园沁香堤沁雍园C3栋商住楼</a></td><td><a href='BeianDetail.aspx?id=3406&vc=87f43928' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3406&vc=87f43928' target='_blank'>11</a></td><td><a href='BeianDetail.aspx?id=3406&vc=87f43928' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3407&vc=97b32261' target='_blank'>金椅豪园沁香堤沁雍园会所(商铺)</a></td><td><a href='BeianDetail.aspx?id=3407&vc=97b32261' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3407&vc=97b32261' target='_blank'>15</a></td><td><a href='BeianDetail.aspx?id=3407&vc=97b32261' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3401&vc=dd92292f' target='_blank'>金椅豪园沁香堤沁悠园A1栋</a></td><td><a href='BeianDetail.aspx?id=3401&vc=dd92292f' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3401&vc=dd92292f' target='_blank'>15</a></td><td><a href='BeianDetail.aspx?id=3401&vc=dd92292f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3402&vc=b051ac79' target='_blank'>金椅豪园沁香堤沁悠园A2栋</a></td><td><a href='BeianDetail.aspx?id=3402&vc=b051ac79' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3402&vc=b051ac79' target='_blank'>17</a></td><td><a href='BeianDetail.aspx?id=3402&vc=b051ac79' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=5381&vc=bc627137' target='_blank'>金椅豪园沁香堤沁怡园D2幢商铺</a></td><td><a href='BeianDetail.aspx?id=5381&vc=bc627137' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=5381&vc=bc627137' target='_blank'>7</a></td><td><a href='BeianDetail.aspx?id=5381&vc=bc627137' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3655&vc=da957259' target='_blank'>金椅豪园三期6区第1、3、5、51、52号别墅</a></td><td><a href='BeianDetail.aspx?id=3655&vc=da957259' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3655&vc=da957259' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=3655&vc=da957259' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3825&vc=1f0b9bf1' target='_blank'>金椅豪园三期6区第2号别墅</a></td><td><a href='BeianDetail.aspx?id=3825&vc=1f0b9bf1' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3825&vc=1f0b9bf1' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=3825&vc=1f0b9bf1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3660&vc=184f32f3' target='_blank'>金椅豪园三期6区第55号别墅</a></td><td><a href='BeianDetail.aspx?id=3660&vc=184f32f3' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3660&vc=184f32f3' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=3660&vc=184f32f3' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3656&vc=5c8d0678' target='_blank'>金椅豪园三期6区第6号别墅</a></td><td><a href='BeianDetail.aspx?id=3656&vc=5c8d0678' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3656&vc=5c8d0678' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=3656&vc=5c8d0678' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3658&vc=b9304a3f' target='_blank'>金椅豪园三期6区第7号别墅</a></td><td><a href='BeianDetail.aspx?id=3658&vc=b9304a3f' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3658&vc=b9304a3f' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=3658&vc=b9304a3f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3659&vc=aef13c08' target='_blank'>金椅豪园三期6区第8、56号别墅</a></td><td><a href='BeianDetail.aspx?id=3659&vc=aef13c08' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3659&vc=aef13c08' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=3659&vc=aef13c08' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3657&vc=6d83cd6a' target='_blank'>金椅豪园三期6区第9、10、11、12、37号别墅</a></td><td><a href='BeianDetail.aspx?id=3657&vc=6d83cd6a' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3657&vc=6d83cd6a' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=3657&vc=6d83cd6a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2392&vc=333ea037' target='_blank'>金椅豪园三期F-13、27、39、57号A3别墅</a></td><td><a href='BeianDetail.aspx?id=2392&vc=333ea037' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2392&vc=333ea037' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=2392&vc=333ea037' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2394&vc=cb38d394' target='_blank'>金椅豪园三期F-15-19、32号A2型别墅  </a></td><td><a href='BeianDetail.aspx?id=2394&vc=cb38d394' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2394&vc=cb38d394' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=2394&vc=cb38d394' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2393&vc=47881f8e' target='_blank'>金椅豪园三期F-20、33、53号A1型别墅</a></td><td><a href='BeianDetail.aspx?id=2393&vc=47881f8e' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2393&vc=47881f8e' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=2393&vc=47881f8e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3094&vc=ed28c046' target='_blank'>金椅豪园三期F-21号</a></td><td><a href='BeianDetail.aspx?id=3094&vc=ed28c046' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3094&vc=ed28c046' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=3094&vc=ed28c046' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3095&vc=0063bfe2' target='_blank'>金椅豪园三期F-22、23、25、26、38号</a></td><td><a href='BeianDetail.aspx?id=3095&vc=0063bfe2' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3095&vc=0063bfe2' target='_blank'>5</a></td><td><a href='BeianDetail.aspx?id=3095&vc=0063bfe2' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3093&vc=a97b8c10' target='_blank'>金椅豪园三期F-28、29、30、31号</a></td><td><a href='BeianDetail.aspx?id=3093&vc=a97b8c10' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3093&vc=a97b8c10' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=3093&vc=a97b8c10' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3096&vc=9ad710c3' target='_blank'>金椅豪园三期F-35、36号</a></td><td><a href='BeianDetail.aspx?id=3096&vc=9ad710c3' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=3096&vc=9ad710c3' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=3096&vc=9ad710c3' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2396&vc=a1047cdf' target='_blank'>金椅豪园三期F-50号A8型别墅</a></td><td><a href='BeianDetail.aspx?id=2396&vc=a1047cdf' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2396&vc=a1047cdf' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=2396&vc=a1047cdf' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2395&vc=09cd66c6' target='_blank'>金椅豪园三期F-58号A5型别墅</a></td><td><a href='BeianDetail.aspx?id=2395&vc=09cd66c6' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2395&vc=09cd66c6' target='_blank'>1</a></td><td><a href='BeianDetail.aspx?id=2395&vc=09cd66c6' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2389&vc=8d565d17' target='_blank'>金椅豪园三期G-1住宅楼</a></td><td><a href='BeianDetail.aspx?id=2389&vc=8d565d17' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2389&vc=8d565d17' target='_blank'>27</a></td><td><a href='BeianDetail.aspx?id=2389&vc=8d565d17' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2391&vc=04a55705' target='_blank'>金椅豪园三期G-2住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2391&vc=04a55705' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2391&vc=04a55705' target='_blank'>49</a></td><td><a href='BeianDetail.aspx?id=2391&vc=04a55705' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2449&vc=29019d1b' target='_blank'>金椅豪园三期G-3住宅楼</a></td><td><a href='BeianDetail.aspx?id=2449&vc=29019d1b' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2449&vc=29019d1b' target='_blank'>88</a></td><td><a href='BeianDetail.aspx?id=2449&vc=29019d1b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2450&vc=0abfb158' target='_blank'>金椅豪园三期G-4住宅楼</a></td><td><a href='BeianDetail.aspx?id=2450&vc=0abfb158' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=2450&vc=0abfb158' target='_blank'>67</a></td><td><a href='BeianDetail.aspx?id=2450&vc=0abfb158' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5356&vc=7bb7a9d5' target='_blank'>金椅豪园三期地下室</a></td><td><a href='BeianDetail.aspx?id=5356&vc=7bb7a9d5' target='_blank'>东莞市企石镇 企石村</a></td><td><a href='BeianDetail.aspx?id=5356&vc=7bb7a9d5' target='_blank'>16</a></td><td><a href='BeianDetail.aspx?id=5356&vc=7bb7a9d5' target='_blank'>10</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>鼎峰品筑1#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>131</a></td><td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>鼎峰品筑10#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>89</a></td><td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>鼎峰品筑11#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>91</a></td><td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>鼎峰品筑12#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>90</a></td><td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>鼎峰品筑13幢</a></td><td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>鼎峰品筑14幢</a></td><td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>68</a></td><td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>鼎峰品筑15幢</a></td><td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>65</a></td><td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>鼎峰品筑16幢</a></td><td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>141</a></td><td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>鼎峰品筑17幢</a></td><td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>215</a></td><td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>鼎峰品筑18幢</a></td><td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>鼎峰品筑2#住宅 </a></td><td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>137</a></td><td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>鼎峰品筑3#住宅</a></td><td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>110</a></td><td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>鼎峰品筑4幢</a></td><td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>206</a></td><td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>鼎峰品筑5幢</a></td><td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>206</a></td><td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>鼎峰品筑6幢</a></td><td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>东莞市寮步镇 华南工业园松柏路</a></td><td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>205</a></td><td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>鼎峰品筑7幢</a></td><td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>鼎峰品筑8幢</a></td><td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>138</a></td><td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>鼎峰品筑9#住宅   </a></td><td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>207</a></td><td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>鼎峰品筑半地下车库(一期)</a></td><td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>东莞市寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>293</a></td><td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>287</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>鼎峰品筑商铺一</a></td><td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>东莞市寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>26</a></td><td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>鼎峰尚境10、11幢</a></td><td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>鼎峰尚境12、13幢</a></td><td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>鼎峰尚境14、15幢</a></td><td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>鼎峰尚境19幢</a></td><td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>鼎峰尚境1幢</a></td><td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>237</a></td><td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>7</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>鼎峰尚境2幢</a></td><td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>240</a></td><td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>鼎峰尚境3幢</a></td><td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>142</a></td><td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>鼎峰尚境4幢</a></td><td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>55</a></td><td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>鼎峰尚境7、8幢</a></td><td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>鼎峰尚境9、16、17、18幢</a></td><td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>鼎峰尚境北园14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>鼎峰尚境北园15号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>鼎峰尚境北园16号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>鼎峰尚境北园17号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>鼎峰尚境北园18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>鼎峰尚境北园1号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>105</a></td><td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>12</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>鼎峰尚境北园20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>鼎峰尚境北园21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>2</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>鼎峰尚境北园22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>2</a></td><td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>鼎峰尚境北园2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>92</a></td><td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>33</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>鼎峰尚境北园5号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>252</a></td><td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>32</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>鼎峰尚境北园6号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>235</a></td><td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>40</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>鼎峰尚境北园9-12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>12</a></td><td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>12</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>鼎峰尚境地下室</a></td><td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>440</a></td><td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>7</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>鼎峰尚境二区1幢</a></td><td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>130</a></td><td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>鼎峰尚境二区2幢</a></td><td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>118</a></td><td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>鼎峰尚境二区3幢</a></td><td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>142</a></td><td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>鼎峰尚境二区4幢</a></td><td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>189</a></td><td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>鼎峰尚境二区5幢</a></td><td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>3</a></td><td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>鼎峰尚境二区6、15幢</a></td><td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>鼎峰尚境二区7、11、12幢</a></td><td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>鼎峰尚境二区8、13、16幢</a></td><td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>9</a></td><td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>鼎峰尚境二区9、10、14幢</a></td><td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>鼎锋尚境5幢</a></td><td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>72</a></td><td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>鼎锋尚境6幢</a></td><td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>东莞市寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>147</a></td><td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>0</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

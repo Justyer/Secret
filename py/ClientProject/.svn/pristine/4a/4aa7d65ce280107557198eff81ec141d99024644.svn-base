@@ -1,0 +1,87 @@
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+import queue
+from log.logger import *
+from webparser.www_58_com import *
+from webparser.www_fang_com import *
+from bean.urlbean import *
+from serializ.mysql import *
+
+from concurrent.futures import ThreadPoolExecutor
+from requests_futures.sessions import FuturesSession
+
+LOG=logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.DEBUG)
+
+class GXDThreadPoolExecutor(ThreadPoolExecutor):
+    def __init__(self, max_workers):
+        ThreadPoolExecutor.__init__(self, max_workers)
+        self._work_queue = queue.Queue(max_workers-1)
+
+#根据消息来分发URL处理包
+class UrlDispatch(object):
+    SPLIT = '#'     #消息格式    类名#方法名
+    #mysql = MySqlEx()
+    def __init__(self, parsers=None):
+        self.session = FuturesSession(executor=GXDThreadPoolExecutor(max_workers=3))
+        self.session.headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36 LBBROWSER', 'Connection': 'keep-alive'}
+        self.__dispatch = {}
+        if parsers and isinstance(parsers, list):
+           for pa in parsers:
+               if pa and type(pa)==type and issubclass(pa, ParserBase):
+                   self.__dispatch[pa.__name__]=pa()  #由分发器来实例化,有登陆的网站时要考虑SESSION过期的问题
+                   LOG.info(INFO.URLDISPATCH_REG % (pa.__name__))
+               else:
+                   LOG.warn(WARN.URLDISPATCH_PARSERS_SUB_ERR, type(pa))
+        else:
+            LOG.warn(WARN.URLDISPATCH_PARSERS_TYPE_ERR + type(parsers))
+        LOG.info(INFO.URLDISPATCH_START)
+
+    def dispatch(self, urlbase):
+        try:
+            if not urlbase or not isinstance(urlbase, UrlBase):
+                LOG.warn(WARN.URLDISPATCH_MESSAGE_FORMATERR)
+                return False
+            msg = urlbase.getmessage()
+            msgpartl = None
+            if not msg or not isinstance(msg, str):
+                LOG.warn(WARN.URLDISPATCH_MESSAGE_FORMATERR)
+                return False
+            msgpartl = msg.split(self.SPLIT)
+            if len(msgpartl)<1:
+                LOG.warn(WARN.URLDISPATCH_MESSAGE_FORMATERR)
+                return False
+            p = self.__dispatch.get(msgpartl[0], None)
+            if not p:
+                LOG.warn(WARN.URLDISPATCH_MESSAGE_PARSERERR, msgpartl[0])
+                return False
+            funname = 'default' if len(msgpartl)==1 else  msgpartl[1]
+            if hasattr(p, funname):
+                try:
+                    nextjobs = getattr(p, funname)(urlbase, self.session)
+                except Exception as e:
+                    LOG.warn(WARN.URLDISPATCH_MESSAGE_PARSEREXEERR, urlbase.url, urlbase.getmessage(), str(e))
+                    MySqlEx.savelog(urlbase.url,msg,urlbase.order,str(e))
+                    #self.mysql.savelog(urlbase.url,msg,str(e))
+                    return False
+            LOG.debug(DEBUG.URLDISPATCH_DISPATCH % (msgpartl[0], funname))
+        except Exception as e:
+            LOG.debug(WARN.URLDISPATCH_ERROR, urlbase.url, str(e))
+            MySqlEx.savelog(urlbase.url,urlbase.order, msg,str(e))
+            return False
+        return True, nextjobs
+
+"""
+if __name__ == '__main__':
+    #print(issubclass(www58com, ParserBase))
+    #print(type(www58com)== type)
+    try:
+        UrlDispatch([www58com, 123]).dispatch(UrlBase('www.58.com', 'www58com#getcitys'))
+    except Exception as e:
+        print('ERR'+str(e))
+"""

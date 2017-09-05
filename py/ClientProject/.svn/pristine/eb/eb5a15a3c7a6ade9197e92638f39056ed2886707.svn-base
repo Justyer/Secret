@@ -1,0 +1,34 @@
+import os, time, datetime, shutil
+from log.logger import *
+
+def delete():
+    path = 'C:/gxd'
+    fiveDayAgo = (datetime.datetime.now() - datetime.timedelta(days=5)).strftime('%Y-%m-%d')
+    try:
+        for root in os.walk(path+'/html'):
+            if fiveDayAgo in root[0]:
+                shutil.rmtree(root[0])
+        LOG.info('deletefile删除%sHTML文件成功' % str(fiveDayAgo))
+    except Exception as e:
+        LOG.error('deletefile删除删除%sHTML文件失败' % str(fiveDayAgo))
+    try:
+        for file in os.listdir(path+'/log'):
+            if fiveDayAgo in file:
+                os.remove(path+'/log/'+file)
+        LOG.info('deletefile删除删除%sHTML日志成功' % str(fiveDayAgo))
+    except Exception as e:
+        LOG.error('deletefile删除删除%sHTML日志失败' % str(fiveDayAgo))
+
+while True:
+    NowHour = datetime.datetime.now().strftime('%H')
+    if NowHour in  ['04','05','06','07']:
+        delete()
+    time.sleep(14400)
+
+
+
+
+
+
+
+

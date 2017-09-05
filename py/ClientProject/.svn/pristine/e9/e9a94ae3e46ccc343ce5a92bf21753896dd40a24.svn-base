@@ -1,0 +1,637 @@
+# 单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+from webparser.webparserbase import ParserBase
+from serializ.htmlfile import *
+from serializ.oracle import *
+from bean.urlbean import *
+from log.logger import *
+from util.UtilityGcs import *
+from datetime import datetime, timedelta
+from requests.exceptions import RequestException
+from random import random, randint
+
+LOG = logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.INFO)
+
+import requests, re, time
+from bs4 import BeautifulSoup, Tag
+
+#当前目录
+rootpath = os.sep.join(os.path.split(os.path.realpath(__file__))[0].split(os.sep))
+txtpath = os.sep.join([rootpath, "www_worldunion_com.txt"])
+
+class LoginException(Exception):
+    pass
+
+metadatas = ('所属省份','所属城市','所属区域','街道/路','路牌号','小区名','小区别名','楼栋名','楼栋别名名','楼栋街牌号','单元名','单元别名名','单元街牌号','楼层名',
+             '楼层别名名','房间名','房间别名名','房间街牌号','小区坐标中心点坐标','小区边界坐标','楼栋坐标','单元坐标','数据来源','开发商','总建筑面积','占地面积','房屋所有权证号',
+             '总户数','车位数量','绿化率','容积率','总栋数','土地使用权证号','发证日期','地上层数','地下层数','建筑高度','规划用途','户型','建筑面积','套内面积','公摊面积',
+             '按建面单价','按套内面单价','小区ID','小区评估系数','小区评估参数','竣工年限','行政区','楼盘案例均价','楼栋ID','建筑结构','房号','建筑类别','房屋结构','房屋户评估系数', 'STR_ORDER')
+
+class wwwworldunioncombase(ParserBase):
+    headers = {'Host': 'evs.worldunion.cn',
+               'User-Agent': ' Mozilla/5.0 (Windows NT 6.1; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0',
+               'Accept': 'application/xml, text/xml, */*',
+               'Accept-Language': 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+               'Accept-Encoding': 'gzip, deflate',
+               'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+               'X-Requested-With': 'XMLHttpRequest',
+               'Referer': 'http://evs3.worldunion.cn/Login.aspx?type=loginout',
+               'Connection': 'Keep-Alive'}
+    loginurl = 'http://evs3.worldunion.cn/Login.aspx?type=loginout'
+    dataurl = 'http://evs.worldunion.cn/QueryPriceManagement/AutoPrice.ashx'
+
+    htmlwrite = HtmlFile()
+
+    def __init__(self):pass
+        #self.login()
+
+    @retries(3, delay=3,  backoff=1, exceptions=(RequestException))
+    def login(self, relogin=False):
+        self.s = requests.Session()
+        self.s.headers = self.headers
+        # 获得sessionid
+        time.sleep(round(random()+randint(1,2), 2))
+        r = self.s.post(self.loginurl, headers=self.headers)
+        time.sleep(round(random()+randint(1,2), 2))
+        # 获得详细信息的POST参数
+        r = self.s.post(self.loginurl,
+                        data={"__EVENTTARGET": "",
+                              "__EVENTARGUMENT": "",
+                              "__VIEWSTATE": "/wEPDwULLTEzMzcxOTEyMDhkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBQxJbWFnZUJ1dHRvbjJ2bGFOMBiNTDxWBOG7lV89Y2HzZkjdYkxaDU000Mj60w==",
+                              "__VIEWSTATEGENERATOR": "C2EE9ABB",
+                              "__EVENTVALIDATION": "/wEdAARuu6YZtS7oFUcQeNGkqYxfDlm4ViRSj8IOmM+vzfHmfXY2+Mc6SrnAqio3oCKbxYZizVftpmYJzgJTRuQ1U4NbxmcwHcag5Sq4g7iZt62iHlbxGO1pgCacC+tgx1PA6f8=",
+                              "txtUserId": "test", "txtPassword": "123456", "ImageButton2.x": "28",
+                              "ImageButton2.y": "22"},
+                        headers=self.headers)
+        if relogin:
+            LOG.error("被踢回登录页面!!!!!!")
+
+    # 用猜测的小区ID来尝试获得栋信息
+    @retries(2, delay=10, backoff=1, exceptions=(LoginException))
+    @retries(3, delay=3,  backoff=1, exceptions=(RequestException))
+    def getConInfo(self, urlbase):
+        #LOG.info('小区id:%s, 城市id:%s', urlbase.param["conid"], urlbase.param["CityId"])
+        ls = []
+        i_order = urlbase.order[:-1] + '1'
+        #小区变量需要传参数,考虑是否要处理
+        self.s.cookies.set("ConId", str(urlbase.param["conid"]), domain="evs.worldunion.cn", path="/", rest={})
+        time.sleep(round(random()+randint(1,2), 2))
+        r = self.s.post(self.dataurl,
+                        data={'conid': urlbase.param["conid"],
+                              'CityId': urlbase.param["CityId"],
+                              'SDate': (datetime.now() - timedelta(days=31 * 3)).strftime("%Y-%m-%d"),
+                              'EDate': datetime.now().strftime("%Y-%m-%d"),
+                              'type': 'auto_getConInfo'}, timeout=(3.05, 2.5))
+        #如果跳转到登录页面需要重新登录后重试抓取信息
+        if 'Login' in r.request.url:        #http://evs.worldunion.cn/Login.aspx
+            self.login(True)
+            raise LoginException()  #需要重新登录
+        rtext = r.text
+        d = {'所属城市':urlbase.param["CityId"]}
+        try:
+            ID = re.findall('<ConstructionId>(.*?)</ConstructionId>', rtext, re.S)  # 小区ID
+            d['小区ID'] = ID[0]
+        except Exception as e:
+            LOG.error("%d%s%s", len(rtext), str(e), type(e))
+            if (len(rtext)==0):
+                self.login(True)
+                raise LoginException()
+            else: #未命中
+                LOG.error('小区id:%s, 城市id:%s, 未命中!', urlbase.param["conid"], urlbase.param["CityId"])
+                return ls
+
+        # 小区详细情况    数据总览
+        try:
+            regionname = re.findall('<regionname>(.*?)</regionname>', rtext, re.S)  # 片区
+            d['所属区域'] = regionname[0]
+        except:
+            d['所属区域'] = '*'
+        try:
+            rp = re.findall('<rp>(.*?)</rp>', rtext, re.S)  # 小区评估系数
+            d['小区评估系数'] = rp[0]
+        except:
+            d['小区评估系数'] = '*'
+        try:
+            managerprice = re.findall('<managerprice>(.*?)</managerprice>', rtext, re.S)  # 小区评估参数
+            d['小区评估参数'] = managerprice[0]
+        except:
+            d['小区评估参数'] = '*'
+        try:
+            doorplate = re.findall('<doorplate>(.*?)</doorplate>', rtext, re.S)  # 地址
+            d['街道/路'] = doorplate[0]
+        except:
+            d['街道/路'] = '*'
+        try:
+            salename = re.findall('<salename>(.*?)</salename>', rtext, re.S)  # 别名
+            d['小区别名'] = salename[0]
+        except:
+            d['小区别名'] = '*'
+        try:
+            EndDate = re.findall('<EndDate>(.*?)</EndDate>', rtext, re.S)  # 竣工年限
+            d['竣工年限'] = EndDate[0]
+        except:
+            d['竣工年限'] = '*'
+        try:
+            areaname = re.findall('<areaname>(.*?)</areaname>', rtext, re.S)  # 行政区
+            d['行政区'] = areaname[0]
+        except:
+            d['行政区'] = '*'
+        try:
+            ConstructionAvgPrivce = re.findall('<ConstructionAvgPrivce>(.*?)</ConstructionAvgPrivce>', rtext, re.S)
+            d['楼盘案例均价'] = ConstructionAvgPrivce[0]  # 均价
+        except:
+            d['楼盘案例均价'] = '*'
+        # 生成小区
+        # key = 'ConstructionDetail/%s-%s-%s' % (urlbase.param["CityId"], urlbase.param["CityName"], d['小区ID'])
+        # ls.append(UrlBean(key, self.message('ConstructionDetail'), key=key,
+        #                     param=dict(ConstructionID=d['小区ID']), order=i_order))
+        # 楼栋详细情况    数据总览
+        table = re.findall('<Table1>(.*?)</Table1>', rtext, re.S)  # 楼栋信息
+        for tt in table:  # 循环
+            try:
+                buildingid = re.findall('<buildingid>(.*?)</buildingid>', str(tt), re.S)  # 楼栋ID
+                d['楼栋ID'] = buildingid[0]
+            except:
+                d['楼栋ID'] = '*'
+            try:
+                buildingname = re.findall('<buildingname>(.*?)</buildingname>', str(tt), re.S)  # 楼栋名称
+                d['楼栋名'] = buildingname[0]
+            except:
+                d['楼栋名'] = '*'
+            try:
+                structure = re.findall('<structure>(.*?)</structure>', str(tt), re.S)  # 建筑结构
+                d['建筑结构'] = structure[0]
+            except:
+                d['建筑结构'] = '*'
+            # 生成楼栋信息
+            key = 'getHouseList/%s-%s-%s' % (d['楼栋ID'], urlbase.param["conid"], urlbase.param["CityId"])
+            ls.append(UrlBean(key, self.message('getHouseList'), key=key,
+                              param=dict(CityId=urlbase.param['CityId'], BuildingId=d['楼栋ID'],
+                                         ud=dict(d)), order=i_order))
+        if len(ls)==0:
+            LOG.warning("小区id:%s无楼栋信息!", urlbase.param["conid"])
+        return ls
+
+    # 根据栋信息采户信息
+    @retries(2, delay=10, backoff=1, exceptions=(LoginException))
+    @retries(3, delay=3,  backoff=1, exceptions=(RequestException))
+    def getHouseList(self, urlbase):
+        LOG.info('楼栋id:%s, 城市id:%s', urlbase.param["BuildingId"], urlbase.param["CityId"])
+        ls = []
+        i_order = urlbase.order[:-1] + '2'
+        time.sleep(round(random()+randint(1,2), 2))
+        r_build = self.s.post(self.dataurl,
+                              data={'BuildingId': urlbase.param['BuildingId'],
+                                    'Cityid': urlbase.param['CityId'],
+                                    'type': 'auto_getHouseList'}, timeout=(3.05, 2.6))  # post传参楼栋信息
+        #如果跳转到登录页面需要重新登录后重试抓取信息
+        if 'Login' in r_build.request.url:        #http://evs.worldunion.cn/Login.aspx
+            self.login(True)
+            raise LoginException()  #需要重新登录
+        build_text = r_build.text
+        #如果楼栋没有到户信息就不采集了
+        d = dict(urlbase.param["ud"])
+        # 房屋详细情况    数据总览
+        housetable = re.findall('<Table>(.*?)</Table>', build_text, re.S)  # 房屋信息
+        for houselist in housetable:
+            try:
+                houseId = re.findall('<houseId>(.*?)</houseId>', str(houselist), re.S)  # 房号
+                d['房号'] = houseId[0]
+            except:
+                d['房号'] = '*'
+            try:
+                houseName = re.findall('<houseName>(.*?)</houseName>', str(houselist), re.S)  # 户名
+                d['房间名'] = houseName[0]
+            except:
+                d['房间名'] = '*'
+            #生成房屋信息
+            key = 'getHouseInfo/%s-%s-%s' % (d['房号'], urlbase.param["BuildingId"], urlbase.param["CityId"])
+            ls.append(UrlBean(key, self.message('getHouseInfo'), key=key,
+                                param=dict(CityId=urlbase.param['CityId'], HouseId=d['房号'],
+                                           ud=dict(d)), order=i_order))
+        if len(ls)==0:
+            LOG.warning("楼栋id:%s无到户信息!", urlbase.param["BuildingId"])
+        return ls
+
+    # 猜户信息
+    @retries(2, delay=10, backoff=1, exceptions=(LoginException))
+    @retries(3, delay=3,  backoff=1, exceptions=(RequestException))
+    def getHouseInfo(self, urlbase):
+        LOG.info('户id:%s, 城市id:%s', urlbase.param["HouseId"], urlbase.param["CityId"])
+        i_order = urlbase.order[:-1] + '3'  # HouseId赋值
+        #self.s.cookies.set("ConId", str(d['题名']), domain="evs.worldunion.cn", path="/", rest={})
+        time.sleep(round(random()+randint(1,2), 2))
+        r_house = self.s.post(self.dataurl,
+                              data={'HouseId': urlbase.param["HouseId"],
+                                    'Cityid': urlbase.param["CityId"],
+                                    'type': 'auto_getHouseInfo'}, timeout=(3.05, 2.6))  # post传参楼栋信息
+         #如果跳转到登录页面需要重新登录后重试抓取信息
+        if 'Login' in r_house.request.url:        #http://evs.worldunion.cn/Login.aspx
+            self.login(True)
+            raise LoginException()  #需要重新登录
+        house_text = r_house.text
+        d = dict(urlbase.param["ud"])
+        try:
+            buildingtype = re.findall('<buildingtype>(.*?)</buildingtype>', house_text, re.S)
+            d['建筑类别'] = buildingtype[0]  # 建筑类别
+        except:
+            d['建筑类别'] = '*'
+        try:
+            purposename = re.findall('<purposename>(.*?)</purposename>', house_text, re.S)
+            d['规划用途'] = purposename[0]  # 住宅类别
+        except:
+            d['规划用途'] = '*'
+        try:
+            structure = re.findall('<structure>(.*?)</structure>', house_text, re.S)
+            d['房屋结构'] = structure[0]  # 房屋结构
+        except:
+            d['房屋结构'] = '*'
+        try:
+            house_rp = re.findall('<rp>(.*?)</rp>', house_text, re.S)
+            d['房屋户评估系数'] = house_rp[0]  # 房屋户评估系数
+        except:
+            d['房屋户评估系数'] = '*'
+        try:
+            buildarea = re.findall('<buildarea>(.*?)</buildarea>', house_text, re.S)
+            d['建筑面积'] = buildarea[0]  # 建筑面积
+        except:
+            d['建筑面积'] = '*'
+
+        d['所属省份'] = ''
+        #d['所属城市'] = ''  #修改到上边记录城市ID
+        d['路牌号'] = ''
+        d['小区名'] = ''
+        d['楼栋别名名'] = ''
+        d['楼栋街牌号'] = ''
+        d['单元名'] = ''
+        d['单元别名名'] = ''
+        d['单元街牌号'] = ''
+        d['楼层名'] = ''
+        d['楼层别名名'] = ''
+        d['房间别名名'] = ''
+        d['房间街牌号'] = ''
+        d['小区坐标中心点坐标'] = ''
+        d['小区边界坐标'] = ''
+        d['楼栋坐标'] = ''
+        d['单元坐标'] = ''
+        d['数据来源'] = '世联EVS'
+        d['开发商'] = ''
+        d['总建筑面积'] = ''
+        d['占地面积'] = ''
+        d['房屋所有权证号'] = ''
+        d['总户数'] = ''
+        d['车位数量'] = ''
+        d['绿化率'] = ''
+        d['容积率'] = ''
+        d['总栋数'] = ''
+        d['土地使用权证号'] = ''
+        d['发证日期'] = ''
+        d['地上层数'] = ''
+        d['地下层数'] = ''
+        d['建筑高度'] = ''
+        d['户型'] = ''
+        d['套内面积'] = ''
+        d['公摊面积'] = ''
+        d['按建面单价'] = ''
+        d['按套内面单价'] = ''
+        d['STR_ORDER'] = i_order
+        # 将分析的信息写入数据库
+        MySqlEx.savex(d, metadatas, "gxd.t_sl_h")
+        LOG.info(str(d))
+
+    #采小区信息,此方法无法采用分布模式
+    @retries(2, delay=10, backoff=1, exceptions=(LoginException))
+    @retries(3, delay=3,  backoff=1, exceptions=(RequestException))
+    def ConstructionDetail(self, urlbase):
+        i_order = urlbase.order[:-1] + '1'
+        d = {}
+        d['题名'] = urlbase.param["ConstructionID"]
+        url = '%s%s' % ('http://evs.worldunion.cn/QueryPriceManagement/ConstructionDetail.aspx?ConstructionID=', d['题名'])
+        self.s.cookies.set("ConId", str(d['题名']), domain="evs.worldunion.cn", path="/", rest={})
+        time.sleep(round(random()+randint(1,2), 2))
+        r = self.s.post(url, timeout = (3.05,2.5))
+        #如果跳转到登录页面需要重新登录后重试抓取信息
+        if 'Login' in r_build.request.url:        #http://evs.worldunion.cn/Login.aspx
+            self.login(True)
+            raise LoginException()  #需要重新登录
+        rtext = r.text
+        try:
+            title = re.findall('<span id="lbl_title">(.*?)</span>',rtext,re.S)
+            d['小区名称'] = title[0]
+        except:
+            d['小区名称'] = '*'
+        try:
+            Purpose = re.findall('<span id="lbl_Purpose">(.*?)</span>',rtext,re.S)
+            d['住宅类别'] = Purpose[0]
+        except:
+            d['住宅类别'] = '*'
+        try:
+            LayoutFunction = re.findall('<span id="lbl_LayoutFunction">(.*?)</span>',rtext,re.S)
+            d['楼盘物业类型'] = LayoutFunction[0]
+        except:
+            d['楼盘物业类型'] = '*'
+        try:
+            MainBuildingType = re.findall('<span id="lbl_MainBuildingType">(.*?)</span>',rtext,re.S)
+            d['建筑类别'] = MainBuildingType[0]
+        except:
+            d['建筑类别'] = '*'
+        try:
+            price = re.findall('物 业 费 </strong>(.*?)元',rtext,re.S)
+            d['楼盘物业费'] = price[0]
+        except:
+            d['楼盘物业费'] = '*'
+        try:
+            AreaName = re.findall('<span id="lbl_AreaName">(.*?)</span>',rtext,re.S)
+            d['行政区'] = AreaName[0]
+        except:
+            d['行政区'] = '*'
+        try:
+            RegionName = re.findall('<span id="lbl_RegionName">(.*?)</span>',rtext,re.S)
+            d['所属区域'] = RegionName[0]
+        except:
+            d['所属区域'] = '*'
+        try:
+            CubageRate = re.findall('<span id="lbl_CubageRate">(.*?)</span>',rtext,re.S)
+            d['楼盘容积率'] = CubageRate[0]
+        except:
+            d['楼盘容积率'] = '*'
+        try:
+            GreenRate = re.findall('<span id="lbl_GreenRate">(.*?)</span>',rtext,re.S)
+            d['楼盘绿化率'] = GreenRate[0]
+        except:
+            d['楼盘绿化率'] = '*'
+        try:
+            DoorpLate = re.findall('<span id="lbl_DoorpLate">(.*?)</span>',rtext,re.S)
+            d['地址'] = DoorpLate[0]
+        except:
+            d['地址'] = '*'
+        try:
+            avgPrice = re.findall('<span id="lbl_avgPrice">(.*?)</span>',rtext,re.S)
+            d['单价'] = avgPrice[0]
+        except:
+            d['单价'] = '*'
+        try:
+            TotalCellNumber = re.findall('<span id="lbl_TotalCellNumber">(.*?)</span>',rtext,re.S)
+            d['总套数'] = TotalCellNumber[0]
+        except:
+            d['总套数'] = '*'
+        try:
+            BuildingNum = re.findall('<span id="lbl_BuildingNum">(.*?)</span>',rtext,re.S)
+            d['楼宇数'] = BuildingNum[0]
+        except:
+            d['楼宇数'] = '*'
+        try:
+            ParkingNumber = re.findall('<span id="lbl_ParkingNumber">(.*?)</span>',rtext,re.S)
+            d['车位数'] = ParkingNumber[0]
+        except:
+            d['车位数'] = '*'
+        try:
+            ParkCell = re.findall('<span id="lbl_ParkCell">(.*?)</span>',rtext,re.S)
+            d['车户比'] = ParkCell[0]
+        except:
+            d['车户比'] = '*'
+        try:
+            TotalArea = re.findall('<span id="lbl_TotalArea">(.*?)</span>',rtext,re.S)
+            d['占地面积'] = TotalArea[0]
+        except:
+            d['占地面积'] = '*'
+        # try:
+        #     BuildArea = re.findall('<span id="lbl_BuildArea">(.*?)</span>',rtext,re.S)
+        #     d['建筑面积'] = BuildArea[0]
+        # except:
+        #     d['建筑面积'] = '*'
+        try:
+            StartBuildDate = re.findall('<span id="lbl_StartBuildDate">(.*?)</span>',rtext,re.S)
+            d['开工时间'] = StartBuildDate[0]
+        except:
+            d['开工时间'] = '*'
+        try:
+            EndDate = re.findall('<span id="lbl_EndDate">(.*?)</span>',rtext,re.S)
+            d['竣工时间'] = EndDate[0]
+        except:
+            d['竣工时间'] = '*'
+        try:
+            RightStatus = re.findall('<span id="lbl_RightStatus">(.*?)</span>',rtext,re.S)
+            d['产权性质'] = RightStatus[0]
+        except:
+            d['产权性质'] = '*'
+        try:
+            divTitle = re.findall('</font>&nbsp;<a >(.*?)</div>',rtext,re.S)
+            d['楼栋名称'] = divTitle[0].replace('</a>  >>  ','').replace('<a ','')
+        except:
+            d['楼栋名称'] = '*'
+        try:
+            city = re.findall('</a>  >>  <a >(.*?)市',rtext,re.S)
+            d['城市'] = city[0]
+        except:
+            d['城市'] = '*'
+        gisd = GcsConverUtil.getbaidugcs(d['小区名称'], d['城市'])
+        try:
+            if 'results' not in gisd:
+                lat = gisd['result']['location']['lat']
+                lng = gisd['result']['location']['lng']
+                d['小区坐标中心点坐标'] = str(lat)+','+str(lng)
+            else:
+                d['小区坐标中心点坐标'] = '*'
+        except:
+            d['小区坐标中心点坐标'] = '*'
+
+        d['来源链接'] = ''   #小区编码
+        d['小区链接'] = url
+        d['建成年份'] = ''
+        d['建筑面积'] = ''
+        d['总楼层'] = ''
+        d['当前层'] = ''
+        d['朝向'] = ''
+        d['使用面积'] = ''
+        d['装修情况'] = ''
+        d['户型'] = ''
+        d['卧室数量'] = ''
+        d['客厅数量'] = ''
+        d['卫生间数量'] = ''
+        d['厨房数量'] = ''
+        d['阳台数量'] = ''
+        d['总价'] = ''
+        d['挂牌时间'] = ''
+        d['房屋图片'] = ''
+        d['信息来源'] = ''  #城市编码
+        d['联系人'] = ''
+        d['经纪公司'] = ''
+        d['配套设施'] = ''
+        d['电话号码'] = ''
+        d['纬度'] = ''
+        d['经度'] = ''
+        d['发布时间'] = ''
+        d['交通状况'] = ''
+        d['数据来源'] = '世联Evs'
+        d['STR_ORDER'] = i_order
+        # 将分析的信息写入数据库
+        MySqlEx.savex(d, metadatas, "gxd.t_sl_xq")
+        LOG.info(str(d))
+
+# 解析世联网站
+class wwwworldunioncom(wwwworldunioncombase):
+    #每次生成100个小区任务
+    perxq = 100
+
+    def __init__(self):
+        super(wwwworldunioncom, self).__init__()
+        self.loadtxt()
+
+    #加载小区剔重文件
+    def loadtxt(self):
+        self.filterxq = set()
+        try:
+            with open(txtpath, 'r') as f:
+                self.filterxq = set([line.strip() for line in f.readlines()])
+            LOG.info("加载小区剔重文件成功!%s", txtpath)
+        except Exception as e:
+            LOG.error("加载小区剔除文件失败!异常信息:%s, 异常类型:%s", str(e), type(e))
+
+    # 对解析任务函数并进行切片操作
+    def parseparam(self, param):
+        #拆分参数
+        xq = []
+        cs = []
+        cslist = ""
+        try:
+            par = param.split("?")[1]
+            if par:
+                for idex, item in enumerate(par.split(';')):
+                    ls = []
+                    for i in item.split(","):
+                        if "-" in i:
+                            pr = i.split("-")
+                            ls.extend([str(s) for s in range(int(pr[0]), int(pr[1])+1)])
+                        else:
+                            ls.append(i)
+                    if idex==0:
+                        xq = ls
+                    else:
+                        cs.extend(ls)
+                        cslist = item
+        except Exception as e:
+            LOG.error(str(e), type(e))
+        LOG.info("竞猜小区共%d个, 城市共%d个", len(xq), len(cs))
+        return set(xq), cs, cslist
+
+    # 根据城市、检索值获得小区信息
+    def default(self, urlbase):
+        LOG.info('世联默认方法获得城市列表!')
+        #########登陆功能start########
+        # 批次,10位或12位
+        batch = 1 if not hasattr(urlbase, 'param') else int(urlbase.param)
+        i_order = urlbase.order[:10] + str(batch) + '0'
+        #解析任务参数
+        xq, cs, cslist = self.parseparam(urlbase.url)
+        #每次生成100个小区编码和5个城市ID匹配
+        xqlist = sorted(list(xq.difference(self.filterxq)), key=lambda x:x if len(x)>=10 else ''.join([(10-len(x))*'0', x]))[((batch-1)*self.perxq):(batch*self.perxq)]
+        le = len(xqlist)
+        if le>0:
+            LOG.info("小区%s-%s, 可选小区%d个", xqlist[0], xqlist[le-1], le)
+        else:
+            LOG.info("已超出小区限定范围,无小区数据!")
+        #生成小区城市包任务
+        ls = []
+        for x in xqlist:
+            #print(x)
+            ls.append(UrlBean('searchConID?%s;%s' % (x, cslist), self.message('searchConID'),
+                                param=x, key=('searchConID/%s' % x), order=i_order))
+        # 如果还有小区就生成下一批次的任务
+        if le>0:
+            #参数格式
+            ls.append(UrlBean(urlbase.url,
+                              urlbase.message,
+                              param = str(batch+1),
+                              order = urlbase.order[:10] + str(batch+1) + '0'))
+        return ls
+
+
+    # 根据城市包任务进行匹配数据
+    def searchConID(self, urlbean):
+        LOG.info('世联searchConID获得小区匹配信息!')
+        ls = []
+        #参数匹配
+        # citys = {"1"  : "深圳", "2"  : "广州",  "3"  : "北京", "4"  : "上海", "5"  : "天津",
+        #          "6"  : "重庆", "7"  : "珠海",  "8"  : "惠州", "9"  : "东莞",
+        #          "11" : "河源", "12" : "清远",
+        #          "16" : "江门", "17" : "佛山",
+        #          "22" : "长沙", "23" : "杭州",  "24" : "福州", "25" : "厦门",
+        #          "26" : "泉州", "29" : "石家庄",
+        #          "35" : "武汉",
+        #          "37" : "郑州", "38" : "沈阳",  "40" : "大连",
+        #          "41" : "南京", "43" : "合肥",  "44" : "南宁", "45" : "成都",
+        #          "46" : "贵阳", "47" : "济南",  "49" : "青岛",
+        #          "53" : "宁波", "54" : "西安",  "55" : "南昌",
+        #          "56" : "呼和浩特",
+        #          "62" : "乌鲁木齐", "63"  : "哈尔滨",
+        #          "70" : "海口", "71" : "太原",  "72" : "兰州", "74" : "桂林",
+        #          "75" : "昆明", "76" : "长春",
+        #          "84" : "苏州",
+        #          "88" : "福州",
+        #          "91" : "黄石", "93" : "无锡",  "94" : "三亚", "95" : "常州",
+        #          "96" : "温州", "97" : "宜昌",  "98" : "金华",
+        #          "101": "烟台", "102": "潍坊", "105": "西宁",
+        #          "114": "台州"}
+        #解析任务参数
+        xq, cs, cslist = self.parseparam(urlbean.url)
+        try:
+            xq = xq.pop()
+        except Exception as e:
+            LOG.error("无法获取小区ID", str(e), type(e))
+            return ls
+        #遍历城市范围
+        for c in cs:
+            #采集小区楼宇及以后信息
+            key = 'getConInfo/%s-%s' % (xq, c)
+            ls = self.getConInfo(UrlBean(key, self.message('getConInfo'), key=key,
+                                 param=dict(CityId=c, conid=xq), order=urlbean.order))
+            if len(ls)>0:
+                LOG.info("小区id:%s, 城市id:%s, 中奖了!")
+                break
+        return ls
+
+class wwwworldunioncomex(wwwworldunioncombase):
+    # 加载小区ID
+    def default(self, urlbase):
+        print('123')
+
+
+if __name__ == '__main__':
+    wwwworldunion = wwwworldunioncom()
+    ls = wwwworldunion.default(
+        UrlBase('http://evs.worldunion.cn/QueryPriceManagement/AutoPrice.ashx?1-400000;1-120', 'wwwworldunion', order=datetime.now().strftime("%y%m%d%H%M")))
+    # 猜小区的测试哪里
+    while ls:
+        nls = []
+        for l in ls:
+            if '#' not in l.message:
+                nls = wwwworldunion.default(l)
+            else:
+                wwwworldunion.searchConID(l)
+        ls = nls
+
+    #测试批量采集
+    wwwworldunionex = wwwworldunioncomex()
+    wwwworldunionex.default(None)
+
+    # 原始的测试案例
+    # for l in list:    #6
+    #     for k in wwwworldunion.searchCon(l): #48
+    #         if k.param["conid"] == 143921:
+    #             for h in wwwworldunion.getConInfo(k):
+    #                 if "getHouseList" in h.getmessage():
+    #                     for i in wwwworldunion.getHouseList(h):
+    #                         wwwworldunion.getHouseInfo(i)
+    #                 else:
+    #                     wwwworldunion.ConstructionDetail(h)
+
+
+

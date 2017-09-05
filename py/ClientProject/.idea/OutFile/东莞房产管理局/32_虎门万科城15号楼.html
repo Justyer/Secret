@@ -1,0 +1,541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv table
+        {
+            border: 0px none;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .contentDiv td
+        {
+            border: 0px none;
+        }
+        .menuTable .head
+        {
+            /*background-image: url(   "../images/indexnew_06.jpg" );*/
+            background-color: #019FC2;
+            height: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .subMenu tr
+        {
+            height: 40px;
+        }
+        .subMenu td
+        {
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px dashed #187101;
+        }
+        .menuButton
+        {
+            font-size: 9pt;
+            background: url(../images/button_01.gif) no-repeat left top;
+            border: none;
+            color: #006600;
+            height: 30px;
+            width: 150px;
+            letter-spacing: 6px;
+        }
+        .contentTitle
+        {
+            background: url(   "../images/notitle1.gif" ) no-repeat;
+            background-position-x: 4px;
+            text-align: left;
+            padding-left: 30px;
+            line-height: 200%;
+            color: Red;
+            font-weight: bold;
+        }
+        .contentSeparator
+        {
+            height: 2px;
+            border-bottom: 1px gray solid;
+            border-top: 1px gray solid;
+            margin-bottom: 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript">
+        var $houseTable;
+        function changeIndex(type, n) {
+            switch (type) {
+                case 1:
+                    if (typeof $houseTable == "undefined") {
+                        $houseTable = $(".houseTable");
+                    }
+                    $houseTable.hide();
+                    $("#houseTable_" + n).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+        var $content;
+        function menuButtonClick(n) {
+            if (typeof $content == "undefined") {
+                $content = $(".content");
+            }
+            $content.hide();
+            $("#content_" + n).show();
+        }
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $(".menuButton").mouseover(function() { $(this).css({ "background-position-y": "-60px", "color": "#3366FF" }) }).mouseout(function() { $(this).css({ "background-position-y": "0px", "color": "#006600" }) });
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="BeianDetail.aspx?id=11408&amp;vc=fd7ff18e" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTExMjg1MDY3MDBkZGTF4XjlkpYJobyhAC7+ycWXLF4H" />
+</div>
+
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 楼盘项目信息</div>
+        <div class="contentDiv">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 200px; border-left: 1px #019FC2 solid; border-right: 1px #019FC2 solid;
+                        background-color: #f5fbf5; vertical-align: top; padding: 0px;">
+                        <table class="menuTable">
+                            <tr class="head">
+                                <td>
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="楼盘明细" onclick="menuButtonClick(1)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="项目信息" onclick="menuButtonClick(2)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="基本信息" onclick="menuButtonClick(3)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="开发单位信息" onclick="menuButtonClick(4)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="合同样本" onclick="menuButtonClick(5)" />
+                                </td>
+                            </tr>
+                            <tr class="subMenu">
+                                <td>
+                                    <input type="button" class="menuButton" value="企业所有楼盘" onclick="menuButtonClick(6)" />
+                                </td>
+                            </tr>
+                            <tr style="height: 400px">
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="width: auto; text-align: center; vertical-align: top; padding-top: 2px;">
+                        <div id="content_1" class="content">
+                            <div class="contentTitle">
+                                楼盘明细
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div style="color: #007300; text-align: left; padding-left: 24px;">
+                                <b style="color: Black;">开发单位：</b>东莞市万宏房地产有限公司<b style="color: Black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;项目名称：</b>虎门万科城15号楼
+                            </div>
+                            <div>
+                                <table class='resultTable2 houseTable' id='houseTable_1' style='display:'><tr class='tHead'><td>预售许可证号</td><td>坐落</td><td>总层数</td><td>总套数</td><td>房屋用途</td><td>销售面积</td></tr><tr class='evenTr'><td><a href='roomTable.aspx?id=40313&vc=49cf715a' target='_blank'>201600754</a></td><td><a href='roomTable.aspx?id=40313&vc=49cf715a' target='_blank'>东莞市虎门镇大宁社区长德路168号虎门万科城15号楼</a></td><td><a href='roomTable.aspx?id=40313&vc=49cf715a' target='_blank'>34</a><td><a href='roomTable.aspx?id=40313&vc=49cf715a' target='_blank'>200</a><td><a href='roomTable.aspx?id=40313&vc=49cf715a' target='_blank'>住宅</a><td><a href='roomTable.aspx?id=40313&vc=49cf715a' target='_blank'>18875.34</a></td></table>
+                            </div>
+                            <div>
+                                当前共有 1 条结果，每页显示 20 条结果，共有 1 页
+                            </div>
+                        </div>
+                        <div id="content_2" class="content" style="display: none">
+                            <div class="contentTitle">
+                                楼盘信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%;" />
+                                    <col style="width: 80%;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            楼盘名称：虎门万科城15号楼
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            楼盘坐落：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市虎门镇大宁社区长德路168号
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            可售面积：
+                                        </td>
+                                        <td class="tal">
+                                            1337
+                                            平方米
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开盘时间：
+                                        </td>
+                                        <td class="tal">
+                                            2016-6-17
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部地址：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            售楼部电话：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            商品房预售证信息
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证名称：
+                                        </td>
+                                        <td class="tal">
+                                            预售许可证
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            销售许可证号：
+                                        </td>
+                                        <td class="tal">
+                                            201600754
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            发证机关：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市建设局
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_3" class="content" style="display: none">
+                            <div class="contentTitle">
+                                基本信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <iframe src='BeianView.aspx?id=11408&vc=fd7ff18e' scrolling='no' width='100%' height='650px' frameborder='0'></iframe></div>
+                        </div>
+                        <div id="content_4" class="content" style="display: none">
+                            <div class="contentTitle">
+                                开发单位信息
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class="resultTable2">
+                                    <col style="width: 20%; text-align: right;" />
+                                    <col style="width: 80%; text-align: left;" />
+                                    <tr class="tHead">
+                                        <td colspan="2">
+                                            东莞市万宏房地产有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            开发商名称：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市万宏房地产有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            资质等级：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位地址：
+                                        </td>
+                                        <td class="tal">
+                                            东莞市虎门镇边升中路88号万科紫台27栋二楼
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            单位邮编：
+                                        </td>
+                                        <td class="tal">
+                                            523000
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            注册资金：
+                                        </td>
+                                        <td class="tal">
+                                            1000万元
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            企业性质：
+                                        </td>
+                                        <td class="tal">
+                                            有限公司
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            法人代表：
+                                        </td>
+                                        <td class="tal">
+                                            易平安
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系电话：
+                                        </td>
+                                        <td class="tal">
+                                            22306868
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人：
+                                        </td>
+                                        <td class="tal">
+                                            江丽娃
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            传真：
+                                        </td>
+                                        <td class="tal">
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tar">
+                                            联系人E-mail：
+                                        </td>
+                                        <td class="tal">
+                                            jianglw@vanke.com
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="content_5" class="content" style="display: none">
+                            <div class="contentTitle">
+                                合同模板
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之前模板：</b></font><br />
+                                </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后预售模板：</b></font><br />
+                                <iframe src='YBargainTemView.aspx?projectId=11408&vc=fd7ff18e' width='100%' height='550px' frameborder='0'></iframe></div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <font color="red"><b>2015年之后现售模板：</b></font><br />
+                                </div>
+                        </div>
+                        <div id="content_6" class="content" style="display: none">
+                            <div class="contentTitle">
+                                企业所有楼盘
+                            </div>
+                            <div class="contentSeparator">
+                            </div>
+                            <div>
+                                <table class='resultTable2' id='allHouse_1' style='display:'><tr class='tHead'><td>项目名称</td><td>项目地址</td><td>总套数</td><td>可售套数</td></tr><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9284&vc=114f6b58' target='_blank'>虎门万科城(二区)119号商业楼</a></td><td><a href='BeianDetail.aspx?id=9284&vc=114f6b58' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9284&vc=114f6b58' target='_blank'>10</a></td><td><a href='BeianDetail.aspx?id=9284&vc=114f6b58' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9285&vc=f5a60778' target='_blank'>虎门万科城(二区)120号商业楼</a></td><td><a href='BeianDetail.aspx?id=9285&vc=f5a60778' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9285&vc=f5a60778' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=9285&vc=f5a60778' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9286&vc=58526f85' target='_blank'>虎门万科城(二区)121号商业楼</a></td><td><a href='BeianDetail.aspx?id=9286&vc=58526f85' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9286&vc=58526f85' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=9286&vc=58526f85' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9287&vc=38de9c80' target='_blank'>虎门万科城(二区)122号商业楼</a></td><td><a href='BeianDetail.aspx?id=9287&vc=38de9c80' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9287&vc=38de9c80' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=9287&vc=38de9c80' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9288&vc=545d8a30' target='_blank'>虎门万科城(二区)123号商业楼</a></td><td><a href='BeianDetail.aspx?id=9288&vc=545d8a30' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9288&vc=545d8a30' target='_blank'>14</a></td><td><a href='BeianDetail.aspx?id=9288&vc=545d8a30' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10175&vc=6d60cc09' target='_blank'>虎门万科城(三区)126号商业楼</a></td><td><a href='BeianDetail.aspx?id=10175&vc=6d60cc09' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10175&vc=6d60cc09' target='_blank'>14</a></td><td><a href='BeianDetail.aspx?id=10175&vc=6d60cc09' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10176&vc=fda5cf67' target='_blank'>虎门万科城(三区)127号商业楼</a></td><td><a href='BeianDetail.aspx?id=10176&vc=fda5cf67' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10176&vc=fda5cf67' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=10176&vc=fda5cf67' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10177&vc=0ab29100' target='_blank'>虎门万科城(三区)128号商业楼</a></td><td><a href='BeianDetail.aspx?id=10177&vc=0ab29100' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10177&vc=0ab29100' target='_blank'>8</a></td><td><a href='BeianDetail.aspx?id=10177&vc=0ab29100' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10178&vc=4ca1c1d1' target='_blank'>虎门万科城(三区)129号商业楼</a></td><td><a href='BeianDetail.aspx?id=10178&vc=4ca1c1d1' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10178&vc=4ca1c1d1' target='_blank'>14</a></td><td><a href='BeianDetail.aspx?id=10178&vc=4ca1c1d1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9883&vc=be273901' target='_blank'>虎门万科城100号楼</a></td><td><a href='BeianDetail.aspx?id=9883&vc=be273901' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9883&vc=be273901' target='_blank'>200</a></td><td><a href='BeianDetail.aspx?id=9883&vc=be273901' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9703&vc=ed56fcd2' target='_blank'>虎门万科城101号楼</a></td><td><a href='BeianDetail.aspx?id=9703&vc=ed56fcd2' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9703&vc=ed56fcd2' target='_blank'>170</a></td><td><a href='BeianDetail.aspx?id=9703&vc=ed56fcd2' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8370&vc=5b6ccb5f' target='_blank'>虎门万科城102号楼</a></td><td><a href='BeianDetail.aspx?id=8370&vc=5b6ccb5f' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8370&vc=5b6ccb5f' target='_blank'>151</a></td><td><a href='BeianDetail.aspx?id=8370&vc=5b6ccb5f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8371&vc=a7f27bee' target='_blank'>虎门万科城103号楼</a></td><td><a href='BeianDetail.aspx?id=8371&vc=a7f27bee' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8371&vc=a7f27bee' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=8371&vc=a7f27bee' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8372&vc=9701455b' target='_blank'>虎门万科城104号楼</a></td><td><a href='BeianDetail.aspx?id=8372&vc=9701455b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8372&vc=9701455b' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=8372&vc=9701455b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8373&vc=87fc4f8e' target='_blank'>虎门万科城105号楼</a></td><td><a href='BeianDetail.aspx?id=8373&vc=87fc4f8e' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8373&vc=87fc4f8e' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=8373&vc=87fc4f8e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8374&vc=cd71e90d' target='_blank'>虎门万科城106号楼</a></td><td><a href='BeianDetail.aspx?id=8374&vc=cd71e90d' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8374&vc=cd71e90d' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=8374&vc=cd71e90d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8375&vc=5324866e' target='_blank'>虎门万科城107号楼</a></td><td><a href='BeianDetail.aspx?id=8375&vc=5324866e' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8375&vc=5324866e' target='_blank'>103</a></td><td><a href='BeianDetail.aspx?id=8375&vc=5324866e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9269&vc=af9e6281' target='_blank'>虎门万科城108号楼</a></td><td><a href='BeianDetail.aspx?id=9269&vc=af9e6281' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9269&vc=af9e6281' target='_blank'>151</a></td><td><a href='BeianDetail.aspx?id=9269&vc=af9e6281' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9270&vc=b300e86c' target='_blank'>虎门万科城109号楼</a></td><td><a href='BeianDetail.aspx?id=9270&vc=b300e86c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9270&vc=b300e86c' target='_blank'>152</a></td><td><a href='BeianDetail.aspx?id=9270&vc=b300e86c' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8548&vc=ab8d4cf0' target='_blank'>虎门万科城10号楼</a></td><td><a href='BeianDetail.aspx?id=8548&vc=ab8d4cf0' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8548&vc=ab8d4cf0' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=8548&vc=ab8d4cf0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9398&vc=1787c07b' target='_blank'>虎门万科城110号楼</a></td><td><a href='BeianDetail.aspx?id=9398&vc=1787c07b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9398&vc=1787c07b' target='_blank'>151</a></td><td><a href='BeianDetail.aspx?id=9398&vc=1787c07b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9569&vc=cf6928fb' target='_blank'>虎门万科城111号楼</a></td><td><a href='BeianDetail.aspx?id=9569&vc=cf6928fb' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9569&vc=cf6928fb' target='_blank'>187</a></td><td><a href='BeianDetail.aspx?id=9569&vc=cf6928fb' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9568&vc=168cfd19' target='_blank'>虎门万科城112号楼</a></td><td><a href='BeianDetail.aspx?id=9568&vc=168cfd19' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9568&vc=168cfd19' target='_blank'>188</a></td><td><a href='BeianDetail.aspx?id=9568&vc=168cfd19' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9399&vc=7f61503c' target='_blank'>虎门万科城113号楼</a></td><td><a href='BeianDetail.aspx?id=9399&vc=7f61503c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9399&vc=7f61503c' target='_blank'>189</a></td><td><a href='BeianDetail.aspx?id=9399&vc=7f61503c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9149&vc=be1bb5f0' target='_blank'>虎门万科城11号楼</a></td><td><a href='BeianDetail.aspx?id=9149&vc=be1bb5f0' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9149&vc=be1bb5f0' target='_blank'>64</a></td><td><a href='BeianDetail.aspx?id=9149&vc=be1bb5f0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9150&vc=2c17310c' target='_blank'>虎门万科城12号楼</a></td><td><a href='BeianDetail.aspx?id=9150&vc=2c17310c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9150&vc=2c17310c' target='_blank'>65</a></td><td><a href='BeianDetail.aspx?id=9150&vc=2c17310c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9151&vc=752a5dae' target='_blank'>虎门万科城13号楼</a></td><td><a href='BeianDetail.aspx?id=9151&vc=752a5dae' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9151&vc=752a5dae' target='_blank'>67</a></td><td><a href='BeianDetail.aspx?id=9151&vc=752a5dae' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11407&vc=c95ec7d1' target='_blank'>虎门万科城14号楼</a></td><td><a href='BeianDetail.aspx?id=11407&vc=c95ec7d1' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=11407&vc=c95ec7d1' target='_blank'>200</a></td><td><a href='BeianDetail.aspx?id=11407&vc=c95ec7d1' target='_blank'>21</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11408&vc=fd7ff18e' target='_blank'>虎门万科城15号楼</a></td><td><a href='BeianDetail.aspx?id=11408&vc=fd7ff18e' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=11408&vc=fd7ff18e' target='_blank'>200</a></td><td><a href='BeianDetail.aspx?id=11408&vc=fd7ff18e' target='_blank'>14</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=11409&vc=6bfdf488' target='_blank'>虎门万科城16号楼</a></td><td><a href='BeianDetail.aspx?id=11409&vc=6bfdf488' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=11409&vc=6bfdf488' target='_blank'>182</a></td><td><a href='BeianDetail.aspx?id=11409&vc=6bfdf488' target='_blank'>17</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10540&vc=9a79ba04' target='_blank'>虎门万科城17号楼</a></td><td><a href='BeianDetail.aspx?id=10540&vc=9a79ba04' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10540&vc=9a79ba04' target='_blank'>80</a></td><td><a href='BeianDetail.aspx?id=10540&vc=9a79ba04' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10541&vc=c9efe456' target='_blank'>虎门万科城18号楼</a></td><td><a href='BeianDetail.aspx?id=10541&vc=c9efe456' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10541&vc=c9efe456' target='_blank'>75</a></td><td><a href='BeianDetail.aspx?id=10541&vc=c9efe456' target='_blank'>3</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10542&vc=6dd0a04d' target='_blank'>虎门万科城19号楼</a></td><td><a href='BeianDetail.aspx?id=10542&vc=6dd0a04d' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10542&vc=6dd0a04d' target='_blank'>74</a></td><td><a href='BeianDetail.aspx?id=10542&vc=6dd0a04d' target='_blank'>2</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8857&vc=63b845ce' target='_blank'>虎门万科城1号楼</a></td><td><a href='BeianDetail.aspx?id=8857&vc=63b845ce' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8857&vc=63b845ce' target='_blank'>127</a></td><td><a href='BeianDetail.aspx?id=8857&vc=63b845ce' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9704&vc=26a68a7d' target='_blank'>虎门万科城20号楼</a></td><td><a href='BeianDetail.aspx?id=9704&vc=26a68a7d' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9704&vc=26a68a7d' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=9704&vc=26a68a7d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9576&vc=ca09e708' target='_blank'>虎门万科城21号楼</a></td><td><a href='BeianDetail.aspx?id=9576&vc=ca09e708' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9576&vc=ca09e708' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=9576&vc=ca09e708' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9705&vc=a576f656' target='_blank'>虎门万科城22号楼</a></td><td><a href='BeianDetail.aspx?id=9705&vc=a576f656' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9705&vc=a576f656' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=9705&vc=a576f656' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9577&vc=1713de6c' target='_blank'>虎门万科城23号楼</a></td><td><a href='BeianDetail.aspx?id=9577&vc=1713de6c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9577&vc=1713de6c' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=9577&vc=1713de6c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9706&vc=7c2a49a2' target='_blank'>虎门万科城24号楼</a></td><td><a href='BeianDetail.aspx?id=9706&vc=7c2a49a2' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9706&vc=7c2a49a2' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=9706&vc=7c2a49a2' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9707&vc=251f98e3' target='_blank'>虎门万科城25号楼</a></td><td><a href='BeianDetail.aspx?id=9707&vc=251f98e3' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9707&vc=251f98e3' target='_blank'>18</a></td><td><a href='BeianDetail.aspx?id=9707&vc=251f98e3' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9581&vc=c0ee07e1' target='_blank'>虎门万科城26号楼</a></td><td><a href='BeianDetail.aspx?id=9581&vc=c0ee07e1' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9581&vc=c0ee07e1' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=9581&vc=c0ee07e1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8946&vc=37b46f81' target='_blank'>虎门万科城2号楼</a></td><td><a href='BeianDetail.aspx?id=8946&vc=37b46f81' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8946&vc=37b46f81' target='_blank'>171</a></td><td><a href='BeianDetail.aspx?id=8946&vc=37b46f81' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=11321&vc=5a0018f2' target='_blank'>虎门万科城30号楼</a></td><td><a href='BeianDetail.aspx?id=11321&vc=5a0018f2' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=11321&vc=5a0018f2' target='_blank'>200</a></td><td><a href='BeianDetail.aspx?id=11321&vc=5a0018f2' target='_blank'>23</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10324&vc=64a34af0' target='_blank'>虎门万科城31号楼</a></td><td><a href='BeianDetail.aspx?id=10324&vc=64a34af0' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10324&vc=64a34af0' target='_blank'>170</a></td><td><a href='BeianDetail.aspx?id=10324&vc=64a34af0' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10561&vc=9bc5f358' target='_blank'>虎门万科城32号楼</a></td><td><a href='BeianDetail.aspx?id=10561&vc=9bc5f358' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10561&vc=9bc5f358' target='_blank'>241</a></td><td><a href='BeianDetail.aspx?id=10561&vc=9bc5f358' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10562&vc=9295f599' target='_blank'>虎门万科城33号楼</a></td><td><a href='BeianDetail.aspx?id=10562&vc=9295f599' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10562&vc=9295f599' target='_blank'>241</a></td><td><a href='BeianDetail.aspx?id=10562&vc=9295f599' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10323&vc=cd623cb9' target='_blank'>虎门万科城34号楼</a></td><td><a href='BeianDetail.aspx?id=10323&vc=cd623cb9' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10323&vc=cd623cb9' target='_blank'>200</a></td><td><a href='BeianDetail.aspx?id=10323&vc=cd623cb9' target='_blank'>1</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8222&vc=de240940' target='_blank'>虎门万科城35号楼</a></td><td><a href='BeianDetail.aspx?id=8222&vc=de240940' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8222&vc=de240940' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8222&vc=de240940' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8223&vc=f0f537c0' target='_blank'>虎门万科城36号楼</a></td><td><a href='BeianDetail.aspx?id=8223&vc=f0f537c0' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8223&vc=f0f537c0' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8223&vc=f0f537c0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8224&vc=68f15241' target='_blank'>虎门万科城37号楼</a></td><td><a href='BeianDetail.aspx?id=8224&vc=68f15241' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8224&vc=68f15241' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8224&vc=68f15241' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8225&vc=8091e607' target='_blank'>虎门万科城38号楼</a></td><td><a href='BeianDetail.aspx?id=8225&vc=8091e607' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8225&vc=8091e607' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8225&vc=8091e607' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8226&vc=d42eab3d' target='_blank'>虎门万科城39号楼</a></td><td><a href='BeianDetail.aspx?id=8226&vc=d42eab3d' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8226&vc=d42eab3d' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8226&vc=d42eab3d' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8947&vc=89c8ff81' target='_blank'>虎门万科城3号楼</a></td><td><a href='BeianDetail.aspx?id=8947&vc=89c8ff81' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8947&vc=89c8ff81' target='_blank'>169</a></td><td><a href='BeianDetail.aspx?id=8947&vc=89c8ff81' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8227&vc=53d87126' target='_blank'>虎门万科城40号楼</a></td><td><a href='BeianDetail.aspx?id=8227&vc=53d87126' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8227&vc=53d87126' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8227&vc=53d87126' target='_blank'>1</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8228&vc=d4052e05' target='_blank'>虎门万科城41号楼</a></td><td><a href='BeianDetail.aspx?id=8228&vc=d4052e05' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8228&vc=d4052e05' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8228&vc=d4052e05' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8229&vc=66cef768' target='_blank'>虎门万科城42号楼</a></td><td><a href='BeianDetail.aspx?id=8229&vc=66cef768' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8229&vc=66cef768' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8229&vc=66cef768' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8230&vc=bd376d41' target='_blank'>虎门万科城43号楼</a></td><td><a href='BeianDetail.aspx?id=8230&vc=bd376d41' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8230&vc=bd376d41' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8230&vc=bd376d41' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8231&vc=97b9a094' target='_blank'>虎门万科城44号楼</a></td><td><a href='BeianDetail.aspx?id=8231&vc=97b9a094' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8231&vc=97b9a094' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8231&vc=97b9a094' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8232&vc=29af97c7' target='_blank'>虎门万科城45号楼</a></td><td><a href='BeianDetail.aspx?id=8232&vc=29af97c7' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8232&vc=29af97c7' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8232&vc=29af97c7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8233&vc=5501bb87' target='_blank'>虎门万科城46号楼</a></td><td><a href='BeianDetail.aspx?id=8233&vc=5501bb87' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8233&vc=5501bb87' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8233&vc=5501bb87' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8234&vc=09e123a4' target='_blank'>虎门万科城47号楼</a></td><td><a href='BeianDetail.aspx?id=8234&vc=09e123a4' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8234&vc=09e123a4' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8234&vc=09e123a4' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8235&vc=7bec8a1c' target='_blank'>虎门万科城48号楼</a></td><td><a href='BeianDetail.aspx?id=8235&vc=7bec8a1c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8235&vc=7bec8a1c' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8235&vc=7bec8a1c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8236&vc=91d7bf19' target='_blank'>虎门万科城49号楼</a></td><td><a href='BeianDetail.aspx?id=8236&vc=91d7bf19' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8236&vc=91d7bf19' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8236&vc=91d7bf19' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8858&vc=f44f5a5c' target='_blank'>虎门万科城4号楼</a></td><td><a href='BeianDetail.aspx?id=8858&vc=f44f5a5c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8858&vc=f44f5a5c' target='_blank'>128</a></td><td><a href='BeianDetail.aspx?id=8858&vc=f44f5a5c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8237&vc=9d5e6d25' target='_blank'>虎门万科城50号楼</a></td><td><a href='BeianDetail.aspx?id=8237&vc=9d5e6d25' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8237&vc=9d5e6d25' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8237&vc=9d5e6d25' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8238&vc=849a4dbd' target='_blank'>虎门万科城51号楼</a></td><td><a href='BeianDetail.aspx?id=8238&vc=849a4dbd' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8238&vc=849a4dbd' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8238&vc=849a4dbd' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8239&vc=28f81695' target='_blank'>虎门万科城52号楼</a></td><td><a href='BeianDetail.aspx?id=8239&vc=28f81695' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8239&vc=28f81695' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8239&vc=28f81695' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8240&vc=27308ae8' target='_blank'>虎门万科城53号楼</a></td><td><a href='BeianDetail.aspx?id=8240&vc=27308ae8' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8240&vc=27308ae8' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8240&vc=27308ae8' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8241&vc=623412b0' target='_blank'>虎门万科城54号楼</a></td><td><a href='BeianDetail.aspx?id=8241&vc=623412b0' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8241&vc=623412b0' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8241&vc=623412b0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8242&vc=728ab829' target='_blank'>虎门万科城55号楼</a></td><td><a href='BeianDetail.aspx?id=8242&vc=728ab829' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8242&vc=728ab829' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8242&vc=728ab829' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8243&vc=e70abee7' target='_blank'>虎门万科城56号楼</a></td><td><a href='BeianDetail.aspx?id=8243&vc=e70abee7' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8243&vc=e70abee7' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8243&vc=e70abee7' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8244&vc=4652cd9f' target='_blank'>虎门万科城57号楼</a></td><td><a href='BeianDetail.aspx?id=8244&vc=4652cd9f' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8244&vc=4652cd9f' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8244&vc=4652cd9f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8245&vc=55e5c1ea' target='_blank'>虎门万科城58号楼</a></td><td><a href='BeianDetail.aspx?id=8245&vc=55e5c1ea' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8245&vc=55e5c1ea' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8245&vc=55e5c1ea' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8246&vc=914ef6f2' target='_blank'>虎门万科城59号楼</a></td><td><a href='BeianDetail.aspx?id=8246&vc=914ef6f2' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8246&vc=914ef6f2' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8246&vc=914ef6f2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8485&vc=ca998530' target='_blank'>虎门万科城5号楼</a></td><td><a href='BeianDetail.aspx?id=8485&vc=ca998530' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8485&vc=ca998530' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=8485&vc=ca998530' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8247&vc=d48f7d4e' target='_blank'>虎门万科城60号楼</a></td><td><a href='BeianDetail.aspx?id=8247&vc=d48f7d4e' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8247&vc=d48f7d4e' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8247&vc=d48f7d4e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8248&vc=074a035b' target='_blank'>虎门万科城61号楼</a></td><td><a href='BeianDetail.aspx?id=8248&vc=074a035b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8248&vc=074a035b' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8248&vc=074a035b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8249&vc=4b5141b3' target='_blank'>虎门万科城62号楼</a></td><td><a href='BeianDetail.aspx?id=8249&vc=4b5141b3' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8249&vc=4b5141b3' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8249&vc=4b5141b3' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8250&vc=3fca32b5' target='_blank'>虎门万科城63号楼</a></td><td><a href='BeianDetail.aspx?id=8250&vc=3fca32b5' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8250&vc=3fca32b5' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8250&vc=3fca32b5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8251&vc=ed0f822b' target='_blank'>虎门万科城64号楼</a></td><td><a href='BeianDetail.aspx?id=8251&vc=ed0f822b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8251&vc=ed0f822b' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8251&vc=ed0f822b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8252&vc=3529198f' target='_blank'>虎门万科城65号楼</a></td><td><a href='BeianDetail.aspx?id=8252&vc=3529198f' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8252&vc=3529198f' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8252&vc=3529198f' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8253&vc=10373c7e' target='_blank'>虎门万科城66号楼</a></td><td><a href='BeianDetail.aspx?id=8253&vc=10373c7e' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8253&vc=10373c7e' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8253&vc=10373c7e' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8254&vc=ecf8b372' target='_blank'>虎门万科城67号楼</a></td><td><a href='BeianDetail.aspx?id=8254&vc=ecf8b372' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8254&vc=ecf8b372' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8254&vc=ecf8b372' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8255&vc=c1fb1218' target='_blank'>虎门万科城68号楼</a></td><td><a href='BeianDetail.aspx?id=8255&vc=c1fb1218' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8255&vc=c1fb1218' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8255&vc=c1fb1218' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8256&vc=92fc63f0' target='_blank'>虎门万科城69号楼</a></td><td><a href='BeianDetail.aspx?id=8256&vc=92fc63f0' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8256&vc=92fc63f0' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8256&vc=92fc63f0' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8517&vc=6d95b823' target='_blank'>虎门万科城6号楼</a></td><td><a href='BeianDetail.aspx?id=8517&vc=6d95b823' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8517&vc=6d95b823' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=8517&vc=6d95b823' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8257&vc=d3a65783' target='_blank'>虎门万科城70号楼</a></td><td><a href='BeianDetail.aspx?id=8257&vc=d3a65783' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8257&vc=d3a65783' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=8257&vc=d3a65783' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8258&vc=3b94a809' target='_blank'>虎门万科城71号楼</a></td><td><a href='BeianDetail.aspx?id=8258&vc=3b94a809' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8258&vc=3b94a809' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=8258&vc=3b94a809' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10715&vc=9a542105' target='_blank'>虎门万科城72号楼</a></td><td><a href='BeianDetail.aspx?id=10715&vc=9a542105' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10715&vc=9a542105' target='_blank'>199</a></td><td><a href='BeianDetail.aspx?id=10715&vc=9a542105' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=10718&vc=538720cc' target='_blank'>虎门万科城73号楼</a></td><td><a href='BeianDetail.aspx?id=10718&vc=538720cc' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10718&vc=538720cc' target='_blank'>200</a></td><td><a href='BeianDetail.aspx?id=10718&vc=538720cc' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=10720&vc=db918324' target='_blank'>虎门万科城74号楼</a></td><td><a href='BeianDetail.aspx?id=10720&vc=db918324' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=10720&vc=db918324' target='_blank'>170</a></td><td><a href='BeianDetail.aspx?id=10720&vc=db918324' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9003&vc=cca0eff4' target='_blank'>虎门万科城75号楼</a></td><td><a href='BeianDetail.aspx?id=9003&vc=cca0eff4' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9003&vc=cca0eff4' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9003&vc=cca0eff4' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9004&vc=8e78fa8b' target='_blank'>虎门万科城76号楼</a></td><td><a href='BeianDetail.aspx?id=9004&vc=8e78fa8b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9004&vc=8e78fa8b' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9004&vc=8e78fa8b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9005&vc=ea551b73' target='_blank'>虎门万科城77号楼</a></td><td><a href='BeianDetail.aspx?id=9005&vc=ea551b73' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9005&vc=ea551b73' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9005&vc=ea551b73' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9006&vc=174140c3' target='_blank'>虎门万科城78号楼</a></td><td><a href='BeianDetail.aspx?id=9006&vc=174140c3' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9006&vc=174140c3' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9006&vc=174140c3' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9007&vc=b80cc1f2' target='_blank'>虎门万科城79号楼</a></td><td><a href='BeianDetail.aspx?id=9007&vc=b80cc1f2' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9007&vc=b80cc1f2' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9007&vc=b80cc1f2' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8547&vc=b9fda29d' target='_blank'>虎门万科城7号楼</a></td><td><a href='BeianDetail.aspx?id=8547&vc=b9fda29d' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8547&vc=b9fda29d' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=8547&vc=b9fda29d' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9008&vc=be3876b6' target='_blank'>虎门万科城80号楼</a></td><td><a href='BeianDetail.aspx?id=9008&vc=be3876b6' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9008&vc=be3876b6' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9008&vc=be3876b6' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9009&vc=c7ffd32b' target='_blank'>虎门万科城81号楼</a></td><td><a href='BeianDetail.aspx?id=9009&vc=c7ffd32b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9009&vc=c7ffd32b' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9009&vc=c7ffd32b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9010&vc=deac4d32' target='_blank'>虎门万科城82号楼</a></td><td><a href='BeianDetail.aspx?id=9010&vc=deac4d32' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9010&vc=deac4d32' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9010&vc=deac4d32' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9011&vc=b063cb30' target='_blank'>虎门万科城83号楼</a></td><td><a href='BeianDetail.aspx?id=9011&vc=b063cb30' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9011&vc=b063cb30' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9011&vc=b063cb30' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9012&vc=008e824c' target='_blank'>虎门万科城84号楼</a></td><td><a href='BeianDetail.aspx?id=9012&vc=008e824c' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9012&vc=008e824c' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9012&vc=008e824c' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9013&vc=63ac823b' target='_blank'>虎门万科城85号楼</a></td><td><a href='BeianDetail.aspx?id=9013&vc=63ac823b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9013&vc=63ac823b' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9013&vc=63ac823b' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9014&vc=148df065' target='_blank'>虎门万科城86号楼</a></td><td><a href='BeianDetail.aspx?id=9014&vc=148df065' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9014&vc=148df065' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9014&vc=148df065' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9015&vc=174d2d52' target='_blank'>虎门万科城87号楼</a></td><td><a href='BeianDetail.aspx?id=9015&vc=174d2d52' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9015&vc=174d2d52' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9015&vc=174d2d52' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9016&vc=4fb14a08' target='_blank'>虎门万科城88号楼</a></td><td><a href='BeianDetail.aspx?id=9016&vc=4fb14a08' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9016&vc=4fb14a08' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9016&vc=4fb14a08' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9017&vc=bfee6f6e' target='_blank'>虎门万科城89号楼</a></td><td><a href='BeianDetail.aspx?id=9017&vc=bfee6f6e' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9017&vc=bfee6f6e' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9017&vc=bfee6f6e' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=8486&vc=3ad7e943' target='_blank'>虎门万科城8号楼</a></td><td><a href='BeianDetail.aspx?id=8486&vc=3ad7e943' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8486&vc=3ad7e943' target='_blank'>66</a></td><td><a href='BeianDetail.aspx?id=8486&vc=3ad7e943' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9018&vc=6808bbc5' target='_blank'>虎门万科城90号楼</a></td><td><a href='BeianDetail.aspx?id=9018&vc=6808bbc5' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9018&vc=6808bbc5' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9018&vc=6808bbc5' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9019&vc=20ba491b' target='_blank'>虎门万科城91号楼</a></td><td><a href='BeianDetail.aspx?id=9019&vc=20ba491b' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9019&vc=20ba491b' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9019&vc=20ba491b' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9020&vc=5c2dd9c1' target='_blank'>虎门万科城92号楼</a></td><td><a href='BeianDetail.aspx?id=9020&vc=5c2dd9c1' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9020&vc=5c2dd9c1' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9020&vc=5c2dd9c1' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9021&vc=583c8562' target='_blank'>虎门万科城93号楼</a></td><td><a href='BeianDetail.aspx?id=9021&vc=583c8562' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9021&vc=583c8562' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9021&vc=583c8562' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9022&vc=c15e4576' target='_blank'>虎门万科城94号楼</a></td><td><a href='BeianDetail.aspx?id=9022&vc=c15e4576' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9022&vc=c15e4576' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9022&vc=c15e4576' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9023&vc=de86a0f1' target='_blank'>虎门万科城95号楼</a></td><td><a href='BeianDetail.aspx?id=9023&vc=de86a0f1' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9023&vc=de86a0f1' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9023&vc=de86a0f1' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9024&vc=8ba13bd6' target='_blank'>虎门万科城96号楼</a></td><td><a href='BeianDetail.aspx?id=9024&vc=8ba13bd6' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9024&vc=8ba13bd6' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9024&vc=8ba13bd6' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9025&vc=743d6b64' target='_blank'>虎门万科城97号楼</a></td><td><a href='BeianDetail.aspx?id=9025&vc=743d6b64' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9025&vc=743d6b64' target='_blank'>4</a></td><td><a href='BeianDetail.aspx?id=9025&vc=743d6b64' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=9026&vc=40d43563' target='_blank'>虎门万科城98号楼</a></td><td><a href='BeianDetail.aspx?id=9026&vc=40d43563' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9026&vc=40d43563' target='_blank'>6</a></td><td><a href='BeianDetail.aspx?id=9026&vc=40d43563' target='_blank'>0</a></td><tr class='oddTr'><td><a href='BeianDetail.aspx?id=9882&vc=e374de1f' target='_blank'>虎门万科城99号楼</a></td><td><a href='BeianDetail.aspx?id=9882&vc=e374de1f' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=9882&vc=e374de1f' target='_blank'>198</a></td><td><a href='BeianDetail.aspx?id=9882&vc=e374de1f' target='_blank'>0</a></td><tr class='evenTr'><td><a href='BeianDetail.aspx?id=8518&vc=2ca91661' target='_blank'>虎门万科城9号楼</a></td><td><a href='BeianDetail.aspx?id=8518&vc=2ca91661' target='_blank'>东莞市虎门镇 大宁社区长德路168号</a></td><td><a href='BeianDetail.aspx?id=8518&vc=2ca91661' target='_blank'>44</a></td><td><a href='BeianDetail.aspx?id=8518&vc=2ca91661' target='_blank'>0</a></td></table>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

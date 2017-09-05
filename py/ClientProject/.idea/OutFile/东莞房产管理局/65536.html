@@ -1,0 +1,1584 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option selected="selected" value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option value="67108864">东莞市桥头镇</option>
+	<option value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10744&vc=d8690636' target='_blank'>心语花园10号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10744&vc=d8690636' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10744&vc=d8690636' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10746&vc=e75ef42b' target='_blank'>心语花园11号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10746&vc=e75ef42b' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10746&vc=e75ef42b' target='_blank'>17</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10158&vc=7381f1ce' target='_blank'>心语花园12号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10158&vc=7381f1ce' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10158&vc=7381f1ce' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10157&vc=43291a47' target='_blank'>心语花园13号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10157&vc=43291a47' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10157&vc=43291a47' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10743&vc=90478f4b' target='_blank'>心语花园14号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10743&vc=90478f4b' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10743&vc=90478f4b' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10986&vc=361e1123' target='_blank'>心语花园15号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10986&vc=361e1123' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10986&vc=361e1123' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10156&vc=b2c1ff6c' target='_blank'>心语花园16号商业办公楼</a></td><td><a href='BeianDetail.aspx?id=10156&vc=b2c1ff6c' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10156&vc=b2c1ff6c' target='_blank'>106</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11201&vc=941c9598' target='_blank'>心语花园17号商业办公楼</a></td><td><a href='BeianDetail.aspx?id=11201&vc=941c9598' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11201&vc=941c9598' target='_blank'>153</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11202&vc=122c304d' target='_blank'>心语花园18号商业办公楼</a></td><td><a href='BeianDetail.aspx?id=11202&vc=122c304d' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11202&vc=122c304d' target='_blank'>124</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10984&vc=df70064a' target='_blank'>心语花园1号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10984&vc=df70064a' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10984&vc=df70064a' target='_blank'>30</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10740&vc=16ef1765' target='_blank'>心语花园2号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10740&vc=16ef1765' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10740&vc=16ef1765' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10741&vc=b6421ccc' target='_blank'>心语花园3号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10741&vc=b6421ccc' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10741&vc=b6421ccc' target='_blank'>20</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10985&vc=6dab4fed' target='_blank'>心语花园4号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10985&vc=6dab4fed' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=10985&vc=6dab4fed' target='_blank'>27</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11192&vc=9cbc4fa0' target='_blank'>心语花园5号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11192&vc=9cbc4fa0' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11192&vc=9cbc4fa0' target='_blank'>16</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11194&vc=7ae809f4' target='_blank'>心语花园6号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11194&vc=7ae809f4' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11194&vc=7ae809f4' target='_blank'>28</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11195&vc=1a84a9d9' target='_blank'>心语花园7号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11195&vc=1a84a9d9' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11195&vc=1a84a9d9' target='_blank'>149</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11199&vc=3160b0e4' target='_blank'>心语花园8号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11199&vc=3160b0e4' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11199&vc=3160b0e4' target='_blank'>135</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11200&vc=99975737' target='_blank'>心语花园9号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11200&vc=99975737' target='_blank'>寮步镇 长坑福民路</a></td><td><a href='BeianDetail.aspx?id=11200&vc=99975737' target='_blank'>40</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>三正世纪豪门豪景苑11栋</a></td><td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=231&vc=29dfed3a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>三正世纪豪门豪景苑12栋</a></td><td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=232&vc=5a235132' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>三正世纪豪门豪景苑13栋</a></td><td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=233&vc=1f5a482f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>三正世纪豪门豪景苑15栋</a></td><td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=234&vc=94cea641' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>三正世纪豪门豪景苑8 栋</a></td><td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=337&vc=0d427473' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>三正世纪豪门豪景苑9栋</a></td><td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>寮步镇 东区大道</a></td><td><a href='BeianDetail.aspx?id=229&vc=6d564183' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>三正世纪豪门豪景苑10栋</a></td><td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>寮步镇 东区大道 </a></td><td><a href='BeianDetail.aspx?id=230&vc=8ffecc16' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>鼎峰尚境10、11幢</a></td><td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4452&vc=e7ae6741' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>鼎峰尚境12、13幢</a></td><td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4453&vc=ef773278' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>鼎峰尚境14、15幢</a></td><td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4456&vc=b58a3337' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>鼎峰尚境19幢</a></td><td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4458&vc=68f9224c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>鼎峰尚境1幢</a></td><td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4906&vc=8f0864b1' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>鼎峰尚境2幢</a></td><td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4992&vc=c0d704e9' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>鼎峰尚境3幢</a></td><td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4905&vc=ad08755b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>鼎峰尚境4幢</a></td><td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4993&vc=4b9346d1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>鼎峰尚境7、8幢</a></td><td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4446&vc=64580e32' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>鼎峰尚境9、16、17、18幢</a></td><td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4447&vc=e0e37039' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>鼎峰尚境北园14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11337&vc=b730dfd2' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>鼎峰尚境北园15号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11338&vc=afd7de65' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>鼎峰尚境北园16号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11339&vc=ea729190' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>鼎峰尚境北园17号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11340&vc=9dc9cd08' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>鼎峰尚境北园18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11341&vc=34f7d389' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>鼎峰尚境北园1号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=10591&vc=937887ab' target='_blank'>12</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>鼎峰尚境北园20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11342&vc=3d9d19b1' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>鼎峰尚境北园21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11343&vc=d1ed7609' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>鼎峰尚境北园22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11344&vc=bcb72c9a' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>鼎峰尚境北园2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11382&vc=7f62fad2' target='_blank'>33</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>鼎峰尚境北园5号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=10592&vc=261de4b7' target='_blank'>32</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>鼎峰尚境北园6号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11383&vc=81206a2e' target='_blank'>40</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>鼎峰尚境北园9-12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11336&vc=48e9143f' target='_blank'>12</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>鼎峰尚境地下室</a></td><td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7466&vc=025b2ae7' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>鼎峰尚境二区1幢</a></td><td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6603&vc=9e881e5b' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>鼎峰尚境二区2幢</a></td><td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7473&vc=1fde50f7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>鼎峰尚境二区3幢</a></td><td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6768&vc=7a118f1b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>鼎峰尚境二区4幢</a></td><td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7602&vc=9f22ab0c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>鼎峰尚境二区5幢</a></td><td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6329&vc=ce55ed60' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>鼎峰尚境二区6、15幢</a></td><td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6330&vc=f9e55475' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>鼎峰尚境二区7、11、12幢</a></td><td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6332&vc=9f1cf4c9' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>鼎峰尚境二区8、13、16幢</a></td><td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6331&vc=aafe6783' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>鼎峰尚境二区9、10、14幢</a></td><td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6333&vc=0509937d' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>鼎锋尚境5幢</a></td><td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4994&vc=e8231acf' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>鼎锋尚境6幢</a></td><td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=4995&vc=1c946832' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6898&vc=58c7a5a6' target='_blank'>中惠卡丽兰花园10号楼</a></td><td><a href='BeianDetail.aspx?id=6898&vc=58c7a5a6' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6898&vc=58c7a5a6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6899&vc=6f20e9d3' target='_blank'>中惠卡丽兰花园11号楼</a></td><td><a href='BeianDetail.aspx?id=6899&vc=6f20e9d3' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6899&vc=6f20e9d3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6900&vc=2ef1774c' target='_blank'>中惠卡丽兰花园12号楼</a></td><td><a href='BeianDetail.aspx?id=6900&vc=2ef1774c' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6900&vc=2ef1774c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6896&vc=ff5e1880' target='_blank'>中惠卡丽兰花园13号楼</a></td><td><a href='BeianDetail.aspx?id=6896&vc=ff5e1880' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6896&vc=ff5e1880' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6897&vc=f1b24ec9' target='_blank'>中惠卡丽兰花园15号楼</a></td><td><a href='BeianDetail.aspx?id=6897&vc=f1b24ec9' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6897&vc=f1b24ec9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8315&vc=830d3489' target='_blank'>中惠卡丽兰花园16号楼</a></td><td><a href='BeianDetail.aspx?id=8315&vc=830d3489' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8315&vc=830d3489' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8316&vc=a7dde988' target='_blank'>中惠卡丽兰花园17号楼</a></td><td><a href='BeianDetail.aspx?id=8316&vc=a7dde988' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8316&vc=a7dde988' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8317&vc=a88a48fb' target='_blank'>中惠卡丽兰花园18号楼</a></td><td><a href='BeianDetail.aspx?id=8317&vc=a88a48fb' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8317&vc=a88a48fb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6265&vc=a28dbb56' target='_blank'>中惠卡丽兰花园19号楼</a></td><td><a href='BeianDetail.aspx?id=6265&vc=a28dbb56' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6265&vc=a28dbb56' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11444&vc=d2e37048' target='_blank'>中惠卡丽兰花园1号楼</a></td><td><a href='BeianDetail.aspx?id=11444&vc=d2e37048' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=11444&vc=d2e37048' target='_blank'>222</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6266&vc=01e8ebf5' target='_blank'>中惠卡丽兰花园20号楼</a></td><td><a href='BeianDetail.aspx?id=6266&vc=01e8ebf5' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6266&vc=01e8ebf5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6267&vc=0c250247' target='_blank'>中惠卡丽兰花园21号楼</a></td><td><a href='BeianDetail.aspx?id=6267&vc=0c250247' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6267&vc=0c250247' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8318&vc=03ae9a04' target='_blank'>中惠卡丽兰花园22号楼</a></td><td><a href='BeianDetail.aspx?id=8318&vc=03ae9a04' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8318&vc=03ae9a04' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8319&vc=43905110' target='_blank'>中惠卡丽兰花园23号楼</a></td><td><a href='BeianDetail.aspx?id=8319&vc=43905110' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8319&vc=43905110' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8320&vc=86e426ab' target='_blank'>中惠卡丽兰花园24号楼</a></td><td><a href='BeianDetail.aspx?id=8320&vc=86e426ab' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8320&vc=86e426ab' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8321&vc=ace18288' target='_blank'>中惠卡丽兰花园25号楼</a></td><td><a href='BeianDetail.aspx?id=8321&vc=ace18288' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=8321&vc=ace18288' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6268&vc=898e30cd' target='_blank'>中惠卡丽兰花园26号楼</a></td><td><a href='BeianDetail.aspx?id=6268&vc=898e30cd' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6268&vc=898e30cd' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6269&vc=22548ca2' target='_blank'>中惠卡丽兰花园27号楼</a></td><td><a href='BeianDetail.aspx?id=6269&vc=22548ca2' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6269&vc=22548ca2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6270&vc=48c41837' target='_blank'>中惠卡丽兰花园28号楼</a></td><td><a href='BeianDetail.aspx?id=6270&vc=48c41837' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6270&vc=48c41837' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6271&vc=db86fa39' target='_blank'>中惠卡丽兰花园2号楼</a></td><td><a href='BeianDetail.aspx?id=6271&vc=db86fa39' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6271&vc=db86fa39' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6272&vc=3bd2b082' target='_blank'>中惠卡丽兰花园3号楼</a></td><td><a href='BeianDetail.aspx?id=6272&vc=3bd2b082' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6272&vc=3bd2b082' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6263&vc=b27cd761' target='_blank'>中惠卡丽兰花园4号楼</a></td><td><a href='BeianDetail.aspx?id=6263&vc=b27cd761' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6263&vc=b27cd761' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6264&vc=44e9d894' target='_blank'>中惠卡丽兰花园5号楼</a></td><td><a href='BeianDetail.aspx?id=6264&vc=44e9d894' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=6264&vc=44e9d894' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7194&vc=c12cbfc8' target='_blank'>中惠卡丽兰花园6号楼</a></td><td><a href='BeianDetail.aspx?id=7194&vc=c12cbfc8' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7194&vc=c12cbfc8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7195&vc=1a4eebea' target='_blank'>中惠卡丽兰花园7号楼</a></td><td><a href='BeianDetail.aspx?id=7195&vc=1a4eebea' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7195&vc=1a4eebea' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7196&vc=0d8a61be' target='_blank'>中惠卡丽兰花园8号楼</a></td><td><a href='BeianDetail.aspx?id=7196&vc=0d8a61be' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7196&vc=0d8a61be' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7197&vc=001e5b47' target='_blank'>中惠卡丽兰花园9号楼</a></td><td><a href='BeianDetail.aspx?id=7197&vc=001e5b47' target='_blank'>寮步镇 东升路</a></td><td><a href='BeianDetail.aspx?id=7197&vc=001e5b47' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9000&vc=694f16f6' target='_blank'>华欣花园1号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=9000&vc=694f16f6' target='_blank'>寮步镇 富荣路</a></td><td><a href='BeianDetail.aspx?id=9000&vc=694f16f6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8762&vc=da9edc15' target='_blank'>华欣花园2号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=8762&vc=da9edc15' target='_blank'>寮步镇 富荣路</a></td><td><a href='BeianDetail.aspx?id=8762&vc=da9edc15' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8764&vc=ed165955' target='_blank'>华欣花园3号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=8764&vc=ed165955' target='_blank'>寮步镇 富荣路</a></td><td><a href='BeianDetail.aspx?id=8764&vc=ed165955' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8763&vc=2455fd6b' target='_blank'>华欣花园4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8763&vc=2455fd6b' target='_blank'>寮步镇 富荣路</a></td><td><a href='BeianDetail.aspx?id=8763&vc=2455fd6b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9001&vc=14029653' target='_blank'>华欣花园5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9001&vc=14029653' target='_blank'>寮步镇 富荣路</a></td><td><a href='BeianDetail.aspx?id=9001&vc=14029653' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11065&vc=0277e294' target='_blank'>南美世贸中心1号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=11065&vc=0277e294' target='_blank'>寮步镇 富兴路36号</a></td><td><a href='BeianDetail.aspx?id=11065&vc=0277e294' target='_blank'>189</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10770&vc=1c6a6b59' target='_blank'>南美世贸中心2号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=10770&vc=1c6a6b59' target='_blank'>寮步镇 富兴路36号</a></td><td><a href='BeianDetail.aspx?id=10770&vc=1c6a6b59' target='_blank'>120</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8670&vc=250d4b18' target='_blank'>南美世贸中心3号商业楼</a></td><td><a href='BeianDetail.aspx?id=8670&vc=250d4b18' target='_blank'>寮步镇 富兴路36号</a></td><td><a href='BeianDetail.aspx?id=8670&vc=250d4b18' target='_blank'>8</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2297&vc=f98766a5' target='_blank'>海悦花园二期高层住宅小区地下室</a></td><td><a href='BeianDetail.aspx?id=2297&vc=f98766a5' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=2297&vc=f98766a5' target='_blank'>102</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2826&vc=c7f87543' target='_blank'>海悦花园二期高层住宅小区高层住宅1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=2826&vc=c7f87543' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=2826&vc=c7f87543' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1900&vc=aa3ac03a' target='_blank'>海悦花园二期高层住宅小区高层住宅2号住宅楼 </a></td><td><a href='BeianDetail.aspx?id=1900&vc=aa3ac03a' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=1900&vc=aa3ac03a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2828&vc=1809fde9' target='_blank'>海悦花园二期高层住宅小区高层住宅3号商住楼 </a></td><td><a href='BeianDetail.aspx?id=2828&vc=1809fde9' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=2828&vc=1809fde9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1975&vc=1e965799' target='_blank'>海悦花园二期高层住宅小区高层住宅4号商住楼 </a></td><td><a href='BeianDetail.aspx?id=1975&vc=1e965799' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=1975&vc=1e965799' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1888&vc=12c97ca0' target='_blank'>海悦花园二期高层住宅小区高层住宅5号商住楼 </a></td><td><a href='BeianDetail.aspx?id=1888&vc=12c97ca0' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=1888&vc=12c97ca0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1976&vc=7c911d04' target='_blank'>海悦花园二期高层住宅小区高层住宅6号商住楼 </a></td><td><a href='BeianDetail.aspx?id=1976&vc=7c911d04' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=1976&vc=7c911d04' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1889&vc=589d3e07' target='_blank'>海悦花园二期高层住宅小区高层住宅7号商住楼  </a></td><td><a href='BeianDetail.aspx?id=1889&vc=589d3e07' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=1889&vc=589d3e07' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1977&vc=deb47b5c' target='_blank'>海悦花园二期高层住宅小区高层住宅8号商住楼 </a></td><td><a href='BeianDetail.aspx?id=1977&vc=deb47b5c' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=1977&vc=deb47b5c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4299&vc=924ac170' target='_blank'>海悦花园四期北区1栋</a></td><td><a href='BeianDetail.aspx?id=4299&vc=924ac170' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4299&vc=924ac170' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4300&vc=1ba7f7b4' target='_blank'>海悦花园四期北区2、3栋</a></td><td><a href='BeianDetail.aspx?id=4300&vc=1ba7f7b4' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4300&vc=1ba7f7b4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4301&vc=84c437b1' target='_blank'>海悦花园四期北区5栋</a></td><td><a href='BeianDetail.aspx?id=4301&vc=84c437b1' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4301&vc=84c437b1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4302&vc=bba47fac' target='_blank'>海悦花园四期北区6、7栋</a></td><td><a href='BeianDetail.aspx?id=4302&vc=bba47fac' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4302&vc=bba47fac' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4303&vc=b089c2d3' target='_blank'>海悦花园四期东区7栋</a></td><td><a href='BeianDetail.aspx?id=4303&vc=b089c2d3' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4303&vc=b089c2d3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3789&vc=53e9f7d2' target='_blank'>海悦花园四期西区10栋</a></td><td><a href='BeianDetail.aspx?id=3789&vc=53e9f7d2' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=3789&vc=53e9f7d2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4298&vc=9bbe5c91' target='_blank'>海悦花园四期西区11、12栋</a></td><td><a href='BeianDetail.aspx?id=4298&vc=9bbe5c91' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4298&vc=9bbe5c91' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3715&vc=dc7316f3' target='_blank'>海悦花园四期中区10栋</a></td><td><a href='BeianDetail.aspx?id=3715&vc=dc7316f3' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=3715&vc=dc7316f3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4304&vc=5702dc0f' target='_blank'>海悦花园四期中区13、15栋</a></td><td><a href='BeianDetail.aspx?id=4304&vc=5702dc0f' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4304&vc=5702dc0f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3716&vc=254471c3' target='_blank'>海悦花园四期中区17栋</a></td><td><a href='BeianDetail.aspx?id=3716&vc=254471c3' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=3716&vc=254471c3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4305&vc=f2f8b554' target='_blank'>海悦花园四期中区18栋</a></td><td><a href='BeianDetail.aspx?id=4305&vc=f2f8b554' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4305&vc=f2f8b554' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4089&vc=e24aca4c' target='_blank'>菁英时代园丹青阁</a></td><td><a href='BeianDetail.aspx?id=4089&vc=e24aca4c' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4089&vc=e24aca4c' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5662&vc=f4033083' target='_blank'>菁英时代园地下室</a></td><td><a href='BeianDetail.aspx?id=5662&vc=f4033083' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=5662&vc=f4033083' target='_blank'>19</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4087&vc=603ca58e' target='_blank'>菁英时代园红玫阁</a></td><td><a href='BeianDetail.aspx?id=4087&vc=603ca58e' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4087&vc=603ca58e' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4086&vc=d7b208ec' target='_blank'>菁英时代园骄蓝阁</a></td><td><a href='BeianDetail.aspx?id=4086&vc=d7b208ec' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4086&vc=d7b208ec' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4088&vc=2cd7972c' target='_blank'>菁英时代园金橙阁</a></td><td><a href='BeianDetail.aspx?id=4088&vc=2cd7972c' target='_blank'>寮步镇 富竹山村</a></td><td><a href='BeianDetail.aspx?id=4088&vc=2cd7972c' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>三正世纪豪门豪景苑1栋</a></td><td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=887&vc=34156ec4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>三正世纪豪门豪景苑2栋</a></td><td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=888&vc=2561c3d7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>三正世纪豪门豪景苑3栋</a></td><td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=889&vc=15a55299' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>三正世纪豪门豪景苑5栋</a></td><td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=693&vc=6820a42c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>三正世纪豪门豪景苑6栋</a></td><td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=694&vc=0e9106dc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>三正世纪豪门豪景苑车库</a></td><td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1224&vc=fa67ef26' target='_blank'>13</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>三正世纪豪门乐事大街3栋</a></td><td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1096&vc=3b90d1c1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>三正世纪豪门乐事大街5栋</a></td><td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1097&vc=c60aeb41' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>三正世纪豪门乐事大街6栋</a></td><td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>寮步镇 富竹山村(东区大道旁)</a></td><td><a href='BeianDetail.aspx?id=1098&vc=e7f61387' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2663&vc=cae5111a' target='_blank'>星城国际花园1栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=2663&vc=cae5111a' target='_blank'>寮步镇 富竹山村香市街</a></td><td><a href='BeianDetail.aspx?id=2663&vc=cae5111a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2664&vc=288cbab1' target='_blank'>星城国际花园2栋商住楼</a></td><td><a href='BeianDetail.aspx?id=2664&vc=288cbab1' target='_blank'>寮步镇 富竹山村香市街</a></td><td><a href='BeianDetail.aspx?id=2664&vc=288cbab1' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2665&vc=3d0a984f' target='_blank'>星城国际花园3栋商住楼</a></td><td><a href='BeianDetail.aspx?id=2665&vc=3d0a984f' target='_blank'>寮步镇 富竹山村香市街</a></td><td><a href='BeianDetail.aspx?id=2665&vc=3d0a984f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3250&vc=6e546c74' target='_blank'>星城国际花园4幢 </a></td><td><a href='BeianDetail.aspx?id=3250&vc=6e546c74' target='_blank'>寮步镇 富竹山村香市街</a></td><td><a href='BeianDetail.aspx?id=3250&vc=6e546c74' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3251&vc=0b5ad656' target='_blank'>星城国际花园5幢 </a></td><td><a href='BeianDetail.aspx?id=3251&vc=0b5ad656' target='_blank'>寮步镇 富竹山村香市街</a></td><td><a href='BeianDetail.aspx?id=3251&vc=0b5ad656' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4221&vc=12ed803d' target='_blank'>星城国际花园1、2、3幢地下室</a></td><td><a href='BeianDetail.aspx?id=4221&vc=12ed803d' target='_blank'>寮步镇 富竹山村香市路</a></td><td><a href='BeianDetail.aspx?id=4221&vc=12ed803d' target='_blank'>163</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4220&vc=8348132f' target='_blank'>星城国际花园4、5幢地下室</a></td><td><a href='BeianDetail.aspx?id=4220&vc=8348132f' target='_blank'>寮步镇 富竹山村香市路</a></td><td><a href='BeianDetail.aspx?id=4220&vc=8348132f' target='_blank'>81</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=364&vc=bebf329d' target='_blank'>世纪城.海悦花园(三期)中央公馆中央区11栋</a></td><td><a href='BeianDetail.aspx?id=364&vc=bebf329d' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=364&vc=bebf329d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=360&vc=474eb9f5' target='_blank'>世纪城.海悦花园(三期)中央公馆中央区1栋</a></td><td><a href='BeianDetail.aspx?id=360&vc=474eb9f5' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=360&vc=474eb9f5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=361&vc=eb74a100' target='_blank'>世纪城.海悦花园(三期)中央公馆中央区2栋</a></td><td><a href='BeianDetail.aspx?id=361&vc=eb74a100' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=361&vc=eb74a100' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=359&vc=a42f407d' target='_blank'>世纪城.海悦花园(三期)中央公馆中央区5栋</a></td><td><a href='BeianDetail.aspx?id=359&vc=a42f407d' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=359&vc=a42f407d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=362&vc=6ded5ef6' target='_blank'>世纪城.海悦花园(三期)中央公馆中央区7栋</a></td><td><a href='BeianDetail.aspx?id=362&vc=6ded5ef6' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=362&vc=6ded5ef6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=363&vc=612eaee2' target='_blank'>世纪城.海悦花园(三期)中央公馆中央区8栋</a></td><td><a href='BeianDetail.aspx?id=363&vc=612eaee2' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=363&vc=612eaee2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=366&vc=d6cf1c40' target='_blank'>世纪城.海悦花园(三期)中央公馆中央西区6栋</a></td><td><a href='BeianDetail.aspx?id=366&vc=d6cf1c40' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=366&vc=d6cf1c40' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=365&vc=c9ef3b57' target='_blank'>世纪城.海悦花园(三期)中央公馆中央西区7栋</a></td><td><a href='BeianDetail.aspx?id=365&vc=c9ef3b57' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=365&vc=c9ef3b57' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=357&vc=453667fd' target='_blank'>世纪城.海悦花园(三期)中央公馆中央西区8栋</a></td><td><a href='BeianDetail.aspx?id=357&vc=453667fd' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=357&vc=453667fd' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=358&vc=98b86fc5' target='_blank'>世纪城.海悦花园(三期)中央公馆中央西区9栋</a></td><td><a href='BeianDetail.aspx?id=358&vc=98b86fc5' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=358&vc=98b86fc5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=477&vc=72e8e822' target='_blank'>世纪城.海悦花园三期中央公馆中央东区1栋</a></td><td><a href='BeianDetail.aspx?id=477&vc=72e8e822' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=477&vc=72e8e822' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=479&vc=e3240287' target='_blank'>世纪城.海悦花园三期中央公馆中央东区2栋</a></td><td><a href='BeianDetail.aspx?id=479&vc=e3240287' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=479&vc=e3240287' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=481&vc=1d848275' target='_blank'>世纪城.海悦花园三期中央公馆中央东区3栋</a></td><td><a href='BeianDetail.aspx?id=481&vc=1d848275' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=481&vc=1d848275' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=483&vc=f393df60' target='_blank'>世纪城.海悦花园三期中央公馆中央东区5栋</a></td><td><a href='BeianDetail.aspx?id=483&vc=f393df60' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=483&vc=f393df60' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=484&vc=6cb7ee6b' target='_blank'>世纪城.海悦花园三期中央公馆中央东区6栋</a></td><td><a href='BeianDetail.aspx?id=484&vc=6cb7ee6b' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=484&vc=6cb7ee6b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1047&vc=6d903df3' target='_blank'>世纪城.海悦花园三期中央公馆中央南区1、2、3、5、6、7、8栋裙楼及地下室车库 </a></td><td><a href='BeianDetail.aspx?id=1047&vc=6d903df3' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=1047&vc=6d903df3' target='_blank'>86</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1044&vc=e04cabaa' target='_blank'>世纪城.海悦花园三期中央公馆中央南区1、2栋 </a></td><td><a href='BeianDetail.aspx?id=1044&vc=e04cabaa' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=1044&vc=e04cabaa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1045&vc=6fad5913' target='_blank'>世纪城.海悦花园三期中央公馆中央南区3、5、6栋 </a></td><td><a href='BeianDetail.aspx?id=1045&vc=6fad5913' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=1045&vc=6fad5913' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1046&vc=bd093156' target='_blank'>世纪城.海悦花园三期中央公馆中央南区7、8栋 </a></td><td><a href='BeianDetail.aspx?id=1046&vc=bd093156' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=1046&vc=bd093156' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=480&vc=e7c04a81' target='_blank'>世纪城.海悦花园三期中央公馆中央区12栋</a></td><td><a href='BeianDetail.aspx?id=480&vc=e7c04a81' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=480&vc=e7c04a81' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=482&vc=a4f2f825' target='_blank'>世纪城.海悦花园三期中央公馆中央区16栋</a></td><td><a href='BeianDetail.aspx?id=482&vc=a4f2f825' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=482&vc=a4f2f825' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=475&vc=3d6a4fdd' target='_blank'>世纪城.海悦花园三期中央公馆中央区3栋</a></td><td><a href='BeianDetail.aspx?id=475&vc=3d6a4fdd' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=475&vc=3d6a4fdd' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=476&vc=f43cfa2f' target='_blank'>世纪城.海悦花园三期中央公馆中央区6栋</a></td><td><a href='BeianDetail.aspx?id=476&vc=f43cfa2f' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=476&vc=f43cfa2f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=478&vc=aa3e85b6' target='_blank'>世纪城.海悦花园三期中央公馆中央区9栋</a></td><td><a href='BeianDetail.aspx?id=478&vc=aa3e85b6' target='_blank'>寮步镇 富竹山村蟠龙大道</a></td><td><a href='BeianDetail.aspx?id=478&vc=aa3e85b6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10433&vc=cc64563c' target='_blank'>翠云轩花园15栋</a></td><td><a href='BeianDetail.aspx?id=10433&vc=cc64563c' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=10433&vc=cc64563c' target='_blank'>17</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10434&vc=70a1750a' target='_blank'>翠云轩花园16栋</a></td><td><a href='BeianDetail.aspx?id=10434&vc=70a1750a' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=10434&vc=70a1750a' target='_blank'>14</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10435&vc=a0e1ec88' target='_blank'>翠云轩花园17栋</a></td><td><a href='BeianDetail.aspx?id=10435&vc=a0e1ec88' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=10435&vc=a0e1ec88' target='_blank'>30</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10436&vc=390243fc' target='_blank'>翠云轩花园18栋</a></td><td><a href='BeianDetail.aspx?id=10436&vc=390243fc' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=10436&vc=390243fc' target='_blank'>12</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5645&vc=c7373de2' target='_blank'>君山花园地下室II、III段</a></td><td><a href='BeianDetail.aspx?id=5645&vc=c7373de2' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=5645&vc=c7373de2' target='_blank'>47</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5644&vc=0ecf7780' target='_blank'>君山花园高层1#-4#住宅D1地下室1段</a></td><td><a href='BeianDetail.aspx?id=5644&vc=0ecf7780' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=5644&vc=0ecf7780' target='_blank'>104</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6309&vc=1094970b' target='_blank'>玉兰花园办公楼</a></td><td><a href='BeianDetail.aspx?id=6309&vc=1094970b' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=6309&vc=1094970b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6310&vc=be4c3ecd' target='_blank'>玉兰花园地下室</a></td><td><a href='BeianDetail.aspx?id=6310&vc=be4c3ecd' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=6310&vc=be4c3ecd' target='_blank'>55</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7387&vc=a4725b4f' target='_blank'>怡丰颐和轩10号楼</a></td><td><a href='BeianDetail.aspx?id=7387&vc=a4725b4f' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7387&vc=a4725b4f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7069&vc=a681c5a5' target='_blank'>怡丰颐和轩11号楼</a></td><td><a href='BeianDetail.aspx?id=7069&vc=a681c5a5' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7069&vc=a681c5a5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7385&vc=400d6bc1' target='_blank'>怡丰颐和轩1号楼</a></td><td><a href='BeianDetail.aspx?id=7385&vc=400d6bc1' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7385&vc=400d6bc1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7386&vc=ac67ef6c' target='_blank'>怡丰颐和轩2号楼</a></td><td><a href='BeianDetail.aspx?id=7386&vc=ac67ef6c' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7386&vc=ac67ef6c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6935&vc=1344ab87' target='_blank'>怡丰颐和轩3号楼</a></td><td><a href='BeianDetail.aspx?id=6935&vc=1344ab87' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=6935&vc=1344ab87' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6936&vc=81713a67' target='_blank'>怡丰颐和轩4号楼</a></td><td><a href='BeianDetail.aspx?id=6936&vc=81713a67' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=6936&vc=81713a67' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6937&vc=1b7c5584' target='_blank'>怡丰颐和轩5号楼</a></td><td><a href='BeianDetail.aspx?id=6937&vc=1b7c5584' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=6937&vc=1b7c5584' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7067&vc=478216ae' target='_blank'>怡丰颐和轩6号楼</a></td><td><a href='BeianDetail.aspx?id=7067&vc=478216ae' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7067&vc=478216ae' target='_blank'>10</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7068&vc=7b0b4de8' target='_blank'>怡丰颐和轩7号楼</a></td><td><a href='BeianDetail.aspx?id=7068&vc=7b0b4de8' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7068&vc=7b0b4de8' target='_blank'>9</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7389&vc=1843cf08' target='_blank'>怡丰颐和轩8号楼</a></td><td><a href='BeianDetail.aspx?id=7389&vc=1843cf08' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7389&vc=1843cf08' target='_blank'>9</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7388&vc=785b9025' target='_blank'>怡丰颐和轩9号楼</a></td><td><a href='BeianDetail.aspx?id=7388&vc=785b9025' target='_blank'>寮步镇 横坑</a></td><td><a href='BeianDetail.aspx?id=7388&vc=785b9025' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=861&vc=8746dea8' target='_blank'>比华利山庄华兴苑D3型商住宅 </a></td><td><a href='BeianDetail.aspx?id=861&vc=8746dea8' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=861&vc=8746dea8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2299&vc=04266b2c' target='_blank'>比华利山庄华兴苑E型住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2299&vc=04266b2c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2299&vc=04266b2c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4405&vc=8387c7d4' target='_blank'>丰泰城三区1号商住楼</a></td><td><a href='BeianDetail.aspx?id=4405&vc=8387c7d4' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4405&vc=8387c7d4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4704&vc=21dfa002' target='_blank'>丰泰城三区2号商住楼</a></td><td><a href='BeianDetail.aspx?id=4704&vc=21dfa002' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4704&vc=21dfa002' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5649&vc=7455f877' target='_blank'>丰泰城三区3号商住楼</a></td><td><a href='BeianDetail.aspx?id=5649&vc=7455f877' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5649&vc=7455f877' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6101&vc=b71c5fb0' target='_blank'>丰泰城三区4号商住楼</a></td><td><a href='BeianDetail.aspx?id=6101&vc=b71c5fb0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6101&vc=b71c5fb0' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5351&vc=902c5b03' target='_blank'>丰泰城三区5号商住楼</a></td><td><a href='BeianDetail.aspx?id=5351&vc=902c5b03' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5351&vc=902c5b03' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5147&vc=6733d394' target='_blank'>丰泰城三区6号商住楼</a></td><td><a href='BeianDetail.aspx?id=5147&vc=6733d394' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5147&vc=6733d394' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4520&vc=dc418b78' target='_blank'>丰泰城三区7号商住楼</a></td><td><a href='BeianDetail.aspx?id=4520&vc=dc418b78' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4520&vc=dc418b78' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5652&vc=447e950c' target='_blank'>丰泰城一区10栋</a></td><td><a href='BeianDetail.aspx?id=5652&vc=447e950c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5652&vc=447e950c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5144&vc=e3b6d011' target='_blank'>丰泰城一区11栋</a></td><td><a href='BeianDetail.aspx?id=5144&vc=e3b6d011' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5144&vc=e3b6d011' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5145&vc=24dea33a' target='_blank'>丰泰城一区12栋</a></td><td><a href='BeianDetail.aspx?id=5145&vc=24dea33a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5145&vc=24dea33a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5146&vc=aa91b847' target='_blank'>丰泰城一区13栋</a></td><td><a href='BeianDetail.aspx?id=5146&vc=aa91b847' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5146&vc=aa91b847' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4878&vc=d367fed9' target='_blank'>丰泰城一区14栋</a></td><td><a href='BeianDetail.aspx?id=4878&vc=d367fed9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4878&vc=d367fed9' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4879&vc=fa88fcf4' target='_blank'>丰泰城一区15栋</a></td><td><a href='BeianDetail.aspx?id=4879&vc=fa88fcf4' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4879&vc=fa88fcf4' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4880&vc=85b97bb2' target='_blank'>丰泰城一区16栋</a></td><td><a href='BeianDetail.aspx?id=4880&vc=85b97bb2' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4880&vc=85b97bb2' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4881&vc=b13d0d00' target='_blank'>丰泰城一区17栋</a></td><td><a href='BeianDetail.aspx?id=4881&vc=b13d0d00' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4881&vc=b13d0d00' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4882&vc=723a9c65' target='_blank'>丰泰城一区18栋</a></td><td><a href='BeianDetail.aspx?id=4882&vc=723a9c65' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4882&vc=723a9c65' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4883&vc=81b600e8' target='_blank'>丰泰城一区19栋、一区20栋、一区21栋</a></td><td><a href='BeianDetail.aspx?id=4883&vc=81b600e8' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4883&vc=81b600e8' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6457&vc=1f6c19ad' target='_blank'>丰泰城一区1栋</a></td><td><a href='BeianDetail.aspx?id=6457&vc=1f6c19ad' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6457&vc=1f6c19ad' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11270&vc=7d53200f' target='_blank'>丰泰城一区22栋</a></td><td><a href='BeianDetail.aspx?id=11270&vc=7d53200f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=11270&vc=7d53200f' target='_blank'>214</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8560&vc=d3959673' target='_blank'>丰泰城一区23栋</a></td><td><a href='BeianDetail.aspx?id=8560&vc=d3959673' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=8560&vc=d3959673' target='_blank'>17</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7848&vc=fa9e3d4b' target='_blank'>丰泰城一区24栋</a></td><td><a href='BeianDetail.aspx?id=7848&vc=fa9e3d4b' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=7848&vc=fa9e3d4b' target='_blank'>34</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6458&vc=77fa7209' target='_blank'>丰泰城一区2栋</a></td><td><a href='BeianDetail.aspx?id=6458&vc=77fa7209' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6458&vc=77fa7209' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6459&vc=2a19cc49' target='_blank'>丰泰城一区3栋</a></td><td><a href='BeianDetail.aspx?id=6459&vc=2a19cc49' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6459&vc=2a19cc49' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6460&vc=dd655cf3' target='_blank'>丰泰城一区4栋</a></td><td><a href='BeianDetail.aspx?id=6460&vc=dd655cf3' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6460&vc=dd655cf3' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6386&vc=5bc445c9' target='_blank'>丰泰城一区5栋</a></td><td><a href='BeianDetail.aspx?id=6386&vc=5bc445c9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6386&vc=5bc445c9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6387&vc=c023dd32' target='_blank'>丰泰城一区6栋</a></td><td><a href='BeianDetail.aspx?id=6387&vc=c023dd32' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6387&vc=c023dd32' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6388&vc=89fe2e2a' target='_blank'>丰泰城一区7栋</a></td><td><a href='BeianDetail.aspx?id=6388&vc=89fe2e2a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6388&vc=89fe2e2a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5650&vc=0b78f81a' target='_blank'>丰泰城一区8栋</a></td><td><a href='BeianDetail.aspx?id=5650&vc=0b78f81a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5650&vc=0b78f81a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5651&vc=fbc087a5' target='_blank'>丰泰城一区9栋</a></td><td><a href='BeianDetail.aspx?id=5651&vc=fbc087a5' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=5651&vc=fbc087a5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4201&vc=b302e21c' target='_blank'>君山花园10栋</a></td><td><a href='BeianDetail.aspx?id=4201&vc=b302e21c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4201&vc=b302e21c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3662&vc=4dad035d' target='_blank'>君山花园11栋</a></td><td><a href='BeianDetail.aspx?id=3662&vc=4dad035d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3662&vc=4dad035d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3347&vc=b8531035' target='_blank'>君山花园12栋</a></td><td><a href='BeianDetail.aspx?id=3347&vc=b8531035' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3347&vc=b8531035' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3349&vc=c8e3f410' target='_blank'>君山花园13栋</a></td><td><a href='BeianDetail.aspx?id=3349&vc=c8e3f410' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3349&vc=c8e3f410' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3350&vc=1927a766' target='_blank'>君山花园14栋</a></td><td><a href='BeianDetail.aspx?id=3350&vc=1927a766' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3350&vc=1927a766' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3351&vc=edbb5eca' target='_blank'>君山花园15栋</a></td><td><a href='BeianDetail.aspx?id=3351&vc=edbb5eca' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3351&vc=edbb5eca' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3352&vc=cf7badbb' target='_blank'>君山花园16栋</a></td><td><a href='BeianDetail.aspx?id=3352&vc=cf7badbb' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3352&vc=cf7badbb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3353&vc=0ed59265' target='_blank'>君山花园17栋</a></td><td><a href='BeianDetail.aspx?id=3353&vc=0ed59265' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3353&vc=0ed59265' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3354&vc=8917ddb3' target='_blank'>君山花园18栋</a></td><td><a href='BeianDetail.aspx?id=3354&vc=8917ddb3' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3354&vc=8917ddb3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3355&vc=c0a9a2f4' target='_blank'>君山花园19栋</a></td><td><a href='BeianDetail.aspx?id=3355&vc=c0a9a2f4' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3355&vc=c0a9a2f4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4194&vc=54dd1140' target='_blank'>君山花园1栋</a></td><td><a href='BeianDetail.aspx?id=4194&vc=54dd1140' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4194&vc=54dd1140' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3356&vc=ea50368a' target='_blank'>君山花园20栋</a></td><td><a href='BeianDetail.aspx?id=3356&vc=ea50368a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3356&vc=ea50368a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3357&vc=ec206837' target='_blank'>君山花园21栋</a></td><td><a href='BeianDetail.aspx?id=3357&vc=ec206837' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3357&vc=ec206837' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3358&vc=64830931' target='_blank'>君山花园22栋</a></td><td><a href='BeianDetail.aspx?id=3358&vc=64830931' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3358&vc=64830931' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3359&vc=49a8ab8e' target='_blank'>君山花园23栋</a></td><td><a href='BeianDetail.aspx?id=3359&vc=49a8ab8e' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3359&vc=49a8ab8e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3360&vc=82888ccb' target='_blank'>君山花园24栋</a></td><td><a href='BeianDetail.aspx?id=3360&vc=82888ccb' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3360&vc=82888ccb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3361&vc=807c671f' target='_blank'>君山花园25栋</a></td><td><a href='BeianDetail.aspx?id=3361&vc=807c671f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3361&vc=807c671f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3362&vc=edcb0fc9' target='_blank'>君山花园26栋</a></td><td><a href='BeianDetail.aspx?id=3362&vc=edcb0fc9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3362&vc=edcb0fc9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3363&vc=2965dc69' target='_blank'>君山花园27栋</a></td><td><a href='BeianDetail.aspx?id=3363&vc=2965dc69' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3363&vc=2965dc69' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4195&vc=6e944ff7' target='_blank'>君山花园2栋</a></td><td><a href='BeianDetail.aspx?id=4195&vc=6e944ff7' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4195&vc=6e944ff7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4196&vc=0c06ec81' target='_blank'>君山花园3栋</a></td><td><a href='BeianDetail.aspx?id=4196&vc=0c06ec81' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4196&vc=0c06ec81' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4197&vc=3776a20a' target='_blank'>君山花园4栋</a></td><td><a href='BeianDetail.aspx?id=4197&vc=3776a20a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4197&vc=3776a20a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4215&vc=06085af4' target='_blank'>君山花园5栋</a></td><td><a href='BeianDetail.aspx?id=4215&vc=06085af4' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4215&vc=06085af4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4625&vc=17c3ec64' target='_blank'>君山花园6栋</a></td><td><a href='BeianDetail.aspx?id=4625&vc=17c3ec64' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4625&vc=17c3ec64' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4199&vc=58034ae2' target='_blank'>君山花园7栋</a></td><td><a href='BeianDetail.aspx?id=4199&vc=58034ae2' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4199&vc=58034ae2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4626&vc=058327af' target='_blank'>君山花园8栋</a></td><td><a href='BeianDetail.aspx?id=4626&vc=058327af' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4626&vc=058327af' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4200&vc=a60994b0' target='_blank'>君山花园9栋</a></td><td><a href='BeianDetail.aspx?id=4200&vc=a60994b0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4200&vc=a60994b0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3192&vc=084d27d0' target='_blank'>时富花园(城东世家)10-12栋</a></td><td><a href='BeianDetail.aspx?id=3192&vc=084d27d0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3192&vc=084d27d0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3183&vc=b438aeba' target='_blank'>时富花园(城东世家)10栋 </a></td><td><a href='BeianDetail.aspx?id=3183&vc=b438aeba' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3183&vc=b438aeba' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3185&vc=e97dfb61' target='_blank'>时富花园(城东世家)11栋 </a></td><td><a href='BeianDetail.aspx?id=3185&vc=e97dfb61' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3185&vc=e97dfb61' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3186&vc=9e715ccc' target='_blank'>时富花园(城东世家)12栋 </a></td><td><a href='BeianDetail.aspx?id=3186&vc=9e715ccc' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3186&vc=9e715ccc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3667&vc=e59dacd9' target='_blank'>时富花园(城东世家)1栋</a></td><td><a href='BeianDetail.aspx?id=3667&vc=e59dacd9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3667&vc=e59dacd9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3668&vc=afdf0b35' target='_blank'>时富花园(城东世家)2栋</a></td><td><a href='BeianDetail.aspx?id=3668&vc=afdf0b35' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3668&vc=afdf0b35' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4807&vc=7d2c2b5e' target='_blank'>时富花园(城东世家)32栋</a></td><td><a href='BeianDetail.aspx?id=4807&vc=7d2c2b5e' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4807&vc=7d2c2b5e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4808&vc=baed1b2d' target='_blank'>时富花园(城东世家)33栋</a></td><td><a href='BeianDetail.aspx?id=4808&vc=baed1b2d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4808&vc=baed1b2d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4809&vc=616c3578' target='_blank'>时富花园(城东世家)36栋(西区地下室)</a></td><td><a href='BeianDetail.aspx?id=4809&vc=616c3578' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4809&vc=616c3578' target='_blank'>212</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3669&vc=0659d8a0' target='_blank'>时富花园(城东世家)3栋</a></td><td><a href='BeianDetail.aspx?id=3669&vc=0659d8a0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3669&vc=0659d8a0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3670&vc=08cfa94f' target='_blank'>时富花园(城东世家)4栋</a></td><td><a href='BeianDetail.aspx?id=3670&vc=08cfa94f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3670&vc=08cfa94f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3671&vc=39f21016' target='_blank'>时富花园(城东世家)5栋</a></td><td><a href='BeianDetail.aspx?id=3671&vc=39f21016' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3671&vc=39f21016' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3672&vc=f0f14d37' target='_blank'>时富花园(城东世家)6栋</a></td><td><a href='BeianDetail.aspx?id=3672&vc=f0f14d37' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3672&vc=f0f14d37' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3190&vc=70b508f9' target='_blank'>时富花园(城东世家)7-9栋</a></td><td><a href='BeianDetail.aspx?id=3190&vc=70b508f9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3190&vc=70b508f9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3174&vc=2c28dd71' target='_blank'>时富花园(城东世家)7栋 </a></td><td><a href='BeianDetail.aspx?id=3174&vc=2c28dd71' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3174&vc=2c28dd71' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3181&vc=a00e0a99' target='_blank'>时富花园(城东世家)8栋 </a></td><td><a href='BeianDetail.aspx?id=3181&vc=a00e0a99' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3181&vc=a00e0a99' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3182&vc=fdc17b6c' target='_blank'>时富花园(城东世家)9栋 </a></td><td><a href='BeianDetail.aspx?id=3182&vc=fdc17b6c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=3182&vc=fdc17b6c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=114&vc=1fc15d2d' target='_blank'>太和花园(三期)丽景湾25座住宅楼</a></td><td><a href='BeianDetail.aspx?id=114&vc=1fc15d2d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=114&vc=1fc15d2d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=115&vc=2c9bf77d' target='_blank'>太和花园(三期)丽景湾26座住宅楼</a></td><td><a href='BeianDetail.aspx?id=115&vc=2c9bf77d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=115&vc=2c9bf77d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2300&vc=e69f5c86' target='_blank'>太和花园(三期)丽景湾29座住宅楼</a></td><td><a href='BeianDetail.aspx?id=2300&vc=e69f5c86' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2300&vc=e69f5c86' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2301&vc=0d0a089d' target='_blank'>太和花园(三期)丽景湾30座住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2301&vc=0d0a089d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2301&vc=0d0a089d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1741&vc=9ef25f45' target='_blank'>太和花园(三期)丽景湾31座住宅楼</a></td><td><a href='BeianDetail.aspx?id=1741&vc=9ef25f45' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1741&vc=9ef25f45' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1742&vc=6fcc1915' target='_blank'>太和花园(三期)丽景湾32座住宅楼</a></td><td><a href='BeianDetail.aspx?id=1742&vc=6fcc1915' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1742&vc=6fcc1915' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2504&vc=b038d0f0' target='_blank'>太和花园(三期)丽景湾33座住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2504&vc=b038d0f0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2504&vc=b038d0f0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2505&vc=01611796' target='_blank'>太和花园(三期)丽景湾35座住宅楼</a></td><td><a href='BeianDetail.aspx?id=2505&vc=01611796' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2505&vc=01611796' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1743&vc=3d28655b' target='_blank'>太和花园(三期)丽景湾36座住宅楼</a></td><td><a href='BeianDetail.aspx?id=1743&vc=3d28655b' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1743&vc=3d28655b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2506&vc=2664eea8' target='_blank'>太和花园(三期)丽景湾37座住宅楼  </a></td><td><a href='BeianDetail.aspx?id=2506&vc=2664eea8' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2506&vc=2664eea8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2507&vc=4c3f0f4e' target='_blank'>太和花园(三期)丽景湾38座住宅楼 </a></td><td><a href='BeianDetail.aspx?id=2507&vc=4c3f0f4e' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2507&vc=4c3f0f4e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4583&vc=fbb24a28' target='_blank'>太和花园丽景湾27座住宅楼</a></td><td><a href='BeianDetail.aspx?id=4583&vc=fbb24a28' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4583&vc=fbb24a28' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4588&vc=0a1f2423' target='_blank'>太和花园丽景湾28座住宅楼</a></td><td><a href='BeianDetail.aspx?id=4588&vc=0a1f2423' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4588&vc=0a1f2423' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6947&vc=a0a1c1fb' target='_blank'>太和花园丽景湾39座住宅楼</a></td><td><a href='BeianDetail.aspx?id=6947&vc=a0a1c1fb' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=6947&vc=a0a1c1fb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2221&vc=380baed1' target='_blank'>万科·城市高尔夫花园(二期)畅春园1、2、3座</a></td><td><a href='BeianDetail.aspx?id=2221&vc=380baed1' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2221&vc=380baed1' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2222&vc=43d568e0' target='_blank'>万科·城市高尔夫花园(二期)畅春园5、6座</a></td><td><a href='BeianDetail.aspx?id=2222&vc=43d568e0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2222&vc=43d568e0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2223&vc=892d81cb' target='_blank'>万科·城市高尔夫花园(二期)畅春园7、8座</a></td><td><a href='BeianDetail.aspx?id=2223&vc=892d81cb' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2223&vc=892d81cb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2469&vc=32fc335b' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩11/12/13/15座</a></td><td><a href='BeianDetail.aspx?id=2469&vc=32fc335b' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2469&vc=32fc335b' target='_blank'>33</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2061&vc=70b12787' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩3座</a></td><td><a href='BeianDetail.aspx?id=2061&vc=70b12787' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2061&vc=70b12787' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2062&vc=74201fe3' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩5座 </a></td><td><a href='BeianDetail.aspx?id=2062&vc=74201fe3' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2062&vc=74201fe3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2224&vc=3b66bde1' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩6座</a></td><td><a href='BeianDetail.aspx?id=2224&vc=3b66bde1' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2224&vc=3b66bde1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2225&vc=7c94ad6d' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩7座</a></td><td><a href='BeianDetail.aspx?id=2225&vc=7c94ad6d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2225&vc=7c94ad6d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2468&vc=bb75fdbf' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩8/9/10座 </a></td><td><a href='BeianDetail.aspx?id=2468&vc=bb75fdbf' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2468&vc=bb75fdbf' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2260&vc=e0799fb8' target='_blank'>万科·城市高尔夫花园(二期)丹桂轩商铺和管理用房</a></td><td><a href='BeianDetail.aspx?id=2260&vc=e0799fb8' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2260&vc=e0799fb8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2136&vc=7b89ded6' target='_blank'>万科·城市高尔夫花园(二期)沁春园1/2座</a></td><td><a href='BeianDetail.aspx?id=2136&vc=7b89ded6' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2136&vc=7b89ded6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2135&vc=75a637f7' target='_blank'>万科·城市高尔夫花园(二期)沁春园3/5/6座 </a></td><td><a href='BeianDetail.aspx?id=2135&vc=75a637f7' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2135&vc=75a637f7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2134&vc=c168d95c' target='_blank'>万科·城市高尔夫花园(二期)沁春园7/8座  </a></td><td><a href='BeianDetail.aspx?id=2134&vc=c168d95c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2134&vc=c168d95c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2133&vc=4c9361db' target='_blank'>万科·城市高尔夫花园(二期)沁春园9/10/11座 </a></td><td><a href='BeianDetail.aspx?id=2133&vc=4c9361db' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2133&vc=4c9361db' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2000&vc=7c035db8' target='_blank'>万科·城市高尔夫花园（二期）丹桂轩1座 </a></td><td><a href='BeianDetail.aspx?id=2000&vc=7c035db8' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2000&vc=7c035db8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2001&vc=1c7731b2' target='_blank'>万科·城市高尔夫花园（二期）丹桂轩2座</a></td><td><a href='BeianDetail.aspx?id=2001&vc=1c7731b2' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=2001&vc=1c7731b2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1219&vc=10b6a53d' target='_blank'>万科城市高尔夫花园(二期)宝墨园1/2/3座 </a></td><td><a href='BeianDetail.aspx?id=1219&vc=10b6a53d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1219&vc=10b6a53d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1277&vc=d1080903' target='_blank'>万科城市高尔夫花园(二期)宝墨园10/11座</a></td><td><a href='BeianDetail.aspx?id=1277&vc=d1080903' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1277&vc=d1080903' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1278&vc=a37774ea' target='_blank'>万科城市高尔夫花园(二期)宝墨园12/13座</a></td><td><a href='BeianDetail.aspx?id=1278&vc=a37774ea' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1278&vc=a37774ea' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1279&vc=d88ba901' target='_blank'>万科城市高尔夫花园(二期)宝墨园5/6/7座 </a></td><td><a href='BeianDetail.aspx?id=1279&vc=d88ba901' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1279&vc=d88ba901' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1220&vc=52d9ab30' target='_blank'>万科城市高尔夫花园(二期)宝墨园8/9座</a></td><td><a href='BeianDetail.aspx?id=1220&vc=52d9ab30' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1220&vc=52d9ab30' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1101&vc=dc24f765' target='_blank'>万科城市高尔夫花园(二期)丹桂轩10座</a></td><td><a href='BeianDetail.aspx?id=1101&vc=dc24f765' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1101&vc=dc24f765' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=949&vc=4d1403b3' target='_blank'>万科城市高尔夫花园(二期)丹桂轩11座 </a></td><td><a href='BeianDetail.aspx?id=949&vc=4d1403b3' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=949&vc=4d1403b3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=950&vc=fd8bdbe8' target='_blank'>万科城市高尔夫花园(二期)丹桂轩12座</a></td><td><a href='BeianDetail.aspx?id=950&vc=fd8bdbe8' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=950&vc=fd8bdbe8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=951&vc=b12177c1' target='_blank'>万科城市高尔夫花园(二期)丹桂轩13座</a></td><td><a href='BeianDetail.aspx?id=951&vc=b12177c1' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=951&vc=b12177c1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=952&vc=770e6c60' target='_blank'>万科城市高尔夫花园(二期)丹桂轩15座</a></td><td><a href='BeianDetail.aspx?id=952&vc=770e6c60' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=952&vc=770e6c60' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1100&vc=0eb4e1fe' target='_blank'>万科城市高尔夫花园(二期)丹桂轩8座</a></td><td><a href='BeianDetail.aspx?id=1100&vc=0eb4e1fe' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1100&vc=0eb4e1fe' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1102&vc=e160a58f' target='_blank'>万科城市高尔夫花园(二期)丹桂轩9座</a></td><td><a href='BeianDetail.aspx?id=1102&vc=e160a58f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1102&vc=e160a58f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1927&vc=707fd4a6' target='_blank'>万科城市高尔夫花园(二期)汇丰园1/2/3座</a></td><td><a href='BeianDetail.aspx?id=1927&vc=707fd4a6' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1927&vc=707fd4a6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1930&vc=15a767b4' target='_blank'>万科城市高尔夫花园(二期)汇丰园10/11/12座</a></td><td><a href='BeianDetail.aspx?id=1930&vc=15a767b4' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1930&vc=15a767b4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1928&vc=1e9013f5' target='_blank'>万科城市高尔夫花园(二期)汇丰园5/6座</a></td><td><a href='BeianDetail.aspx?id=1928&vc=1e9013f5' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1928&vc=1e9013f5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1929&vc=b8577d96' target='_blank'>万科城市高尔夫花园(二期)汇丰园7/8/9座</a></td><td><a href='BeianDetail.aspx?id=1929&vc=b8577d96' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1929&vc=b8577d96' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1181&vc=e792e24f' target='_blank'>万科城市高尔夫花园(二期)清辉园1/2座</a></td><td><a href='BeianDetail.aspx?id=1181&vc=e792e24f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1181&vc=e792e24f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1218&vc=bd203563' target='_blank'>万科城市高尔夫花园(二期)清辉园3/5/6/7座</a></td><td><a href='BeianDetail.aspx?id=1218&vc=bd203563' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1218&vc=bd203563' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1182&vc=d1c42bfc' target='_blank'>万科城市高尔夫花园(二期)清辉园8/9/10座</a></td><td><a href='BeianDetail.aspx?id=1182&vc=d1c42bfc' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1182&vc=d1c42bfc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=893&vc=6362d4c9' target='_blank'>万科城市高尔夫花园二期牡丹园(1/2/3/5/6)座</a></td><td><a href='BeianDetail.aspx?id=893&vc=6362d4c9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=893&vc=6362d4c9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=892&vc=aef2e5da' target='_blank'>万科城市高尔夫花园二期牡丹园(7/8)座</a></td><td><a href='BeianDetail.aspx?id=892&vc=aef2e5da' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=892&vc=aef2e5da' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=891&vc=b778d0bb' target='_blank'>万科城市高尔夫花园二期牡丹园(9/10/11/12/13)座</a></td><td><a href='BeianDetail.aspx?id=891&vc=b778d0bb' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=891&vc=b778d0bb' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=184&vc=11ef2b10' target='_blank'>万科城市高尔夫花园二期紫荆园(1/2/3/5)座</a></td><td><a href='BeianDetail.aspx?id=184&vc=11ef2b10' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=184&vc=11ef2b10' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=296&vc=b7bbe8a5' target='_blank'>万科城市高尔夫花园二期紫荆园(10/11/12/13)座</a></td><td><a href='BeianDetail.aspx?id=296&vc=b7bbe8a5' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=296&vc=b7bbe8a5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=185&vc=45aef946' target='_blank'>万科城市高尔夫花园二期紫荆园(15/16)座</a></td><td><a href='BeianDetail.aspx?id=185&vc=45aef946' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=185&vc=45aef946' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=186&vc=cbb0dd74' target='_blank'>万科城市高尔夫花园二期紫荆园(17/18)座</a></td><td><a href='BeianDetail.aspx?id=186&vc=cbb0dd74' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=186&vc=cbb0dd74' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=295&vc=6cfc643c' target='_blank'>万科城市高尔夫花园二期紫荆园(6/7/8/9)座</a></td><td><a href='BeianDetail.aspx?id=295&vc=6cfc643c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=295&vc=6cfc643c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=290&vc=9db60e5c' target='_blank'>万科城市高尔夫花园二期棕榈园(1/2)座</a></td><td><a href='BeianDetail.aspx?id=290&vc=9db60e5c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=290&vc=9db60e5c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=293&vc=1013fa4d' target='_blank'>万科城市高尔夫花园二期棕榈园(10/11/12/13)座</a></td><td><a href='BeianDetail.aspx?id=293&vc=1013fa4d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=293&vc=1013fa4d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=294&vc=4127fc9a' target='_blank'>万科城市高尔夫花园二期棕榈园(15/16/17/18)座</a></td><td><a href='BeianDetail.aspx?id=294&vc=4127fc9a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=294&vc=4127fc9a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=291&vc=3ac1cc4c' target='_blank'>万科城市高尔夫花园二期棕榈园(3/5)座</a></td><td><a href='BeianDetail.aspx?id=291&vc=3ac1cc4c' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=291&vc=3ac1cc4c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=292&vc=68a47148' target='_blank'>万科城市高尔夫花园二期棕榈园(6/7/8/9)座</a></td><td><a href='BeianDetail.aspx?id=292&vc=68a47148' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=292&vc=68a47148' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=456&vc=0363a9fa' target='_blank'>万科城市高尔夫花园富竹园(1/2)座</a></td><td><a href='BeianDetail.aspx?id=456&vc=0363a9fa' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=456&vc=0363a9fa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=457&vc=f7cabb9d' target='_blank'>万科城市高尔夫花园富竹园(3/5)座</a></td><td><a href='BeianDetail.aspx?id=457&vc=f7cabb9d' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=457&vc=f7cabb9d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=458&vc=184315fa' target='_blank'>万科城市高尔夫花园富竹园(6/7)座</a></td><td><a href='BeianDetail.aspx?id=458&vc=184315fa' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=458&vc=184315fa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=459&vc=4728c69f' target='_blank'>万科城市高尔夫花园富竹园(8/9)座</a></td><td><a href='BeianDetail.aspx?id=459&vc=4728c69f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=459&vc=4728c69f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=947&vc=a7d4cf74' target='_blank'>万科城市高尔夫花园盛桃轩3座</a></td><td><a href='BeianDetail.aspx?id=947&vc=a7d4cf74' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=947&vc=a7d4cf74' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=948&vc=5557b10b' target='_blank'>万科城市高尔夫花园盛桃轩5座 </a></td><td><a href='BeianDetail.aspx?id=948&vc=5557b10b' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=948&vc=5557b10b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1875&vc=32f71916' target='_blank'>银湖花园(二期)A型多层住宅6栋 </a></td><td><a href='BeianDetail.aspx?id=1875&vc=32f71916' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1875&vc=32f71916' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1876&vc=1652550f' target='_blank'>银湖花园(二期)A型多层住宅7栋</a></td><td><a href='BeianDetail.aspx?id=1876&vc=1652550f' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1876&vc=1652550f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=875&vc=b6cc1a79' target='_blank'>银湖花园(二期)B型多层住宅3栋</a></td><td><a href='BeianDetail.aspx?id=875&vc=b6cc1a79' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=875&vc=b6cc1a79' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=876&vc=bb8763d2' target='_blank'>银湖花园(二期)B型多层住宅4栋</a></td><td><a href='BeianDetail.aspx?id=876&vc=bb8763d2' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=876&vc=bb8763d2' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1074&vc=16c3b87a' target='_blank'>银湖花园(二期)B型多层住宅5栋</a></td><td><a href='BeianDetail.aspx?id=1074&vc=16c3b87a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1074&vc=16c3b87a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=873&vc=1207f381' target='_blank'>银湖花园(二期)C型多层住宅1栋</a></td><td><a href='BeianDetail.aspx?id=873&vc=1207f381' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=873&vc=1207f381' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=874&vc=59bc533a' target='_blank'>银湖花园(二期)C型多层住宅2栋 </a></td><td><a href='BeianDetail.aspx?id=874&vc=59bc533a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=874&vc=59bc533a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1126&vc=05fbee26' target='_blank'>银湖花园(二期)D型别墅1-5号</a></td><td><a href='BeianDetail.aspx?id=1126&vc=05fbee26' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=1126&vc=05fbee26' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=808&vc=9c852404' target='_blank'>银湖花园(二期)D型别墅7.8.15.16号别墅 </a></td><td><a href='BeianDetail.aspx?id=808&vc=9c852404' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=808&vc=9c852404' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=807&vc=598a05b0' target='_blank'>银湖花园(二期)E型别墅9.10.11.12.13号别墅 </a></td><td><a href='BeianDetail.aspx?id=807&vc=598a05b0' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=807&vc=598a05b0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4823&vc=343107e9' target='_blank'>玉兰花园1栋</a></td><td><a href='BeianDetail.aspx?id=4823&vc=343107e9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4823&vc=343107e9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4824&vc=6ab45c96' target='_blank'>玉兰花园2栋</a></td><td><a href='BeianDetail.aspx?id=4824&vc=6ab45c96' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4824&vc=6ab45c96' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4825&vc=1ed2d3a4' target='_blank'>玉兰花园3栋</a></td><td><a href='BeianDetail.aspx?id=4825&vc=1ed2d3a4' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4825&vc=1ed2d3a4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4826&vc=2f7a0d4e' target='_blank'>玉兰花园4栋</a></td><td><a href='BeianDetail.aspx?id=4826&vc=2f7a0d4e' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4826&vc=2f7a0d4e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4827&vc=0be8cec3' target='_blank'>玉兰花园5栋</a></td><td><a href='BeianDetail.aspx?id=4827&vc=0be8cec3' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4827&vc=0be8cec3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4828&vc=094ba138' target='_blank'>玉兰花园6栋</a></td><td><a href='BeianDetail.aspx?id=4828&vc=094ba138' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4828&vc=094ba138' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4829&vc=0e9b557e' target='_blank'>玉兰花园7栋</a></td><td><a href='BeianDetail.aspx?id=4829&vc=0e9b557e' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4829&vc=0e9b557e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4566&vc=823087ea' target='_blank'>怡丰映玥明轩10号楼</a></td><td><a href='BeianDetail.aspx?id=4566&vc=823087ea' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4566&vc=823087ea' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4567&vc=944705cb' target='_blank'>怡丰映玥明轩11号楼</a></td><td><a href='BeianDetail.aspx?id=4567&vc=944705cb' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4567&vc=944705cb' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4568&vc=a3ed9691' target='_blank'>怡丰映玥明轩12号楼</a></td><td><a href='BeianDetail.aspx?id=4568&vc=a3ed9691' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4568&vc=a3ed9691' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4894&vc=2481e4df' target='_blank'>怡丰映玥明轩1号楼</a></td><td><a href='BeianDetail.aspx?id=4894&vc=2481e4df' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4894&vc=2481e4df' target='_blank'>8</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4895&vc=023d8c8a' target='_blank'>怡丰映玥明轩2号楼</a></td><td><a href='BeianDetail.aspx?id=4895&vc=023d8c8a' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4895&vc=023d8c8a' target='_blank'>10</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4896&vc=f6a35166' target='_blank'>怡丰映玥明轩3号楼</a></td><td><a href='BeianDetail.aspx?id=4896&vc=f6a35166' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4896&vc=f6a35166' target='_blank'>10</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4897&vc=2949aec9' target='_blank'>怡丰映玥明轩4号楼</a></td><td><a href='BeianDetail.aspx?id=4897&vc=2949aec9' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4897&vc=2949aec9' target='_blank'>16</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4561&vc=ac970885' target='_blank'>怡丰映玥明轩5号楼</a></td><td><a href='BeianDetail.aspx?id=4561&vc=ac970885' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4561&vc=ac970885' target='_blank'>15</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4562&vc=dec1f4f1' target='_blank'>怡丰映玥明轩6号楼</a></td><td><a href='BeianDetail.aspx?id=4562&vc=dec1f4f1' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4562&vc=dec1f4f1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4563&vc=dc97c519' target='_blank'>怡丰映玥明轩7号楼</a></td><td><a href='BeianDetail.aspx?id=4563&vc=dc97c519' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4563&vc=dc97c519' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4564&vc=be7797a3' target='_blank'>怡丰映玥明轩8号楼</a></td><td><a href='BeianDetail.aspx?id=4564&vc=be7797a3' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4564&vc=be7797a3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4565&vc=d15afdbe' target='_blank'>怡丰映玥明轩9号楼</a></td><td><a href='BeianDetail.aspx?id=4565&vc=d15afdbe' target='_blank'>寮步镇 横坑村</a></td><td><a href='BeianDetail.aspx?id=4565&vc=d15afdbe' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1454&vc=2f74c7a1' target='_blank'>时富花园四期1#商住楼 </a></td><td><a href='BeianDetail.aspx?id=1454&vc=2f74c7a1' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=1454&vc=2f74c7a1' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1457&vc=35e6c9c3' target='_blank'>时富花园四期2#商住楼</a></td><td><a href='BeianDetail.aspx?id=1457&vc=35e6c9c3' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=1457&vc=35e6c9c3' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1946&vc=97e6a949' target='_blank'>时富花园四期3#商住楼</a></td><td><a href='BeianDetail.aspx?id=1946&vc=97e6a949' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=1946&vc=97e6a949' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1944&vc=6ad6746d' target='_blank'>时富花园四期5#商住楼</a></td><td><a href='BeianDetail.aspx?id=1944&vc=6ad6746d' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=1944&vc=6ad6746d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1945&vc=c171af30' target='_blank'>时富花园四期6#商住楼 </a></td><td><a href='BeianDetail.aspx?id=1945&vc=c171af30' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=1945&vc=c171af30' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1458&vc=f8bbf9c3' target='_blank'>时富花园四期7#商住楼</a></td><td><a href='BeianDetail.aspx?id=1458&vc=f8bbf9c3' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=1458&vc=f8bbf9c3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2314&vc=0bc54039' target='_blank'>时富花园四期半地下室 </a></td><td><a href='BeianDetail.aspx?id=2314&vc=0bc54039' target='_blank'>寮步镇 横坑村(莞深高速公路旁)</a></td><td><a href='BeianDetail.aspx?id=2314&vc=0bc54039' target='_blank'>140</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=786&vc=c1aa0d86' target='_blank'>翠云轩花园10栋商住楼</a></td><td><a href='BeianDetail.aspx?id=786&vc=c1aa0d86' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=786&vc=c1aa0d86' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1982&vc=115820c8' target='_blank'>翠云轩花园11栋商住楼</a></td><td><a href='BeianDetail.aspx?id=1982&vc=115820c8' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=1982&vc=115820c8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1486&vc=3e66b8c5' target='_blank'>翠云轩花园12栋商住楼</a></td><td><a href='BeianDetail.aspx?id=1486&vc=3e66b8c5' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=1486&vc=3e66b8c5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1000&vc=7041da73' target='_blank'>翠云轩花园14栋商住楼 </a></td><td><a href='BeianDetail.aspx?id=1000&vc=7041da73' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=1000&vc=7041da73' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=345&vc=78f52786' target='_blank'>翠云轩花园1栋商住楼</a></td><td><a href='BeianDetail.aspx?id=345&vc=78f52786' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=345&vc=78f52786' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=497&vc=24bf28c0' target='_blank'>翠云轩花园2栋商住楼</a></td><td><a href='BeianDetail.aspx?id=497&vc=24bf28c0' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=497&vc=24bf28c0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=346&vc=65785c66' target='_blank'>翠云轩花园3栋商住楼</a></td><td><a href='BeianDetail.aspx?id=346&vc=65785c66' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=346&vc=65785c66' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=498&vc=38831782' target='_blank'>翠云轩花园4栋商住楼</a></td><td><a href='BeianDetail.aspx?id=498&vc=38831782' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=498&vc=38831782' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=785&vc=4c2dae89' target='_blank'>翠云轩花园6栋商住楼</a></td><td><a href='BeianDetail.aspx?id=785&vc=4c2dae89' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=785&vc=4c2dae89' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=499&vc=2e83bdaa' target='_blank'>翠云轩花园7栋商住楼</a></td><td><a href='BeianDetail.aspx?id=499&vc=2e83bdaa' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=499&vc=2e83bdaa' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=999&vc=ee6f403d' target='_blank'>翠云轩花园8栋商住楼</a></td><td><a href='BeianDetail.aspx?id=999&vc=ee6f403d' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=999&vc=ee6f403d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1488&vc=b298260b' target='_blank'>翠云轩花园9栋住宅楼 </a></td><td><a href='BeianDetail.aspx?id=1488&vc=b298260b' target='_blank'>寮步镇 横坑村金银岭</a></td><td><a href='BeianDetail.aspx?id=1488&vc=b298260b' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1487&vc=c148e2a5' target='_blank'>翠云轩花园13栋商住楼</a></td><td><a href='BeianDetail.aspx?id=1487&vc=c148e2a5' target='_blank'>寮步镇 横坑村金银岭 </a></td><td><a href='BeianDetail.aspx?id=1487&vc=c148e2a5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=664&vc=33601d64' target='_blank'>翠云轩花园5栋住宅楼</a></td><td><a href='BeianDetail.aspx?id=664&vc=33601d64' target='_blank'>寮步镇 横坑村金银岭 </a></td><td><a href='BeianDetail.aspx?id=664&vc=33601d64' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6&vc=872ed17d' target='_blank'>万科城市高尔夫花园盛桃轩1座</a></td><td><a href='BeianDetail.aspx?id=6&vc=872ed17d' target='_blank'>寮步镇 横坑村万科城市高尔夫花园</a></td><td><a href='BeianDetail.aspx?id=6&vc=872ed17d' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7&vc=2ea40d88' target='_blank'>万科城市高尔夫花园盛桃轩2座</a></td><td><a href='BeianDetail.aspx?id=7&vc=2ea40d88' target='_blank'>寮步镇 横坑村万科城市高尔夫花园</a></td><td><a href='BeianDetail.aspx?id=7&vc=2ea40d88' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3119&vc=f6d6c016' target='_blank'>翠湖花园商住楼东楼 </a></td><td><a href='BeianDetail.aspx?id=3119&vc=f6d6c016' target='_blank'>寮步镇 横坑社区</a></td><td><a href='BeianDetail.aspx?id=3119&vc=f6d6c016' target='_blank'>10</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8455&vc=22304d54' target='_blank'>丰泰城三区地下室</a></td><td><a href='BeianDetail.aspx?id=8455&vc=22304d54' target='_blank'>寮步镇 横坑社区</a></td><td><a href='BeianDetail.aspx?id=8455&vc=22304d54' target='_blank'>457</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>鼎峰品筑1#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2319&vc=bc7f3965' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>鼎峰品筑10#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2322&vc=db0ebd4f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>鼎峰品筑11#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2321&vc=41d15f61' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>鼎峰品筑12#住宅楼</a></td><td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2320&vc=d9c85bff' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>鼎峰品筑2#住宅 </a></td><td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2483&vc=29cf046e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>鼎峰品筑3#住宅</a></td><td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2484&vc=18b9f901' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>鼎峰品筑4幢</a></td><td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=3138&vc=251c8e52' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>鼎峰品筑5幢</a></td><td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=3139&vc=46940b88' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>鼎峰品筑9#住宅   </a></td><td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=2485&vc=1940ffc5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>鼎峰品筑商铺一</a></td><td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>寮步镇 华南工业城</a></td><td><a href='BeianDetail.aspx?id=4430&vc=b6c3bf0d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2387&vc=2ce3cacd' target='_blank'>风临花语岸1幢</a></td><td><a href='BeianDetail.aspx?id=2387&vc=2ce3cacd' target='_blank'>寮步镇 华南工业园内</a></td><td><a href='BeianDetail.aspx?id=2387&vc=2ce3cacd' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2420&vc=4fd50893' target='_blank'>风临花语岸2幢 </a></td><td><a href='BeianDetail.aspx?id=2420&vc=4fd50893' target='_blank'>寮步镇 华南工业园内</a></td><td><a href='BeianDetail.aspx?id=2420&vc=4fd50893' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2388&vc=cba4518c' target='_blank'>风临花语岸3幢</a></td><td><a href='BeianDetail.aspx?id=2388&vc=cba4518c' target='_blank'>寮步镇 华南工业园内</a></td><td><a href='BeianDetail.aspx?id=2388&vc=cba4518c' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>鼎峰品筑6幢</a></td><td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>寮步镇 华南工业园松柏路</a></td><td><a href='BeianDetail.aspx?id=3610&vc=fb9c531e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9141&vc=da8e954e' target='_blank'>康城假日花园10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9141&vc=da8e954e' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=9141&vc=da8e954e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8897&vc=b427ef6a' target='_blank'>康城假日花园11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8897&vc=b427ef6a' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=8897&vc=b427ef6a' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11174&vc=992009a7' target='_blank'>康城假日花园14号商业楼</a></td><td><a href='BeianDetail.aspx?id=11174&vc=992009a7' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=11174&vc=992009a7' target='_blank'>29</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11175&vc=7f971c95' target='_blank'>康城假日花园15号商业楼</a></td><td><a href='BeianDetail.aspx?id=11175&vc=7f971c95' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=11175&vc=7f971c95' target='_blank'>28</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11176&vc=027c20fb' target='_blank'>康城假日花园16号商业楼</a></td><td><a href='BeianDetail.aspx?id=11176&vc=027c20fb' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=11176&vc=027c20fb' target='_blank'>20</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9138&vc=1fa12e9c' target='_blank'>康城假日花园1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9138&vc=1fa12e9c' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=9138&vc=1fa12e9c' target='_blank'>12</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10298&vc=da85622b' target='_blank'>康城假日花园2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10298&vc=da85622b' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=10298&vc=da85622b' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11173&vc=e1ccfdcc' target='_blank'>康城假日花园3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11173&vc=e1ccfdcc' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=11173&vc=e1ccfdcc' target='_blank'>23</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10297&vc=1564b5c4' target='_blank'>康城假日花园4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10297&vc=1564b5c4' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=10297&vc=1564b5c4' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8896&vc=5982bbe9' target='_blank'>康城假日花园5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8896&vc=5982bbe9' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=8896&vc=5982bbe9' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9352&vc=a7179315' target='_blank'>康城假日花园6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9352&vc=a7179315' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=9352&vc=a7179315' target='_blank'>20</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9139&vc=6dde2290' target='_blank'>康城假日花园7号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9139&vc=6dde2290' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=9139&vc=6dde2290' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9140&vc=d8095f04' target='_blank'>康城假日花园8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9140&vc=d8095f04' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=9140&vc=d8095f04' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8895&vc=c3feb081' target='_blank'>康城假日花园9号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8895&vc=c3feb081' target='_blank'>寮步镇 金富东路1号</a></td><td><a href='BeianDetail.aspx?id=8895&vc=c3feb081' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8933&vc=63ade950' target='_blank'>万科松湖传奇花园10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8933&vc=63ade950' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8933&vc=63ade950' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8418&vc=4e1067b1' target='_blank'>万科松湖传奇花园11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8418&vc=4e1067b1' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8418&vc=4e1067b1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9345&vc=576f78bc' target='_blank'>万科松湖传奇花园12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9345&vc=576f78bc' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9345&vc=576f78bc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9265&vc=25d73bea' target='_blank'>万科松湖传奇花园13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9265&vc=25d73bea' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9265&vc=25d73bea' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9346&vc=1faa69fa' target='_blank'>万科松湖传奇花园14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9346&vc=1faa69fa' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9346&vc=1faa69fa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9670&vc=7144ec02' target='_blank'>万科松湖传奇花园15-17商业楼</a></td><td><a href='BeianDetail.aspx?id=9670&vc=7144ec02' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9670&vc=7144ec02' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9266&vc=7a1a1475' target='_blank'>万科松湖传奇花园18号商业楼</a></td><td><a href='BeianDetail.aspx?id=9266&vc=7a1a1475' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9266&vc=7a1a1475' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8107&vc=1ac63e98' target='_blank'>万科松湖传奇花园1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8107&vc=1ac63e98' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8107&vc=1ac63e98' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8108&vc=37b97915' target='_blank'>万科松湖传奇花园2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8108&vc=37b97915' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8108&vc=37b97915' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8109&vc=e00e0473' target='_blank'>万科松湖传奇花园3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8109&vc=e00e0473' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8109&vc=e00e0473' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9669&vc=7fffaacb' target='_blank'>万科松湖传奇花园4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9669&vc=7fffaacb' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9669&vc=7fffaacb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9607&vc=9a9dcd14' target='_blank'>万科松湖传奇花园5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9607&vc=9a9dcd14' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9607&vc=9a9dcd14' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8666&vc=fca7d0b9' target='_blank'>万科松湖传奇花园6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8666&vc=fca7d0b9' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8666&vc=fca7d0b9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8262&vc=ef35ef28' target='_blank'>万科松湖传奇花园7号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8262&vc=ef35ef28' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8262&vc=ef35ef28' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9505&vc=3f60f4ca' target='_blank'>万科松湖传奇花园8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9505&vc=3f60f4ca' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9505&vc=3f60f4ca' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9677&vc=01353048' target='_blank'>万科松湖传奇花园9号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9677&vc=01353048' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9677&vc=01353048' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7996&vc=11c8258c' target='_blank'>中惠松湖城11、12、13、21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7996&vc=11c8258c' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7996&vc=11c8258c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7997&vc=ec1b6dda' target='_blank'>中惠松湖城14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7997&vc=ec1b6dda' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7997&vc=ec1b6dda' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7998&vc=0e2cea9f' target='_blank'>中惠松湖城15、16、17、18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7998&vc=0e2cea9f' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7998&vc=0e2cea9f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7999&vc=679594f7' target='_blank'>中惠松湖城19、20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7999&vc=679594f7' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7999&vc=679594f7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7992&vc=55c24104' target='_blank'>中惠松湖城1号商住楼</a></td><td><a href='BeianDetail.aspx?id=7992&vc=55c24104' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7992&vc=55c24104' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7994&vc=fd6693bc' target='_blank'>中惠松湖城2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7994&vc=fd6693bc' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7994&vc=fd6693bc' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7993&vc=9fcc0852' target='_blank'>中惠松湖城3号商住楼</a></td><td><a href='BeianDetail.aspx?id=7993&vc=9fcc0852' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7993&vc=9fcc0852' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8468&vc=8be38806' target='_blank'>中惠松湖城7号商业</a></td><td><a href='BeianDetail.aspx?id=8468&vc=8be38806' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8468&vc=8be38806' target='_blank'>28</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7995&vc=4e728a88' target='_blank'>中惠松湖城9、10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=7995&vc=4e728a88' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=7995&vc=4e728a88' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8526&vc=93208da4' target='_blank'>中惠松湖城二区10、13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8526&vc=93208da4' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8526&vc=93208da4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8527&vc=11bc5f64' target='_blank'>中惠松湖城二区11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8527&vc=11bc5f64' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8527&vc=11bc5f64' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8528&vc=1c96960f' target='_blank'>中惠松湖城二区12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8528&vc=1c96960f' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8528&vc=1c96960f' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8529&vc=81e41253' target='_blank'>中惠松湖城二区14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8529&vc=81e41253' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8529&vc=81e41253' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8530&vc=a3c033d0' target='_blank'>中惠松湖城二区15号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8530&vc=a3c033d0' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8530&vc=a3c033d0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8531&vc=089e543f' target='_blank'>中惠松湖城二区16-17号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8531&vc=089e543f' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8531&vc=089e543f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8532&vc=8d0b3960' target='_blank'>中惠松湖城二区18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8532&vc=8d0b3960' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8532&vc=8d0b3960' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8533&vc=f7a47c69' target='_blank'>中惠松湖城二区19号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8533&vc=f7a47c69' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8533&vc=f7a47c69' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9708&vc=5a347f09' target='_blank'>中惠松湖城二区1号商住楼</a></td><td><a href='BeianDetail.aspx?id=9708&vc=5a347f09' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9708&vc=5a347f09' target='_blank'>15</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9230&vc=8597573b' target='_blank'>中惠松湖城二区20号商业楼</a></td><td><a href='BeianDetail.aspx?id=9230&vc=8597573b' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9230&vc=8597573b' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9231&vc=3b410e7a' target='_blank'>中惠松湖城二区21号商业楼</a></td><td><a href='BeianDetail.aspx?id=9231&vc=3b410e7a' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9231&vc=3b410e7a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9232&vc=753e42ef' target='_blank'>中惠松湖城二区22号商业楼</a></td><td><a href='BeianDetail.aspx?id=9232&vc=753e42ef' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9232&vc=753e42ef' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9228&vc=e659f5fa' target='_blank'>中惠松湖城二区2号商住楼</a></td><td><a href='BeianDetail.aspx?id=9228&vc=e659f5fa' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9228&vc=e659f5fa' target='_blank'>12</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9229&vc=487106e2' target='_blank'>中惠松湖城二区3号商住楼</a></td><td><a href='BeianDetail.aspx?id=9229&vc=487106e2' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9229&vc=487106e2' target='_blank'>20</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8943&vc=0327341c' target='_blank'>中惠松湖城二区4号商住楼</a></td><td><a href='BeianDetail.aspx?id=8943&vc=0327341c' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8943&vc=0327341c' target='_blank'>13</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9710&vc=de754c24' target='_blank'>中惠松湖城二区5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9710&vc=de754c24' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=9710&vc=de754c24' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8523&vc=31c60dc0' target='_blank'>中惠松湖城二区6号商住楼</a></td><td><a href='BeianDetail.aspx?id=8523&vc=31c60dc0' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8523&vc=31c60dc0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8524&vc=51ec2665' target='_blank'>中惠松湖城二区7-8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8524&vc=51ec2665' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8524&vc=51ec2665' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8525&vc=5fc9a77a' target='_blank'>中惠松湖城二区9号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8525&vc=5fc9a77a' target='_blank'>寮步镇 金兴路</a></td><td><a href='BeianDetail.aspx?id=8525&vc=5fc9a77a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2448&vc=697e7863' target='_blank'>香缤城市花园1、2、3、6、7、8、9栋商铺</a></td><td><a href='BeianDetail.aspx?id=2448&vc=697e7863' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2448&vc=697e7863' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2030&vc=077ba2ec' target='_blank'>香缤城市花园1栋</a></td><td><a href='BeianDetail.aspx?id=2030&vc=077ba2ec' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2030&vc=077ba2ec' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2031&vc=33cc9b8c' target='_blank'>香缤城市花园2栋 </a></td><td><a href='BeianDetail.aspx?id=2031&vc=33cc9b8c' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2031&vc=33cc9b8c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2032&vc=e8a093a6' target='_blank'>香缤城市花园3栋</a></td><td><a href='BeianDetail.aspx?id=2032&vc=e8a093a6' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2032&vc=e8a093a6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2033&vc=f7ac9f22' target='_blank'>香缤城市花园4栋</a></td><td><a href='BeianDetail.aspx?id=2033&vc=f7ac9f22' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2033&vc=f7ac9f22' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2034&vc=58e40cba' target='_blank'>香缤城市花园5栋</a></td><td><a href='BeianDetail.aspx?id=2034&vc=58e40cba' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2034&vc=58e40cba' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2035&vc=b73323d4' target='_blank'>香缤城市花园6栋 </a></td><td><a href='BeianDetail.aspx?id=2035&vc=b73323d4' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2035&vc=b73323d4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2408&vc=b5fae54b' target='_blank'>香缤城市花园7栋</a></td><td><a href='BeianDetail.aspx?id=2408&vc=b5fae54b' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2408&vc=b5fae54b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2409&vc=b91f04fa' target='_blank'>香缤城市花园8栋 </a></td><td><a href='BeianDetail.aspx?id=2409&vc=b91f04fa' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2409&vc=b91f04fa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2410&vc=fc9fd367' target='_blank'>香缤城市花园9栋  </a></td><td><a href='BeianDetail.aspx?id=2410&vc=fc9fd367' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=2410&vc=fc9fd367' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=3431&vc=ddae0ada' target='_blank'>香缤城市花园地下室</a></td><td><a href='BeianDetail.aspx?id=3431&vc=ddae0ada' target='_blank'>寮步镇 良边村</a></td><td><a href='BeianDetail.aspx?id=3431&vc=ddae0ada' target='_blank'>92</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11037&vc=19607a74' target='_blank'>新地商业楼</a></td><td><a href='BeianDetail.aspx?id=11037&vc=19607a74' target='_blank'>寮步镇 明政路</a></td><td><a href='BeianDetail.aspx?id=11037&vc=19607a74' target='_blank'>95</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10114&vc=17c52672' target='_blank'>星城玉珑湾10号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10114&vc=17c52672' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=10114&vc=17c52672' target='_blank'>241</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10115&vc=e1fb230e' target='_blank'>星城玉珑湾11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10115&vc=e1fb230e' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=10115&vc=e1fb230e' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9894&vc=8817e56d' target='_blank'>星城玉珑湾12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9894&vc=8817e56d' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=9894&vc=8817e56d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9678&vc=3ad3b8b7' target='_blank'>星城玉珑湾13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9678&vc=3ad3b8b7' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=9678&vc=3ad3b8b7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10116&vc=850d7159' target='_blank'>星城玉珑湾14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10116&vc=850d7159' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=10116&vc=850d7159' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11563&vc=59dae431' target='_blank'>星城玉珑湾8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11563&vc=59dae431' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=11563&vc=59dae431' target='_blank'>145</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10113&vc=2e62ff1e' target='_blank'>星城玉珑湾9号商业、住宅楼</a></td><td><a href='BeianDetail.aspx?id=10113&vc=2e62ff1e' target='_blank'>寮步镇 牛眠石金钗路</a></td><td><a href='BeianDetail.aspx?id=10113&vc=2e62ff1e' target='_blank'>202</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4733&vc=d6972cb4' target='_blank'>香缤雅苑10栋</a></td><td><a href='BeianDetail.aspx?id=4733&vc=d6972cb4' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4733&vc=d6972cb4' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4730&vc=43240ba4' target='_blank'>香缤雅苑1栋</a></td><td><a href='BeianDetail.aspx?id=4730&vc=43240ba4' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4730&vc=43240ba4' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4731&vc=1f07ee04' target='_blank'>香缤雅苑2栋</a></td><td><a href='BeianDetail.aspx?id=4731&vc=1f07ee04' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4731&vc=1f07ee04' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4765&vc=52df1d40' target='_blank'>香缤雅苑3栋</a></td><td><a href='BeianDetail.aspx?id=4765&vc=52df1d40' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4765&vc=52df1d40' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4766&vc=8ea8654d' target='_blank'>香缤雅苑4栋</a></td><td><a href='BeianDetail.aspx?id=4766&vc=8ea8654d' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4766&vc=8ea8654d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5452&vc=275d523a' target='_blank'>香缤雅苑5栋</a></td><td><a href='BeianDetail.aspx?id=5452&vc=275d523a' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=5452&vc=275d523a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5453&vc=9774d339' target='_blank'>香缤雅苑6栋</a></td><td><a href='BeianDetail.aspx?id=5453&vc=9774d339' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=5453&vc=9774d339' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4767&vc=629ad3ea' target='_blank'>香缤雅苑7栋</a></td><td><a href='BeianDetail.aspx?id=4767&vc=629ad3ea' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4767&vc=629ad3ea' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4768&vc=c72989b8' target='_blank'>香缤雅苑8栋</a></td><td><a href='BeianDetail.aspx?id=4768&vc=c72989b8' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4768&vc=c72989b8' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4732&vc=aec1f7d2' target='_blank'>香缤雅苑9栋</a></td><td><a href='BeianDetail.aspx?id=4732&vc=aec1f7d2' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=4732&vc=aec1f7d2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6777&vc=f99cde65' target='_blank'>香缤雅苑地下室</a></td><td><a href='BeianDetail.aspx?id=6777&vc=f99cde65' target='_blank'>寮步镇 仁和路</a></td><td><a href='BeianDetail.aspx?id=6777&vc=f99cde65' target='_blank'>168</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7559&vc=ff281c47' target='_blank'>宏远御庭山花园11-14号楼</a></td><td><a href='BeianDetail.aspx?id=7559&vc=ff281c47' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7559&vc=ff281c47' target='_blank'>9</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7606&vc=8d728d77' target='_blank'>宏远御庭山花园15-19号楼</a></td><td><a href='BeianDetail.aspx?id=7606&vc=8d728d77' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7606&vc=8d728d77' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7556&vc=1093325f' target='_blank'>宏远御庭山花园1号楼</a></td><td><a href='BeianDetail.aspx?id=7556&vc=1093325f' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7556&vc=1093325f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6945&vc=808965a8' target='_blank'>宏远御庭山花园20-24号楼</a></td><td><a href='BeianDetail.aspx?id=6945&vc=808965a8' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=6945&vc=808965a8' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7607&vc=2a6382af' target='_blank'>宏远御庭山花园25-27号楼</a></td><td><a href='BeianDetail.aspx?id=7607&vc=2a6382af' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7607&vc=2a6382af' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6946&vc=f37668b2' target='_blank'>宏远御庭山花园28-36号楼</a></td><td><a href='BeianDetail.aspx?id=6946&vc=f37668b2' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=6946&vc=f37668b2' target='_blank'>10</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7719&vc=ab7722a3' target='_blank'>宏远御庭山花园2号楼</a></td><td><a href='BeianDetail.aspx?id=7719&vc=ab7722a3' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7719&vc=ab7722a3' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7557&vc=de563322' target='_blank'>宏远御庭山花园3号楼</a></td><td><a href='BeianDetail.aspx?id=7557&vc=de563322' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7557&vc=de563322' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7558&vc=f10e6663' target='_blank'>宏远御庭山花园5号楼</a></td><td><a href='BeianDetail.aspx?id=7558&vc=f10e6663' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7558&vc=f10e6663' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7603&vc=7a5f5009' target='_blank'>宏远御庭山花园6号楼</a></td><td><a href='BeianDetail.aspx?id=7603&vc=7a5f5009' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7603&vc=7a5f5009' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7604&vc=e16eaacb' target='_blank'>宏远御庭山花园7号楼</a></td><td><a href='BeianDetail.aspx?id=7604&vc=e16eaacb' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7604&vc=e16eaacb' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8141&vc=9ef34d10' target='_blank'>宏远御庭山花园8号楼</a></td><td><a href='BeianDetail.aspx?id=8141&vc=9ef34d10' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=8141&vc=9ef34d10' target='_blank'>14</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7605&vc=620e0a26' target='_blank'>宏远御庭山花园9-10号楼</a></td><td><a href='BeianDetail.aspx?id=7605&vc=620e0a26' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=7605&vc=620e0a26' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8143&vc=991c0705' target='_blank'>宏远御庭山花园地下室二</a></td><td><a href='BeianDetail.aspx?id=8143&vc=991c0705' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=8143&vc=991c0705' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8142&vc=20f1600b' target='_blank'>宏远御庭山花园地下室一(38号楼)</a></td><td><a href='BeianDetail.aspx?id=8142&vc=20f1600b' target='_blank'>寮步镇 上屯西南路80号</a></td><td><a href='BeianDetail.aspx?id=8142&vc=20f1600b' target='_blank'>10</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3616&vc=61e2f87b' target='_blank'>风临花语岸4幢</a></td><td><a href='BeianDetail.aspx?id=3616&vc=61e2f87b' target='_blank'>寮步镇 石步村松柏街</a></td><td><a href='BeianDetail.aspx?id=3616&vc=61e2f87b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2642&vc=08f2d1c7' target='_blank'>风临花语岸5幢</a></td><td><a href='BeianDetail.aspx?id=2642&vc=08f2d1c7' target='_blank'>寮步镇 石步村松柏街</a></td><td><a href='BeianDetail.aspx?id=2642&vc=08f2d1c7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3617&vc=1b9fd6d7' target='_blank'>风临花语岸6幢</a></td><td><a href='BeianDetail.aspx?id=3617&vc=1b9fd6d7' target='_blank'>寮步镇 石步村松柏街</a></td><td><a href='BeianDetail.aspx?id=3617&vc=1b9fd6d7' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8150&vc=b127ae31' target='_blank'>时代华庭10号楼</a></td><td><a href='BeianDetail.aspx?id=8150&vc=b127ae31' target='_blank'>寮步镇 石大路</a></td><td><a href='BeianDetail.aspx?id=8150&vc=b127ae31' target='_blank'>20</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8147&vc=6f287a1a' target='_blank'>时代华庭1号、2号楼</a></td><td><a href='BeianDetail.aspx?id=8147&vc=6f287a1a' target='_blank'>寮步镇 石大路</a></td><td><a href='BeianDetail.aspx?id=8147&vc=6f287a1a' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8148&vc=34903ec4' target='_blank'>时代华庭3号、4号楼</a></td><td><a href='BeianDetail.aspx?id=8148&vc=34903ec4' target='_blank'>寮步镇 石大路</a></td><td><a href='BeianDetail.aspx?id=8148&vc=34903ec4' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8149&vc=b8892ebd' target='_blank'>时代华庭5号、6号楼</a></td><td><a href='BeianDetail.aspx?id=8149&vc=b8892ebd' target='_blank'>寮步镇 石大路</a></td><td><a href='BeianDetail.aspx?id=8149&vc=b8892ebd' target='_blank'>22</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8165&vc=d513cfe3' target='_blank'>时代华庭7号、8号、9号楼</a></td><td><a href='BeianDetail.aspx?id=8165&vc=d513cfe3' target='_blank'>寮步镇 石大路</a></td><td><a href='BeianDetail.aspx?id=8165&vc=d513cfe3' target='_blank'>79</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11075&vc=da3e59bb' target='_blank'>阳光里花园1号商业楼</a></td><td><a href='BeianDetail.aspx?id=11075&vc=da3e59bb' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=11075&vc=da3e59bb' target='_blank'>27</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11076&vc=5247804e' target='_blank'>阳光里花园2号商业楼</a></td><td><a href='BeianDetail.aspx?id=11076&vc=5247804e' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=11076&vc=5247804e' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11077&vc=2a93d8a9' target='_blank'>阳光里花园3号商业楼</a></td><td><a href='BeianDetail.aspx?id=11077&vc=2a93d8a9' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=11077&vc=2a93d8a9' target='_blank'>22</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9342&vc=58cc9b24' target='_blank'>阳光里花园4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9342&vc=58cc9b24' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=9342&vc=58cc9b24' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9343&vc=824c97a2' target='_blank'>阳光里花园5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9343&vc=824c97a2' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=9343&vc=824c97a2' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9344&vc=a1b8d3f0' target='_blank'>阳光里花园6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9344&vc=a1b8d3f0' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=9344&vc=a1b8d3f0' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8694&vc=d31d0f79' target='_blank'>阳光里花园7号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8694&vc=d31d0f79' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=8694&vc=d31d0f79' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8856&vc=87312036' target='_blank'>阳光里花园8号住宅楼</a></td><td><a href='BeianDetail.aspx?id=8856&vc=87312036' target='_blank'>寮步镇 世和路</a></td><td><a href='BeianDetail.aspx?id=8856&vc=87312036' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>鼎峰品筑13幢</a></td><td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4024&vc=e487934c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>鼎峰品筑14幢</a></td><td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4025&vc=40d8b1a0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>鼎峰品筑15幢</a></td><td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4026&vc=0ba28be5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>鼎峰品筑16幢</a></td><td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4162&vc=05ad189a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>鼎峰品筑17幢</a></td><td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4432&vc=538bbe82' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>鼎峰品筑18幢</a></td><td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=5693&vc=20293b68' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>鼎峰品筑7幢</a></td><td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4431&vc=6b8228c1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>鼎峰品筑8幢</a></td><td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=4161&vc=50a623fa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>鼎峰品筑半地下车库(一期)</a></td><td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>寮步镇 松柏路</a></td><td><a href='BeianDetail.aspx?id=10900&vc=b6781fe5' target='_blank'>287</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10207&vc=c070e5ee' target='_blank'>振业松湖雅苑10号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10207&vc=c070e5ee' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10207&vc=c070e5ee' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10206&vc=e6e3c2a6' target='_blank'>振业松湖雅苑11号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10206&vc=e6e3c2a6' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10206&vc=e6e3c2a6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10194&vc=0a1a990f' target='_blank'>振业松湖雅苑12号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10194&vc=0a1a990f' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10194&vc=0a1a990f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10193&vc=528d296b' target='_blank'>振业松湖雅苑13号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10193&vc=528d296b' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10193&vc=528d296b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10192&vc=6de26b9c' target='_blank'>振业松湖雅苑14号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10192&vc=6de26b9c' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10192&vc=6de26b9c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10191&vc=c45e9789' target='_blank'>振业松湖雅苑15号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10191&vc=c45e9789' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10191&vc=c45e9789' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10190&vc=6296c277' target='_blank'>振业松湖雅苑16号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10190&vc=6296c277' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10190&vc=6296c277' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10189&vc=456cb0f0' target='_blank'>振业松湖雅苑17号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10189&vc=456cb0f0' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10189&vc=456cb0f0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10188&vc=a861b73b' target='_blank'>振业松湖雅苑18号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10188&vc=a861b73b' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10188&vc=a861b73b' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10187&vc=3a60baee' target='_blank'>振业松湖雅苑19号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10187&vc=3a60baee' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10187&vc=3a60baee' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10205&vc=11e47845' target='_blank'>振业松湖雅苑1号商住楼</a></td><td><a href='BeianDetail.aspx?id=10205&vc=11e47845' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10205&vc=11e47845' target='_blank'>52</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10184&vc=34804d74' target='_blank'>振业松湖雅苑20号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10184&vc=34804d74' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10184&vc=34804d74' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10183&vc=8c428261' target='_blank'>振业松湖雅苑21号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10183&vc=8c428261' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10183&vc=8c428261' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10182&vc=d92cfa8a' target='_blank'>振业松湖雅苑22号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10182&vc=d92cfa8a' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10182&vc=d92cfa8a' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10181&vc=c393b571' target='_blank'>振业松湖雅苑23号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10181&vc=c393b571' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10181&vc=c393b571' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10180&vc=6419ba1b' target='_blank'>振业松湖雅苑24号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10180&vc=6419ba1b' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10180&vc=6419ba1b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10204&vc=93b14105' target='_blank'>振业松湖雅苑2号商住楼</a></td><td><a href='BeianDetail.aspx?id=10204&vc=93b14105' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10204&vc=93b14105' target='_blank'>26</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10203&vc=549123d3' target='_blank'>振业松湖雅苑3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10203&vc=549123d3' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10203&vc=549123d3' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10202&vc=a1a52f51' target='_blank'>振业松湖雅苑4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10202&vc=a1a52f51' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10202&vc=a1a52f51' target='_blank'>25</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10201&vc=fce9a210' target='_blank'>振业松湖雅苑5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10201&vc=fce9a210' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10201&vc=fce9a210' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10200&vc=bec821d8' target='_blank'>振业松湖雅苑6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10200&vc=bec821d8' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10200&vc=bec821d8' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10199&vc=b094a7c7' target='_blank'>振业松湖雅苑7号商住楼</a></td><td><a href='BeianDetail.aspx?id=10199&vc=b094a7c7' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10199&vc=b094a7c7' target='_blank'>15</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10198&vc=1450bdb2' target='_blank'>振业松湖雅苑8号商住楼</a></td><td><a href='BeianDetail.aspx?id=10198&vc=1450bdb2' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10198&vc=1450bdb2' target='_blank'>15</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10208&vc=da172d74' target='_blank'>振业松湖雅苑9号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10208&vc=da172d74' target='_blank'>寮步镇 松山湖大道</a></td><td><a href='BeianDetail.aspx?id=10208&vc=da172d74' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=696&vc=073a2681' target='_blank'>理想名苑1号商住楼</a></td><td><a href='BeianDetail.aspx?id=696&vc=073a2681' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=696&vc=073a2681' target='_blank'>17</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=804&vc=d47d5293' target='_blank'>理想名苑2号商住楼 </a></td><td><a href='BeianDetail.aspx?id=804&vc=d47d5293' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=804&vc=d47d5293' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1111&vc=77066ee3' target='_blank'>理想名苑3号商住楼</a></td><td><a href='BeianDetail.aspx?id=1111&vc=77066ee3' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=1111&vc=77066ee3' target='_blank'>9</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1112&vc=35070954' target='_blank'>理想名苑4号商住楼</a></td><td><a href='BeianDetail.aspx?id=1112&vc=35070954' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=1112&vc=35070954' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1113&vc=a2d67a2f' target='_blank'>理想名苑5号商住楼</a></td><td><a href='BeianDetail.aspx?id=1113&vc=a2d67a2f' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=1113&vc=a2d67a2f' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1114&vc=c9767ed6' target='_blank'>理想名苑6号商住楼</a></td><td><a href='BeianDetail.aspx?id=1114&vc=c9767ed6' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=1114&vc=c9767ed6' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1907&vc=1d52ba50' target='_blank'>理想名苑地下室 </a></td><td><a href='BeianDetail.aspx?id=1907&vc=1d52ba50' target='_blank'>寮步镇 文化广场旁</a></td><td><a href='BeianDetail.aspx?id=1907&vc=1d52ba50' target='_blank'>116</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2406&vc=f7327d8b' target='_blank'>东莞市国际汽车城服务中心(香居明苑)1栋</a></td><td><a href='BeianDetail.aspx?id=2406&vc=f7327d8b' target='_blank'>寮步镇 霞边村</a></td><td><a href='BeianDetail.aspx?id=2406&vc=f7327d8b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2453&vc=75eb9ffa' target='_blank'>东莞市国际汽车城服务中心(香居明苑)2栋</a></td><td><a href='BeianDetail.aspx?id=2453&vc=75eb9ffa' target='_blank'>寮步镇 霞边村</a></td><td><a href='BeianDetail.aspx?id=2453&vc=75eb9ffa' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2430&vc=1817760e' target='_blank'>东莞市国际汽车城服务中心(香居明苑)3栋 </a></td><td><a href='BeianDetail.aspx?id=2430&vc=1817760e' target='_blank'>寮步镇 霞边村</a></td><td><a href='BeianDetail.aspx?id=2430&vc=1817760e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2048&vc=2089f8bf' target='_blank'>东莞市国际汽车城服务中心(香居明苑)4栋</a></td><td><a href='BeianDetail.aspx?id=2048&vc=2089f8bf' target='_blank'>寮步镇 霞边村</a></td><td><a href='BeianDetail.aspx?id=2048&vc=2089f8bf' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6254&vc=14eb6b2e' target='_blank'>鼎峰领御豪园1幢</a></td><td><a href='BeianDetail.aspx?id=6254&vc=14eb6b2e' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6254&vc=14eb6b2e' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7990&vc=cdaf2db3' target='_blank'>鼎峰领御豪园2幢</a></td><td><a href='BeianDetail.aspx?id=7990&vc=cdaf2db3' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7990&vc=cdaf2db3' target='_blank'>8</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6795&vc=4e428649' target='_blank'>鼎峰领御豪园3幢</a></td><td><a href='BeianDetail.aspx?id=6795&vc=4e428649' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6795&vc=4e428649' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6314&vc=4f4cc6a8' target='_blank'>鼎峰领御豪园4幢</a></td><td><a href='BeianDetail.aspx?id=6314&vc=4f4cc6a8' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6314&vc=4f4cc6a8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9079&vc=232b402b' target='_blank'>鼎峰领御豪园地下室</a></td><td><a href='BeianDetail.aspx?id=9079&vc=232b402b' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=9079&vc=232b402b' target='_blank'>191</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5921&vc=8ab85489' target='_blank'>海悦香郡花园10号楼</a></td><td><a href='BeianDetail.aspx?id=5921&vc=8ab85489' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5921&vc=8ab85489' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5922&vc=68ce8b13' target='_blank'>海悦香郡花园11号楼</a></td><td><a href='BeianDetail.aspx?id=5922&vc=68ce8b13' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5922&vc=68ce8b13' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6060&vc=3b416e80' target='_blank'>海悦香郡花园1号楼</a></td><td><a href='BeianDetail.aspx?id=6060&vc=3b416e80' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6060&vc=3b416e80' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6061&vc=0d0a494c' target='_blank'>海悦香郡花园2号楼</a></td><td><a href='BeianDetail.aspx?id=6061&vc=0d0a494c' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6061&vc=0d0a494c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6062&vc=d171d7eb' target='_blank'>海悦香郡花园3号楼</a></td><td><a href='BeianDetail.aspx?id=6062&vc=d171d7eb' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6062&vc=d171d7eb' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6063&vc=09f924f5' target='_blank'>海悦香郡花园4号楼</a></td><td><a href='BeianDetail.aspx?id=6063&vc=09f924f5' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6063&vc=09f924f5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6064&vc=bfff4703' target='_blank'>海悦香郡花园5号楼</a></td><td><a href='BeianDetail.aspx?id=6064&vc=bfff4703' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=6064&vc=bfff4703' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5917&vc=e633c2ff' target='_blank'>海悦香郡花园6号楼</a></td><td><a href='BeianDetail.aspx?id=5917&vc=e633c2ff' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5917&vc=e633c2ff' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5918&vc=eff0aa6d' target='_blank'>海悦香郡花园7号楼</a></td><td><a href='BeianDetail.aspx?id=5918&vc=eff0aa6d' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5918&vc=eff0aa6d' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5919&vc=8e55e21b' target='_blank'>海悦香郡花园8号楼</a></td><td><a href='BeianDetail.aspx?id=5919&vc=8e55e21b' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5919&vc=8e55e21b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5920&vc=9ccc2787' target='_blank'>海悦香郡花园9号楼</a></td><td><a href='BeianDetail.aspx?id=5920&vc=9ccc2787' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5920&vc=9ccc2787' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7811&vc=88dd3a9a' target='_blank'>海悦香郡花园地下车库</a></td><td><a href='BeianDetail.aspx?id=7811&vc=88dd3a9a' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7811&vc=88dd3a9a' target='_blank'>355</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10564&vc=00e2faa2' target='_blank'>万润财富中心10幢商住楼</a></td><td><a href='BeianDetail.aspx?id=10564&vc=00e2faa2' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=10564&vc=00e2faa2' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8941&vc=56657d42' target='_blank'>万润财富中心11幢商住楼</a></td><td><a href='BeianDetail.aspx?id=8941&vc=56657d42' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=8941&vc=56657d42' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8701&vc=13a63d88' target='_blank'>万润财富中心12幢商住楼</a></td><td><a href='BeianDetail.aspx?id=8701&vc=13a63d88' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=8701&vc=13a63d88' target='_blank'>11</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8700&vc=1c88e587' target='_blank'>万润财富中心5幢商住楼</a></td><td><a href='BeianDetail.aspx?id=8700&vc=1c88e587' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=8700&vc=1c88e587' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9226&vc=b00becab' target='_blank'>万润财富中心6幢商住楼</a></td><td><a href='BeianDetail.aspx?id=9226&vc=b00becab' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=9226&vc=b00becab' target='_blank'>6</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9227&vc=0ab3ce56' target='_blank'>万润财富中心7幢商住楼</a></td><td><a href='BeianDetail.aspx?id=9227&vc=0ab3ce56' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=9227&vc=0ab3ce56' target='_blank'>5</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10563&vc=2f785b1d' target='_blank'>万润财富中心8幢商住楼</a></td><td><a href='BeianDetail.aspx?id=10563&vc=2f785b1d' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=10563&vc=2f785b1d' target='_blank'>14</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=10328&vc=dc6f2169' target='_blank'>万润财富中心9幢商住楼</a></td><td><a href='BeianDetail.aspx?id=10328&vc=dc6f2169' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=10328&vc=dc6f2169' target='_blank'>16</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4575&vc=a1e68e06' target='_blank'>星城国际花园10幢</a></td><td><a href='BeianDetail.aspx?id=4575&vc=a1e68e06' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=4575&vc=a1e68e06' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4576&vc=e080d25d' target='_blank'>星城国际花园11幢</a></td><td><a href='BeianDetail.aspx?id=4576&vc=e080d25d' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=4576&vc=e080d25d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5665&vc=f23f5cfa' target='_blank'>星城国际花园12幢</a></td><td><a href='BeianDetail.aspx?id=5665&vc=f23f5cfa' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5665&vc=f23f5cfa' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5666&vc=50be9421' target='_blank'>星城国际花园13幢</a></td><td><a href='BeianDetail.aspx?id=5666&vc=50be9421' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5666&vc=50be9421' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7031&vc=dfcd33c2' target='_blank'>星城国际花园14幢</a></td><td><a href='BeianDetail.aspx?id=7031&vc=dfcd33c2' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7031&vc=dfcd33c2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7032&vc=57687d19' target='_blank'>星城国际花园15幢</a></td><td><a href='BeianDetail.aspx?id=7032&vc=57687d19' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7032&vc=57687d19' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7395&vc=4b726fc9' target='_blank'>星城国际花园16幢</a></td><td><a href='BeianDetail.aspx?id=7395&vc=4b726fc9' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7395&vc=4b726fc9' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4577&vc=6eecfef6' target='_blank'>星城国际花园17幢</a></td><td><a href='BeianDetail.aspx?id=4577&vc=6eecfef6' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=4577&vc=6eecfef6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4578&vc=5c254671' target='_blank'>星城国际花园18幢</a></td><td><a href='BeianDetail.aspx?id=4578&vc=5c254671' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=4578&vc=5c254671' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9257&vc=24f9bb73' target='_blank'>星城国际花园19幢</a></td><td><a href='BeianDetail.aspx?id=9257&vc=24f9bb73' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=9257&vc=24f9bb73' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7192&vc=ac6f9750' target='_blank'>星城国际花园6幢</a></td><td><a href='BeianDetail.aspx?id=7192&vc=ac6f9750' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7192&vc=ac6f9750' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7193&vc=befe8095' target='_blank'>星城国际花园7幢</a></td><td><a href='BeianDetail.aspx?id=7193&vc=befe8095' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7193&vc=befe8095' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5663&vc=be64402c' target='_blank'>星城国际花园8幢1号楼</a></td><td><a href='BeianDetail.aspx?id=5663&vc=be64402c' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5663&vc=be64402c' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5664&vc=3a241076' target='_blank'>星城国际花园8幢2号楼</a></td><td><a href='BeianDetail.aspx?id=5664&vc=3a241076' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5664&vc=3a241076' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4574&vc=128a6145' target='_blank'>星城国际花园9幢</a></td><td><a href='BeianDetail.aspx?id=4574&vc=128a6145' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=4574&vc=128a6145' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5748&vc=311a0c7d' target='_blank'>星城国际花园二期地下室</a></td><td><a href='BeianDetail.aspx?id=5748&vc=311a0c7d' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=5748&vc=311a0c7d' target='_blank'>187</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7870&vc=93198b73' target='_blank'>星城国际花园三期地下室</a></td><td><a href='BeianDetail.aspx?id=7870&vc=93198b73' target='_blank'>寮步镇 香市路</a></td><td><a href='BeianDetail.aspx?id=7870&vc=93198b73' target='_blank'>251</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11266&vc=bbf72d67' target='_blank'>万科湖畔花园1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11266&vc=bbf72d67' target='_blank'>寮步镇 凫山长明街38号</a></td><td><a href='BeianDetail.aspx?id=11266&vc=bbf72d67' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11267&vc=63ff4dfe' target='_blank'>万科湖畔花园2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11267&vc=63ff4dfe' target='_blank'>寮步镇 凫山长明街38号</a></td><td><a href='BeianDetail.aspx?id=11267&vc=63ff4dfe' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11564&vc=5b749cbf' target='_blank'>万科湖畔花园3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11564&vc=5b749cbf' target='_blank'>寮步镇 凫山长明街38号</a></td><td><a href='BeianDetail.aspx?id=11564&vc=5b749cbf' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11440&vc=5d0fb23f' target='_blank'>万科湖畔花园4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11440&vc=5d0fb23f' target='_blank'>寮步镇 凫山长明街38号</a></td><td><a href='BeianDetail.aspx?id=11440&vc=5d0fb23f' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11565&vc=1ead3597' target='_blank'>万科湖畔花园6号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11565&vc=1ead3597' target='_blank'>寮步镇 凫山长明街38号</a></td><td><a href='BeianDetail.aspx?id=11565&vc=1ead3597' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11441&vc=fbb4c424' target='_blank'>万科湖畔花园7号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11441&vc=fbb4c424' target='_blank'>寮步镇 凫山长明街38号</a></td><td><a href='BeianDetail.aspx?id=11441&vc=fbb4c424' target='_blank'>1</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="601" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,706 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	东莞市房产管理局公众信息网
+</title><link rel="stylesheet" type="text/css" href="../css/default.css" /><link rel="stylesheet" type="text/css" href="../css/resultTable.css" />
+    <style type="text/css">
+        .contentDiv
+        {
+            width: 96%;
+            margin: 0px auto;
+        }
+        .queryDiv table
+        {
+            width: 100%;
+            border: solid 1px #5fb043;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .queryDiv td
+        {
+            height: 30px;
+            border: 0px none;
+            font-family: 宋体;
+            font-size: 9pt;
+            color: #008000;
+        }
+    </style>
+
+    <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="../js/default.js"></script>
+
+    <script type="text/javascript" src="../js/xInputCheck.min.js"></script>
+
+    <script type="text/javascript" src="../js/xTablePaging.js"></script>
+
+    <script type="text/javascript" src="../js/sortTable.js"></script>
+
+    <script type="text/javascript">
+        var pageTable = null;
+        var pageRowCount = 20;
+        
+        $(function() {
+            showTopNav($(".topNav td").eq(3)[0], 2);
+            $("#area1,#area2").blur(function() { xInputCheck.pFloat(this, false); });
+            
+            if ($("#resultTable").length == 0) {
+                $("#resultDiv").hide();
+            }
+            else {
+                // 建立索引
+                if ($("#resultCount").val() != 0) {
+                    pageTable = new xTablePaging($(window), $("#resultTable"), pageRowCount, "pageIndex");
+                }
+
+                // 建立排序
+                var cells = $("#resultTable")[0].rows[0].cells;
+                for (i = 0; i < cells.length; i++) {
+                    if (cells[i].innerText == "可售套数") {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ", 'int')\">" + cells[i].innerText + "</span>";
+                    }
+                    else {
+                        if (cells[i].style.whiteSpace == "nowrap" || cells[i].noWrap == true)
+                            cells[i].innerHTML = "<nobr style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</nobr>";
+                        else
+                            cells[i].innerHTML = "<span style='cursor: pointer' title='点击排序' onclick=\"sortTable.sort(" + i + ")\">" + cells[i].innerText + "</span>";
+                    }
+                }
+                
+                sortTable.tableId = "resultTable";
+                sortTable.firstRowIndex = 1;
+                sortTable.lastRowIndex = $("#resultTable")[0].tBodies[0].rows.length;
+                sortTable.finishFun = function() {
+                    var table = $("#resultTable")[0];
+                    var n = table.rows.length - 1;
+                    for (var i = 1; i < n; i++) {
+                        table.rows[i].className = (i % 2 == 1 ? "oddTr" : "evenTr");
+                    }
+                    if (pageTable._lastOperation == 0) {
+                        $("#resultTable").children(":eq(0)").children(":gt(0):visible").hide();
+                        pageTable._switchPage(null, 1);
+                    }
+                };
+            }
+        });
+    
+        function projectQuery() {
+            if ($("#area1").val() != "" && parseFloat($("#area1").val()) != $("#area1").val()) {
+                alert("面积1格式不正确。");
+                return;
+            }
+            if ($("#area2").val() != "" && parseFloat($("#area2").val()) != $("#area2").val()) {
+                alert("面积2格式不正确。");
+                return;
+            }
+            if (($("#area1").val() != "" && $("#area2").val() == "") || ($("#area1").val() == "" && $("#area2").val() != "")) {
+                alert("请输入另一面积。");
+                return;
+            }
+            form1.submit();
+        }
+        var $resultTable;
+        function changeIndex(n) {
+            if (typeof $resultTable == "undefined") {
+                $resultTable = $(".resultTable1");
+            }
+            $resultTable.hide();
+            $("#resultTable_" + n).show();
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+            
+        });
+    </script>
+
+</head>
+<body>
+    <form name="form1" method="post" action="ProjectInfo.aspx?new=1" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJLTY3Mjk0MTkwD2QWAgIDD2QWAgIDDxAPFgYeDURhdGFUZXh0RmllbGQFCFRvd25OYW1lHg5EYXRhVmFsdWVGaWVsZAUIVG93bkNvZGUeC18hRGF0YUJvdW5kZ2QQFSIS5Lic6I6e5biC6I6e5Z+O5Yy6EuS4nOiOnuW4guS4nOWfjuWMuhLkuJzojp7luILkuIfmsZ/ljLoS5Lic6I6e5biC5Y2X5Z+O5Yy6EuS4nOiOnuW4guefs+m+memVhxLkuJzojp7luILomY7pl6jplYcS5Lic6I6e5biC5Lit5aCC6ZWHFeS4nOiOnuW4guacm+eJm+WiqemVhxLkuJzojp7luILpurvmtozplYcS5Lic6I6e5biC55+z56Kj6ZWHEuS4nOiOnuW4gumrmOWfl+mVhxLkuJzojp7luILpgZPmu5jplYcS5Lic6I6e5biC5rSq5qKF6ZWHEuS4nOiOnuW4gumVv+WuiemVhxLkuJzojp7luILmspnnlLDplYcS5Lic6I6e5biC5Y6a6KGX6ZWHEuS4nOiOnuW4guadvuWxsea5lhLkuJzojp7luILlr67mraXplYcV5Lic6I6e5biC5aSn5bKt5bGx6ZWHEuS4nOiOnuW4guWkp+acl+mVhxLkuJzojp7luILpu4TmsZ/plYcV5Lic6I6e5biC5qif5pyo5aS06ZWHEuS4nOiOnuW4guWHpOWyl+mVhxLkuJzojp7luILloZjljqbplYcS5Lic6I6e5biC6LCi5bKX6ZWHEuS4nOiOnuW4gua4hea6qumVhxLkuJzojp7luILluLjlubPplYcS5Lic6I6e5biC5qGl5aS06ZWHEuS4nOiOnuW4guaoquaypemVhxLkuJzojp7luILkuJzlnZHplYcS5Lic6I6e5biC5LyB55+z6ZWHEuS4nOiOnuW4guefs+aOkumVhxLkuJzojp7luILojLblsbHplYcS5Lic6I6e5biC6JmO6Zeo5rivFSIBMQEyATQBOAIxNgIzMgI2NAMxMjgDMjU2AzUxMgQxMDI0BDIwNDgENDA5NgQ4MTkyBTE2Mzg0BTMyNzY4CjQyOTQ5NjcyOTYFNjU1MzYGMTMxMDcyBjI2MjE0NAY1MjQyODgHMTA0ODU3NgcyMDk3MTUyBzQxOTQzMDQHODM4ODYwOAgxNjc3NzIxNggzMzU1NDQzMgg2NzEwODg2NAkxMzQyMTc3MjgJMjY4NDM1NDU2CTUzNjg3MDkxMgoxMDczNzQxODI0CjIxNDc0ODM2NDgKODU4OTkzNDU5MhQrAyJnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGRkj8BjIqM3rC5YfLrDm9g7Tu0Uvk8=" />
+
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWMAKX14miCgLRwJ/XAwLQwJ/XAwLSwJ/XAwLGwJ/XAwLRwOfUAwLTwNfUAwLUwO/UAwKPy6OpBQKUipmABwKFr/BdAoGvjPwOAsr80YwBArfisekLAqvi5YUIAoLgvAsC3NvNtwECrcL7+gkC9Y/YywwC99LEiQoCtsqy0wkCsZi6hA0Cqt/MoQgChpH80QgC5Jr1nAwC+qjqgQEC8M739QoCm8GHuggCn5Tm5w0C9tbCqAUC6daBqAMC6ompmA8C06/64QwC5Kmahg0C2ObA1gUCi9PWkQMC6qrBowMCjoDBuwMC0ZbVXQK5ge32DAKxqoqLAwKxiayuCAK5iZTwAQLjge3eCQLX88kKAtjzyQoC8IG2iAYC482n8gfOL6UmolwOFapomTdmLkjlnWYqsw==" />
+    <div class="container">
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<div>
+    <div class="topIndexFlash">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0"
+            style="width: 1000px; height: 180px">
+            <param name="movie" value="../images/swf/titleb.swf" />
+            <param name="quality" value="high" />
+                    <param name="wmode" value="transparent">
+            <embed wmode="transparent" src="../images/swf/titleb.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"
+                type="application/x-shockwave-flash" style="width: 1000px; height: 180px"></embed>
+        </object>
+    </div>
+    <div class="topNav">
+        <table>
+            <col style="width: 18px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 80px" />
+            <col style="width: 18px" />
+            <tr>
+                <td style="background-image:url(../images/btb.gif)">
+                </td>
+                <td onmouseover="showTopNav(this, 0)">
+                    <a href="../main/default.aspx">首页</a>
+                </td>
+                <td onmouseover="showTopNav(this, 1)">
+                    <a href="http://xxgk.dg.gov.cn/publicfiles/business/htmlfiles/cndg/2013_xxgk_zjlist.html?siteid=594&sitecode=0217"
+                        target="_blank">政务公开</a>
+                </td>
+                <td onmouseover="showTopNav(this, 2)">
+                    <a href="../Vendition/Index.aspx">新建商品房</a>
+                </td>
+                <td onmouseover="showTopNav(this, 3)">
+                    <a href="../Secondhand/default.aspx">二手房源</a>
+                </td>
+                <td onmouseover="showTopNav(this, 4)">
+                    <a href="../HouseRegister/Department.aspx">办事大厅</a>
+                </td>
+                <td onmouseover="showTopNav(this, 5)">
+                    市场管理
+                </td>
+                
+                <td onmouseover="showTopNav(this, 7)">
+                    房改业务
+                </td>
+                <td onmouseover="showTopNav(this, 8)">
+                    <a href="../Party/PartyView.aspx?status=7">廉政建设</a>
+                </td>
+                <td onmouseover="showTopNav(this, 9)">
+                    下载专栏
+                </td>
+                <td onmouseover="showTopNav(this, 10)">
+                    问题解答
+                </td>
+                <td onmouseover="showTopNav(this, 11)">
+                   <a href="../Party/PartyQzlx.aspx?status=1">党务建设</a>
+                </td>
+                <td  style="background-image:url(../images/btb.gif)">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="topSubNav" style="text-align: left;">
+        <span id="topSubNav_2" style="padding-left: 70px;"><a href="../Vendition/Index.aspx">
+            新建商品房首页</a> <a href="../Vendition/ProjectInfo.aspx?New=1">销售楼盘</a> <a href="../Vendition/TodaySold.aspx">
+                今日成交</a> <a href="https://dgfc.dg.gov.cn/YSv2/">备案系统</a><a href="../Vendition/BargainQ.aspx">
+                    合同样本</a>
+        </span>
+        <span id="topSubNav_3" style="padding-left: 140px;"><a href="../Secondhand/default.aspx">
+            二手房首页</a> <a href="../Secondhand/DailyStatement.aspx">二手成交</a> <a href="../Secondhand/HouseAgencyQuery.aspx">
+                二手中介</a> <a href="https://dgfc.dg.gov.cn/AllviewBargain/">存量房网上交易系统</a> <a href="../Table/download/存量房网上交易系统操作手册20110907.doc">操作手册</a>
+                      <a href="../Secondhand/bgxz.aspx">交易流程</a>
+        </span>
+        <span id="topSubNav_4" style="padding-left: 240px;"><a href="../HouseRegister/Department.aspx">
+            房管部门</a> <a href="../HouseRegister/Registration.aspx">登记业务</a> <a href="../Query/Index.aspx">
+                业务查询</a> <a href="../HouseRegister/Law.aspx">法律法规</a>  <a href="../table/bgxz.aspx">表格下载</a><a href="../Rent/Index.aspx">
+                租赁备案网上申请</a></span>
+                    <span id="topSubNav_5" style="padding-left: 310px;">
+                        <a href="../Credit/Index.aspx">机构信用档案</a> <a href="http://61.145.199.125/webewf/default.aspx"
+                            target="_blank">新网上申报系统</a> <a href="http://61.145.199.146/pubproject" target="_blank">
+                                旧网上申报系统</a> <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（市场科申报机构版）V1.1.doc">
+                                    网上申报操作手册下载</a> </span>
+                                    
+                                        <span id="topSubNav_7" style="padding-left: 510px;"><a href="../FangGai/default.aspx">
+            办事指南</a> <a href="http://61.145.199.125/webewf/default_fgb.aspx" target="_blank">网上申报系统</a>
+            <a href="../Table/download/东莞市房产管理局综合平台及电子监察系统接口项目综合管理平台用户手册（房改办版）V1.1.doc">网上申报操作手册下载</a>
+        </span><span id="topSubNav_8" style="padding-left: 600px;"><a href="../Party/PartyView.aspx?status=7">
+            预防职务犯罪</a><a href="../Party/PartyView.aspx?status=8">一岗一预防</a></span> <span id="topSubNav_9"
+                style="padding-left: 700px;"><a href="../Download/bgxz.aspx">表格下载</a> <a href="../Download/Software.aspx">
+                    软件下载</a></span> <span id="topSubNav_10" style="padding-left: 680px;"><a href="../Questions/QuestionsView.aspx?status=2">
+                        房产交易</a> <a href="../Questions/QuestionsView.aspx?status=1">产权登记</a> <a href="../Questions/QuestionsView.aspx?status=3">
+                            物业中介</a> <a href="../Questions/QuestionsView.aspx?status=4">住房改革</a> <a href="../Questions/QuestionsView.aspx?status=5">
+                                维修资金</a></span>
+                                <span id="topSubNav_11" style="padding-left: 800px;"><a href="../Party/PartyDwgk.aspx?status=1">
+            党务公开</a> <a href="../Party/PartyQzlx.aspx?status=9">群众路线</a> <a href="../Party/PartySyss.aspx?status=13">三严三实</a></span>
+    </div>
+</div>
+
+        <div class="topNavCnt">
+            当前位置：<a href="../Vendition/Index.aspx">新建商品房</a> >> 销售楼盘</div>
+        <div class="contentDiv">
+            <div class="queryDiv">
+                <table>
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <col style="width: 12%;" />
+                    <col style="width: 38%;" />
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: Black; font-size: larger; letter-spacing: 2px;">
+                            楼盘查询
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            镇区：
+                        </td>
+                        <td class="tal">
+                            <select name="townName" id="townName">
+	<option value="1">东莞市莞城区</option>
+	<option value="2">东莞市东城区</option>
+	<option value="4">东莞市万江区</option>
+	<option value="8">东莞市南城区</option>
+	<option value="16">东莞市石龙镇</option>
+	<option value="32">东莞市虎门镇</option>
+	<option selected="selected" value="64">东莞市中堂镇</option>
+	<option value="128">东莞市望牛墩镇</option>
+	<option value="256">东莞市麻涌镇</option>
+	<option value="512">东莞市石碣镇</option>
+	<option value="1024">东莞市高埗镇</option>
+	<option value="2048">东莞市道滘镇</option>
+	<option value="4096">东莞市洪梅镇</option>
+	<option value="8192">东莞市长安镇</option>
+	<option value="16384">东莞市沙田镇</option>
+	<option value="32768">东莞市厚街镇</option>
+	<option value="4294967296">东莞市松山湖</option>
+	<option value="65536">东莞市寮步镇</option>
+	<option value="131072">东莞市大岭山镇</option>
+	<option value="262144">东莞市大朗镇</option>
+	<option value="524288">东莞市黄江镇</option>
+	<option value="1048576">东莞市樟木头镇</option>
+	<option value="2097152">东莞市凤岗镇</option>
+	<option value="4194304">东莞市塘厦镇</option>
+	<option value="8388608">东莞市谢岗镇</option>
+	<option value="16777216">东莞市清溪镇</option>
+	<option value="33554432">东莞市常平镇</option>
+	<option value="67108864">东莞市桥头镇</option>
+	<option value="134217728">东莞市横沥镇</option>
+	<option value="268435456">东莞市东坑镇</option>
+	<option value="536870912">东莞市企石镇</option>
+	<option value="1073741824">东莞市石排镇</option>
+	<option value="2147483648">东莞市茶山镇</option>
+	<option value="8589934592">东莞市虎门港</option>
+
+</select>
+                        </td>
+                        <td class="tar">
+                            用途：
+                        </td>
+                        <td class="tal">
+                            <select name="usage" id="usage">
+	<option selected="selected" value="">全部</option>
+	<option value="住宅">住宅</option>
+	<option value="别墅">别墅</option>
+	<option value="商铺">商铺</option>
+	<option value="办公">办公</option>
+	<option value="车库">车库</option>
+
+</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            项目名称：
+                        </td>
+                        <td class="tal">
+                            <input name="projectName" type="text" id="projectName" />
+                        </td>
+                        <td class="tar">
+                            项目地址：
+                        </td>
+                        <td class="tal">
+                            <input name="projectSite" type="text" id="projectSite" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar">
+                            开发单位：
+                        </td>
+                        <td class="tal">
+                            <input name="developer" type="text" id="developer" />
+                        </td>
+                        <td class="tar">
+                            建筑面积：
+                        </td>
+                        <td class="tal">
+                            <input name="area1" type="text" id="area1" />&nbsp;至&nbsp;<input name="area2" type="text" id="area2" />&nbsp;㎡
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align: center">
+                            <input type="button" value="查询" class="button" onclick="projectQuery()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-top: 2px; padding-bottom: 2px;">
+                <table class="resultTable1" cellspacing="0" rules="rows" border="1" id="resultTable">
+	<tr class="tHead">
+		<td>项目名称</td><td>项目地址</td><td>可售套数</td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7236&vc=356f0238' target='_blank'>富盈公馆10幢</a></td><td><a href='BeianDetail.aspx?id=7236&vc=356f0238' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=7236&vc=356f0238' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7495&vc=d347e504' target='_blank'>富盈公馆11幢</a></td><td><a href='BeianDetail.aspx?id=7495&vc=d347e504' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=7495&vc=d347e504' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7237&vc=f81ec329' target='_blank'>富盈公馆12幢</a></td><td><a href='BeianDetail.aspx?id=7237&vc=f81ec329' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=7237&vc=f81ec329' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6869&vc=e9fae036' target='_blank'>富盈公馆13幢</a></td><td><a href='BeianDetail.aspx?id=6869&vc=e9fae036' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6869&vc=e9fae036' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6901&vc=d443bd66' target='_blank'>富盈公馆14幢</a></td><td><a href='BeianDetail.aspx?id=6901&vc=d443bd66' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6901&vc=d443bd66' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6902&vc=8c289efe' target='_blank'>富盈公馆15幢</a></td><td><a href='BeianDetail.aspx?id=6902&vc=8c289efe' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6902&vc=8c289efe' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6052&vc=10b3c371' target='_blank'>富盈公馆16、17、18幢</a></td><td><a href='BeianDetail.aspx?id=6052&vc=10b3c371' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6052&vc=10b3c371' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6393&vc=350c2a34' target='_blank'>富盈公馆19、20、21、34、35幢</a></td><td><a href='BeianDetail.aspx?id=6393&vc=350c2a34' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6393&vc=350c2a34' target='_blank'>18</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6394&vc=5aafb22a' target='_blank'>富盈公馆22幢</a></td><td><a href='BeianDetail.aspx?id=6394&vc=5aafb22a' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6394&vc=5aafb22a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6053&vc=1ac5f7ed' target='_blank'>富盈公馆23、24幢</a></td><td><a href='BeianDetail.aspx?id=6053&vc=1ac5f7ed' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6053&vc=1ac5f7ed' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6054&vc=cef970de' target='_blank'>富盈公馆25幢</a></td><td><a href='BeianDetail.aspx?id=6054&vc=cef970de' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6054&vc=cef970de' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6395&vc=b05b5019' target='_blank'>富盈公馆26、33幢</a></td><td><a href='BeianDetail.aspx?id=6395&vc=b05b5019' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6395&vc=b05b5019' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6396&vc=f0269065' target='_blank'>富盈公馆27、28、39、40幢</a></td><td><a href='BeianDetail.aspx?id=6396&vc=f0269065' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6396&vc=f0269065' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6397&vc=861674db' target='_blank'>富盈公馆29、41幢</a></td><td><a href='BeianDetail.aspx?id=6397&vc=861674db' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6397&vc=861674db' target='_blank'>6</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9771&vc=bde3fbb1' target='_blank'>富盈公馆2幢</a></td><td><a href='BeianDetail.aspx?id=9771&vc=bde3fbb1' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=9771&vc=bde3fbb1' target='_blank'>25</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6087&vc=d32d6d88' target='_blank'>富盈公馆30、31幢</a></td><td><a href='BeianDetail.aspx?id=6087&vc=d32d6d88' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6087&vc=d32d6d88' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6088&vc=56e97378' target='_blank'>富盈公馆32幢</a></td><td><a href='BeianDetail.aspx?id=6088&vc=56e97378' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6088&vc=56e97378' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6089&vc=4066d759' target='_blank'>富盈公馆36、37、38幢</a></td><td><a href='BeianDetail.aspx?id=6089&vc=4066d759' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6089&vc=4066d759' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6055&vc=d9c77d44' target='_blank'>富盈公馆42幢</a></td><td><a href='BeianDetail.aspx?id=6055&vc=d9c77d44' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6055&vc=d9c77d44' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6056&vc=5996d6db' target='_blank'>富盈公馆43幢</a></td><td><a href='BeianDetail.aspx?id=6056&vc=5996d6db' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6056&vc=5996d6db' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6057&vc=63a49ae2' target='_blank'>富盈公馆44幢</a></td><td><a href='BeianDetail.aspx?id=6057&vc=63a49ae2' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6057&vc=63a49ae2' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6058&vc=8eddb776' target='_blank'>富盈公馆45幢</a></td><td><a href='BeianDetail.aspx?id=6058&vc=8eddb776' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=6058&vc=8eddb776' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9122&vc=0208d087' target='_blank'>富盈公馆48幢(地下室)</a></td><td><a href='BeianDetail.aspx?id=9122&vc=0208d087' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=9122&vc=0208d087' target='_blank'>124</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9123&vc=2c96a90a' target='_blank'>富盈公馆49幢(地下室)</a></td><td><a href='BeianDetail.aspx?id=9123&vc=2c96a90a' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=9123&vc=2c96a90a' target='_blank'>234</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9702&vc=bb68d992' target='_blank'>富盈公馆4幢</a></td><td><a href='BeianDetail.aspx?id=9702&vc=bb68d992' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=9702&vc=bb68d992' target='_blank'>21</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11104&vc=8480a0af' target='_blank'>富盈公馆6幢</a></td><td><a href='BeianDetail.aspx?id=11104&vc=8480a0af' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=11104&vc=8480a0af' target='_blank'>24</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11361&vc=1fda2260' target='_blank'>富盈公馆7幢</a></td><td><a href='BeianDetail.aspx?id=11361&vc=1fda2260' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=11361&vc=1fda2260' target='_blank'>68</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11346&vc=4c00e82e' target='_blank'>富盈公馆9幢</a></td><td><a href='BeianDetail.aspx?id=11346&vc=4c00e82e' target='_blank'>中堂镇 北王西路</a></td><td><a href='BeianDetail.aspx?id=11346&vc=4c00e82e' target='_blank'>42</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9827&vc=22174a75' target='_blank'>粤丰江畔豪庭二期1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9827&vc=22174a75' target='_blank'>中堂镇 滨江大道1号</a></td><td><a href='BeianDetail.aspx?id=9827&vc=22174a75' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9828&vc=cc5eac48' target='_blank'>粤丰江畔豪庭二期2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=9828&vc=cc5eac48' target='_blank'>中堂镇 滨江大道1号</a></td><td><a href='BeianDetail.aspx?id=9828&vc=cc5eac48' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9829&vc=e4cbad5b' target='_blank'>粤丰江畔豪庭二期3号商业住宅楼</a></td><td><a href='BeianDetail.aspx?id=9829&vc=e4cbad5b' target='_blank'>中堂镇 滨江大道1号</a></td><td><a href='BeianDetail.aspx?id=9829&vc=e4cbad5b' target='_blank'>7</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9830&vc=87b2534d' target='_blank'>粤丰江畔豪庭二期4号商业办公楼</a></td><td><a href='BeianDetail.aspx?id=9830&vc=87b2534d' target='_blank'>中堂镇 滨江大道1号</a></td><td><a href='BeianDetail.aspx?id=9830&vc=87b2534d' target='_blank'>195</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5354&vc=90c3504e' target='_blank'>居益公馆</a></td><td><a href='BeianDetail.aspx?id=5354&vc=90c3504e' target='_blank'>中堂镇 东泊</a></td><td><a href='BeianDetail.aspx?id=5354&vc=90c3504e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7173&vc=cf9859f5' target='_blank'>中堂东港城商住区7号小高层1栋</a></td><td><a href='BeianDetail.aspx?id=7173&vc=cf9859f5' target='_blank'>中堂镇 东泊村</a></td><td><a href='BeianDetail.aspx?id=7173&vc=cf9859f5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7609&vc=44467be5' target='_blank'>中堂东港城商住区7号小高层2栋 </a></td><td><a href='BeianDetail.aspx?id=7609&vc=44467be5' target='_blank'>中堂镇 东泊村</a></td><td><a href='BeianDetail.aspx?id=7609&vc=44467be5' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7546&vc=745e3852' target='_blank'>中堂东港城商住区7号小高层3栋</a></td><td><a href='BeianDetail.aspx?id=7546&vc=745e3852' target='_blank'>中堂镇 东泊村</a></td><td><a href='BeianDetail.aspx?id=7546&vc=745e3852' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8936&vc=07aecf53' target='_blank'>中堂东港城商住区7号小高层地下室</a></td><td><a href='BeianDetail.aspx?id=8936&vc=07aecf53' target='_blank'>中堂镇 东泊村</a></td><td><a href='BeianDetail.aspx?id=8936&vc=07aecf53' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7172&vc=2dba6bc2' target='_blank'>万丰盛大楼</a></td><td><a href='BeianDetail.aspx?id=7172&vc=2dba6bc2' target='_blank'>中堂镇 东泊村107国道边</a></td><td><a href='BeianDetail.aspx?id=7172&vc=2dba6bc2' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1041&vc=78e23a48' target='_blank'>莞都可苑1区10号(1、2、3、4座)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1041&vc=78e23a48' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=1041&vc=78e23a48' target='_blank'>19</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=107&vc=8296551f' target='_blank'>莞都可苑1区1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=107&vc=8296551f' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=107&vc=8296551f' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=108&vc=891565aa' target='_blank'>莞都可苑1区2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=108&vc=891565aa' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=108&vc=891565aa' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=111&vc=0a34e7fa' target='_blank'>莞都可苑1区3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=111&vc=0a34e7fa' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=111&vc=0a34e7fa' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=923&vc=3f8b8277' target='_blank'>莞都可苑1区4号住宅楼 </a></td><td><a href='BeianDetail.aspx?id=923&vc=3f8b8277' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=923&vc=3f8b8277' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1282&vc=fea8d7f7' target='_blank'>莞都可苑1区5号住宅楼</a></td><td><a href='BeianDetail.aspx?id=1282&vc=fea8d7f7' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=1282&vc=fea8d7f7' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1283&vc=3ff31ab3' target='_blank'>莞都可苑1区6号1座住宅楼</a></td><td><a href='BeianDetail.aspx?id=1283&vc=3ff31ab3' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=1283&vc=3ff31ab3' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1284&vc=14a2fbe6' target='_blank'>莞都可苑1区6号2座住宅楼</a></td><td><a href='BeianDetail.aspx?id=1284&vc=14a2fbe6' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=1284&vc=14a2fbe6' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=1287&vc=1bd8130b' target='_blank'>莞都可苑1区6号3座住宅楼</a></td><td><a href='BeianDetail.aspx?id=1287&vc=1bd8130b' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=1287&vc=1bd8130b' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=924&vc=90bf36eb' target='_blank'>莞都可苑1区7号住宅楼 </a></td><td><a href='BeianDetail.aspx?id=924&vc=90bf36eb' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=924&vc=90bf36eb' target='_blank'>7</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=688&vc=7f070399' target='_blank'>莞都可苑1区8号1座住宅楼</a></td><td><a href='BeianDetail.aspx?id=688&vc=7f070399' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=688&vc=7f070399' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=689&vc=4e2c645e' target='_blank'>莞都可苑1区8号2座住宅楼</a></td><td><a href='BeianDetail.aspx?id=689&vc=4e2c645e' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=689&vc=4e2c645e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=690&vc=2b52c90c' target='_blank'>莞都可苑1区8号3座住宅楼</a></td><td><a href='BeianDetail.aspx?id=690&vc=2b52c90c' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=690&vc=2b52c90c' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1286&vc=59ab98eb' target='_blank'>莞都可苑1区9号(1、2、3座)住宅楼</a></td><td><a href='BeianDetail.aspx?id=1286&vc=59ab98eb' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=1286&vc=59ab98eb' target='_blank'>13</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=11334&vc=26230e4f' target='_blank'>莞都可苑1区地下室</a></td><td><a href='BeianDetail.aspx?id=11334&vc=26230e4f' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=11334&vc=26230e4f' target='_blank'>441</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=2362&vc=ffa2d807' target='_blank'>莞都可苑1区裙楼1(商场)</a></td><td><a href='BeianDetail.aspx?id=2362&vc=ffa2d807' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=2362&vc=ffa2d807' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=2363&vc=08455e49' target='_blank'>莞都可苑1区裙楼2(商场) </a></td><td><a href='BeianDetail.aspx?id=2363&vc=08455e49' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=2363&vc=08455e49' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=109&vc=2c83bf4c' target='_blank'>莞都可苑2区1号(商场)</a></td><td><a href='BeianDetail.aspx?id=109&vc=2c83bf4c' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=109&vc=2c83bf4c' target='_blank'>20</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=110&vc=1244a393' target='_blank'>莞都可苑2区2号(商场)</a></td><td><a href='BeianDetail.aspx?id=110&vc=1244a393' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=110&vc=1244a393' target='_blank'>20</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=112&vc=87351a67' target='_blank'>莞都可苑2区3号住宅楼</a></td><td><a href='BeianDetail.aspx?id=112&vc=87351a67' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=112&vc=87351a67' target='_blank'>14</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=113&vc=418e2182' target='_blank'>莞都可苑2区4号住宅楼</a></td><td><a href='BeianDetail.aspx?id=113&vc=418e2182' target='_blank'>中堂镇 斗朗村</a></td><td><a href='BeianDetail.aspx?id=113&vc=418e2182' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11105&vc=99f740e6' target='_blank'>悦湖苑1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=11105&vc=99f740e6' target='_blank'>中堂镇 广场路11号</a></td><td><a href='BeianDetail.aspx?id=11105&vc=99f740e6' target='_blank'>29</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10565&vc=07e8d263' target='_blank'>悦湖苑2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=10565&vc=07e8d263' target='_blank'>中堂镇 广场路11号</a></td><td><a href='BeianDetail.aspx?id=10565&vc=07e8d263' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=11255&vc=f4eeacec' target='_blank'>悦湖苑3号商业、办公楼</a></td><td><a href='BeianDetail.aspx?id=11255&vc=f4eeacec' target='_blank'>中堂镇 广场路11号</a></td><td><a href='BeianDetail.aspx?id=11255&vc=f4eeacec' target='_blank'>162</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10572&vc=dbbdd7d9' target='_blank'>悦湖苑4号商业楼</a></td><td><a href='BeianDetail.aspx?id=10572&vc=dbbdd7d9' target='_blank'>中堂镇 广场路11号</a></td><td><a href='BeianDetail.aspx?id=10572&vc=dbbdd7d9' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6198&vc=c9b4db8e' target='_blank'>华悦名苑1幢</a></td><td><a href='BeianDetail.aspx?id=6198&vc=c9b4db8e' target='_blank'>中堂镇 鹤田村107国道边</a></td><td><a href='BeianDetail.aspx?id=6198&vc=c9b4db8e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6199&vc=abb29c8d' target='_blank'>华悦名苑2幢</a></td><td><a href='BeianDetail.aspx?id=6199&vc=abb29c8d' target='_blank'>中堂镇 鹤田村107国道边</a></td><td><a href='BeianDetail.aspx?id=6199&vc=abb29c8d' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6200&vc=f9608ab1' target='_blank'>华悦名苑3幢</a></td><td><a href='BeianDetail.aspx?id=6200&vc=f9608ab1' target='_blank'>中堂镇 鹤田村107国道边</a></td><td><a href='BeianDetail.aspx?id=6200&vc=f9608ab1' target='_blank'>43</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8188&vc=ffb42bd7' target='_blank'>华悦名苑地下车库</a></td><td><a href='BeianDetail.aspx?id=8188&vc=ffb42bd7' target='_blank'>中堂镇 鹤田村107国道边</a></td><td><a href='BeianDetail.aspx?id=8188&vc=ffb42bd7' target='_blank'>25</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6491&vc=1f4e03a4' target='_blank'>鹤田村滨江路55栋</a></td><td><a href='BeianDetail.aspx?id=6491&vc=1f4e03a4' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6491&vc=1f4e03a4' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7475&vc=f130d3c9' target='_blank'>粤丰江畔豪庭15、16、17、18、19、20栋</a></td><td><a href='BeianDetail.aspx?id=7475&vc=f130d3c9' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7475&vc=f130d3c9' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6555&vc=009dd741' target='_blank'>粤丰江畔豪庭1、2、3、4、5栋</a></td><td><a href='BeianDetail.aspx?id=6555&vc=009dd741' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6555&vc=009dd741' target='_blank'>8</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7476&vc=d05711b5' target='_blank'>粤丰江畔豪庭21、22、23、24、25、26栋</a></td><td><a href='BeianDetail.aspx?id=7476&vc=d05711b5' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7476&vc=d05711b5' target='_blank'>1</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6556&vc=09348172' target='_blank'>粤丰江畔豪庭27、28、29、30、31、32、33、34、35、36栋</a></td><td><a href='BeianDetail.aspx?id=6556&vc=09348172' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6556&vc=09348172' target='_blank'>3</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6489&vc=e186ae33' target='_blank'>粤丰江畔豪庭37、38、39、40、41栋</a></td><td><a href='BeianDetail.aspx?id=6489&vc=e186ae33' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6489&vc=e186ae33' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6490&vc=f5ddbf32' target='_blank'>粤丰江畔豪庭42、43、44栋</a></td><td><a href='BeianDetail.aspx?id=6490&vc=f5ddbf32' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6490&vc=f5ddbf32' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6557&vc=eddad469' target='_blank'>粤丰江畔豪庭45栋</a></td><td><a href='BeianDetail.aspx?id=6557&vc=eddad469' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6557&vc=eddad469' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6558&vc=06b2cba3' target='_blank'>粤丰江畔豪庭46栋</a></td><td><a href='BeianDetail.aspx?id=6558&vc=06b2cba3' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6558&vc=06b2cba3' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6559&vc=5406e2a6' target='_blank'>粤丰江畔豪庭47栋</a></td><td><a href='BeianDetail.aspx?id=6559&vc=5406e2a6' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6559&vc=5406e2a6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6560&vc=af3ecd27' target='_blank'>粤丰江畔豪庭48栋</a></td><td><a href='BeianDetail.aspx?id=6560&vc=af3ecd27' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6560&vc=af3ecd27' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6562&vc=e53b9449' target='_blank'>粤丰江畔豪庭49栋</a></td><td><a href='BeianDetail.aspx?id=6562&vc=e53b9449' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6562&vc=e53b9449' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6563&vc=ee3858c1' target='_blank'>粤丰江畔豪庭50栋</a></td><td><a href='BeianDetail.aspx?id=6563&vc=ee3858c1' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6563&vc=ee3858c1' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6564&vc=562b2838' target='_blank'>粤丰江畔豪庭51栋</a></td><td><a href='BeianDetail.aspx?id=6564&vc=562b2838' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6564&vc=562b2838' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6565&vc=99152a7e' target='_blank'>粤丰江畔豪庭52栋</a></td><td><a href='BeianDetail.aspx?id=6565&vc=99152a7e' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6565&vc=99152a7e' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6566&vc=952407e7' target='_blank'>粤丰江畔豪庭53栋</a></td><td><a href='BeianDetail.aspx?id=6566&vc=952407e7' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6566&vc=952407e7' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6567&vc=a4c9c179' target='_blank'>粤丰江畔豪庭54栋</a></td><td><a href='BeianDetail.aspx?id=6567&vc=a4c9c179' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6567&vc=a4c9c179' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6492&vc=310063ae' target='_blank'>粤丰江畔豪庭56栋</a></td><td><a href='BeianDetail.aspx?id=6492&vc=310063ae' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6492&vc=310063ae' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6493&vc=443c71e6' target='_blank'>粤丰江畔豪庭57栋</a></td><td><a href='BeianDetail.aspx?id=6493&vc=443c71e6' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6493&vc=443c71e6' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6494&vc=b988ce93' target='_blank'>粤丰江畔豪庭58栋</a></td><td><a href='BeianDetail.aspx?id=6494&vc=b988ce93' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6494&vc=b988ce93' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6495&vc=6ac80c0b' target='_blank'>粤丰江畔豪庭59栋</a></td><td><a href='BeianDetail.aspx?id=6495&vc=6ac80c0b' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6495&vc=6ac80c0b' target='_blank'>1</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6496&vc=7c028dda' target='_blank'>粤丰江畔豪庭60栋</a></td><td><a href='BeianDetail.aspx?id=6496&vc=7c028dda' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6496&vc=7c028dda' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6497&vc=1644f6ae' target='_blank'>粤丰江畔豪庭61栋</a></td><td><a href='BeianDetail.aspx?id=6497&vc=1644f6ae' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6497&vc=1644f6ae' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6498&vc=20d5dfd5' target='_blank'>粤丰江畔豪庭62栋</a></td><td><a href='BeianDetail.aspx?id=6498&vc=20d5dfd5' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6498&vc=20d5dfd5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6499&vc=d937c457' target='_blank'>粤丰江畔豪庭63栋</a></td><td><a href='BeianDetail.aspx?id=6499&vc=d937c457' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6499&vc=d937c457' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6500&vc=4b9622c9' target='_blank'>粤丰江畔豪庭64栋</a></td><td><a href='BeianDetail.aspx?id=6500&vc=4b9622c9' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6500&vc=4b9622c9' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7477&vc=d1f9b618' target='_blank'>粤丰江畔豪庭65栋</a></td><td><a href='BeianDetail.aspx?id=7477&vc=d1f9b618' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7477&vc=d1f9b618' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7010&vc=d3a67583' target='_blank'>粤丰江畔豪庭66栋</a></td><td><a href='BeianDetail.aspx?id=7010&vc=d3a67583' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7010&vc=d3a67583' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7478&vc=9a19e680' target='_blank'>粤丰江畔豪庭67栋</a></td><td><a href='BeianDetail.aspx?id=7478&vc=9a19e680' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7478&vc=9a19e680' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7011&vc=585d28a5' target='_blank'>粤丰江畔豪庭68栋</a></td><td><a href='BeianDetail.aspx?id=7011&vc=585d28a5' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7011&vc=585d28a5' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7012&vc=5919fad9' target='_blank'>粤丰江畔豪庭69栋</a></td><td><a href='BeianDetail.aspx?id=7012&vc=5919fad9' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7012&vc=5919fad9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6488&vc=f96e58f8' target='_blank'>粤丰江畔豪庭6、7、8、9、10、11、12、13、14栋</a></td><td><a href='BeianDetail.aspx?id=6488&vc=f96e58f8' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6488&vc=f96e58f8' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7479&vc=3d94a113' target='_blank'>粤丰江畔豪庭70栋</a></td><td><a href='BeianDetail.aspx?id=7479&vc=3d94a113' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7479&vc=3d94a113' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7381&vc=ca7a821e' target='_blank'>粤丰江畔豪庭71栋</a></td><td><a href='BeianDetail.aspx?id=7381&vc=ca7a821e' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7381&vc=ca7a821e' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7480&vc=70d00ecc' target='_blank'>粤丰江畔豪庭72栋</a></td><td><a href='BeianDetail.aspx?id=7480&vc=70d00ecc' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7480&vc=70d00ecc' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7013&vc=95b8c0ee' target='_blank'>粤丰江畔豪庭73栋</a></td><td><a href='BeianDetail.aspx?id=7013&vc=95b8c0ee' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7013&vc=95b8c0ee' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7014&vc=99ba0f3e' target='_blank'>粤丰江畔豪庭74栋</a></td><td><a href='BeianDetail.aspx?id=7014&vc=99ba0f3e' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7014&vc=99ba0f3e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7481&vc=b4b14212' target='_blank'>粤丰江畔豪庭75栋</a></td><td><a href='BeianDetail.aspx?id=7481&vc=b4b14212' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7481&vc=b4b14212' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7482&vc=876dfd69' target='_blank'>粤丰江畔豪庭76栋</a></td><td><a href='BeianDetail.aspx?id=7482&vc=876dfd69' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7482&vc=876dfd69' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7483&vc=8d3221ac' target='_blank'>粤丰江畔豪庭77栋</a></td><td><a href='BeianDetail.aspx?id=7483&vc=8d3221ac' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=7483&vc=8d3221ac' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6568&vc=d7d281d0' target='_blank'>粤丰江畔豪庭78栋</a></td><td><a href='BeianDetail.aspx?id=6568&vc=d7d281d0' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6568&vc=d7d281d0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6569&vc=b49ad440' target='_blank'>粤丰江畔豪庭79栋</a></td><td><a href='BeianDetail.aspx?id=6569&vc=b49ad440' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6569&vc=b49ad440' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6570&vc=f2384079' target='_blank'>粤丰江畔豪庭80栋</a></td><td><a href='BeianDetail.aspx?id=6570&vc=f2384079' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6570&vc=f2384079' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6571&vc=db32f5b1' target='_blank'>粤丰江畔豪庭81栋</a></td><td><a href='BeianDetail.aspx?id=6571&vc=db32f5b1' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6571&vc=db32f5b1' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6572&vc=7cb53f7e' target='_blank'>粤丰江畔豪庭82栋</a></td><td><a href='BeianDetail.aspx?id=6572&vc=7cb53f7e' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6572&vc=7cb53f7e' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6573&vc=53514be6' target='_blank'>粤丰江畔豪庭83栋</a></td><td><a href='BeianDetail.aspx?id=6573&vc=53514be6' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6573&vc=53514be6' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6574&vc=b5b48b39' target='_blank'>粤丰江畔豪庭84栋</a></td><td><a href='BeianDetail.aspx?id=6574&vc=b5b48b39' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6574&vc=b5b48b39' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6575&vc=2a18709e' target='_blank'>粤丰江畔豪庭85栋</a></td><td><a href='BeianDetail.aspx?id=6575&vc=2a18709e' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6575&vc=2a18709e' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6577&vc=91f73983' target='_blank'>粤丰江畔豪庭86栋</a></td><td><a href='BeianDetail.aspx?id=6577&vc=91f73983' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6577&vc=91f73983' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6576&vc=43d2d475' target='_blank'>粤丰江畔豪庭87栋</a></td><td><a href='BeianDetail.aspx?id=6576&vc=43d2d475' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6576&vc=43d2d475' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6578&vc=ae888fe5' target='_blank'>粤丰江畔豪庭88栋</a></td><td><a href='BeianDetail.aspx?id=6578&vc=ae888fe5' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6578&vc=ae888fe5' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6579&vc=aa239f13' target='_blank'>粤丰江畔豪庭89栋</a></td><td><a href='BeianDetail.aspx?id=6579&vc=aa239f13' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6579&vc=aa239f13' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=6580&vc=5ca6046e' target='_blank'>粤丰江畔豪庭90栋</a></td><td><a href='BeianDetail.aspx?id=6580&vc=5ca6046e' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6580&vc=5ca6046e' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=6581&vc=c36e5840' target='_blank'>粤丰江畔豪庭91栋</a></td><td><a href='BeianDetail.aspx?id=6581&vc=c36e5840' target='_blank'>中堂镇 鹤田村滨江路</a></td><td><a href='BeianDetail.aspx?id=6581&vc=c36e5840' target='_blank'>2</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=105&vc=638db421' target='_blank'>东港城商住区2号小高层</a></td><td><a href='BeianDetail.aspx?id=105&vc=638db421' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=105&vc=638db421' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=104&vc=2b43d617' target='_blank'>东港城商住区3号小高层</a></td><td><a href='BeianDetail.aspx?id=104&vc=2b43d617' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=104&vc=2b43d617' target='_blank'>13</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=287&vc=5d984ab6' target='_blank'>东港城商住区6号小高层</a></td><td><a href='BeianDetail.aspx?id=287&vc=5d984ab6' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=287&vc=5d984ab6' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=285&vc=7227b9c2' target='_blank'>东港城商住区商业街</a></td><td><a href='BeianDetail.aspx?id=285&vc=7227b9c2' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=285&vc=7227b9c2' target='_blank'>18</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=818&vc=0ec21f95' target='_blank'>东港城商住区商业街地下室车库</a></td><td><a href='BeianDetail.aspx?id=818&vc=0ec21f95' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=818&vc=0ec21f95' target='_blank'>14</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=286&vc=a2eceebc' target='_blank'>东港城商住区商业综合楼</a></td><td><a href='BeianDetail.aspx?id=286&vc=a2eceebc' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=286&vc=a2eceebc' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1330&vc=504aff91' target='_blank'>中堂东港城商住区1号小高层</a></td><td><a href='BeianDetail.aspx?id=1330&vc=504aff91' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=1330&vc=504aff91' target='_blank'>4</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4739&vc=584c5c25' target='_blank'>中堂东港城商住区5号楼1栋</a></td><td><a href='BeianDetail.aspx?id=4739&vc=584c5c25' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=4739&vc=584c5c25' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4877&vc=7975b3b9' target='_blank'>中堂东港城商住区5号楼2栋</a></td><td><a href='BeianDetail.aspx?id=4877&vc=7975b3b9' target='_blank'>中堂镇 新兴路</a></td><td><a href='BeianDetail.aspx?id=4877&vc=7975b3b9' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8168&vc=97f638d0' target='_blank'>居益花园10栋</a></td><td><a href='BeianDetail.aspx?id=8168&vc=97f638d0' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8168&vc=97f638d0' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8169&vc=e4a973b3' target='_blank'>居益花园11栋</a></td><td><a href='BeianDetail.aspx?id=8169&vc=e4a973b3' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8169&vc=e4a973b3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8054&vc=7febd5fe' target='_blank'>居益花园12栋</a></td><td><a href='BeianDetail.aspx?id=8054&vc=7febd5fe' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8054&vc=7febd5fe' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8055&vc=cf02df0d' target='_blank'>居益花园13栋</a></td><td><a href='BeianDetail.aspx?id=8055&vc=cf02df0d' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8055&vc=cf02df0d' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8170&vc=3aa40396' target='_blank'>居益花园14栋</a></td><td><a href='BeianDetail.aspx?id=8170&vc=3aa40396' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8170&vc=3aa40396' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8171&vc=41e75b41' target='_blank'>居益花园15栋</a></td><td><a href='BeianDetail.aspx?id=8171&vc=41e75b41' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8171&vc=41e75b41' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9562&vc=3719d672' target='_blank'>居益花园16栋</a></td><td><a href='BeianDetail.aspx?id=9562&vc=3719d672' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=9562&vc=3719d672' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9563&vc=1eb5965c' target='_blank'>居益花园17栋</a></td><td><a href='BeianDetail.aspx?id=9563&vc=1eb5965c' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=9563&vc=1eb5965c' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8652&vc=b31f14c1' target='_blank'>居益花园19栋</a></td><td><a href='BeianDetail.aspx?id=8652&vc=b31f14c1' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8652&vc=b31f14c1' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7147&vc=4993e071' target='_blank'>居益花园1栋</a></td><td><a href='BeianDetail.aspx?id=7147&vc=4993e071' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=7147&vc=4993e071' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=10665&vc=70139573' target='_blank'>居益花园20栋二期地下室 </a></td><td><a href='BeianDetail.aspx?id=10665&vc=70139573' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=10665&vc=70139573' target='_blank'>494</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8653&vc=c81302a8' target='_blank'>居益花园21栋一期地下室</a></td><td><a href='BeianDetail.aspx?id=8653&vc=c81302a8' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8653&vc=c81302a8' target='_blank'>42</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7148&vc=77f471cc' target='_blank'>居益花园2栋</a></td><td><a href='BeianDetail.aspx?id=7148&vc=77f471cc' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=7148&vc=77f471cc' target='_blank'>4</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=7149&vc=740ecd05' target='_blank'>居益花园3栋</a></td><td><a href='BeianDetail.aspx?id=7149&vc=740ecd05' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=7149&vc=740ecd05' target='_blank'>2</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=7051&vc=8ab6a78c' target='_blank'>居益花园4栋</a></td><td><a href='BeianDetail.aspx?id=7051&vc=8ab6a78c' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=7051&vc=8ab6a78c' target='_blank'>10</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=8053&vc=c83aacc0' target='_blank'>居益花园5栋</a></td><td><a href='BeianDetail.aspx?id=8053&vc=c83aacc0' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8053&vc=c83aacc0' target='_blank'>11</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=8044&vc=99ad1f8d' target='_blank'>居益花园6栋</a></td><td><a href='BeianDetail.aspx?id=8044&vc=99ad1f8d' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=8044&vc=99ad1f8d' target='_blank'>5</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9536&vc=996796d5' target='_blank'>居益花园7栋</a></td><td><a href='BeianDetail.aspx?id=9536&vc=996796d5' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=9536&vc=996796d5' target='_blank'>16</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9791&vc=0db2ef51' target='_blank'>居益花园8栋</a></td><td><a href='BeianDetail.aspx?id=9791&vc=0db2ef51' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=9791&vc=0db2ef51' target='_blank'>25</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=9792&vc=4eb93de7' target='_blank'>居益花园9栋</a></td><td><a href='BeianDetail.aspx?id=9792&vc=4eb93de7' target='_blank'>中堂镇 雅苑路</a></td><td><a href='BeianDetail.aspx?id=9792&vc=4eb93de7' target='_blank'>20</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=9786&vc=d3f7643a' target='_blank'>居益公寓1栋</a></td><td><a href='BeianDetail.aspx?id=9786&vc=d3f7643a' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=9786&vc=d3f7643a' target='_blank'>18</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5694&vc=05344c7b' target='_blank'>南国锦苑海景居1号楼</a></td><td><a href='BeianDetail.aspx?id=5694&vc=05344c7b' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=5694&vc=05344c7b' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5695&vc=78a2b95a' target='_blank'>南国锦苑骏景居1号楼</a></td><td><a href='BeianDetail.aspx?id=5695&vc=78a2b95a' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=5695&vc=78a2b95a' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5696&vc=aa9d4848' target='_blank'>南国锦苑骏景居2号楼</a></td><td><a href='BeianDetail.aspx?id=5696&vc=aa9d4848' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=5696&vc=aa9d4848' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=82&vc=d8badd14' target='_blank'>南国雅苑A区荔景居2号楼</a></td><td><a href='BeianDetail.aspx?id=82&vc=d8badd14' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=82&vc=d8badd14' target='_blank'>3</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=4013&vc=69c32384' target='_blank'>南国雅苑F区湖景居1号住宅楼</a></td><td><a href='BeianDetail.aspx?id=4013&vc=69c32384' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=4013&vc=69c32384' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4052&vc=2e7fafad' target='_blank'>南国雅苑J区怡景居1号楼</a></td><td><a href='BeianDetail.aspx?id=4052&vc=2e7fafad' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=4052&vc=2e7fafad' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=3963&vc=4fe3bdd0' target='_blank'>南国雅苑L区商业楼</a></td><td><a href='BeianDetail.aspx?id=3963&vc=4fe3bdd0' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=3963&vc=4fe3bdd0' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=5200&vc=0c4a1d38' target='_blank'>南国雅苑中天城市广场</a></td><td><a href='BeianDetail.aspx?id=5200&vc=0c4a1d38' target='_blank'>中堂镇 振兴路</a></td><td><a href='BeianDetail.aspx?id=5200&vc=0c4a1d38' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=5099&vc=a32cf9b3' target='_blank'>怡景居2号楼</a></td><td><a href='BeianDetail.aspx?id=5099&vc=a32cf9b3' target='_blank'>中堂镇 振兴路南国雅苑</a></td><td><a href='BeianDetail.aspx?id=5099&vc=a32cf9b3' target='_blank'>0</a></td>
+	</tr><tr class="oddTr">
+		<td><a href='BeianDetail.aspx?id=4521&vc=ad3d1124' target='_blank'>南国雅苑H区湖景居2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=4521&vc=ad3d1124' target='_blank'>中堂镇 振兴路南国雅苑H区湖景居2号住宅楼</a></td><td><a href='BeianDetail.aspx?id=4521&vc=ad3d1124' target='_blank'>0</a></td>
+	</tr><tr class="evenTr">
+		<td><a href='BeianDetail.aspx?id=1019&vc=5733ea0d' target='_blank'>南国雅苑B区荔景居1号楼（A1、A2）</a></td><td><a href='BeianDetail.aspx?id=1019&vc=5733ea0d' target='_blank'>中堂镇 振兴路与斗朗工业大道之间</a></td><td><a href='BeianDetail.aspx?id=1019&vc=5733ea0d' target='_blank'>0</a></td>
+	</tr>
+</table>
+                <input type="hidden" name="resultCount" id="resultCount" value="162" />
+                <input type="hidden" name="pageIndex" id="pageIndex" value="0" />
+            </div>
+            <div style="text-align: center; line-height: 160%;">
+                
+            </div>
+        </div>
+        
+<table class="table1" cellpadding="0" bgcolor="#f5fbf5" cellspacing="0" width="1000"
+    height="105" align="center">
+    <tr valign="top" height="2">
+        <td style="background-color:#019FC2;">
+        </td>
+    </tr>
+    <tr align="center" style="line-height: 150%;">
+        <td style="color: #144a02;">
+            <a href="../Main/copyright.aspx">版权与免责声明</a> &nbsp; |&nbsp; <a href="../Main/help.aspx">
+                帮助信息</a>&nbsp; |&nbsp; <a href="javascript:window.external.AddFavorite('http://dgfc.dg.gov.cn', '东莞市房产管理局公众信息网')"
+                    target="_self">收藏本站</a>&nbsp; |&nbsp; <a style="behavior: url(#default#homepage)"
+                        onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://dgfc.dg.gov.cn');return(false);"
+                        href="http://dgfc.dg.gov.cn">设为首页</a><br />
+            <hr style="border: dotted; width: 600px; color: #144a02" />
+            建议浏览器IE6.0 分辨率:1024*768以上<br />
+            东莞市房产管理局©版权所有<a href="http://www.miibeian.gov.cn">(粤ICP备05007303号)</a><br />
+            地址：广东省东莞市南城袁屋边涡岭科技路蓝天大厦 邮编：523070
+        </td>
+    </tr>
+</table>
+
+    </div>
+    </form>
+</body>
+</html>

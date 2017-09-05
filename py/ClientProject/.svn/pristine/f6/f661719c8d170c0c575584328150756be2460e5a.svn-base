@@ -1,0 +1,293 @@
+# -*- coding: utf-8 -*-
+#单例测试导入路径
+if __name__ == '__main__':
+    import sys, os
+    parent_path = os.path.dirname(os.getcwd())
+    sys.path.append(parent_path)
+
+from webparser.webparserbase import ParserBase
+from serializ.htmlfile import *
+from serializ.oracle import *
+from bean.urlbean import *
+from log.logger import *
+import datetime
+from random import random
+
+LOG=logging.getLogger()
+LOG.handlers[0].setLevel(logging.INFO)
+LOG.handlers[1].setLevel(logging.INFO)
+
+################################
+metadatas = ('RECMETAID',
+         '题名',
+         '来源链接',
+         '小区名称',
+         '所属区域',
+         '小区链接',
+         '楼栋名称',
+         '地址',
+         '建成年份',
+         '总层数',
+         '当前层',
+         '朝向',
+         '建筑面积',
+         '使用面积',
+         '产权性质',
+         '装修情况',
+         '户型',
+         '卧室数量',
+         '客厅数量',
+         '卫生间数量',
+         '厨房数量',
+         '阳台数量',
+         '单价',
+         '总价',
+         '挂牌时间',
+         '房屋图片',
+         '信息来源',
+         '联系人',
+         '所属公司',
+         '联系电话',
+         '纬度',
+         '经度',
+         '备注',
+         '预留字段',
+         '房源编号',
+         '发布时间',
+         '住宅类别',
+         '建筑类别',
+         '配套设施',
+         '估价链接',
+         '租金链接',
+         '房屋标签',
+         '交通状况',
+         '街景地图场景ID',
+         '地图链接',
+         '楼盘详情和所属HTML',
+         '楼盘物业类型',
+         '楼盘绿化率',
+         '楼盘物业费',
+         '楼盘物业公司',
+         '楼盘开发商',
+         '本月均价',
+         '楼盘价格走势',
+         '小区详情走势图链接',
+         '经纪人链接',
+         '经纪人图片链接',
+         '小区成交历史链接',
+         '城市',
+         '行政区',
+         '数据来源',
+         'STR_ORDER')                                                                          #65
+
+def format_str(s):
+    return s.replace("\r\n",'').replace("\n",'').replace(' ', '').replace("\t",'').replace("\r",'').replace('\xa0','').lstrip().replace('&nbsp;','')
+
+import requests, re
+from bs4 import BeautifulSoup, Tag
+
+#链家登录
+def login(username='13836126857', password='sa123456', session=None):
+    if session is not None:
+        session.close()
+    s = requests.session()
+    s.headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36 LBBROWSER', 'Connection': 'keep-alive'}
+    r = s.get("http://bj.lianjia.com")
+    r = s.get("https://passport.lianjia.com/cas/xd/api?name=passport-lianjia-com")
+    r = s.get("https://passport.lianjia.com/cas/prelogin/loginTicket?")
+    data = r.json()
+    r = s.post("https://passport.lianjia.com/cas/login", data={"code":"", "verifycode":"",
+                                                              "isajax":"true",
+                                                              "lt":data["data"],
+                                                              "service":"http://bj.lianjia.com/",
+                                                              "username":username, "password":password})
+    data = r.json()
+    if data["success"]!=1:
+        LOG.error("登录失败,返回数据!", data)
+    else:
+        r = s.get("http://login.lianjia.com/login/getUserInfo/", params={"service":"http://bj.lianjia.com/",
+                                                                         "st":data["ticket"],
+                                                                         "callback":"casback14591365488510"})
+    LOG.info("登录成功!")
+    return s
+
+#解析中原地产真是成交数据
+class wwwlianjiacjcom(ParserBase):
+    headers = {'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36 LBBROWSER', 'Connection': 'keep-alive'}
+    htmlwrite = HtmlFile()
+
+    def __init__(self):
+        super(wwwlianjiacjcom, self).__init__()
+        self._s = None
+
+    #默认定义间隔30分钟重新登录
+    def getSession(self):
+        nt = datetime.datetime.now()
+        if self._s is None or (hasattr(self, '_lastLoginDT') and (nt - self._lastLoginDT).seconds>=30):
+            self._lastLoginDT = nt
+            self._s = login(session = self._s)
+        return self._s
+
+    #加载城市页面列表
+    def default(self, urlbase):
+        LOG.info('链家交易采集范围')
+        citys = (("http://bj.lianjia.com/chengjiao/pg", 100, "北京"), #北京 100页
+                 ("http://cd.lianjia.com/chengjiao/pg", 100, "成都"),
+                 ("http://dl.lianjia.com/chengjiao/pg", 100, "大连"),
+                 ("http://hz.lianjia.com/chengjiao/pg", 100, "杭州"),
+                 ("http://nj.lianjia.com/chengjiao/pg", 100, "南京"),
+                 ("http://qd.lianjia.com/chengjiao/pg", 100, "青岛"),
+                 ("http://sh.lianjia.com/chengjiao/pg", 100, "上海"))
+                 #("http://tj.lianjia.com/chengjiao/pg", 100, "天津"))  暂时不采集天津
+        i_order = urlbase.order+'0'
+        ls = []
+        for city in citys:
+            for i in range(city[1]):
+                ls.append(UrlBean("%s%d/" % (city[0], i+1), self.message('getpages'), param=city[2], order=i_order))
+        return ls
+
+    #解析城市二手房列表页
+    def getpages(self, urlbase):
+        LOG.info('wwwlianjiacjcom获得城市%s成交列表信息', urlbase.url)
+        r = self.getSession().get(urlbase.url, headers=self.headers, timeout=(3.05, 1.5))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwlianjiacjcom %s 返回状态:%s', urlbase.url, r.status_code)
+            return None
+        html = r.content.decode('utf8', errors='ignore')
+        soup = BeautifulSoup(html, 'html.parser') #lxml
+        i_order = urlbase.order+'1'
+        ls = []
+        d = {}  #定义结果集合
+        d['城市'] = urlbase.param
+        list_ul = soup.find('ul',attrs={'class':'clinch-list'})
+        list_li = list_ul.find_all('li')
+        if len(list_li) == 30:
+            for list_li_s in list_li:
+                list_div = list_li_s.find_all('div',attrs={'class':'info-panel'})
+                for list_div_s in list_div:
+                    # print(list_div_s)
+                    list_h2 = list_div_s.find('h2').find('a')
+                    if list_h2:
+                        if list_h2['href']:
+                            d['来源链接'] = list_h2['href']
+                            list_div_l = list_div_s.find('div',attrs={'class':'col-2 fr'})
+                            d['挂牌时间'] = list_div_l.find('div',attrs={'class':'div-cun'}).text
+                            #page_list = requests.get(list_h2['href'])
+                            ls.append(UrlBean(list_h2['href'], self.message('getitem'), param=dict(d), order=i_order))
+        return ls
+
+    #解析详细页面信息
+    def getitem(self, urlbase):
+        LOG.info('wwwlianjiacjcom获得城市%s成交详细信息', urlbase.url)
+        time.sleep(random()+1)
+        t1 = time.time()
+        r = self.getSession().get(urlbase.url, headers=self.headers, timeout=(3.05, 1.5))
+        t2 = time.time()
+        LOG.info('处理wwwlianjiacjcom请求getitem耗时:%f' % (t2-t1))
+        LOG.info('访问耗时:%.4f, url:%s', r.elapsed.microseconds/1000000, r.url)
+        #存储页面信息
+        t1 = time.time()
+        self.htmlwrite.save('%s\\%s\\%s' %(self.__class__.__name__, '真实成交', r.url.split('.')[0].split('/')[-1]), r.url, r.text)
+        t2 = time.time()
+        if(r.status_code != requests.codes.ok):
+            LOG.warning('wwwlianjiacjcom %s 返回状态:%s', r.request.url, r.status_code)
+            return
+        t1 = time.time()
+        html_list = r.content.decode('utf8', errors='ignore')
+        soup_list = BeautifulSoup(html_list, 'html.parser')
+        d = urlbase.param
+        d['题名'] = soup_list.find('h1').text
+        try:
+            d['地址'] = soup_list.find('span',attrs={'class':'fang-subway-ex'}).text
+        except:
+            d['地址'] = ''
+        d['总价'] = soup_list.find('span',attrs={'class':'love-money'}).text
+        d['单价'] = soup_list.find('p',attrs={'class':'info-item'}).text.replace('元 / 平米','')
+        d['户型'] = soup_list.find('span',attrs={'class':'first'}).find('label').text
+        key = soup_list.find('div',attrs={'class':'info-box'})
+        key_span = key.find_all('span')
+        if len(key_span) == 3 :
+            d['当前层'] = key_span[0].text.split('厅')[1]
+            d['建筑面积'] = key_span[1].find('label').text
+            d['建成年份'] = key_span[1].text.split('米')[1]
+            d['朝向'] = key_span[2].find('label').text
+            d['建筑类别'] = key_span[2].text.replace('东','').replace('南','').replace('西','').replace('北','')
+        xiaoqu_url = soup_list.find('p',attrs={'class':'info-item01'})
+        xq_url = xiaoqu_url.find('a')
+        if xq_url['href']:
+            d['小区链接'] = 'http://bj.lianjia.com' + xq_url['href']
+            d['小区名称'] = soup_list.find('p',attrs={'class':'info-item01'}).text.split('（')[0]
+            d['所属区域'] = soup_list.find('p',attrs={'class':'info-item01'}).find('span').find('a').text
+            d['RECMETAID']= soup_list.find('p',attrs={'class':'info-item02'}).find('span').text.replace('房源编号：','')
+            d['楼栋名称']=''
+            #d['总层数']=''
+            #d['当前层']=''
+            d['使用面积']=''
+            d['产权性质']=''
+            d['装修情况']=''
+            d['卧室数量']=''
+            d['客厅数量']=''
+            d['卫生间数量']=''
+            d['厨房数量']=''
+            d['阳台数量']=''
+            d['房屋图片']=''
+            d['信息来源']=''
+            d['联系人']=soup_list.find('p',attrs={'class':'name'}).find('a').text
+            d['所属公司']=''
+            d['联系电话']=soup_list.find('p',attrs={'class':'tel'}).text
+            d['纬度']=''
+            d['经度']=''
+            d['备注']=''
+            d['预留字段']=''
+            d['房源编号']=''
+            d['发布时间']=''
+            d['住宅类别']=''
+            d['配套设施']=''
+            d['估价链接']=''
+            d['租金链接']=''
+            d['房屋标签']=''
+            d['交通状况']=''
+            d['街景地图场景ID']=''
+            d['地图链接']=''
+            d['楼盘详情和所属HTML']=''
+            d['楼盘物业类型']=''
+            d['楼盘绿化率']=''
+            d['楼盘物业费']=''
+            d['楼盘物业公司']=''
+            d['楼盘开发商']=''
+            d['本月均价']=''
+            d['楼盘价格走势']=''
+            d['小区详情走势图链接']=''
+            d['经纪人链接']=''
+            d['经纪人图片链接']=''
+            d['小区成交历史链接']=''
+            #d['城市']='北京'
+            d['行政区']=d['所属区域']
+            # x = format_str(d['RECMETAID'])+'\t'+format_str(d['题名'])+'\t'+format_str(d['来源链接'])+'\t'+format_str(d['小区名称'])+'\t'+d['所属区域'] +'\t'+ format_str(d['小区链接'])+'\t'+format_str(d['楼栋名称'])+'\t'+format_str(d['地址'])+'\t'+format_str(d['建成年份'])+'\t'+format_str(d['总层数'])+'\t'+format_str(d['当前层'])+'\t'+format_str(d['朝向'])+'\t'+format_str(d['建筑面积'])
+            # y = format_str(d['使用面积'])+'\t'+format_str(d['产权性质'])+'\t'+format_str(d['装修情况'])+'\t'+format_str(d['户型'])+'\t'+format_str(d['卧室数量'])+'\t'+format_str(d['客厅数量'])+'\t'+format_str(d['卫生间数量'])+'\t'+format_str(d['厨房数量'])+'\t'+format_str(d['阳台数量'])+'\t'+format_str(d['单价'])+'\t'+format_str(d['总价'])
+            # z = format_str(d['挂牌时间'])+'\t'+format_str(d['房屋图片'])+'\t'+format_str(d['信息来源'])+'\t'+format_str(d['联系人'])+'\t'+format_str(d['所属公司'])+'\t'+format_str(d['联系电话'])+'\t'+format_str(d['纬度'])+'\t'+format_str(d['经度'])+'\t'+format_str(d['备注'])+'\t'+format_str(d['预留字段'])+'\t'+format_str(d['房源编号'])
+            # w = format_str(d['发布时间'])+'\t'+format_str(d['住宅类别'])+'\t'+format_str(d['建筑类别'])+'\t'+format_str(d['配套设施'])+'\t'+format_str(d['估价链接'])+'\t'+format_str(d['租金链接'])+'\t'+format_str(d['房屋标签'])+'\t'+format_str(d['交通状况'])+'\t'+format_str(d['街景地图场景ID'])+'\t'+format_str(d['地图链接'])+'\t'+format_str(d['楼盘详情和所属HTML'])
+            # q = format_str(d['楼盘物业类型'])+'\t'+format_str(d['楼盘绿化率'])+'\t'+format_str(d['楼盘物业费'])+'\t'+format_str(d['楼盘物业公司'])+'\t'+format_str(d['楼盘开发商'])+'\t'+format_str(d['本月均价'])+'\t'+format_str(d['楼盘价格走势'])+'\t'+format_str(d['小区详情走势图链接'])+'\t'+format_str(d['经纪人链接'])+'\t'+format_str(d['经纪人图片链接'])+'\t'+format_str(d['小区成交历史链接'])+'\t'+format_str(d['城市'])+'\t'+format_str(d['行政区'])
+            # print(x+'\t'+y+'\t'+z+'\t'+w+'\t'+q)
+            # with open('lj_1101.txt', 'a+', encoding='utf8') as f:
+            #     f.write(x + '\t' + y + '\t' + z + '\t' + w + '\t' + q + '\n')
+            #     f.flush()
+            # print(format_str(d['题名']) + '\t' + format_str(d['建筑类别']) + '\t' + format_str(d['建成年份']) + '\t' + format_str(d['建筑面积']) + '\t' + format_str(d['总楼层']) + '\t' + format_str(d['户型']) + '\t' + format_str(d['单价']) + '\t' + format_str(d['总价']) + '\t' + format_str(d['地址']) + '\t' + format_str(d['挂牌时间']) + '\t' + format_str(d['小区名称']) + '\t' + format_str(d['小区链接']) + '\t' + format_str(d['来源链接']) + '\t' + loginurl + '\n')
+            for meta in d:
+                d[meta] = format_str(d[meta])
+            d['数据来源'] = 'lj'
+            d['STR_ORDER'] = urlbase.order
+            self.completionlr(d, metadatas)
+            MySqlEx.savecj(d, metadatas)
+        t2 = time.time()
+        LOG.info('解析页面耗时:%f' % (t2-t1))
+
+if __name__ == '__main__':
+    wwwlianjiacjcom = wwwlianjiacjcom()
+    page = wwwlianjiacjcom.default(UrlBase('http://www.lianjia.com', 'wwwlianjiacjcom', order='1603070948'))[0]
+    items = wwwlianjiacjcom.getpages(page)
+    for item in items:
+        wwwlianjiacjcom.getitem(item)
+    # wwwlianjiacjcom.getpages(UrlBean('http://dl.lianjia.com/chengjiao/pg95/', 'wwwlianjiacjcom#getitem', param={}, order='160307094801'))
+    # wwwlianjiacjcom.getitem(UrlBean('http://dl.lianjia.com/chengjiao/DLGXY89514074.html', 'wwwlianjiacjcom#getitem', param={}, order='160307094801'))
